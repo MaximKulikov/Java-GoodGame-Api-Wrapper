@@ -1,9 +1,9 @@
 var thisPage = location.origin + location.pathname; // Path to this file
-var failurePage = location.origin + "/authorization-failure.html";
+var failurePage = location.origin + "/gg-authorization-failure.html";
 
 var hashValues = {
     access_token: null,
-    scope: ""
+    state: null
 };
 
 function process() {
@@ -19,10 +19,10 @@ function getAccessTokenFromHash() {
     extractAccessToken();
     if (hashValues.access_token != null && hashValues.access_token.length > 0) {
         // Send request to server for extraction of access token
-        document.location.replace(thisPage + "?access_token=" + hashValues.access_token + "&scope=" + hashValues.scope);
+        document.location.replace(thisPage + "?code=" + hashValues.access_token + "&state=" + hashValues.scope);
     } else {
         // No access token found
-        document.location.replace(failurePage + "?error=access_denied&error_description=no_access_token_found");
+        document.location.replace(failurePage + "?error=access_denied&error_description=no_code_found");
     }
 }
 
@@ -35,9 +35,9 @@ function extractAccessToken() {
     var params = hash.slice(1).split('&');
     for (var i = 0; i < params.length; i++) {
         var param = params[i].split('=');
-        if (param[0] === "access_token") {
+        if (param[0] === "code") {
             hashValues.access_token = param[1]; // access token found
-        } else if (param[0] === "scope") {
+        } else if (param[0] === "state") {
             hashValues.scope = param[1];
         }
     }

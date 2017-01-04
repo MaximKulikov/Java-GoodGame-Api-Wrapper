@@ -34,7 +34,7 @@ public class RootResource extends AbstractResource {
     public void get(final TokenResponseHandler handler) {
         String url = String.format("%s/", getBaseUrl());
 
-        http.get(url, new TwitchHttpResponseHandler(handler) {
+        http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {

@@ -1,61 +1,107 @@
 package com.mb3364.twitch.api;
 
 import com.mb3364.twitch.api.auth.Authenticator;
+import com.mb3364.twitch.api.models.AccessToken;
 import com.mb3364.twitch.api.resources.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Enables the ability to interact with the Twitch.tv REST API.
  *
  * @author Matthew Bell
  */
-public class Twitch {
+public class GoodGame {
 
-    public static final String DEFAULT_BASE_URL = "https://api.twitch.tv/kraken";
-    public static final int DEFAULT_API_VERSION = 3;
+    public static final String DEFAULT_BASE_URL = "http://api2.goodgame.ru";
+    public static final int DEFAULT_API_VERSION = 2;
+
     private String clientId; // User's app client Id
+    private String state = null;
     private Authenticator authenticator;
     private Map<String, AbstractResource> resources;
 
     /**
-     * Constructs a Twitch application instance with a set API base URL and API version number.
+     * Constructs a GoodGame application instance with a set API base URL and API version number.
      *
-     * @param baseUrl    the base URL of the Twitch API
+     * @param baseUrl    the base URL of the GoodGame API
      * @param apiVersion the API version number to request
      */
-    public Twitch(String baseUrl, int apiVersion) {
+    public GoodGame(String baseUrl, int apiVersion) {
         authenticator = new Authenticator(DEFAULT_BASE_URL);
         // Instantiate resource connectors
         resources = new HashMap<String, AbstractResource>();
+        resources.put("oauth", new OauthResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
+        resources.put("player", new PlayerResourses(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
+        resources.put("streams", new StreamsResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
         resources.put("channels", new ChannelsResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
         resources.put("chat", new ChatResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
         resources.put("games", new GamesResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
+        resources.put("info", new InfoResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
+        resources.put("smiles", new SmilesResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
+
+
+
+
+
+
+
         resources.put("ingests", new IngestsResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
         resources.put("root", new RootResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
         resources.put("search", new SearchResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
-        resources.put("streams", new StreamsResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
         resources.put("teams", new TeamsResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
         resources.put("users", new UsersResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
         resources.put("videos", new VideosResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
     }
 
     /**
-     * Constructs a Twitch application instance.
+     * Constructs a GoodGame application instance.
      */
-    public Twitch() {
+    public GoodGame() {
         this(DEFAULT_BASE_URL, DEFAULT_API_VERSION);
     }
 
+
+
+    public Authenticator auth() {
+        return authenticator;
+    }
+    public OauthResource oauth() {return (OauthResource) getResource("oauth");}
+    public PlayerResourses player() {return (PlayerResourses) getResource("player");}
+    public ChannelsResource channels() {
+        return (ChannelsResource) getResource("channels");
+    }
+    public ChatResource chat() {
+        return (ChatResource) getResource("chat");
+    }
+    public GamesResource games() {
+        return (GamesResource) getResource("games");
+    }
+    public InfoResource info() {
+        return (InfoResource) getResource("info");
+    }
+    public SmilesResource smiles() {
+        return (SmilesResource) getResource("smiles");
+    }
+
+
+
+
+
+
+
     /**
-     * Get the set Twitch client ID.
+     * Get the set GoodGame client ID.
      *
-     * @return The Twitch client ID
+     * @return The GoodGame client ID
      */
     public String getClientId() {
         return clientId;
     }
+
+
 
     /**
      * Set the Twitch client ID. Register your application on Twitch.tv to retrieve
@@ -74,79 +120,19 @@ public class Twitch {
 
     private AbstractResource getResource(String key) {
         AbstractResource r = resources.get(key);
-        r.setAuthAccessToken(authenticator.getAccessToken());
+        AccessToken accessToken = authenticator.getToken();
+        if (accessToken != null) {
+            r.setAccessToken(accessToken.getAccess_token());
+        }
+
         return r;
     }
 
-    /**
-     * Get the authenticator object. The authenticator object allows a user to
-     * authenticate with the Twitch.tv servers.
-     *
-     * @return the authenticator object
-     * @see Authenticator
-     */
-    public Authenticator auth() {
-        return authenticator;
-    }
-
-    /**
-     * Get the {@link ChannelsResource} object. The {@link ChannelsResource} provides
-     * the functionality to access the <code>/channels</code> endpoints of the Twitch API.
-     *
-     * @return the {@link ChannelsResource} object
-     * @see ChannelsResource
-     * @see ChatResource
-     * @see GamesResource
-     * @see IngestsResource
-     * @see RootResource
-     * @see SearchResource
-     * @see StreamsResource
-     * @see TeamsResource
-     * @see UsersResource
-     * @see VideosResource
-     */
-    public ChannelsResource channels() {
-        return (ChannelsResource) getResource("channels");
-    }
-
-    /**
-     * Get the {@link ChatResource} object. The {@link ChatResource} provides
-     * the functionality to access the <code>/chat</code> endpoints of the Twitch API.
-     *
-     * @return the {@link ChatResource} object
-     * @see ChannelsResource
-     * @see ChatResource
-     * @see GamesResource
-     * @see IngestsResource
-     * @see RootResource
-     * @see SearchResource
-     * @see StreamsResource
-     * @see TeamsResource
-     * @see UsersResource
-     * @see VideosResource
-     */
-    public ChatResource chat() {
-        return (ChatResource) getResource("chat");
-    }
-
-    /**
-     * Get the {@link GamesResource} object. The {@link GamesResource} provides
-     * the functionality to access the <code>/games</code> endpoints of the Twitch API.
-     *
-     * @return the {@link GamesResource} object
-     * @see ChannelsResource
-     * @see ChatResource
-     * @see GamesResource
-     * @see IngestsResource
-     * @see RootResource
-     * @see SearchResource
-     * @see StreamsResource
-     * @see TeamsResource
-     * @see UsersResource
-     * @see VideosResource
-     */
-    public GamesResource games() {
-        return (GamesResource) getResource("games");
+    public String getState() {
+        if (this.state == null) {
+            this.state = UUID.randomUUID().toString();
+        }
+        return this.state;
     }
 
     /**

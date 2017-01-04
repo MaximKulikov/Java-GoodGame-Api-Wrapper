@@ -6,11 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Error {
 
-    @JsonProperty("error")
+    @JsonProperty("title")
     private String statusText;
     @JsonProperty("status")
     private int statusCode;
-    @JsonProperty("message")
+    @JsonProperty("detail")
     private String message;
 
     @Override

@@ -31,8 +31,15 @@ public abstract class AbstractResource {
      */
     protected AbstractResource(String baseUrl, int apiVersion) {
         this.baseUrl = baseUrl;
-        http.setHeader("ACCEPT", "application/vnd.twitchtv.v" + Integer.toString(apiVersion) + "+json"); // Specify API version
+        http.setHeader("ACCEPT", "application/vnd.goodgame.v" + Integer.toString(apiVersion) + "+json"); // Specify API version
+
         configureObjectMapper();
+    }
+
+    protected AbstractResource(String baseUrl) {
+        this.baseUrl = baseUrl;
+        http.setHeader("Accept", "application/json");
+        http.setHeader("Content-Type", "application/json");
     }
 
     /**
@@ -48,9 +55,9 @@ public abstract class AbstractResource {
      *
      * @param accessToken the user's authentication access token
      */
-    public void setAuthAccessToken(String accessToken) {
+    public void setAccessToken(String accessToken) {
         if (accessToken != null && accessToken.length() > 0) {
-            http.setHeader("Authorization", String.format("OAuth %s", accessToken));
+            http.setHeader("Authorization", String.format("Bearer %s", accessToken));
         } else {
             http.removeHeader("Authorization");
         }
@@ -83,11 +90,11 @@ public abstract class AbstractResource {
      * Handles HTTP response's from the Twitch API.
      * <p>Since all Http failure logic is the same, we handle it all in one place: here.</p>
      */
-    protected static abstract class TwitchHttpResponseHandler extends StringHttpResponseHandler {
+    protected static abstract class GoodGameHttpResponseHandler extends StringHttpResponseHandler {
 
         private BaseFailureHandler apiHandler;
 
-        public TwitchHttpResponseHandler(BaseFailureHandler apiHandler) {
+        public GoodGameHttpResponseHandler(BaseFailureHandler apiHandler) {
             this.apiHandler = apiHandler;
         }
 

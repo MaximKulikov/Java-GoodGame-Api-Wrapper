@@ -6,88 +6,61 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Game {
 
-    @JsonProperty("_id")
-    private long id;
-    private String name;
-    private GameBox box;
-    private GameLogo logo;
-    private long giantbombId;
-    private int popularity; // From search results
+    private String id;
+    private String title;
+    private String url;
+    @JsonProperty("short")
+    private String shortTitle;
+    private String poster;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
+    public String getShortTitle() {
+        return shortTitle;
+    }
+
+    public void setShortTitle(String shortTitle) {
+        this.shortTitle = shortTitle;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     @Override
     public String toString() {
         return "Game{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", box=" + box +
-                ", logo=" + logo +
-                ", giantbombId=" + giantbombId +
-                ", popularity=" + popularity +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                ", shortTitle='" + shortTitle + '\'' +
+                ", poster='" + poster + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Game game = (Game) o;
-
-        return id == game.id;
-
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (id ^ (id >>> 32));
-    }
-
-    public long getId() {
-
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public GameBox getBox() {
-        return box;
-    }
-
-    public void setBox(GameBox box) {
-        this.box = box;
-    }
-
-    public GameLogo getLogo() {
-        return logo;
-    }
-
-    public void setLogo(GameLogo logo) {
-        this.logo = logo;
-    }
-
-    public long getGiantbombId() {
-        return giantbombId;
-    }
-
-    public void setGiantbombId(long giantbombId) {
-        this.giantbombId = giantbombId;
-    }
-
-    public int getPopularity() {
-        return popularity;
-    }
-
-    public void setPopularity(int popularity) {
-        this.popularity = popularity;
     }
 }

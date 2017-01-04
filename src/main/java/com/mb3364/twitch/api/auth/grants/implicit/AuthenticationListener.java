@@ -1,7 +1,5 @@
 package com.mb3364.twitch.api.auth.grants.implicit;
 
-import com.mb3364.twitch.api.auth.Scopes;
-
 /**
  * Interface for listening to twitch.tv authentication
  * access tokens
@@ -12,7 +10,7 @@ public interface AuthenticationListener {
      *
      * @param token twitch.tv authentication access token
      */
-    void onAccessTokenReceived(String token, Scopes... scopes);
+    void onAccessTokenReceived(String token, String state);
 
     /**
      * An authentication error occurred.

@@ -41,7 +41,7 @@ public class TeamsResource extends AbstractResource {
     public void get(final RequestParams params, final TeamsResponseHandler handler) {
         String url = String.format("%s/teams", getBaseUrl());
 
-        http.get(url, params, new TwitchHttpResponseHandler(handler) {
+        http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
@@ -72,7 +72,7 @@ public class TeamsResource extends AbstractResource {
     public void get(final String team, final TeamResponseHandler handler) {
         String url = String.format("%s/teams/%s", getBaseUrl(), team);
 
-        http.get(url, new TwitchHttpResponseHandler(handler) {
+        http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {

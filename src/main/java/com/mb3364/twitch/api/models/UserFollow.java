@@ -9,7 +9,7 @@ public class UserFollow {
 
     private Date createdAt;
     private boolean notifications;
-    private Channel channel;
+    private ChannelContainer channel;
 
     @Override
     public String toString() {
@@ -58,11 +58,11 @@ public class UserFollow {
         this.notifications = notifications;
     }
 
-    public Channel getChannel() {
+    public ChannelContainer getChannel() {
         return channel;
     }
 
-    public void setChannel(Channel channel) {
+    public void setChannel(ChannelContainer channel) {
         this.channel = channel;
     }
 }

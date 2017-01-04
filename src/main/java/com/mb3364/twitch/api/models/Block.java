@@ -11,7 +11,7 @@ public class Block {
     @JsonProperty("_id")
     private long id;
     private Date updatedAt;
-    private User user;
+    private User_Twitch user;
 
     @Override
     public String toString() {
@@ -60,11 +60,11 @@ public class Block {
         this.updatedAt = updatedAt;
     }
 
-    public User getUser() {
+    public User_Twitch getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(User_Twitch user) {
         this.user = user;
     }
 }

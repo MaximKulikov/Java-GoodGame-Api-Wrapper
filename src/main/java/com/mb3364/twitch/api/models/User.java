@@ -1,127 +1,97 @@
 package com.mb3364.twitch.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
-
+/**
+ * Java-GG-Api-Wrapper
+ * Created by maxim on 29.12.2016.
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
-
-    private String name;
-    @JsonProperty("_id")
-    private long id;
-    private String displayName;
-    private String logo;
-    private String type;
-    private String bio;
-    private Date updatedAt;
-    private Date createdAt;
+    private String user_id;
+    private String secure;
+    private String email;
+    private String payments;
+    private String subscribed;
+    private String subscribed_stream;
+    private String subscribed_anons;
+    private String wallet;
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", displayName='" + displayName + '\'' +
-                ", logo='" + logo + '\'' +
-                ", type='" + type + '\'' +
-                ", bio='" + bio + '\'' +
-                ", updatedAt=" + updatedAt +
-                ", createdAt=" + createdAt +
+                "user_id='" + user_id + '\'' +
+                ", secure='" + secure + '\'' +
+                ", email='" + email + '\'' +
+                ", payments='" + payments + '\'' +
+                ", subscribed='" + subscribed + '\'' +
+                ", subscribed_stream='" + subscribed_stream + '\'' +
+                ", subscribed_anons='" + subscribed_anons + '\'' +
+                ", wallet='" + wallet + '\'' +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        return id == user.id;
-
+    public String getSecure() {
+        return secure;
     }
 
-    @Override
-    public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+    public void setSecure(String secure) {
+        this.secure = secure;
     }
 
-    public void setStaff(boolean staff) {
-        /**
-         * This will handle a caching bug when a v2 user is returned
-         * from the API rather than the expected v3 user.
-         */
-        if (staff) {
-            this.type = "staff";
-        } else {
-            this.type = "user";
-        }
+    public String getEmail() {
+        return email;
     }
 
-    public String getName() {
-
-        return name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getPayments() {
+        return payments;
     }
 
-    public long getId() {
-        return id;
+    public void setPayments(String payments) {
+        this.payments = payments;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getSubscribed() {
+        return subscribed;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public void setSubscribed(String subscribed) {
+        this.subscribed = subscribed;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public String getSubscribed_stream() {
+        return subscribed_stream;
     }
 
-    public String getLogo() {
-        return logo;
+    public void setSubscribed_stream(String subscribed_stream) {
+        this.subscribed_stream = subscribed_stream;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public String getSubscribed_anons() {
+        return subscribed_anons;
     }
 
-    public String getType() {
-        return type;
+    public void setSubscribed_anons(String subscribed_anons) {
+        this.subscribed_anons = subscribed_anons;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public String getWallet() {
+        return wallet;
     }
 
-    public String getBio() {
-        return bio;
+    public void setWallet(String wallet) {
+        this.wallet = wallet;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 }

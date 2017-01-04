@@ -1,11 +1,37 @@
-# Async Twitch API Wrapper
-JTAW is a complete asynchronous java wrapper for interaction with v3 of the [Twitch API](https://github.com/justintv/Twitch-API).
+# Async GoodGame API Wrapper
+JGAW is a complete asynchronous java wrapper for interaction with v2 of the [GoogGame API](https://github.com/GoodGame/API).
 
 Please feel free to report any issues or contribute code.
 
+#Done
+gg.auth().awaitAutorizationCode() // Получение авторизационного токена
+gg.oauth().getAccessToken() //Получение токена доступа
+gg.player().getPlayer() // Получение информации о плеере, передается Player source
+gg.streams.getChannel() // Получение информации о конкретном стриме. Query-параметры не работают.
+gg.channels().getSubscribers(channel, new SubscriberResponseHandler() // Список подписчиков указанного канала. Scope: channel.subscribers
+gg.channels().getSubscribers(channel, requestParams, new SubscriberResponseHandler() // Список подписчиков указанного канала c параметрами. Scope: channel.subscribers
+gg.channels().getPremiums(channel, new PremiumsResponseHandler() // Список премиум подписчиков указанного канала. Scope: channel.premiums
+gg.channels().getPremiums(channel, requestParams, new PremiumsResponseHandler() // Список премиум подписчиков указанного канала с параметрами. Scope: channel.premiums
+gg.channels().getDonations(channel, new DonationsResponseHandler() // Список поддержки указанного канала. Scope: channel.donations
+gg.channels().getDonations(channel, requestParams, new DonationsResponseHandler() // Список поддержки указанного канала с параметрами. Scope: channel.donations
+gg.chat().getChatToken(new ChatTokenResponseHandler()  // Получение токена чата для конкретного пользователя. Id-пользователя определяется из Access Token'a. Scope: chat.token
+gg.games().getGames(new GamesResponseHandler() // Получение коллекции игр
+Не проверено gg.games().getGames(requestParams, new GamesResponseHandler() // Получение коллекции игр
+gg.games().getGame(gameUrl, new GameResponseHandler() // Получение информации по игре, зная ее url
+gg.info().getInfo(new InfoResponseHandler() // Получение информации по Access Token'у
+gg.smiles().getSmiles(new SmilesResponseHandler() // Получение коллекции смайлов. Если не указан channel_id, то вернется список всех смайлов.
+gg.smiles().getChannelSmiles(channelId, new SmilesResponseHandler() //Получение коллекции смайлов.
+
+
+
+#In Progress
+
+
+#Text Below this not edited yet
+
 ## Basics
 
-Using the wrapper is as simple as instantiating the `Twitch` object and then calling the appropriate endpoint functions.
+Using the wrapper is as simple as instantiating the `GoodGame` object and then calling the appropriate endpoint functions.
 
 For example, a `GET /streams/featured` request would map to the `twitch.streams().getFeatured()` function; and `GET /channels/lirik` would map to `twitch.channels().get("lirik")`.
 
@@ -128,9 +154,9 @@ boolean authSuccess = twitch.auth().awaitAccessToken(authView, failureView, succ
 
 *Auth*
 
-This page will only be displayed to the user for a brief second before automatically redirecting the user. If you wish to overwrite it you must include `auth.js` in the `<head>` tag:
+This page will only be displayed to the user for a brief second before automatically redirecting the user. If you wish to overwrite it you must include `gg-auth.js` in the `<head>` tag:
 ```HTML
-<script type="text/javascript" src="auth.js"></script>
+<script type="text/javascript" src="gg-auth.js"></script>
 ```
 
 *Success*

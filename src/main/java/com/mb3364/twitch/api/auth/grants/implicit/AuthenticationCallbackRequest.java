@@ -1,8 +1,12 @@
 package com.mb3364.twitch.api.auth.grants.implicit;
 
-import com.mb3364.twitch.api.auth.Scopes;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLDecoder;
@@ -132,11 +136,9 @@ public class AuthenticationCallbackRequest implements Runnable {
         Map<String, String> queryParams = extractQueryParams(requestFilename);
 
         // If we have the token, send the success page
-        String accessToken = queryParams.get("access_token");
+        String accessToken = queryParams.get("code");
+        String state = queryParams.get("state");
         String[] scopes = new String[0];
-        if (queryParams.containsKey("scope")) {
-            scopes = queryParams.get("scope").split(" ");
-        }
 
         // See if there is an error message, send the failure page
         String error = queryParams.get("error");
@@ -147,7 +149,7 @@ public class AuthenticationCallbackRequest implements Runnable {
         // Open the requested file.
         InputStream fis;
         String contentTypeLine;
-        if (requestFilename.startsWith("/auth.js") || requestFilename.startsWith("/auth-success.js")) {
+        if (requestFilename.startsWith("/gg-auth.js") || requestFilename.startsWith("/gg-auth-success.js")) {
             fis = getClass().getResourceAsStream(requestFilename);
             contentTypeLine = "Content-type: text/javascript" + EOL;
         } else {
@@ -199,11 +201,8 @@ public class AuthenticationCallbackRequest implements Runnable {
         if (authenticationListener != null) {
             // Send callback if access token received
             if (accessToken != null) {
-                Scopes[] accessScopes = new Scopes[scopes.length];
-                for (int i = 0; i < scopes.length; i++) {
-                    accessScopes[i] = Scopes.fromString(scopes[i]);
-                }
-                authenticationListener.onAccessTokenReceived(accessToken, accessScopes);
+
+                authenticationListener.onAccessTokenReceived(accessToken, state);
             }
             // Send callback if authorization error
             if (error != null) {

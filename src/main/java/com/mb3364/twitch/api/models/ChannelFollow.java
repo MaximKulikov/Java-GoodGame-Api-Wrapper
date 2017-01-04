@@ -9,7 +9,7 @@ public class ChannelFollow {
 
     private Date createdAt;
     private boolean notifications;
-    private User user;
+    private User_Twitch user;
 
     @Override
     public String toString() {
@@ -57,11 +57,11 @@ public class ChannelFollow {
         this.notifications = notifications;
     }
 
-    public User getUser() {
+    public User_Twitch getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(User_Twitch user) {
         this.user = user;
     }
 }

@@ -7,13 +7,13 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Editors {
 
-    private List<User> users;
+    private List<User_Twitch> users;
 
-    public List<User> getUsers() {
+    public List<User_Twitch> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<User_Twitch> users) {
         this.users = users;
     }
 }

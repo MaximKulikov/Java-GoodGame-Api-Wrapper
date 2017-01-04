@@ -11,7 +11,7 @@ public class ChannelSubscription {
     @JsonProperty("_id")
     private String id;
     private Date createdAt;
-    private User user;
+    private User_Twitch user;
 
     @Override
     public String toString() {
@@ -55,11 +55,11 @@ public class ChannelSubscription {
         this.createdAt = createdAt;
     }
 
-    public User getUser() {
+    public User_Twitch getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(User_Twitch user) {
         this.user = user;
     }
 }

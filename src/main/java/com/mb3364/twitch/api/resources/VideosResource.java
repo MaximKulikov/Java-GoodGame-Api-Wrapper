@@ -38,7 +38,7 @@ public class VideosResource extends AbstractResource {
     public void get(final String id, final VideoResponseHandler handler) {
         String url = String.format("%s/videos/%s", getBaseUrl(), id);
 
-        http.get(url, new TwitchHttpResponseHandler(handler) {
+        http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
@@ -69,7 +69,7 @@ public class VideosResource extends AbstractResource {
     public void getTop(final RequestParams params, final VideosResponseHandler handler) {
         String url = String.format("%s/videos/top", getBaseUrl());
 
-        http.get(url, params, new TwitchHttpResponseHandler(handler) {
+        http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
@@ -105,7 +105,7 @@ public class VideosResource extends AbstractResource {
     public void getFollowed(final RequestParams params, final VideosResponseHandler handler) {
         String url = String.format("%s/videos/followed", getBaseUrl());
 
-        http.get(url, params, new TwitchHttpResponseHandler(handler) {
+        http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {

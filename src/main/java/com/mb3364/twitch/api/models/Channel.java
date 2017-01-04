@@ -1,184 +1,132 @@
 package com.mb3364.twitch.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
+import java.util.List;
 
+/**
+ * Java-GG-Api-Wrapper
+ * Created by maxim on 03.01.2017.
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Channel {
-
-    private boolean mature;
-    private String status;
-    private String broadcasterLanguage;
-    private String displayName;
-    private String game;
-    private int delay;
-    private String language;
-    @JsonProperty("_id")
-    private long id;
-    private String name;
-    private Date createdAt;
-    private Date updatedAt;
-    private String logo;
-    private String banner;
-    private String videoBanner;
-    private String background;
-    private String profileBanner;
-    private String profileBannerBackgroundColor;
-    private boolean partner;
+    private Long id;
+    private String key;
+    private String premium;
+    private String title;
+    private String max_viewers;
+    private String player_type;
+    private String gg_player_src;
+    private String embed;
+    private String img;
+    private String thumb;
+    private String description;
+    private Boolean adult;
+    private List<Game> games;
     private String url;
-    private long views;
-    private int followers;
-    private String email;
-    private String streamKey;
 
-    public static boolean isNullOrEmpty(Channel channel) {
-        return channel == null || channel.equals(new Channel());
+    public Boolean getAdult() {
+        return adult;
     }
 
-    public boolean isMature() {
-        return mature;
+    public void setAdult(Boolean adult) {
+        this.adult = adult;
     }
 
-    public void setMature(boolean mature) {
-        this.mature = mature;
+    public String getDescription() {
+        return description;
     }
 
-    public String getStatus() {
-        return status;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public String getEmbed() {
+        return embed;
     }
 
-    public String getBroadcasterLanguage() {
-        return broadcasterLanguage;
+    public void setEmbed(String embed) {
+        this.embed = embed;
     }
 
-    public void setBroadcasterLanguage(String broadcasterLanguage) {
-        this.broadcasterLanguage = broadcasterLanguage;
+    public List<Game> getGames() {
+        return games;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public void setGames(List<Game> games) {
+        this.games = games;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public String getGg_player_src() {
+        return gg_player_src;
     }
 
-    public String getGame() {
-        return game;
+    public void setGg_player_src(String gg_player_src) {
+        this.gg_player_src = gg_player_src;
     }
 
-    public void setGame(String game) {
-        this.game = game;
-    }
-
-    public int getDelay() {
-        return delay;
-    }
-
-    public void setDelay(int delay) {
-        this.delay = delay;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getImg() {
+        return img;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setImg(String img) {
+        this.img = img;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public String getKey() {
+        return key;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setKey(String key) {
+        this.key = key;
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
+    public String getMax_viewers() {
+        return max_viewers;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setMax_viewers(String max_viewers) {
+        this.max_viewers = max_viewers;
     }
 
-    public String getLogo() {
-        return logo;
+    public String getPlayer_type() {
+        return player_type;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public void setPlayer_type(String player_type) {
+        this.player_type = player_type;
     }
 
-    public String getBanner() {
-        return banner;
+    public String getPremium() {
+        return premium;
     }
 
-    public void setBanner(String banner) {
-        this.banner = banner;
+    public void setPremium(String premium) {
+        this.premium = premium;
     }
 
-    public String getVideoBanner() {
-        return videoBanner;
+    public String getThumb() {
+        return thumb;
     }
 
-    public void setVideoBanner(String videoBanner) {
-        this.videoBanner = videoBanner;
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
     }
 
-    public String getBackground() {
-        return background;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBackground(String background) {
-        this.background = background;
-    }
-
-    public String getProfileBanner() {
-        return profileBanner;
-    }
-
-    public void setProfileBanner(String profileBanner) {
-        this.profileBanner = profileBanner;
-    }
-
-    public String getProfileBannerBackgroundColor() {
-        return profileBannerBackgroundColor;
-    }
-
-    public void setProfileBannerBackgroundColor(String profileBannerBackgroundColor) {
-        this.profileBannerBackgroundColor = profileBannerBackgroundColor;
-    }
-
-    public boolean isPartner() {
-        return partner;
-    }
-
-    public void setPartner(boolean partner) {
-        this.partner = partner;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getUrl() {
@@ -189,79 +137,23 @@ public class Channel {
         this.url = url;
     }
 
-    public long getViews() {
-        return views;
-    }
-
-    public void setViews(long views) {
-        this.views = views;
-    }
-
-    public int getFollowers() {
-        return followers;
-    }
-
-    public void setFollowers(int followers) {
-        this.followers = followers;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getStreamKey() {
-        return streamKey;
-    }
-
-    public void setStreamKey(String streamKey) {
-        this.streamKey = streamKey;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Channel channel = (Channel) o;
-
-        return id == channel.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (id ^ (id >>> 32));
-    }
-
     @Override
     public String toString() {
-        return "ChannelSummary{" +
-                "mature=" + mature +
-                ", status='" + status + '\'' +
-                ", broadcasterLanguage='" + broadcasterLanguage + '\'' +
-                ", displayName='" + displayName + '\'' +
-                ", game='" + game + '\'' +
-                ", delay=" + delay +
-                ", language='" + language + '\'' +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", logo='" + logo + '\'' +
-                ", banner='" + banner + '\'' +
-                ", videoBanner='" + videoBanner + '\'' +
-                ", background='" + background + '\'' +
-                ", profileBanner='" + profileBanner + '\'' +
-                ", profileBannerBackgroundColor='" + profileBannerBackgroundColor + '\'' +
-                ", partner=" + partner +
+        return "Channel{" +
+                "id=" + id +
+                ", key='" + key + '\'' +
+                ", premium='" + premium + '\'' +
+                ", title='" + title + '\'' +
+                ", max_viewers='" + max_viewers + '\'' +
+                ", player_type='" + player_type + '\'' +
+                ", gg_player_src='" + gg_player_src + '\'' +
+                ", embed='" + embed + '\'' +
+                ", img='" + img + '\'' +
+                ", thumb='" + thumb + '\'' +
+                ", description='" + description + '\'' +
+                ", adult=" + adult +
+                ", games=" + games +
                 ", url='" + url + '\'' +
-                ", views=" + views +
-                ", followers=" + followers +
-                ", email='" + email + '\'' +
-                ", streamKey='" + streamKey + '\'' +
                 '}';
     }
 }

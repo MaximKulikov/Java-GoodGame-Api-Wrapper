@@ -28,7 +28,7 @@ public class UsersResource extends AbstractResource {
     }
 
     /**
-     * Returns a {@link User} object.
+     * Returns a {@link User_Twitch} object.
      *
      * @param user    the user to request
      * @param handler the response handler
@@ -36,11 +36,11 @@ public class UsersResource extends AbstractResource {
     public void get(final String user, final UserResponseHandler handler) {
         String url = String.format("%s/users/%s", getBaseUrl(), user);
 
-        http.get(url, new TwitchHttpResponseHandler(handler) {
+        http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
-                    User value = objectMapper.readValue(content, User.class);
+                    User_Twitch value = objectMapper.readValue(content, User_Twitch.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
                     handler.onFailure(e);
@@ -50,7 +50,7 @@ public class UsersResource extends AbstractResource {
     }
 
     /**
-     * Returns the authenticated {@link User} object.
+     * Returns the authenticated {@link User_Twitch} object.
      * Authenticated, required scope: {@link Scopes#USER_READ}
      *
      * @param handler the response handler
@@ -58,11 +58,11 @@ public class UsersResource extends AbstractResource {
     public void get(final UserResponseHandler handler) {
         String url = String.format("%s/user", getBaseUrl());
 
-        http.get(url, new TwitchHttpResponseHandler(handler) {
+        http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
-                    User value = objectMapper.readValue(content, User.class);
+                    User_Twitch value = objectMapper.readValue(content, User_Twitch.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
                     handler.onFailure(e);
@@ -82,7 +82,7 @@ public class UsersResource extends AbstractResource {
     public void getSubscription(final String user, final String channel, final UserSubscriptionResponseHandler handler) {
         String url = String.format("%s/users/%s/subscriptions/%s", getBaseUrl(), user, channel);
 
-        http.get(url, new TwitchHttpResponseHandler(handler) {
+        http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
@@ -114,7 +114,7 @@ public class UsersResource extends AbstractResource {
     public void getFollows(final String user, final RequestParams params, final UserFollowsResponseHandler handler) {
         String url = String.format("%s/users/%s/follows/channels", getBaseUrl(), user);
 
-        http.get(url, params, new TwitchHttpResponseHandler(handler) {
+        http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
@@ -148,7 +148,7 @@ public class UsersResource extends AbstractResource {
     public void getFollow(final String user, final String channel, final UserFollowResponseHandler handler) {
         String url = String.format("%s/users/%s/follows/channels/%s", getBaseUrl(), user, channel);
 
-        http.get(url, new TwitchHttpResponseHandler(handler) {
+        http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
@@ -176,7 +176,7 @@ public class UsersResource extends AbstractResource {
         RequestParams params = new RequestParams();
         params.put("notifications", Boolean.toString(enableNotifications));
 
-        http.put(url, params, new TwitchHttpResponseHandler(handler) {
+        http.put(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
@@ -212,7 +212,7 @@ public class UsersResource extends AbstractResource {
     public void unfollow(final String user, final String channel, final UserUnfollowResponseHandler handler) {
         String url = String.format("%s/users/%s/follows/channels/%s", getBaseUrl(), user, channel);
 
-        http.delete(url, new TwitchHttpResponseHandler(handler) {
+        http.delete(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 handler.onSuccess();
@@ -236,7 +236,7 @@ public class UsersResource extends AbstractResource {
     public void getBlocks(final String user, final RequestParams params, final BlocksResponseHandler handler) {
         String url = String.format("%s/users/%s/blocks", getBaseUrl(), user);
 
-        http.get(url, params, new TwitchHttpResponseHandler(handler) {
+        http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
@@ -272,7 +272,7 @@ public class UsersResource extends AbstractResource {
     public void putBlock(final String user, final String target, final BlockResponseHandler handler) {
         String url = String.format("%s/users/%s/blocks/%s", getBaseUrl(), user, target);
 
-        http.put(url, new TwitchHttpResponseHandler(handler) {
+        http.put(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
@@ -296,7 +296,7 @@ public class UsersResource extends AbstractResource {
     public void deleteBlock(final String user, final String target, final UnblockResponseHandler handler) {
         String url = String.format("%s/users/%s/blocks/%s", getBaseUrl(), user, target);
 
-        http.delete(url, new TwitchHttpResponseHandler(handler) {
+        http.delete(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 handler.onSuccess();

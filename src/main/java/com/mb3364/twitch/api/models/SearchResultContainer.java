@@ -10,7 +10,7 @@ public class SearchResultContainer {
 
     @JsonProperty("_total")
     private int total;
-    private List<Channel> channels;
+    private List<ChannelContainer> channels;
     private List<Stream> streams;
     private List<Game> games;
 
@@ -32,11 +32,11 @@ public class SearchResultContainer {
         this.total = total;
     }
 
-    public List<Channel> getChannels() {
+    public List<ChannelContainer> getChannels() {
         return channels;
     }
 
-    public void setChannels(List<Channel> channels) {
+    public void setChannels(List<ChannelContainer> channels) {
         this.channels = channels;
     }
 

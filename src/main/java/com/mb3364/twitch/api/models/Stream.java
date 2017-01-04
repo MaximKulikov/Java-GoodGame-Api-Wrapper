@@ -16,7 +16,7 @@ public class Stream {
     private int videoHeight;
     private double averageFps;
     private StreamPreview preview;
-    private Channel channel;
+    private ChannelContainer channel;
 
     /**
      * Check if a stream is online.
@@ -114,11 +114,11 @@ public class Stream {
         this.averageFps = averageFps;
     }
 
-    public Channel getChannel() {
+    public ChannelContainer getChannel() {
         return channel;
     }
 
-    public void setChannel(Channel channel) {
+    public void setChannel(ChannelContainer channel) {
         this.channel = channel;
     }
 }

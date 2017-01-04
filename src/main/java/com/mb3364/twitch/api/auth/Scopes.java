@@ -1,73 +1,43 @@
 package com.mb3364.twitch.api.auth;
 
 /**
- * When requesting authorization from users, the scope parameter allows you to specify
- * which permissions your app requires. These scopes are ties to the access token you
- * receive upon a successful authorization. Without specifying scopes, your app only has
- * access to basic information about the authenticated user. You may specify any or all
- * of the following scopes.
+  *
+ * Когда ваше приложение запрашивает доступ у пользователя Goodgame, в параметре scope вы должны указать список прав,
+ * разделенных пробелом, которые нужны вашему приложению.
+ * Указывайте только те scope, которые действительно нужны вашему приложению.
+ *
  */
 public enum Scopes {
 
     /**
-     * Read access to non-public user information, such as email address.
+     * Список подписчиков указанного канала. Необходим для получения списка подписчиков канала пользователя
      */
-    USER_READ("user_read"),
+    CHANNEL_SUBSCRIBERS("channel.subscribers"),
 
     /**
-     * Ability to ignore or unignore on behalf of a user.
+     * Список премиум подписчиков указанного канала.
+     * Необходим для получения списка премиум подписчиков (актуально только для премиум плееров)
      */
-    USER_BLOCKS_EDIT("user_blocks_edit"),
+    CHANNEL_PREMIUMS("channel.premiums"),
 
     /**
-     * Read access to a user's list of ignored users.
+     * Список поддержки указанного канала.
+     * Необходим для получения истории доната.
      */
-    USER_BLOCKS_READ("user_blocks_read"),
+    CHANNEL_DONATIONS ("channel.donations"),
 
     /**
-     * Access to manage a user's followed channels.
+     * Получение токена чата для конкретного пользователя. Id-пользователя определяется из Access Token'a.
+     * Необходим для получения токена чата и токена для сервера уведомлений
      */
-    USER_FOLLOWS_EDIT("user_follows_edit"),
+    CHAT_TOKEN ("chat.token"),
 
     /**
-     * Read access to non-public channel information, including email address and stream key.
+     * Необходим для получения списка всех избранных стримов пользователя.
      */
-    CHANNEL_READ("channel_read"),
+    USER_FAVORITE ("user.favorites");
 
-    /**
-     * Write access to channel metadata (game, status, etc).
-     */
-    CHANNEL_EDITOR("channel_editor"),
 
-    /**
-     * Access to trigger commercials on channel.
-     */
-    CHANNEL_COMMERCIAL("channel_commercial"),
-
-    /**
-     * Ability to reset a channel's stream key.
-     */
-    CHANNEL_STREAM("channel_stream"),
-
-    /**
-     * Read access to all subscribers to your channel.
-     */
-    CHANNEL_SUBSCRIPTIONS("channel_subscriptions"),
-
-    /**
-     * Read access to subscriptions of a user.
-     */
-    USER_SUBSCRIPTIONS("user_subscriptions"),
-
-    /**
-     * Read access to check if a user is subscribed to your channel.
-     */
-    CHANNEL_CHECK_SUBSCRIPTION("channel_check_subscription"),
-
-    /**
-     * Ability to log into chat and send messages.
-     */
-    CHAT_LOGIN("chat_login");
 
     private String key;
 
@@ -86,7 +56,7 @@ public enum Scopes {
         if (scopes == null) return "";
         StringBuilder sb = new StringBuilder();
         for (Scopes scope : scopes) {
-            sb.append(scope.getKey()).append("+");
+            sb.append(scope.getKey()).append("%20");
         }
         return sb.toString();
     }

@@ -1,8 +1,10 @@
 package com.mb3364.twitch.api.resources;
 
 import com.mb3364.http.RequestParams;
-import com.mb3364.twitch.api.handlers.TopGamesResponseHandler;
-import com.mb3364.twitch.api.models.Games;
+import com.mb3364.twitch.api.handlers.GameResponseHandler;
+import com.mb3364.twitch.api.handlers.GamesResponseHandler;
+import com.mb3364.twitch.api.models.Game;
+import com.mb3364.twitch.api.models.GamesContainer;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,25 +28,16 @@ public class GamesResource extends AbstractResource {
         super(baseUrl, apiVersion);
     }
 
-    /**
-     * Returns a list of games objects sorted by number of current viewers on Twitch, most popular first.
-     *
-     * @param params  the optional request parameters:
-     *                <ul>
-     *                <li><code>limit</code>:  the maximum number of objects in array. Maximum is 100.</li>
-     *                <li><code>offset</code>: the object offset for pagination. Default is 0.</li>
-     *                </ul>
-     * @param handler the response handler
-     */
-    public void getTop(final RequestParams params, final TopGamesResponseHandler handler) {
-        String url = String.format("%s/games/top", getBaseUrl());
 
-        http.get(url, params, new TwitchHttpResponseHandler(handler) {
+    public void getGames (final GamesResponseHandler handler) {
+        String url = String.format("%s/games", getBaseUrl());
+
+        http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
-                    Games value = objectMapper.readValue(content, Games.class);
-                    handler.onSuccess(value.getTotal(), value.getTop());
+                    GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
+                    handler.onSuccess(value, value.getGames().getGames());
                 } catch (IOException e) {
                     handler.onFailure(e);
                 }
@@ -52,12 +45,39 @@ public class GamesResource extends AbstractResource {
         });
     }
 
-    /**
-     * Returns a list of games objects sorted by number of current viewers on Twitch, most popular first.
-     *
-     * @param handler the response handler
-     */
-    public void getTop(TopGamesResponseHandler handler) {
-        getTop(new RequestParams(), handler);
+    public void getGames (final RequestParams params, final GamesResponseHandler handler) {
+        String url = String.format("%s/games", getBaseUrl());
+
+        http.get(url, params, new GoodGameHttpResponseHandler(handler) {
+            @Override
+            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+                try {
+                    GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
+                    handler.onSuccess(value, value.getGames().getGames());
+                } catch (IOException e) {
+                    handler.onFailure(e);
+                }
+            }
+        });
     }
+
+    public void getGame (final String gameUrl, final GameResponseHandler handler) {
+        String url = String.format("%s/games/%s", getBaseUrl(), gameUrl);
+
+        http.get(url, new GoodGameHttpResponseHandler(handler) {
+            @Override
+            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+                try {
+                    Game value = objectMapper.readValue(content, Game.class);
+                    handler.onSuccess(value);
+                } catch (IOException e) {
+                    handler.onFailure(e);
+                }
+            }
+        });
+
+    }
+
+
+
 }

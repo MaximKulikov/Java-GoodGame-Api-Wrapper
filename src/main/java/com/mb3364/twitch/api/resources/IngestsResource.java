@@ -33,7 +33,7 @@ public class IngestsResource extends AbstractResource {
     public void get(final IngestsResponseHandler handler) {
         String url = String.format("%s/ingests", getBaseUrl());
 
-        http.get(url, new TwitchHttpResponseHandler(handler) {
+        http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {

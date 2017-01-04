@@ -2,6 +2,7 @@ package com.mb3364.twitch.api.auth;
 
 import com.mb3364.twitch.api.auth.grants.implicit.AuthenticationCallbackServer;
 import com.mb3364.twitch.api.auth.grants.implicit.AuthenticationError;
+import com.mb3364.twitch.api.models.AccessToken;
 
 import java.io.IOException;
 import java.net.URI;
@@ -18,9 +19,15 @@ public class Authenticator {
     private int listenPort; // The port to listen for the authentication callback on
     private String clientId;
     private URI redirectUri;
+    private String state;
 
     private String accessToken;
+    private AccessToken token;
     private AuthenticationError authenticationError;
+
+    public AccessToken getToken() {
+        return token;
+    }
 
     public Authenticator(String twitchBaseUrl) {
         this.twitchBaseUrl = twitchBaseUrl;
@@ -33,12 +40,14 @@ public class Authenticator {
      *
      * @param clientId    the Twitch application client ID
      * @param redirectURI the redirect URI for your Twitch application
+     * @param state
      * @param scopes      the scopes needed for your application
      * @return String, the authentication URL
      */
-    public String getAuthenticationUrl(String clientId, URI redirectURI, Scopes... scopes) {
+    public String getAuthenticationUrl(String clientId, URI redirectURI, String state, Scopes... scopes ) {
         this.clientId = clientId;
         this.redirectUri = redirectURI;
+        this.state = state;
 
         // Set the listening port for the callback, default to 80 if not specified
         this.listenPort = redirectUri.getPort();
@@ -46,9 +55,9 @@ public class Authenticator {
             this.listenPort = 80; // HTTP default
         }
 
-        return String.format("%s/oauth2/authorize?response_type=token" +
-                        "&client_id=%s&redirect_uri=%s&scope=%s",
-                twitchBaseUrl, clientId, redirectUri, Scopes.join(scopes));
+        return String.format("%s/oauth/authorize?response_type=code" +
+                        "&client_id=%s&redirect_uri=%s&state=%s&scope=%s",
+                twitchBaseUrl, clientId, redirectUri, state, Scopes.join(scopes));
     }
 
     /**
@@ -57,8 +66,8 @@ public class Authenticator {
      *
      * @return <code>true</code> if access token was received, <code>false</code> otherwise
      */
-    public boolean awaitAccessToken() {
-        return awaitAccessToken(null, null, null); // Use default pages
+    public boolean awaitAutorizationCode() {
+        return awaitAutorizationCode(null, null, null); // Use default pages
     }
 
     /**
@@ -71,10 +80,10 @@ public class Authenticator {
      * @param failUrl    the URL to a custom failed authentication page.
      * @return
      */
-    public boolean awaitAccessToken(URL authUrl, URL successUrl, URL failUrl) {
+    public boolean awaitAutorizationCode(URL authUrl, URL successUrl, URL failUrl) {
         if (clientId == null || redirectUri == null) return false;
 
-        AuthenticationCallbackServer server = new AuthenticationCallbackServer(listenPort, authUrl, successUrl, failUrl);
+        AuthenticationCallbackServer server = new AuthenticationCallbackServer(listenPort, authUrl, successUrl, failUrl, state);
         try {
             server.start();
         } catch (IOException e) {
@@ -99,11 +108,15 @@ public class Authenticator {
         return redirectUri;
     }
 
-    public String getAccessToken() {
+    public String getAutorizationCode() {
         return accessToken;
     }
 
-    public void setAccessToken(String accessToken) {
+    public void setAccessToken(AccessToken accessToken) {
+        this.token = accessToken;
+    }
+
+    public void setAccessTokenHeader(String accessToken) {
         this.accessToken = accessToken;
     }
 

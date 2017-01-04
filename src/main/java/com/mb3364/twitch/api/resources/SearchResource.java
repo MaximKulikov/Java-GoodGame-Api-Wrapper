@@ -2,7 +2,6 @@ package com.mb3364.twitch.api.resources;
 
 import com.mb3364.http.RequestParams;
 import com.mb3364.twitch.api.handlers.ChannelsResponseHandler;
-import com.mb3364.twitch.api.handlers.GamesResponseHandler;
 import com.mb3364.twitch.api.handlers.StreamsResponseHandler;
 import com.mb3364.twitch.api.models.SearchResultContainer;
 
@@ -43,7 +42,7 @@ public class SearchResource extends AbstractResource {
         String url = String.format("%s/search/channels", getBaseUrl());
         params.put("q", query);
 
-        http.get(url, params, new TwitchHttpResponseHandler(handler) {
+        http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
@@ -83,7 +82,7 @@ public class SearchResource extends AbstractResource {
         String url = String.format("%s/search/streams", getBaseUrl());
         params.put("q", query);
 
-        http.get(url, params, new TwitchHttpResponseHandler(handler) {
+        http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
@@ -116,31 +115,7 @@ public class SearchResource extends AbstractResource {
      *                </ul>
      * @param handler the response handler
      */
-    public void games(final String query, final RequestParams params, final GamesResponseHandler handler) {
-        String url = String.format("%s/search/games", getBaseUrl());
-        params.put("q", query);
-        params.put("type", "suggest");
 
-        http.get(url, params, new TwitchHttpResponseHandler(handler) {
-            @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
-                try {
-                    SearchResultContainer value = objectMapper.readValue(content, SearchResultContainer.class);
-                    handler.onSuccess(value.getGames().size(), value.getGames());
-                } catch (IOException e) {
-                    handler.onFailure(e);
-                }
-            }
-        });
-    }
 
-    /**
-     * Returns a list of game objects matching the search query.
-     *
-     * @param query   the search query
-     * @param handler the response handler
-     */
-    public void games(final String query, final GamesResponseHandler handler) {
-        games(query, new RequestParams(), handler);
-    }
+
 }
