@@ -16,6 +16,7 @@ import java.util.UUID;
 public class GoodGame {
 
     public static final String DEFAULT_BASE_URL = "http://api2.goodgame.ru";
+    public static final String OLD_BASE_URL = "http://goodgame.ru/api";
     public static final int DEFAULT_API_VERSION = 2;
 
     private String clientId; // User's app client Id
@@ -41,6 +42,8 @@ public class GoodGame {
         resources.put("games", new GamesResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
         resources.put("info", new InfoResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
         resources.put("smiles", new SmilesResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
+        resources.put("githubapi", new GithubResource(OLD_BASE_URL));
+
 
     }
 
@@ -73,6 +76,9 @@ public class GoodGame {
     }
     public SmilesResource smiles() {
         return (SmilesResource) getResource("smiles");
+    }
+    public GithubResource githubapi() {
+        return (GithubResource) getResource("githubapi");
     }
 
 

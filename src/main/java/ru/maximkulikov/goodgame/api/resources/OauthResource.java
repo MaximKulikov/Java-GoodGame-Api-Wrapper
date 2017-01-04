@@ -2,8 +2,10 @@ package ru.maximkulikov.goodgame.api.resources;
 
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.auth.Authenticator;
+import ru.maximkulikov.goodgame.api.handlers.OauthResourceResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.OauthResponseHandler;
 import ru.maximkulikov.goodgame.api.models.AccessToken;
+import ru.maximkulikov.goodgame.api.models.OauthResourceCheck;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -28,6 +30,7 @@ public class OauthResource extends AbstractResource {
      */
     public void getAccessToken(final Authenticator authenticator, String clientSecret, final OauthResponseHandler handler) {
         String url = String.format("%s/oauth", getBaseUrl());
+
         RequestParams params = new RequestParams();
         Map<String, String> map = new HashMap<>();
         map.put("redirect_uri", authenticator.getRedirectUri().toString());
@@ -50,6 +53,24 @@ public class OauthResource extends AbstractResource {
                 }
             }
         });
+    }
+
+    public void getResource (final OauthResourceResponseHandler handler) {
+        String url = String.format("%s/oauth/resource", getBaseUrl());
+
+        http.post(url, new GoodGameHttpResponseHandler(handler) {
+            @Override
+            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+                try {
+
+                    OauthResourceCheck value = objectMapper.readValue(content, OauthResourceCheck.class);
+                    handler.onSuccess(value);
+                } catch (IOException e) {
+                    handler.onFailure(e);
+                }
+            }
+        });
+
     }
 
 }
