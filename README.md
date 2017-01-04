@@ -5,21 +5,37 @@ Please feel free to report any issues or contribute code.
 
 #Done
 gg.auth().awaitAutorizationCode() // Получение авторизационного токена
+
 gg.oauth().getAccessToken() //Получение токена доступа
+
 gg.player().getPlayer() // Получение информации о плеере, передается Player source
+
 gg.streams.getChannel() // Получение информации о конкретном стриме. Query-параметры не работают.
+
 gg.channels().getSubscribers(channel, new SubscriberResponseHandler() // Список подписчиков указанного канала. Scope: channel.subscribers
+
 gg.channels().getSubscribers(channel, requestParams, new SubscriberResponseHandler() // Список подписчиков указанного канала c параметрами. Scope: channel.subscribers
+
 gg.channels().getPremiums(channel, new PremiumsResponseHandler() // Список премиум подписчиков указанного канала. Scope: channel.premiums
+
 gg.channels().getPremiums(channel, requestParams, new PremiumsResponseHandler() // Список премиум подписчиков указанного канала с параметрами. Scope: channel.premiums
+
 gg.channels().getDonations(channel, new DonationsResponseHandler() // Список поддержки указанного канала. Scope: channel.donations
+
 gg.channels().getDonations(channel, requestParams, new DonationsResponseHandler() // Список поддержки указанного канала с параметрами. Scope: channel.donations
+
 gg.chat().getChatToken(new ChatTokenResponseHandler()  // Получение токена чата для конкретного пользователя. Id-пользователя определяется из Access Token'a. Scope: chat.token
+
 gg.games().getGames(new GamesResponseHandler() // Получение коллекции игр
+
 Не проверено gg.games().getGames(requestParams, new GamesResponseHandler() // Получение коллекции игр
+
 gg.games().getGame(gameUrl, new GameResponseHandler() // Получение информации по игре, зная ее url
+
 gg.info().getInfo(new InfoResponseHandler() // Получение информации по Access Token'у
+
 gg.smiles().getSmiles(new SmilesResponseHandler() // Получение коллекции смайлов. Если не указан channel_id, то вернется список всех смайлов.
+
 gg.smiles().getChannelSmiles(channelId, new SmilesResponseHandler() //Получение коллекции смайлов.
 
 
