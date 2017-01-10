@@ -29,11 +29,18 @@
             <version>${jackson.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty.websocket/websocket-client -->
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-client</artifactId>
+            <version>9.2.19.v20160908</version>
+        </dependency>
+
         <!--&lt;!&ndash; Http client &ndash;&gt;-->
         <!--<dependency>-->
-            <!--<groupId>com.mb3364.http</groupId>-->
-            <!--<artifactId>async-http-client</artifactId>-->
-            <!--<version>${async-http-client.version}</version>-->
+        <!--<groupId>com.mb3364.http</groupId>-->
+        <!--<artifactId>async-http-client</artifactId>-->
+        <!--<version>${async-http-client.version}</version>-->
         <!--</dependency>-->
 
         <!-- testing -->
