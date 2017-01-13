@@ -45,13 +45,7 @@ public enum Scopes {
         this.key = key;
     }
 
-    /**
-     * Combine <code>Scopes</code> into a '+' separated <code>String</code>.
-     * This is the required input format for twitch.tv
-     *
-     * @param scopes <code>Scopes</code> to combine.
-     * @return <code>String</code> representing '+' separated list of <code>Scopes</code>
-     */
+
     public static String join(Scopes... scopes) {
         if (scopes == null) return "";
         StringBuilder sb = new StringBuilder();
@@ -61,12 +55,7 @@ public enum Scopes {
         return sb.toString();
     }
 
-    /**
-     * Convert the string representation of the Scope to the Enum.
-     *
-     * @param text Text representation of Enum value
-     * @return Enum value that the text represents
-     */
+
     public static Scopes fromString(String text) {
         if (text == null) return null;
         for (Scopes b : Scopes.values()) {
@@ -77,11 +66,7 @@ public enum Scopes {
         return null;
     }
 
-    /**
-     * Get the identifier that twitch will recognize.
-     *
-     * @return A <code>String</code> identifier
-     */
+
     public String getKey() {
         return key;
     }

@@ -33,18 +33,7 @@ public class Authenticator {
         this.twitchBaseUrl = twitchBaseUrl;
     }
 
-    /**
-     * Returns the authentication URL that you can redirect the user to in order
-     * to authorize your application to access their account and retrieve an
-     * access token.
-     *
-     * @param clientId    the Twitch application client ID
-     * @param redirectURI the redirect URI for your Twitch application
-     * @param state
-     * @param scopes      the scopes needed for your application
-     * @return String, the authentication URL
-     */
-    public String getAuthenticationUrl(String clientId, URI redirectURI, String state, Scopes... scopes ) {
+     public String getAuthenticationUrl(String clientId, URI redirectURI, String state, Scopes... scopes ) {
         this.clientId = clientId;
         this.redirectUri = redirectURI;
         this.state = state;
@@ -60,27 +49,12 @@ public class Authenticator {
                 twitchBaseUrl, clientId, redirectUri, state, Scopes.join(scopes));
     }
 
-    /**
-     * Listens for callback from Twitch server with the access token.
-     * <code>getAuthenticationUrl()</code> must be called prior to this function!
-     *
-     * @return <code>true</code> if access token was received, <code>false</code> otherwise
-     */
+
     public boolean awaitAutorizationCode() {
         return awaitAutorizationCode(null, null, null); // Use default pages
     }
 
-    /**
-     * Listens for callback from Twitch server with the access token.
-     * <code>getAuthenticationUrl()</code> must be called prior to this function!
-     * <p>Allows for custom authorize pages. <code>null</code> can be passed to use the default page.</p>
-     *
-     * @param authUrl    the URL to a custom authorize page.
-     * @param successUrl the URL to a custom successful authentication page.
-     * @param failUrl    the URL to a custom failed authentication page.
-     * @return
-     */
-    public boolean awaitAutorizationCode(URL authUrl, URL successUrl, URL failUrl) {
+      public boolean awaitAutorizationCode(URL authUrl, URL successUrl, URL failUrl) {
         if (clientId == null || redirectUri == null) return false;
 
         AuthenticationCallbackServer server = new AuthenticationCallbackServer(listenPort, authUrl, successUrl, failUrl, state);
@@ -120,29 +94,17 @@ public class Authenticator {
         this.accessToken = accessToken;
     }
 
-    /**
-     * Check if an access token has been received.
-     *
-     * @return <code>true</code> if an access token has been received; <code>false</code> otherwise
-     */
+
     public boolean hasAccessToken() {
         return accessToken != null;
     }
 
-    /**
-     * Get the authentication error if it failed.
-     *
-     * @return <code>AuthenticationError</code> if authentication failed. <code>null</code> otherwise
-     */
+
     public AuthenticationError getAuthenticationError() {
         return authenticationError;
     }
 
-    /**
-     * Check if there was an authentication error.
-     *
-     * @return <code>true</code> if an error exists; <code>false</code> otherwise
-     */
+
     public boolean hasAuthenticationError() {
         return authenticationError != null;
     }

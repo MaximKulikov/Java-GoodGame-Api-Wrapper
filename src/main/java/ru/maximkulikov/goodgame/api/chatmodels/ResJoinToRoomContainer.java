@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 09.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResJoinToRoomContainer implements ChatObject {
+public class ResJoinToRoomContainer  {
     private String type;
     private ResJoinToRoom data;
 

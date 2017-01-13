@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 08.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqJoinContainer implements ChatObject {
+public class ReqJoinContainer implements ReqChatObject {
     private String type = "join";
     private ReqJoin data;
 

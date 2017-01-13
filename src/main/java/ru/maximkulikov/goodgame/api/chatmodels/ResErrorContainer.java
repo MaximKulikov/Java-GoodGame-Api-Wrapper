@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 11.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResErrorContainer {
+public class ResErrorContainer  {
     private String type;
     private ResError data;
 

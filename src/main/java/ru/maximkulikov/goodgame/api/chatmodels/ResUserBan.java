@@ -8,20 +8,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 10.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResWarn implements ResChatObject{
+public class ResUserBan implements ResChatObject{
     @JsonProperty("channel_id")
     private String channelId;
     @JsonProperty("user_id")
-    private String userId; // id пользователя, кому вынесено предупреждение
+    private String userId; // id забаненого пользователя
     @JsonProperty("user_name")
     private String userName; // ник забаненого пользователя
     @JsonProperty("moder_id")
-    private String moderId; // id пользователя, вынесшего предупреждение
+    private String moderId; // id пользователя, вынесшего бан
     @JsonProperty("moder_name")
     private String moderName; // ник пользователя, вынесшего бан
     @JsonProperty("moder_group")
     private Long moderGroup; // на основе группы, определяется каким цветом выводить сообщения
-    private String reason;
+    private Long duration; // время на сколько забанен пользователь в секундах
+    private String reason; // "Плохо себя вёл"
 
     public String getChannelId() {
         return channelId;
@@ -29,6 +30,14 @@ public class ResWarn implements ResChatObject{
 
     public void setChannelId(String channelId) {
         this.channelId = channelId;
+    }
+
+    public Long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Long duration) {
+        this.duration = duration;
     }
 
     public Long getModerGroup() {
@@ -81,14 +90,17 @@ public class ResWarn implements ResChatObject{
 
     @Override
     public String toString() {
-        return "ResWarn{" +
+        return "ResUserBanContainer{" +
                 "channelId='" + channelId + '\'' +
                 ", userId='" + userId + '\'' +
                 ", userName='" + userName + '\'' +
                 ", moderId='" + moderId + '\'' +
                 ", moderName='" + moderName + '\'' +
                 ", moderGroup=" + moderGroup +
+                ", duration=" + duration +
                 ", reason='" + reason + '\'' +
                 '}';
     }
 }
+
+

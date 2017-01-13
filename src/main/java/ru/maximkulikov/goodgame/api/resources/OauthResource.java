@@ -28,7 +28,7 @@ public class OauthResource extends AbstractResource {
      *
      * @param handler the response handler
      */
-    public void getAccessToken(final Authenticator authenticator, String clientSecret, final OauthResponseHandler handler) {
+    public void getAccessToken(final Authenticator authenticator, final String clientSecret, final OauthResponseHandler handler) {
         String url = String.format("%s/oauth", getBaseUrl());
 
         RequestParams params = new RequestParams();
@@ -46,6 +46,7 @@ public class OauthResource extends AbstractResource {
                 try {
 
                     AccessToken value = objectMapper.readValue(content, AccessToken.class);
+
                     authenticator.setAccessToken(value);
                     handler.onSuccess(value);
                 } catch (IOException e) {

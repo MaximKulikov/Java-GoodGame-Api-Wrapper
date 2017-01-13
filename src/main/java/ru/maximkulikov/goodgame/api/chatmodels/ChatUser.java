@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 09.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ChatUser {
+public class ChatUser implements ResChatObject {
     private String id;
     private String name;
     private Long right;

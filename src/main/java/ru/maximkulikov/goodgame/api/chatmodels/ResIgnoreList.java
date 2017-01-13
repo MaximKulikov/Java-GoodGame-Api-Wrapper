@@ -9,7 +9,7 @@ import java.util.List;
  * Created by maxim on 09.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResIgnoreList {
+public class ResIgnoreList implements ResChatObject {
     private List<ChatUser> users;
 
     public List<ChatUser> getUsers() {

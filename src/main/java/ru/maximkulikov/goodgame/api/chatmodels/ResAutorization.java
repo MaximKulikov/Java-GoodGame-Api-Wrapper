@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 08.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResAutorization {
+public class ResAutorization implements ResChatObject {
     @JsonProperty("user_id")
     private String userId; // id-пользователя на сайте, для гостей 0
     @JsonProperty("user_name")

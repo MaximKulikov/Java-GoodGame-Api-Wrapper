@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 08.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqAutorizationContainer implements ChatObject {
+public class ReqAutorizationContainer implements ReqChatObject {
     private String type = "auth";
     private ReqAutorization data;
 

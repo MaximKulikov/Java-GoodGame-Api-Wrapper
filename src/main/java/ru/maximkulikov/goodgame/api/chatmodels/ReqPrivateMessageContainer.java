@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 10.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqPrivateMessageContainer implements ChatObject {
+public class ReqPrivateMessageContainer implements ReqChatObject {
     private String type = "send_private_message";
     private ReqPrivateMessage data;
 

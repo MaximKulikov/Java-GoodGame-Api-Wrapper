@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 11.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqMakeModeratorContainer  implements ChatObject{
+public class ReqMakeModeratorContainer  implements ReqChatObject {
     private String type = "make_moderator";
     private ReqMakeModerator data;
 

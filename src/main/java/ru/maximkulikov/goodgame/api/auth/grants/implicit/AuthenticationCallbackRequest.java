@@ -25,14 +25,6 @@ public class AuthenticationCallbackRequest implements Runnable {
 
     private AuthenticationListener authenticationListener; // Will receive auth callbacks
 
-    /**
-     * Construct the request and specify which HTML files to server.
-     *
-     * @param socket      Connection socket of the request
-     * @param authPage    HTML page that twitch.tv will send the access_token to
-     * @param failurePage HTML page that shows auth error to user
-     * @param successPage HTML page that shows auth success to user
-     */
     public AuthenticationCallbackRequest(Socket socket, URL authPage, URL failurePage, URL successPage) {
         this.socket = socket;
         this.authPage = authPage;
@@ -40,13 +32,7 @@ public class AuthenticationCallbackRequest implements Runnable {
         this.successPage = successPage;
     }
 
-    /**
-     * Send bytes from file input stream to the socket output stream.
-     *
-     * @param fis InputStream of the file contents.
-     * @param os  OutputStream of the socket output stream.
-     * @throws IOException if an I/O exception occurs.
-     */
+
     private static void sendFileBytes(InputStream fis, OutputStream os) throws IOException {
         // Construct a 1K buffer to hold bytes on their way to the socket.
         byte[] buffer = new byte[1024];
@@ -57,12 +43,7 @@ public class AuthenticationCallbackRequest implements Runnable {
         }
     }
 
-    /**
-     * Extract the GET parameters from the HTTP request string.
-     *
-     * @param request HTTP request string
-     * @return Map of all GET parameter key value pairs
-     */
+
     private static Map<String, String> extractQueryParams(String request) {
         Map<String, String> params = new HashMap<String, String>();
 
@@ -101,11 +82,7 @@ public class AuthenticationCallbackRequest implements Runnable {
         }
     }
 
-    /**
-     * Process the HTTP request and send out correct page.
-     *
-     * @throws IOException
-     */
+
     private void processRequest() throws IOException {
         // Get a reference to the socket's input and output streams.
         InputStream is = socket.getInputStream();

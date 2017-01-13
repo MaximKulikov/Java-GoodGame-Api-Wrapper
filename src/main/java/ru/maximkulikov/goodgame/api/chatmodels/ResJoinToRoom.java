@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 09.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResJoinToRoom {
+public class ResJoinToRoom implements ResChatObject {
     private String channel_id; // id-канала, из которого посылалась inline-команда /join
     private String room_id; // id-канала или если начинается с префикса "r" id-комнаты
 

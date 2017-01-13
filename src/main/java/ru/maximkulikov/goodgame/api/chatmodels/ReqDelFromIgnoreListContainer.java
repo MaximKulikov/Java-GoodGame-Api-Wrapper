@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 09.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqDelFromIgnoreListContainer implements ChatObject {
+public class ReqDelFromIgnoreListContainer implements ReqChatObject {
     private String type = "del_from_ignore_list";
     private ReqChangeIgnoreList data;
 

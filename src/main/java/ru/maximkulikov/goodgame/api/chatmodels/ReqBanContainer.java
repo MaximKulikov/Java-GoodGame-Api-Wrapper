@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 10.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqBanContainer implements ChatObject {
+public class ReqBanContainer implements ReqChatObject {
     private String type = "ban";
     private ReqBan data;
 

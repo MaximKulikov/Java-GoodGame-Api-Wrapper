@@ -3,7 +3,7 @@ JGAW is a complete asynchronous java wrapper for interaction with v2 of the [Goo
 
 Please feel free to report any issues or contribute code.
 
-#Done
+#Done Stream API
 ***gg.auth().awaitAutorizationCode()***  
 // Получение авторизационного токена
 
@@ -58,13 +58,52 @@ Please feel free to report any issues or contribute code.
 ***gg.githubapi()*** Возврщает данные в json формате. Спасибо ГГ за динамические ключи  
 Как-то реализовано то что тут описано https://github.com/GoodGame/API/blob/master/Streams/stream_api.md  
 
+#Done Chat APi
+Реализовато Api чата
+
+Для работы требуется создать экземпляр класса и унаследовать его  GoodChat, для подключения вызовите .connect
+```java
+Main{ {
+    GGChat goodgameChat = new GGChat();
+    goodgameChat.connect();
+} }
+
+GGChat extends GoodChat {  
+   @Override  
+   public void onMessage(Response answer) {   
+   answer.getType(); // Возвращает значение Enum с типом пришедшего сообщения
+   answer.getAnswer(); // Возвращает базовый ResChatObject  
+   }  
+}  
+```
+
+***Пример***
+```java
+   @Override  
+   public void onMessage(Response answer) {   
+       switch (answer.getType()) {  
+            case CHANNEL_HISTORY:  
+                ResChannelHistory resChannelHistory = (ResChannelHistory) answer.getAnswer();  
+                System.out.println(answer.getAnswer());  
+        }
+   } 
+```
+
+
 
 #In Progress
+
+Разобраться с путаницей в авторизационном токене и токене доступа  
+Дораборать апи чата  
+Сделать тесты  
+Написать вменяемую инструкцию  
+Выложить релиз  
+
 
 
 #Text Below this not edited yet
 
-## Basics
+## Основная идея
 
 Using the wrapper is as simple as instantiating the `GoodGame` object and then calling the appropriate endpoint functions.
 
@@ -72,55 +111,53 @@ For example, a `GET /streams/featured` request would map to the `twitch.streams(
 
 Responses are handled via callbacks passed via a handler with each function call. This process is outlined in the following examples.
 
-#### Basic Example
+#### Простой пример
 
 ```java
-Twitch twitch = new Twitch();
-twitch.setClientId("shjdkashjkfdl"); // This is your registered application's client ID
+GoodGame gg = new GoodGame();
+gg.setClientId("shjdkashjkfdl"); // Идентификатор приложения   (https://goodgame.ru/user/***userId***/edit) 
 
-twitch.channels().get("lirik", new ChannelResponseHandler() {
+gg.smiles().getSmiles(new SmilesResponseHandler() {
+
     @Override
-    public void onSuccess(Channel channel) {
-        /* Successful response from the Twitch API */
-        System.out.println(channel);
-    }
+    public void onSuccess(SmilesContainer smiles) {
+        // Успешное получение объекта
+        }
 
     @Override
     public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-        /* Twitch API responded with an error message */
-    }
+        // GoodGame сообщил об ошибке в запросе          
+        }
 
     @Override
-    public void onFailure(Throwable e) {
-        /* Unable to access Twitch, or error parsing the response */
-    }
-});
+    public void onFailure(Throwable throwable) {
+        // Ошибка взаимодействи я с сервером или обработки ответа
+        }
+        });
 ```
 
-#### Basic Example with Parameters
+#### Простой пример с параметром
 
-Some endpoints accept optional parameters as specified in the [Twitch API](https://github.com/justintv/Twitch-API). These parameters can be passed with a `RequestParams` object and passed to the request method.
 
 ```java
-/* Update my stream */
+/* Получение подписчиков, начиная с конкретного времени */
 RequestParams params = new RequestParams();
-params.put("status", "Let's kill some zombies!");
-params.put("game", "DayZ");
+params.put("from_timestamp", "1453592975");
 
-client.channels().put("my-user-name", params, new ChannelResponseHandler() {
+gg.channels().getSubscribers("channelName", params, new SubscriberResponseHandler() {
     @Override
-    public void onSuccess(Channel channel) {
-        /* Success, we got the updated Channel object */
+    public void onSuccess(SubscrurersContainer subscribers) {
+        //Успешно
     }
 
     @Override
     public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-        /* Twitch denied the request */
+        // GoodGame сообщил об ошибке в запросе 
     }
 
     @Override
     public void onFailure(Throwable e) {
-        /* Unable to access Twitch, or error parsing the response */
+        // Ошибка взаимодействи я с сервером или обработки ответа
     }
 });
 ```
@@ -216,20 +253,20 @@ twitch.auth().setAccessToken("my-access-token-289489");
 ```
 
 ## Documentation
-* [Javadocs](https://urgrue.github.io/Java-Twitch-Api-Wrapper/)
-* The [Twitch API](https://github.com/justintv/Twitch-API) documentation will best explain the functionality of each endpoint. 
+* Документация Github [GoogGame API](https://github.com/GoodGame/API)
+* Еще документация [GoogGame API](http://api2.goodgame.ru/apigility/documentation/Goodgame-v2)
+* [Топик на форуме](https://goodgame.ru/topic/67865/)  
 
-## Dependencies
+## Зависимости
 
 * [Java Async HTTP Client](https://github.com/urgrue/java-async-http/releases/tag/2.1.2) ver. 2.1.2
 * [Jackson JSON Processor - Databind](http://wiki.fasterxml.com/JacksonHome) // [Direct Download](http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.4.5/jackson-databind-2.4.5.jar) ver. 2.4.5
+* [Eclipse Websocket Client](https://mvnrepository.com/artifact/org.eclipse.jetty.websocket/websocket-client) ver. 9.2.19.v20160908
 
 ## Install
 
-This library and the 2 above mentioned dependencies are required. A JAR with all dependencies already included is also provided.
-
-* [Twitch API Wrapper Download](https://github.com/urgrue/Java-Twitch-Api-Wrapper/releases/tag/0.3)
+* Скоро
 
 ## Roadmap
 
-* Android and Gradle support.
+Выпустить релиз

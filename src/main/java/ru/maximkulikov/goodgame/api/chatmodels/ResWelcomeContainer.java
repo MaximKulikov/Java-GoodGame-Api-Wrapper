@@ -4,23 +4,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Java-GoodGame-Api-Wrapper
- * Created by maxim on 08.01.2017.
+ * Created by maxim on 12.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqChannelsListContainer  implements ReqChatObject {
-    private String type = "get_channels_list";
-    private ReqChannelsList data;
-
-    public ReqChannelsListContainer(int start, int count) {
-        this.data = new ReqChannelsList(start, count);
-    }
-    public ReqChannelsListContainer() {
-        this.data = new ReqChannelsList(0, 50);
-    }
+public class ResWelcomeContainer {
+    private String type;
+private ResWelcome data;
 
     @Override
     public String toString() {
-        return "ReqChannelsListContainer{" +
+        return "ResWelcomeContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +
                 '}';
@@ -34,11 +27,11 @@ public class ReqChannelsListContainer  implements ReqChatObject {
         this.type = type;
     }
 
-    public ReqChannelsList getData() {
+    public ResWelcome getData() {
         return data;
     }
 
-    public void setData(ReqChannelsList data) {
+    public void setData(ResWelcome data) {
         this.data = data;
     }
 }

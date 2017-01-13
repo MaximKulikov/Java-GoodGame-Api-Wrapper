@@ -10,7 +10,7 @@ import java.util.List;
  * Created by maxim on 11.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResPollResults {
+public class ResPollResults implements ResChatObject {
     @JsonProperty("channel_id")
     private String channelId;
     private Long voters;

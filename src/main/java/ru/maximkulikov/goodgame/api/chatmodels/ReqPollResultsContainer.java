@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 11.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqPollResultsContainer  implements ChatObject{
+public class ReqPollResultsContainer  implements ReqChatObject {
     private String type = "get_poll_results";
     private ReqGetPoll data;
 

@@ -9,7 +9,7 @@ import java.util.List;
  * Created by maxim on 09.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResChannelStreamer {
+public class ResChannelStreamer  implements ResChatObject{
 
     private Long id;
     private String name;

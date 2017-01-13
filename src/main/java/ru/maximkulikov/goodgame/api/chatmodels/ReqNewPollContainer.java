@@ -9,7 +9,7 @@ import java.util.List;
  * Created by maxim on 11.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqNewPollContainer implements ChatObject {
+public class ReqNewPollContainer implements ReqChatObject {
     private String type = "new_poll";
     private ReqNewPoll data;
 

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 11.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResError {
+public class ResError implements ResChatObject {
     @JsonProperty("channel_id")
     private String channelId;
     @JsonProperty("error_num")

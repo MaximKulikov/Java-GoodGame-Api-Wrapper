@@ -10,7 +10,7 @@ import java.util.List;
  * Created by maxim on 09.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResJoin {
+public class ResJoin  implements ResChatObject{
     @JsonProperty("channel_id")
     private String channelId;
     @JsonProperty("channel_name")

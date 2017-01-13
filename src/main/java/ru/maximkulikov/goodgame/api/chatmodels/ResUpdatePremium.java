@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 11.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResUpdatePremium {
+public class ResUpdatePremium implements ResChatObject {
     @JsonProperty("channel_id")
     private String channelId;
     private Boolean premium;

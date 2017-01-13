@@ -24,12 +24,7 @@ public class GoodGame {
     private Authenticator authenticator;
     private Map<String, AbstractResource> resources;
 
-    /**
-     * Constructs a GoodGame application instance with a set API base URL and API version number.
-     *
-     * @param baseUrl    the base URL of the GoodGame API
-     * @param apiVersion the API version number to request
-     */
+
     public GoodGame(String baseUrl, int apiVersion) {
         authenticator = new Authenticator(DEFAULT_BASE_URL);
         // Instantiate resource connectors
@@ -53,7 +48,6 @@ public class GoodGame {
     public GoodGame() {
         this(DEFAULT_BASE_URL, DEFAULT_API_VERSION);
     }
-
 
 
     public Authenticator auth() {
@@ -84,27 +78,10 @@ public class GoodGame {
 
 
 
-
-
-
-    /**
-     * Get the set GoodGame client ID.
-     *
-     * @return The GoodGame client ID
-     */
     public String getClientId() {
         return clientId;
     }
 
-
-
-    /**
-     * Set the Twitch client ID. Register your application on Twitch.tv to retrieve
-     * a client ID.
-     * <p>Passed to authorization endpoints to identify your application.</p>
-     *
-     * @param clientId Twitch client ID
-     */
     public void setClientId(String clientId) {
         this.clientId = clientId;
         // Update client id in all resources

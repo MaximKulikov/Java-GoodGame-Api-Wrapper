@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 10.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqChannelHistoryContainer implements ChatObject {
+public class ReqChannelHistoryContainer implements ReqChatObject {
     private String type = "get_channel_history";
     private ReqChannelHistory data;
 

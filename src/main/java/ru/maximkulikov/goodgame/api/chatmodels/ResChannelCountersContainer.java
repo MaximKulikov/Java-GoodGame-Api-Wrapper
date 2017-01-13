@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 09.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResChannelCountersContainer implements ChatObject {
+public class ResChannelCountersContainer  {
     private String type;
     private ResChannelCounters data;
 
