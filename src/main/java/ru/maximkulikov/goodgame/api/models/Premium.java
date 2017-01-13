@@ -1,6 +1,7 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Java-GG-Api-Wrapper
@@ -10,14 +11,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Premium {
     private String id;
     private String username;
-    private String created_at;
+    @JsonProperty("created_at")
+    private String createdAt;
 
-    public String getCreated_at() {
-        return created_at;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getId() {
@@ -41,7 +43,7 @@ public class Premium {
         return "Premium{" +
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +
-                ", created_at='" + created_at + '\'' +
+                ", createdAt='" + createdAt + '\'' +
                 '}';
     }
 }

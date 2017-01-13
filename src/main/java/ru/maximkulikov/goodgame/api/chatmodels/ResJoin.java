@@ -23,8 +23,8 @@ public class ResJoin  implements ResChatObject{
     private int smilePeka;
     @JsonProperty("clients_in_channel")
     private Long clientsInChannel; // всего клиентов в канале, включая гостей
-    @JsonProperty("usersInChannel")
-    private Long users_in_channel; // всего авторизованных пользователей в канале
+    @JsonProperty("users_in_channel")
+    private Long usersInChannel; // всего авторизованных пользователей в канале
     @JsonProperty("user_id")
     private String userId; // для гостей "0"
     private String name; // для гостей ""
@@ -34,8 +34,8 @@ public class ResJoin  implements ResChatObject{
     private int roomPrivacy; // Уровень приватности комнаты
     @JsonProperty("room_role")
     private int roomRole; // Уровоень доступа пользователя
-    @JsonProperty("userGroups")
-    private List<String> user_groups; //группы в которых состоит пользователь для данного канала
+    @JsonProperty("user_groups")
+    private List<String> userGroups; //группы в которых состоит пользователь для данного канала
     @JsonProperty("is_banned")
     private Boolean isBanned; // забанен или нет в этом канале
     @JsonProperty("banned_time")
@@ -179,20 +179,20 @@ public class ResJoin  implements ResChatObject{
         this.userId = userId;
     }
 
-    public List<String> getUser_groups() {
-        return user_groups;
+    public List<String> getUserGroups() {
+        return userGroups;
     }
 
-    public void setUser_groups(List<String> user_groups) {
-        this.user_groups = user_groups;
+    public void setUserGroups(List<String> userGroups) {
+        this.userGroups = userGroups;
     }
 
-    public Long getUsers_in_channel() {
-        return users_in_channel;
+    public Long getUsersInChannel() {
+        return usersInChannel;
     }
 
-    public void setUsers_in_channel(Long users_in_channel) {
-        this.users_in_channel = users_in_channel;
+    public void setUsersInChannel(Long usersInChannel) {
+        this.usersInChannel = usersInChannel;
     }
 
     @Override
@@ -206,13 +206,13 @@ public class ResJoin  implements ResChatObject{
                 ", smiles=" + smiles +
                 ", smilePeka=" + smilePeka +
                 ", clientsInChannel=" + clientsInChannel +
-                ", users_in_channel=" + users_in_channel +
+                ", usersInChannel=" + usersInChannel +
                 ", userId='" + userId + '\'' +
                 ", name='" + name + '\'' +
                 ", accessRights='" + accessRights + '\'' +
                 ", roomPrivacy=" + roomPrivacy +
                 ", roomRole=" + roomRole +
-                ", user_groups=" + user_groups +
+                ", userGroups=" + userGroups +
                 ", isBanned=" + isBanned +
                 ", bannedTime=" + bannedTime +
                 ", reason='" + reason + '\'' +

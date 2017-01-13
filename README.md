@@ -8,8 +8,8 @@ Please feel free to report any issues or contribute code.
 ##In Progress
 
 Разобраться с путаницей в авторизационном токене и токене доступа  
-Добавить недостающие модели ответов чата
-Добавить недостающие модели запросов чата
+Добавить недостающие модели ответов чата  
+Добавить недостающие модели запросов чата  
 Сделать тесты  
 Написать вменяемую инструкцию  
 Выложить релиз  
@@ -21,8 +21,8 @@ Please feel free to report any issues or contribute code.
 Библиотека разделена на несколько частей:  
 1. АПИ Стримингового сервиса  
 а. на сайте [GoodGame (v2)](http://api2.goodgame.ru/apigility/documentation/Goodgame-v2)  
-б. на Github [GoodGame API](https://github.com/GoodGame/API)
-2. АПИ чата
+б. на Github [GoodGame API](https://github.com/GoodGame/API)  
+2. АПИ чата  
 
 Для запроса GoodGame (v2) `GET /channel/:channel/subscribers` используется экземпляр класса GoodGame() 
 в котором вызывается `gg.channels().getSubscribers(channelName, new SubscriberResponseHandler()`  
@@ -141,7 +141,7 @@ gg.channels().getSubscribers("channelName", params, new SubscriberResponseHandle
 
 
 # API чата
-Для работы требуется создать экземпляр класса и унаследовать его GoodChat, для подключения вызовите .connect
+Для работы требуется создать экземпляр класса и унаследовать его от GoodChat, для подключения вызовите .connect
 
 ```java
 Main{ {
@@ -342,7 +342,8 @@ twitch.auth().setAccessToken("my-access-token-289489");
 ## Документация
 * Документация Github [GoogGame API](https://github.com/GoodGame/API)
 * Еще документация [GoogGame API](http://api2.goodgame.ru/apigility/documentation/Goodgame-v2)
-* [Топик на форуме](https://goodgame.ru/topic/67865/)  
+* [Топик на форуме](https://goodgame.ru/topic/67865/)
+* [JavaDoc](https://trinion.github.io/Java-GoodGame-Api-Wrapper/)
 
 ## Зависимости
 

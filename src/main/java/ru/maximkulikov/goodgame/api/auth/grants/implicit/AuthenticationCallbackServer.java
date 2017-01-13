@@ -1,9 +1,11 @@
 package ru.maximkulikov.goodgame.api.auth.grants.implicit;
 
-import ru.maximkulikov.goodgame.api.auth.Scopes;
-
 import java.io.IOException;
-import java.net.*;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketException;
+import java.net.URL;
 
 public class AuthenticationCallbackServer implements AuthenticationListener {
 
@@ -27,7 +29,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
     private int port;
     private ServerSocket serverSocket;
     private String accessToken; // twitch.tv auth access token
-    private Scopes[] accessScopes; // scopes retrieves for access token
+  //  private Scopes[] accessScopes; // scopes retrieves for access token
     private AuthenticationError authenticationError;
     private String stateRequest;
     private String stateAnswer;

@@ -12,19 +12,21 @@ public class GamesContainer {
 
     @JsonProperty("_embedded")
     private EmbededGames games;
-    private Long page_count;
-    private Long page_size;
-    private Long total_items;
+    @JsonProperty("page_count")
+    private Long pageCount;
+    @JsonProperty("page_size")
+    private Long pageSize;
+    @JsonProperty("total_items")
+    private Long totalItems;
     private Long page;
-
 
     @Override
     public String toString() {
         return "GamesContainer{" +
                 "games=" + games +
-                ", page_count=" + page_count +
-                ", page_size=" + page_size +
-                ", total_items=" + total_items +
+                ", pageCount=" + pageCount +
+                ", pageSize=" + pageSize +
+                ", totalItems=" + totalItems +
                 ", page=" + page +
                 '}';
     }
@@ -33,19 +35,39 @@ public class GamesContainer {
         return games;
     }
 
-    public Long getPage_count() {
-        return page_count;
+    public void setGames(EmbededGames games) {
+        this.games = games;
     }
 
-    public Long getPage_size() {
-        return page_size;
+    public Long getPageCount() {
+        return pageCount;
     }
 
-    public Long getTotal_items() {
-        return total_items;
+    public void setPageCount(Long pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public Long getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Long getTotalItems() {
+        return totalItems;
+    }
+
+    public void setTotalItems(Long totalItems) {
+        this.totalItems = totalItems;
     }
 
     public Long getPage() {
         return page;
+    }
+
+    public void setPage(Long page) {
+        this.page = page;
     }
 }

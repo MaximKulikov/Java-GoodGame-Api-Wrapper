@@ -18,16 +18,17 @@ public class ReqBan {
     private Long duration; // время бана в секундах
     private String reason; //причина
     private String comment; // текст сообщения, за который вынесен бан
-    private Boolean show_ban; // показывать ли бан
+    @JsonProperty("show_ban")
+    private Boolean showBan; // показывать ли бан
 
-    public ReqBan(String channelId, String banChannel, String userId, Long duration, String reason, String comment, Boolean show_ban) {
+    public ReqBan(String channelId, String banChannel, String userId, Long duration, String reason, String comment, Boolean showBan) {
         this.channelId = channelId;
         this.banChannel = banChannel;
         this.userId = userId;
         this.duration = duration;
         this.reason = reason;
         this.comment = comment;
-        this.show_ban = show_ban;
+        this.showBan = showBan;
     }
 
     @Override
@@ -39,7 +40,7 @@ public class ReqBan {
                 ", duration=" + duration +
                 ", reason='" + reason + '\'' +
                 ", comment='" + comment + '\'' +
-                ", show_ban=" + show_ban +
+                ", showBan=" + showBan +
                 '}';
     }
 
@@ -91,11 +92,11 @@ public class ReqBan {
         this.comment = comment;
     }
 
-    public Boolean getShow_ban() {
-        return show_ban;
+    public Boolean getShowBan() {
+        return showBan;
     }
 
-    public void setShow_ban(Boolean show_ban) {
-        this.show_ban = show_ban;
+    public void setShowBan(Boolean show_ban) {
+        this.showBan = showBan;
     }
 }

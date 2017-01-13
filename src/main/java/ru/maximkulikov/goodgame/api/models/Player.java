@@ -1,6 +1,7 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
@@ -10,114 +11,32 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Player {
-    private String channel_id;
-    private String channel_key;
-    private String channel_title;
-    private String broadcast_title;
-    private String channel_status;
-    private String channel_poster;
-    private String channel_premium;
-    private String streamer_avatar;
-    private String premium_only;
+    @JsonProperty("channel_id")
+    private String channelId;
+    @JsonProperty("channel_key")
+    private String channelKey;
+    @JsonProperty("channel_title")
+    private String channelTitle;
+    @JsonProperty("broadcast_title")
+    private String broadcastTitle;
+    @JsonProperty("channel_status")
+    private String channelStatus;
+    @JsonProperty("channel_poster")
+    private String channelPoster;
+    @JsonProperty("channel_premium")
+    private String channelPremium;
+    @JsonProperty("streamer_avatar")
+    private String streamerAvatar;
+    @JsonProperty("premium_only")
+    private String premiumOnly;
     private String adult;
-    private String channel_start;
-    private String ga_code;
+    @JsonProperty("channel_start")
+    private String channelStart;
+    @JsonProperty("ga_code")
+    private String gaCode;
     private List<Broadcast> broadcasts;
     private PremiumPrices premiumPrices;
     private List<User> users;
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "channel_id='" + channel_id + '\'' +
-                ", channel_key='" + channel_key + '\'' +
-                ", channel_title='" + channel_title + '\'' +
-                ", broadcast_title='" + broadcast_title + '\'' +
-                ", channel_status='" + channel_status + '\'' +
-                ", channel_poster='" + channel_poster + '\'' +
-                ", channel_premium='" + channel_premium + '\'' +
-                ", streamer_avatar='" + streamer_avatar + '\'' +
-                ", premium_only='" + premium_only + '\'' +
-                ", adult='" + adult + '\'' +
-                ", channel_start='" + channel_start + '\'' +
-                ", ga_code='" + ga_code + '\'' +
-                ", broadcast=" + broadcasts +
-                ", premiumPrices=" + premiumPrices +
-                ", user=" + users +
-                '}';
-    }
-
-    public String getChannel_id() {
-        return channel_id;
-    }
-
-    public void setChannel_id(String channel_id) {
-        this.channel_id = channel_id;
-    }
-
-    public String getChannel_key() {
-        return channel_key;
-    }
-
-    public void setChannel_key(String channel_key) {
-        this.channel_key = channel_key;
-    }
-
-    public String getChannel_title() {
-        return channel_title;
-    }
-
-    public void setChannel_title(String channel_title) {
-        this.channel_title = channel_title;
-    }
-
-    public String getBroadcast_title() {
-        return broadcast_title;
-    }
-
-    public void setBroadcast_title(String broadcast_title) {
-        this.broadcast_title = broadcast_title;
-    }
-
-    public String getChannel_status() {
-        return channel_status;
-    }
-
-    public void setChannel_status(String channel_status) {
-        this.channel_status = channel_status;
-    }
-
-    public String getChannel_poster() {
-        return channel_poster;
-    }
-
-    public void setChannel_poster(String channel_poster) {
-        this.channel_poster = channel_poster;
-    }
-
-    public String getChannel_premium() {
-        return channel_premium;
-    }
-
-    public void setChannel_premium(String channel_premium) {
-        this.channel_premium = channel_premium;
-    }
-
-    public String getStreamer_avatar() {
-        return streamer_avatar;
-    }
-
-    public void setStreamer_avatar(String streamer_avatar) {
-        this.streamer_avatar = streamer_avatar;
-    }
-
-    public String getPremium_only() {
-        return premium_only;
-    }
-
-    public void setPremium_only(String premium_only) {
-        this.premium_only = premium_only;
-    }
 
     public String getAdult() {
         return adult;
@@ -127,20 +46,12 @@ public class Player {
         this.adult = adult;
     }
 
-    public String getChannel_start() {
-        return channel_start;
+    public String getBroadcastTitle() {
+        return broadcastTitle;
     }
 
-    public void setChannel_start(String channel_start) {
-        this.channel_start = channel_start;
-    }
-
-    public String getGa_code() {
-        return ga_code;
-    }
-
-    public void setGa_code(String ga_code) {
-        this.ga_code = ga_code;
+    public void setBroadcastTitle(String broadcastTitle) {
+        this.broadcastTitle = broadcastTitle;
     }
 
     public List<Broadcast> getBroadcasts() {
@@ -151,6 +62,78 @@ public class Player {
         this.broadcasts = broadcasts;
     }
 
+    public String getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
+    }
+
+    public String getChannelKey() {
+        return channelKey;
+    }
+
+    public void setChannelKey(String channelKey) {
+        this.channelKey = channelKey;
+    }
+
+    public String getChannelPoster() {
+        return channelPoster;
+    }
+
+    public void setChannelPoster(String channelPoster) {
+        this.channelPoster = channelPoster;
+    }
+
+    public String getChannelPremium() {
+        return channelPremium;
+    }
+
+    public void setChannelPremium(String channelPremium) {
+        this.channelPremium = channelPremium;
+    }
+
+    public String getChannelStart() {
+        return channelStart;
+    }
+
+    public void setChannelStart(String channelStart) {
+        this.channelStart = channelStart;
+    }
+
+    public String getChannelStatus() {
+        return channelStatus;
+    }
+
+    public void setChannelStatus(String channelStatus) {
+        this.channelStatus = channelStatus;
+    }
+
+    public String getChannelTitle() {
+        return channelTitle;
+    }
+
+    public void setChannelTitle(String channelTitle) {
+        this.channelTitle = channelTitle;
+    }
+
+    public String getGaCode() {
+        return gaCode;
+    }
+
+    public void setGaCode(String gaCode) {
+        this.gaCode = gaCode;
+    }
+
+    public String getPremiumOnly() {
+        return premiumOnly;
+    }
+
+    public void setPremiumOnly(String premiumOnly) {
+        this.premiumOnly = premiumOnly;
+    }
+
     public PremiumPrices getPremiumPrices() {
         return premiumPrices;
     }
@@ -159,11 +142,40 @@ public class Player {
         this.premiumPrices = premiumPrices;
     }
 
+    public String getStreamerAvatar() {
+        return streamerAvatar;
+    }
+
+    public void setStreamerAvatar(String streamerAvatar) {
+        this.streamerAvatar = streamerAvatar;
+    }
+
     public List<User> getUsers() {
         return users;
     }
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "channelId='" + channelId + '\'' +
+                ", channelKey='" + channelKey + '\'' +
+                ", channelTitle='" + channelTitle + '\'' +
+                ", broadcastTitle='" + broadcastTitle + '\'' +
+                ", channelStatus='" + channelStatus + '\'' +
+                ", channelPoster='" + channelPoster + '\'' +
+                ", channelPremium='" + channelPremium + '\'' +
+                ", streamerAvatar='" + streamerAvatar + '\'' +
+                ", premiumOnly='" + premiumOnly + '\'' +
+                ", adult='" + adult + '\'' +
+                ", channelStart='" + channelStart + '\'' +
+                ", gaCode='" + gaCode + '\'' +
+                ", broadcasts=" + broadcasts +
+                ", premiumPrices=" + premiumPrices +
+                ", users=" + users +
+                '}';
     }
 }

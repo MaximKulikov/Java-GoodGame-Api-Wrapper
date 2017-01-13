@@ -1,6 +1,7 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Java-GG-Api-Wrapper
@@ -8,36 +9,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
-    private String user_id;
+    @JsonProperty("user_id")
+    private String userId;
     private String secure;
     private String email;
     private String payments;
     private String subscribed;
-    private String subscribed_stream;
-    private String subscribed_anons;
+    @JsonProperty("subscribed_stream")
+    private String subscribedStream;
+    @JsonProperty("subscribed_anons")
+    private String subscribedAnons;
     private String wallet;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "user_id='" + user_id + '\'' +
-                ", secure='" + secure + '\'' +
-                ", email='" + email + '\'' +
-                ", payments='" + payments + '\'' +
-                ", subscribed='" + subscribed + '\'' +
-                ", subscribed_stream='" + subscribed_stream + '\'' +
-                ", subscribed_anons='" + subscribed_anons + '\'' +
-                ", wallet='" + wallet + '\'' +
-                '}';
-    }
-
-    public String getSecure() {
-        return secure;
-    }
-
-    public void setSecure(String secure) {
-        this.secure = secure;
-    }
 
     public String getEmail() {
         return email;
@@ -55,6 +37,14 @@ public class User {
         this.payments = payments;
     }
 
+    public String getSecure() {
+        return secure;
+    }
+
+    public void setSecure(String secure) {
+        this.secure = secure;
+    }
+
     public String getSubscribed() {
         return subscribed;
     }
@@ -63,20 +53,28 @@ public class User {
         this.subscribed = subscribed;
     }
 
-    public String getSubscribed_stream() {
-        return subscribed_stream;
+    public String getSubscribedAnons() {
+        return subscribedAnons;
     }
 
-    public void setSubscribed_stream(String subscribed_stream) {
-        this.subscribed_stream = subscribed_stream;
+    public void setSubscribedAnons(String subscribedAnons) {
+        this.subscribedAnons = subscribedAnons;
     }
 
-    public String getSubscribed_anons() {
-        return subscribed_anons;
+    public String getSubscribedStream() {
+        return subscribedStream;
     }
 
-    public void setSubscribed_anons(String subscribed_anons) {
-        this.subscribed_anons = subscribed_anons;
+    public void setSubscribedStream(String subscribedStream) {
+        this.subscribedStream = subscribedStream;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getWallet() {
@@ -87,11 +85,17 @@ public class User {
         this.wallet = wallet;
     }
 
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", secure='" + secure + '\'' +
+                ", email='" + email + '\'' +
+                ", payments='" + payments + '\'' +
+                ", subscribed='" + subscribed + '\'' +
+                ", subscribedStream='" + subscribedStream + '\'' +
+                ", subscribedAnons='" + subscribedAnons + '\'' +
+                ", wallet='" + wallet + '\'' +
+                '}';
     }
 }

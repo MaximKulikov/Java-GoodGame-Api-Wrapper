@@ -11,46 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class SubscrurersContainer {
     @JsonProperty("_embedded")
     private EmbededSubscribers embeded;
-
-    private Long page_count;
-    private Long page_size;
-    private Long total_items;
+    @JsonProperty("page_count")
+    private Long pageCount;
+    @JsonProperty("page_size")
+    private Long pageSize;
+    @JsonProperty("total_items")
+    private Long totalItems;
     private Long page;
-
-    public Long getPage() {
-        return page;
-    }
-
-    public void setPage(Long page) {
-        this.page = page;
-    }
-
-    public Long getPage_count() {
-        return page_count;
-    }
-
-    public void setPage_count(Long page_count) {
-        this.page_count = page_count;
-    }
-
-    public Long getPage_size() {
-        return page_size;
-    }
-
-    public void setPage_size(Long page_size) {
-        this.page_size = page_size;
-    }
-
-    @Override
-    public String toString() {
-        return "SubscrurersContainer{" +
-                "embeded=" + embeded +
-                ", page_count=" + page_count +
-                ", page_size=" + page_size +
-                ", total_items=" + total_items +
-                ", page=" + page +
-                '}';
-    }
 
     public EmbededSubscribers getEmbeded() {
         return embeded;
@@ -60,12 +27,46 @@ public class SubscrurersContainer {
         this.embeded = embeded;
     }
 
-    public Long getTotal_items() {
-        return total_items;
+    public Long getPage() {
+        return page;
     }
 
-    public void setTotal_items(Long total_items) {
-        this.total_items = total_items;
+    public void setPage(Long page) {
+        this.page = page;
     }
 
+    public Long getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(Long pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public Long getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Long getTotalItems() {
+        return totalItems;
+    }
+
+    public void setTotalItems(Long totalItems) {
+        this.totalItems = totalItems;
+    }
+
+    @Override
+    public String toString() {
+        return "SubscrurersContainer{" +
+                "embeded=" + embeded +
+                ", pageCount=" + pageCount +
+                ", pageSize=" + pageSize +
+                ", totalItems=" + totalItems +
+                ", page=" + page +
+                '}';
+    }
 }

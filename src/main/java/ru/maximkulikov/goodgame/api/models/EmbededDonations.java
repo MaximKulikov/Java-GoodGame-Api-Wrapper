@@ -1,6 +1,7 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Java-GG-Api-Wrapper
@@ -11,7 +12,8 @@ public class EmbededDonations {
     private String id;
     private String username;
     private String amount;
-    private String paid_date;
+    @JsonProperty("paid_date")
+    private String paidDate;
     private String comment;
 
     public String getAmount() {
@@ -38,12 +40,12 @@ public class EmbededDonations {
         this.id = id;
     }
 
-    public String getPaid_date() {
-        return paid_date;
+    public String getPaidDate() {
+        return paidDate;
     }
 
-    public void setPaid_date(String paid_date) {
-        this.paid_date = paid_date;
+    public void setPaidDate(String paidDate) {
+        this.paidDate = paidDate;
     }
 
     public String getUsername() {
@@ -60,7 +62,7 @@ public class EmbededDonations {
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", amount='" + amount + '\'' +
-                ", paid_date='" + paid_date + '\'' +
+                ", paidDate='" + paidDate + '\'' +
                 ", comment='" + comment + '\'' +
                 '}';
     }

@@ -1,6 +1,7 @@
 package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Java-GoodGame-Api-Wrapper
@@ -8,30 +9,32 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResJoinToRoom implements ResChatObject {
-    private String channel_id; // id-канала, из которого посылалась inline-команда /join
-    private String room_id; // id-канала или если начинается с префикса "r" id-комнаты
+    @JsonProperty("channel_id")
+    private String channelId; // id-канала, из которого посылалась inline-команда /join
+    @JsonProperty("room_id")
+    private String roomId; // id-канала или если начинается с префикса "r" id-комнаты
 
-    public String getChannel_id() {
-        return channel_id;
+    public String getChannelId() {
+        return channelId;
     }
 
-    public void setChannel_id(String channel_id) {
-        this.channel_id = channel_id;
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
     }
 
-    public String getRoom_id() {
-        return room_id;
+    public String getRoomId() {
+        return roomId;
     }
 
-    public void setRoom_id(String room_id) {
-        this.room_id = room_id;
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 
     @Override
     public String toString() {
         return "ResJoinToRoom{" +
-                "channel_id='" + channel_id + '\'' +
-                ", room_id='" + room_id + '\'' +
+                "channelId='" + channelId + '\'' +
+                ", roomId='" + roomId + '\'' +
                 '}';
     }
 }

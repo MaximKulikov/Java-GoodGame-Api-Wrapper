@@ -1,6 +1,7 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Java-GG-Api-Wrapper
@@ -8,60 +9,65 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Broadcast {
-    private String broadcast_title;
-    private String broadcast_start;
-    private String broadcast_games;
-    private String broadcast_description;
-    private String broadcast_logo;
+    @JsonProperty("broadcast_title")
+    private String broadcastTitle;
+    @JsonProperty("broadcast_start")
+    private String broadcastStart;
+    @JsonProperty("broadcast_games")
+    private String broadcastGames;
+    @JsonProperty("broadcast_description")
+    private String broadcastDescription;
+    @JsonProperty("broadcast_logo")
+    private String broadcastLogo;
+
+    public String getBroadcastDescription() {
+        return broadcastDescription;
+    }
+
+    public void setBroadcastDescription(String broadcastDescription) {
+        this.broadcastDescription = broadcastDescription;
+    }
+
+    public String getBroadcastGames() {
+        return broadcastGames;
+    }
+
+    public void setBroadcastGames(String broadcastGames) {
+        this.broadcastGames = broadcastGames;
+    }
+
+    public String getBroadcastLogo() {
+        return broadcastLogo;
+    }
+
+    public void setBroadcastLogo(String broadcastLogo) {
+        this.broadcastLogo = broadcastLogo;
+    }
+
+    public String getBroadcastStart() {
+        return broadcastStart;
+    }
+
+    public void setBroadcastStart(String broadcastStart) {
+        this.broadcastStart = broadcastStart;
+    }
+
+    public String getBroadcastTitle() {
+        return broadcastTitle;
+    }
+
+    public void setBroadcastTitle(String broadcastTitle) {
+        this.broadcastTitle = broadcastTitle;
+    }
 
     @Override
     public String toString() {
         return "Broadcast{" +
-                "broadcast_logo='" + broadcast_logo + '\'' +
-                ", broadcast_description='" + broadcast_description + '\'' +
-                ", broadcast_games='" + broadcast_games + '\'' +
-                ", broadcast_start='" + broadcast_start + '\'' +
-                ", broadcast_title='" + broadcast_title + '\'' +
+                "broadcastTitle='" + broadcastTitle + '\'' +
+                ", broadcastStart='" + broadcastStart + '\'' +
+                ", broadcastGames='" + broadcastGames + '\'' +
+                ", broadcastDescription='" + broadcastDescription + '\'' +
+                ", broadcastLogo='" + broadcastLogo + '\'' +
                 '}';
-    }
-
-    public String getBroadcast_title() {
-        return broadcast_title;
-    }
-
-    public void setBroadcast_title(String broadcast_title) {
-        this.broadcast_title = broadcast_title;
-    }
-
-    public String getBroadcast_start() {
-        return broadcast_start;
-    }
-
-    public void setBroadcast_start(String broadcast_start) {
-        this.broadcast_start = broadcast_start;
-    }
-
-    public String getBroadcast_games() {
-        return broadcast_games;
-    }
-
-    public void setBroadcast_games(String broadcast_games) {
-        this.broadcast_games = broadcast_games;
-    }
-
-    public String getBroadcast_description() {
-        return broadcast_description;
-    }
-
-    public void setBroadcast_description(String broadcast_description) {
-        this.broadcast_description = broadcast_description;
-    }
-
-    public String getBroadcast_logo() {
-        return broadcast_logo;
-    }
-
-    public void setBroadcast_logo(String broadcast_logo) {
-        this.broadcast_logo = broadcast_logo;
     }
 }

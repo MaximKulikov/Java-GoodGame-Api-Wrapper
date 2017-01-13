@@ -66,7 +66,6 @@ public class GoodChatSocket {
             ChatResponses response = ChatResponses.valueOf(type.toUpperCase());
 
             switch (response) {
-
                 case WELCOME:
                     ResWelcomeContainer resWelcomeContainer = objectMapper.readValue(msg, ResWelcomeContainer.class);
                     answer = new Response(response, resWelcomeContainer.getData());
@@ -143,10 +142,10 @@ public class GoodChatSocket {
                     ResWarnContainer resWarnContainer =objectMapper.readValue(msg, ResWarnContainer.class);
                     answer = new Response(response, resWarnContainer.getData());
                     break;
-
                 case NEW_POLL: //TODO
                     answer = new Response(ChatResponses.UNKNOWN, null);
                     System.out.println(msg);
+                    break;
                 case POLL_RESULTS:
                     ResPollResultsContainer resPollResultsContainer = objectMapper.readValue(msg, ResPollResultsContainer.class);
                     answer = new Response(response, resPollResultsContainer.getData());
@@ -162,6 +161,7 @@ public class GoodChatSocket {
                 case UPDATE_GROUPS: //TODO
                     answer = new Response(ChatResponses.UNKNOWN, null);
                     System.out.println(msg);
+                    break;
                 case UPDATE_PREMIUM:
                     ResUpdatePremiumContainer resUpdatePremiumContainer = objectMapper.readValue(msg, ResUpdatePremiumContainer.class);
                     answer = new Response(response, resUpdatePremiumContainer.getData());

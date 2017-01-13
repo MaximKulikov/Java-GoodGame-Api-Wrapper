@@ -6,12 +6,17 @@ var hashValues = {
     state: null
 };
 
-function process() {
-    if (document.location.search.length > 0) {
-        // GET param exists
-    } else {
-        // Attempt to extract access token from hash
-        getAccessTokenFromHash();
+
+function extractAccessToken() {
+    var hash = document.location.hash;
+    var params = hash.slice(1).split("&");
+    for (var i = 0; i < params.length; i++) {
+        var param = params[i].split("=");
+        if (param[0] === "code") {
+            hashValues.access_token = param[1]; // access token found
+        } else if (param[0] === "state") {
+            hashValues.scope = param[1];
+        }
     }
 }
 
@@ -26,21 +31,16 @@ function getAccessTokenFromHash() {
     }
 }
 
-/**
- * Twitch Auth API sends the access token and scope through the Hash of the URL. This
- * method will extract them and put them into the hashValues object.
- */
-function extractAccessToken() {
-    var hash = document.location.hash;
-    var params = hash.slice(1).split('&');
-    for (var i = 0; i < params.length; i++) {
-        var param = params[i].split('=');
-        if (param[0] === "code") {
-            hashValues.access_token = param[1]; // access token found
-        } else if (param[0] === "state") {
-            hashValues.scope = param[1];
-        }
+function process() {
+    if (document.location.search.length > 0) {
+        // GET param exists
+    } else {
+        // Attempt to extract access token from hash
+        getAccessTokenFromHash();
     }
 }
+
+
+
 
 window.onload = process;

@@ -16,8 +16,8 @@ import java.util.concurrent.TimeUnit;
 public class GoodChat {
     public static final String DEFAULT_CHAT_URL = "ws://chat.goodgame.ru:8081/chat/websocket";
     protected static final ObjectMapper objectMapper = new ObjectMapper();
-    GoodChatSocket socket = null;
-    boolean connected = false;
+    private GoodChatSocket socket = null;
+    private boolean connected = false;
 
     public void connect() {
         new Thread(new Runnable() {
@@ -52,7 +52,7 @@ public class GoodChat {
         return connected;
     }
 
-    void setConnected(boolean connected) {
+    public void setConnected(boolean connected) {
         this.connected = connected;
     }
 

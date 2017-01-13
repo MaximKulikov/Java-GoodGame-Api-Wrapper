@@ -9,20 +9,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-/**
- * The {@link StreamsResource} provides the functionality
- * to access the <code>/streams</code> endpoints of the Twitch API.
- *
- * @author Matthew Bell
- */
+
 public class StreamsResource extends AbstractResource {
 
-    /**
-     * Construct the resource using the Twitch API base URL and specified API version.
-     *
-     * @param baseUrl    the base URL of the Twitch API
-     * @param apiVersion the requested version of the Twitch API
-     */
+
     public StreamsResource(String baseUrl, int apiVersion) {
         super(baseUrl, apiVersion);
     }
@@ -34,7 +24,19 @@ public class StreamsResource extends AbstractResource {
      */
 
     public void getStreams(final StreamResponseHandler handler) {
+        String url = String.format("%s/streams", getBaseUrl());
 
+        http.get(url, new GoodGameHttpResponseHandler(handler) {
+            @Override
+            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+                try {
+                    ChannelContainer value = objectMapper.readValue(content, ChannelContainer.class);
+                    handler.onSuccess(value);
+                } catch (IOException e) {
+                    handler.onFailure(e);
+                }
+            }
+        });
     }
 
     public void getStreams(final RequestParams params, final StreamResponseHandler handler) {

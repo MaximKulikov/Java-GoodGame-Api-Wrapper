@@ -1,6 +1,7 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
@@ -14,9 +15,12 @@ public class Channel {
     private String key;
     private String premium;
     private String title;
-    private String max_viewers;
-    private String player_type;
-    private String gg_player_src;
+    @JsonProperty("max_viewers")
+    private String maxViewers;
+    @JsonProperty("player_type")
+    private String playerType;
+    @JsonProperty("gg_player_src")
+    private String ggPlayerSrc;
     private String embed;
     private String img;
     private String thumb;
@@ -57,12 +61,12 @@ public class Channel {
         this.games = games;
     }
 
-    public String getGg_player_src() {
-        return gg_player_src;
+    public String getGgPlayerSrc() {
+        return ggPlayerSrc;
     }
 
-    public void setGg_player_src(String gg_player_src) {
-        this.gg_player_src = gg_player_src;
+    public void setGgPlayerSrc(String ggPlayerSrc) {
+        this.ggPlayerSrc = ggPlayerSrc;
     }
 
     public Long getId() {
@@ -89,20 +93,20 @@ public class Channel {
         this.key = key;
     }
 
-    public String getMax_viewers() {
-        return max_viewers;
+    public String getMaxViewers() {
+        return maxViewers;
     }
 
-    public void setMax_viewers(String max_viewers) {
-        this.max_viewers = max_viewers;
+    public void setMaxViewers(String maxViewers) {
+        this.maxViewers = maxViewers;
     }
 
-    public String getPlayer_type() {
-        return player_type;
+    public String getPlayerType() {
+        return playerType;
     }
 
-    public void setPlayer_type(String player_type) {
-        this.player_type = player_type;
+    public void setPlayerType(String playerType) {
+        this.playerType = playerType;
     }
 
     public String getPremium() {
@@ -144,9 +148,9 @@ public class Channel {
                 ", key='" + key + '\'' +
                 ", premium='" + premium + '\'' +
                 ", title='" + title + '\'' +
-                ", max_viewers='" + max_viewers + '\'' +
-                ", player_type='" + player_type + '\'' +
-                ", gg_player_src='" + gg_player_src + '\'' +
+                ", maxViewers='" + maxViewers + '\'' +
+                ", playerType='" + playerType + '\'' +
+                ", ggPlayerSrc='" + ggPlayerSrc + '\'' +
                 ", embed='" + embed + '\'' +
                 ", img='" + img + '\'' +
                 ", thumb='" + thumb + '\'' +
