@@ -1,28 +1,11 @@
 # Async GoodGame API Wrapper
-JGAW is a complete asynchronous java wrapper for interaction with v2 of the [GoodGame API](https://github.com/GoodGame/API).
+JGAW - обертка над [GoodGame API](https://github.com/GoodGame/API), позволяющая выполнять асинхронные запросы. 
 
 Please feel free to report any issues or contribute code.
 
-#Done Stream API
+За основу проекта взята разработка `Matthew J. Bell @urgrue` [Java-Twitch-Api-Wrapper](https://github.com/urgrue/Java-Twitch-Api-Wrapper)
 
-
-
-
-***Пример***
-```java
-   @Override  
-   public void onMessage(Response answer) {   
-       switch (answer.getType()) {  
-            case CHANNEL_HISTORY:  
-                ResChannelHistory resChannelHistory = (ResChannelHistory) answer.getAnswer();  
-                System.out.println(answer.getAnswer());  
-        }
-   } 
-```
-
-
-
-#In Progress
+##In Progress
 
 Разобраться с путаницей в авторизационном токене и токене доступа  
 Добавить недостающие модели ответов чата
@@ -32,7 +15,7 @@ Please feel free to report any issues or contribute code.
 Выложить релиз  
 
 
-## Основная идея
+# Основная идея
 
 Использование обертки позволяет отправлять запросы и получать ответы от`GoodGame` в виде объектов `Java`.
 Библиотека разделена на несколько частей:  
@@ -100,7 +83,7 @@ gg.channels().getSubscribers("channelName", params, new SubscriberResponseHandle
     }
 });
 ```
-#### Вызовы апи стримингового сервиса
+### Вызовы апи стримингового сервиса
 
 ***gg.auth().awaitAutorizationCode()***  
 // Получение авторизационного токена
@@ -158,9 +141,8 @@ gg.channels().getSubscribers("channelName", params, new SubscriberResponseHandle
 
 
 # API чата
-Реализовато Api чата
-
 Для работы требуется создать экземпляр класса и унаследовать его GoodChat, для подключения вызовите .connect
+
 ```java
 Main{ {
     GGChat goodgameChat = new GGChat();
@@ -174,6 +156,18 @@ GGChat extends GoodChat {
    answer.getAnswer(); // Возвращает базовый ResChatObject  
    }  
 }  
+```
+
+***Пример***
+```java
+   @Override  
+   public void onMessage(Response answer) {   
+       switch (answer.getType()) {  
+            case CHANNEL_HISTORY:  
+                ResChannelHistory resChannelHistory = (ResChannelHistory) answer.getAnswer();  
+                System.out.println(answer.getAnswer());  
+        }
+   } 
 ```
 
 ### Соответствие запросам на сервер чата классам библиотеки
@@ -353,7 +347,7 @@ twitch.auth().setAccessToken("my-access-token-289489");
 ## Зависимости
 
 * [Java Async HTTP Client](https://github.com/urgrue/java-async-http/releases/tag/2.1.2) ver. 2.1.2
-* [Jackson JSON Processor - Databind](http://wiki.fasterxml.com/JacksonHome) // [Direct Download](http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.4.5/jackson-databind-2.4.5.jar) ver. 2.4.5
+* [Jackson JSON Databind](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind/2.4.5) 
 * [Eclipse Websocket Client](https://mvnrepository.com/artifact/org.eclipse.jetty.websocket/websocket-client) ver. 9.2.19.v20160908
 
 ## Install
