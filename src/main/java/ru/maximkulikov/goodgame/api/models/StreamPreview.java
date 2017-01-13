@@ -10,37 +10,27 @@ public class StreamPreview {
     private String large;
     private String template;
 
-    @Override
-    public String toString() {
-        return "StreamPreview{" +
-                "small='" + small + '\'' +
-                ", medium='" + medium + '\'' +
-                ", large='" + large + '\'' +
-                ", template='" + template + '\'' +
-                '}';
+    public StreamPreview(String small, String medium, String large, String template) {
+        this.small = small;
+        this.medium = medium;
+        this.large = large;
+        this.template = template;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        StreamPreview that = (StreamPreview) o;
-
-        if (small != null ? !small.equals(that.small) : that.small != null) return false;
-        if (medium != null ? !medium.equals(that.medium) : that.medium != null) return false;
-        if (large != null ? !large.equals(that.large) : that.large != null) return false;
-        return !(template != null ? !template.equals(that.template) : that.template != null);
-
+    public String getLarge() {
+        return large;
     }
 
-    @Override
-    public int hashCode() {
-        int result = small != null ? small.hashCode() : 0;
-        result = 31 * result + (medium != null ? medium.hashCode() : 0);
-        result = 31 * result + (large != null ? large.hashCode() : 0);
-        result = 31 * result + (template != null ? template.hashCode() : 0);
-        return result;
+    public void setLarge(String large) {
+        this.large = large;
+    }
+
+    public String getMedium() {
+        return medium;
+    }
+
+    public void setMedium(String medium) {
+        this.medium = medium;
     }
 
     public String getSmall() {
@@ -52,27 +42,55 @@ public class StreamPreview {
         this.small = small;
     }
 
-    public String getMedium() {
-        return medium;
-    }
-
-    public void setMedium(String medium) {
-        this.medium = medium;
-    }
-
-    public String getLarge() {
-        return large;
-    }
-
-    public void setLarge(String large) {
-        this.large = large;
-    }
-
     public String getTemplate() {
         return template;
     }
 
     public void setTemplate(String template) {
         this.template = template;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = this.small != null ? this.small.hashCode() : 0;
+        result = 31 * result + (this.medium != null ? this.medium.hashCode() : 0);
+        result = 31 * result + (this.large != null ? this.large.hashCode() : 0);
+        result = 31 * result + (this.template != null ? this.template.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        StreamPreview that = (StreamPreview) o;
+
+        if (this.small != null ? !this.small.equals(that.small) : that.small != null) {
+            return false;
+        }
+        if (this.medium != null ? !this.medium.equals(that.medium) : that.medium != null) {
+            return false;
+        }
+        if (this.large != null ? !this.large.equals(that.large) : that.large != null) {
+            return false;
+        }
+
+        return !(this.template != null ? !this.template.equals(that.template) : that.template != null);
+
+    }
+
+    @Override
+    public final String toString() {
+        return "StreamPreview{" +
+                "small='" + small + '\'' +
+                ", medium='" + medium + '\'' +
+                ", large='" + large + '\'' +
+                ", template='" + template + '\'' +
+                '}';
     }
 }

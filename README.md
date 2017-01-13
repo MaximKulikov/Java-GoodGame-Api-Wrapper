@@ -36,26 +36,29 @@ Please feel free to report any issues or contribute code.
 #### Простой пример
 
 ```java
-GoodGame gg = new GoodGame();
-gg.setClientId("shjdkashjkfdl"); // Идентификатор приложения   (https://goodgame.ru/user/***userId***/edit) 
+class SimpleExample {
+    public void example() {
+        GoodGame gg = new GoodGame();
+        gg.setClientId("shjdkashjkfdl"); // Идентификатор приложения   (https://goodgame.ru/user/***userId***/edit) 
+        gg.smiles().getSmiles(new SmilesResponseHandler() {
 
-gg.smiles().getSmiles(new SmilesResponseHandler() {
+            @Override
+            public void onSuccess(SmilesContainer smiles) {
+                 // Успешное получение объекта
+            }
 
-    @Override
-    public void onSuccess(SmilesContainer smiles) {
-        // Успешное получение объекта
-        }
+            @Override
+            public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                // GoodGame сообщил об ошибке в запросе          
+            }
 
-    @Override
-    public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-        // GoodGame сообщил об ошибке в запросе          
-        }
-
-    @Override
-    public void onFailure(Throwable throwable) {
-        // Ошибка взаимодействи я с сервером или обработки ответа
-        }
+            @Override
+            public void onFailure(Throwable throwable) {
+                // Ошибка взаимодействи я с сервером или обработки ответа
+            }
         });
+    }
+}
 ```
 
 #### Простой пример с параметром
@@ -63,25 +66,30 @@ gg.smiles().getSmiles(new SmilesResponseHandler() {
 
 ```java
 /* Получение подписчиков, начиная с конкретного времени */
-RequestParams params = new RequestParams();
-params.put("from_timestamp", "1453592975");
+class SimpleExample {
+    public void example() {
+        RequestParams params = new RequestParams();
+        params.put("from_timestamp", "1453592975");
 
-gg.channels().getSubscribers("channelName", params, new SubscriberResponseHandler() {
-    @Override
-    public void onSuccess(SubscrurersContainer subscribers) {
-        //Успешно
-    }
+        gg.channels().getSubscribers("channelName", params, new SubscriberResponseHandler() {
 
-    @Override
-    public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-        // GoodGame сообщил об ошибке в запросе 
-    }
+            @Override
+            public void onSuccess(SubscrurersContainer subscribers) {
+                //Успешно
+            }
 
-    @Override
-    public void onFailure(Throwable e) {
-        // Ошибка взаимодействи я с сервером или обработки ответа
+            @Override
+            public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                // GoodGame сообщил об ошибке в запросе 
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+            // Ошибка взаимодействи я с сервером или обработки ответа
+            }
+        });
     }
-});
+}
 ```
 ### Вызовы апи стримингового сервиса
 
@@ -144,30 +152,28 @@ gg.channels().getSubscribers("channelName", params, new SubscriberResponseHandle
 Для работы требуется создать экземпляр класса и унаследовать его от GoodChat, для подключения вызовите .connect
 
 ```java
-Main{ {
-    GGChat goodgameChat = new GGChat();
-    goodgameChat.connect();
-} }
+class SimpleExample {
+    public void example() {
+        GGChat goodgameChat = new GGChat();
+        goodgameChat.connect();
+    } 
 
-GGChat extends GoodChat {  
-   @Override  
-   public void onMessage(Response answer) {   
-   answer.getType(); // Возвращает значение Enum с типом пришедшего сообщения
-   answer.getAnswer(); // Возвращает базовый ResChatObject  
-   }  
-}  
-```
-
-***Пример***
-```java
-   @Override  
-   public void onMessage(Response answer) {   
-       switch (answer.getType()) {  
-            case CHANNEL_HISTORY:  
-                ResChannelHistory resChannelHistory = (ResChannelHistory) answer.getAnswer();  
-                System.out.println(answer.getAnswer());  
-        }
-   } 
+    class GGChat extends GoodChat {  
+    
+        @Override  
+        public void onMessage(Response answer) {   
+            answer.getType(); // Возвращает значение Enum с типом пришедшего сообщения
+            answer.getAnswer(); // Возвращает базовый ResChatObject
+            
+            // Пример
+            switch (answer.getType()) {  
+                case CHANNEL_HISTORY:  
+                    ResChannelHistory resChannelHistory = (ResChannelHistory) answer.getAnswer();  
+                    System.out.println(answer.getAnswer());  
+            }  
+        }  
+    }
+}
 ```
 
 ### Соответствие запросам на сервер чата классам библиотеки
@@ -208,9 +214,13 @@ GGChat extends GoodChat {
 
 Ответы от сервера приходят в переопределенный метод onMessage
 ```java
+class SimpleExample extends GoodChat {
+    
     @Override
     public void onMessage(Response answer) {
     }
+    
+}
 ```
 
 | Ответы API       |     Классы         |  
@@ -260,7 +270,7 @@ To use authentication, your application must be registered with Twitch and the `
 
 The authentication process is explained in the following code example.
 
-```java
+```
 Twitch twitch = new Twitch();
 twitch.setClientId("shjdkashjkfdl"); // This is your registered application's client ID
 
@@ -300,7 +310,7 @@ There are 3 views that can be overwritten:
 
 Using your own views is easy, simple pass URL objects (usually retrieved from [Class.getResource()](https://docs.oracle.com/javase/7/docs/api/java/lang/Class.html#getResource(java.lang.String)) to the `awaitAccessToken()` function.
 
-```java
+```
 authView = getClass().getResource("/my_auth.html");
 failureView = getClass().getResource("/my_auth_failure.html");
 successView = getClass().getResource("/my_auth_success.html");
@@ -335,7 +345,7 @@ You can view the default pages in the [resources directory](https://github.com/u
 
 If you already have an access token, you can explicitly set it. This _**should not**_ be done prior to an application being distributed as the access token is directly linked to a single Twitch account.
 
-```java
+```
 twitch.auth().setAccessToken("my-access-token-289489");
 ```
 
@@ -357,4 +367,5 @@ twitch.auth().setAccessToken("my-access-token-289489");
 
 ## Roadmap
 
-Выпустить релиз
+Выпустить релиз  
+Improve CodeStyle: [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e363ff624c2343e8acbb08e96b61d7d6)](https://www.codacy.com/app/Trinion/Java-GoodGame-Api-Wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Trinion/Java-GoodGame-Api-Wrapper&amp;utm_campaign=Badge_Grade)
