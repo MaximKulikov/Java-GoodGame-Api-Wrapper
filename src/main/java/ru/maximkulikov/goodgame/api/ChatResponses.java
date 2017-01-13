@@ -33,7 +33,7 @@ public enum ChatResponses {
     PAYMENT,
     PREMIUM,
     ERROR,
-    UNKNOWN;
+    UNKNOWN
 
 
 }
