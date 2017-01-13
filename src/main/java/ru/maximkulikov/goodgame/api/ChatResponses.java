@@ -17,6 +17,8 @@ public enum ChatResponses {
     SETTING, // нет контейнера?
     IGNORE_LIST,
     CHANNEL_HISTORY,
+    MOTD,
+    SLOWMOD,
     MESSAGE,
     PRIVATE_MESSAGE,
     REMOVE_MESSAGE,
@@ -27,6 +29,9 @@ public enum ChatResponses {
     USER,
     UPDATE_RIGHTS,
     UPDATE_GROUPS, //нет контейнера?
+    UPDATE_PREMIUM,
+    PAYMENT,
+    PREMIUM,
     ERROR,
     UNKNOWN;
 

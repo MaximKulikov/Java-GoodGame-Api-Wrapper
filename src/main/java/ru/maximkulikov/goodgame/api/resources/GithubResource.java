@@ -1,7 +1,7 @@
 package ru.maximkulikov.goodgame.api.resources;
 
 import com.mb3364.http.RequestParams;
-import ru.maximkulikov.goodgame.api.handlers.ChannelStatusResponseHandler;
+import ru.maximkulikov.goodgame.api.handlers.GitHubSharedHandler;
 import ru.maximkulikov.goodgame.api.handlers.GitHubChannelSubscribersResponseHandler;
 import ru.maximkulikov.goodgame.api.models.GitHubSubscribers;
 
@@ -21,7 +21,7 @@ public class GithubResource extends AbstractResource {
         super(baseUrl);
     }
 
-    public void getChannelStatus(final String id, final ChannelStatusResponseHandler handler ) {
+    public void getChannelStatus(final String id, final GitHubSharedHandler handler ) {
         String url = String.format("%s/getchannelstatus", getBaseUrl());
 
         Map<String, String> map = new HashMap<>();
@@ -47,7 +47,7 @@ public class GithubResource extends AbstractResource {
         });
     }
 
-    public void getGgChannelStatus(final String id, final ChannelStatusResponseHandler handler ) {
+    public void getGgChannelStatus(final String id, final GitHubSharedHandler handler ) {
         String url = String.format("%s/getggchannelstatus", getBaseUrl());
 
         Map<String, String> map = new HashMap<>();
@@ -73,7 +73,7 @@ public class GithubResource extends AbstractResource {
         });
     }
 
-    public void getUpcomingBroadcast(final String id, final ChannelStatusResponseHandler handler ) {
+    public void getUpcomingBroadcast(final String id, final GitHubSharedHandler handler ) {
         String url = String.format("%s/getggchannelstatus", getBaseUrl());
 
         Map<String, String> map = new HashMap<>();
@@ -99,7 +99,7 @@ public class GithubResource extends AbstractResource {
         });
     }
 
-    public void getChannelsByGame(final String gameUrl, final ChannelStatusResponseHandler handler ) {
+    public void getChannelsByGame(final String gameUrl, final GitHubSharedHandler handler ) {
         String url = String.format("%s/getchannelsbygame", getBaseUrl());
 
         Map<String, String> map = new HashMap<>();
@@ -125,7 +125,7 @@ public class GithubResource extends AbstractResource {
         });
     }
 
-    public void getToken(final String username,final String password, final ChannelStatusResponseHandler handler ) {
+    public void getToken(final String username,final String password, final GitHubSharedHandler handler ) {
         String url = String.format("%s/token", getBaseUrl());
 
         Map<String, String> map = new HashMap<>();

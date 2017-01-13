@@ -11,6 +11,9 @@ public class ReqJoinContainer implements ReqChatObject {
     private String type = "join";
     private ReqJoin data;
 
+    public ReqJoinContainer(String channelId) {
+        this.data = new ReqJoin(channelId, false, false);
+    }
     public ReqJoinContainer(String channelId, boolean hidden, boolean mobile) {
         this.data = new ReqJoin(channelId, hidden, mobile);
     }

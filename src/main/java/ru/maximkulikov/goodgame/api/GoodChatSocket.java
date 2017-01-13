@@ -115,6 +115,14 @@ public class GoodChatSocket {
                     ResChannelHistoryContainer resChannelHistoryContainer = objectMapper.readValue(msg, ResChannelHistoryContainer.class);
                     answer = new Response(response, resChannelHistoryContainer.getData());
                     break;
+                case MOTD:
+                    ResMotdContainer resMotdContainer = objectMapper.readValue(msg, ResMotdContainer.class);
+                    answer = new Response(response, resMotdContainer.getData());
+                    break;
+                case SLOWMOD:
+                    ResSlowmodContainer resSlowmodContainer = objectMapper.readValue(msg, ResSlowmodContainer.class);
+                    answer = new Response(response, resSlowmodContainer.getData());
+                    break;
                 case MESSAGE:
                     ResMessageContainer resMessageContainer  = objectMapper.readValue(msg, ResMessageContainer.class);
                     answer = new Response(response, resMessageContainer.getData());
@@ -154,9 +162,21 @@ public class GoodChatSocket {
                 case UPDATE_GROUPS: //TODO
                     answer = new Response(ChatResponses.UNKNOWN, null);
                     System.out.println(msg);
+                case UPDATE_PREMIUM:
+                    ResUpdatePremiumContainer resUpdatePremiumContainer = objectMapper.readValue(msg, ResUpdatePremiumContainer.class);
+                    answer = new Response(response, resUpdatePremiumContainer.getData());
+                    break;
+                case PAYMENT:
+                    ResPaymentContainer resPaymentContainer = objectMapper.readValue(msg, ResPaymentContainer.class);
+                    answer = new Response(response, resPaymentContainer.getData());
+                    break;
+                case PREMIUM:
+                    ResPremiumContainer resPremiumContainer = objectMapper.readValue(msg, ResPremiumContainer.class);
+                    answer = new Response(response, resPremiumContainer.getData());
+                    break;
                 case ERROR:
-                    System.out.println("error " + msg);
-                    answer = new Response(response, null);
+                    ResErrorContainer resErrorContainer=  objectMapper.readValue(msg, ResErrorContainer.class);
+                    answer = new Response(response, resErrorContainer.getData());
                     break;
                 default:
                     answer = new Response(ChatResponses.UNKNOWN, null);
