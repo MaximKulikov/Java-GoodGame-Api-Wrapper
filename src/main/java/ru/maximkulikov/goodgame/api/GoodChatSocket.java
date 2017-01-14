@@ -101,9 +101,9 @@ public class GoodChatSocket {
                     ResModeratorsListContainer resModeratorsListContainer = objectMapper.readValue(msg, ResModeratorsListContainer.class);
                     answer = new Response(response, resModeratorsListContainer.getData());
                     break;
-                case SETTING: // TODO
-                    answer = new Response(ChatResponses.UNKNOWN, null);
-                    System.out.println(msg);
+                case SETTING:
+                ResSettingsContainer resSettingsContainer = objectMapper.readValue(msg, ResSettingsContainer.class);
+                    answer = new Response(response, resSettingsContainer.getData());
                     break;
                 case IGNORE_LIST:
                     ResIgnoreListContainer resIgnoreListContainer = objectMapper.readValue(msg, ResIgnoreListContainer.class);
@@ -141,9 +141,9 @@ public class GoodChatSocket {
                     ResWarnContainer resWarnContainer = objectMapper.readValue(msg, ResWarnContainer.class);
                     answer = new Response(response, resWarnContainer.getData());
                     break;
-                case NEW_POLL: //TODO
-                    answer = new Response(ChatResponses.UNKNOWN, null);
-                    System.out.println(msg);
+                case NEW_POLL:
+                    ResNewPollContainer resNewPollContainer = objectMapper.readValue(msg, ResNewPollContainer.class);
+                    answer = new Response(response, resNewPollContainer.getData());
                     break;
                 case POLL_RESULTS:
                     ResPollResultsContainer resPollResultsContainer = objectMapper.readValue(msg, ResPollResultsContainer.class);
@@ -157,9 +157,9 @@ public class GoodChatSocket {
                     ResUpdateRightsContainer resUpdateRightsContainer = objectMapper.readValue(msg, ResUpdateRightsContainer.class);
                     answer = new Response(response, resUpdateRightsContainer.getData());
                     break;
-                case UPDATE_GROUPS: //TODO
-                    answer = new Response(ChatResponses.UNKNOWN, null);
-                    System.out.println(msg);
+                case UPDATE_GROUPS:
+                    ResUpdateGroupsContainer resUpdateGroupsContainer = objectMapper.readValue(msg, ResUpdateGroupsContainer.class);
+                    answer = new Response(response, resUpdateGroupsContainer.getData());
                     break;
                 case UPDATE_PREMIUM:
                     ResUpdatePremiumContainer resUpdatePremiumContainer = objectMapper.readValue(msg, ResUpdatePremiumContainer.class);

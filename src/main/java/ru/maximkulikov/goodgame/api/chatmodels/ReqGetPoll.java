@@ -19,15 +19,15 @@ public class ReqGetPoll {
     @Override
     public String toString() {
         return "ReqGetPoll{" +
-                "channelId='" + channelId + '\'' +
+                "channelId='" + this.channelId + '\'' +
                 '}';
     }
 
-    public String getChannelId() {
-        return channelId;
+    public final String getChannelId() {
+        return this.channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 }

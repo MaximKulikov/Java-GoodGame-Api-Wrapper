@@ -14,7 +14,7 @@ public enum ChatResponses {
     USERS_LIST,
     CHANNEL_COUNTERS,
     LIST,
-    SETTING, // нет контейнера?
+    SETTING,
     IGNORE_LIST,
     CHANNEL_HISTORY,
     MOTD,

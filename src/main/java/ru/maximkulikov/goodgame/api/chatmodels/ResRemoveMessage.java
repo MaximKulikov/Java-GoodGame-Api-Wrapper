@@ -9,8 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResRemoveMessage implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     @JsonProperty("message_id")
     private String messageId;
 

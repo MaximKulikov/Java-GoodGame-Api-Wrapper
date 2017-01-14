@@ -8,7 +8,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResRemoveMessageContainer {
+
     private String type;
+
     private ResRemoveMessage data;
 
     public ResRemoveMessage getData() {

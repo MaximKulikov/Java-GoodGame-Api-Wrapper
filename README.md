@@ -8,8 +8,6 @@ Please feel free to report any issues or contribute code.
 ##In Progress
 
 Разобраться с путаницей в авторизационном токене и токене доступа  
-Добавить недостающие модели ответов чата  
-Добавить недостающие модели запросов чата  
 Сделать тесты  
 Написать вменяемую инструкцию  
 Выложить релиз  
@@ -182,11 +180,11 @@ class SimpleExample {
 после соединения с сервером
 
 
-| Запросы                | Классы ReqChatObject                                                                                                                                     |
-|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Запросы                | Классы ReqChatObject                                                                                                                                           |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | auth                   | ***ReqAutorizationContainer***(int siteId, int userId, String token)                                                                                           |
-| get_channels_list      | ***ReqChannelsListContainer***() <br /> ***ReqChannelsListContainer***(int start, int count)                                                                         |
-| join                   | ***ReqJoinContainer***(String channelId) <br />***ReqJoinContainer***(String channelId, boolean hidden, boolean mobile)                                              |
+| get_channels_list      | ***ReqChannelsListContainer***() <br /> ***ReqChannelsListContainer***(int start, int count)                                                                   |
+| join                   | ***ReqJoinContainer***(String channelId) <br />***ReqJoinContainer***(String channelId, boolean hidden, boolean mobile)                                        |
 | unjoin                 | ***ReqUnjoinContainer***(String channelId)                                                                                                                     |
 | get_users_list         | ***ReqUsersListContainer***(String channelId)                                                                                                                  |
 | get_channel_counters   | ***ReqChannelCountersContainer***(String channelId)                                                                                                            |
@@ -206,8 +204,8 @@ class SimpleExample {
 | get_user_info          | ***ReqGetUserInfoContainer***(String userId)                                                                                                                   |
 | make_moderator         | ***ReqMakeModeratorContainer***(String channelId, String userId)                                                                                               |
 | clean_moderator        | ***ReqCleanModeratorContainer***(String channelId, String userId)                                                                                              |
-| refresh_premium        | //TODO   |
-| refresh_groups v.2     | //TODO   |
+| refresh_premium        | ***ReqRefreshPremiumContainer***(String channelId)                                                                                                             |
+| refresh_groups v.2     | **ReqRefreshGroupsContainer***(final String channelId)                                                                                                         |
 
 
 ### Соответствие ответов сервера чата классам библиотеки
@@ -234,7 +232,7 @@ class SimpleExample extends GoodChat {
 | users_list       | ResUsersList       |
 | channel_counters | ResChannelCounters |
 | list             | ResModeratorsList  |
-| setting v.2      |  //TODO            |
+| setting v.2      | ResSettings        |
 | ignore_list      | ResIgnoreList      |
 | channel_history  | ResChannelHistory  |
 | motd             | ResMotd            |
@@ -244,11 +242,11 @@ class SimpleExample extends GoodChat {
 | remove_message   | ResRemoveMessage   |
 | user_ban         | ResUserBan         |
 | user_warn        | ResWarn            |
-| new_poll         | //TODO             |
+| new_poll         | ResNewPoll         |
 | poll_results     | ResPollResults     |
 | user             | ChatUser           |
 | update_rights    | ResUpdateRights    |
-| update_groups v.2| //TODO             |
+| update_groups v.2| ResUpdateGroups    |
 | update_premium   | ResUpdatePremium   |
 | error            | ResError           |
 | payment          | ResPayment         |
