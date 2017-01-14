@@ -9,26 +9,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PremiumsContainer {
-
     @JsonProperty("_embedded")
     private EmbededPremiums embeded;
-
     @JsonProperty("page_count")
     private Long pageCount;
-
     @JsonProperty("page_size")
     private Long pageSize;
-
     @JsonProperty("total_items")
     private Long totalItems;
-
     private Long page;
 
-    public final EmbededPremiums getEmbeded() {
-        return embeded;
+    public PremiumsContainer() {
     }
 
-    public void setEmbeded(final EmbededPremiums embeded) {
+    public final EmbededPremiums getEmbeded() {
+        return this.embeded;
+    }
+
+    public final void setEmbeded(final EmbededPremiums embeded) {
         this.embeded = embeded;
     }
 
@@ -36,7 +34,7 @@ public class PremiumsContainer {
         return this.page;
     }
 
-    public void setPage(final Long page) {
+    public final void setPage(final Long page) {
         this.page = page;
     }
 
@@ -44,7 +42,7 @@ public class PremiumsContainer {
         return this.pageCount;
     }
 
-    public void setPageCount(final Long pageCount) {
+    public final void setPageCount(final Long pageCount) {
         this.pageCount = pageCount;
     }
 
@@ -52,7 +50,7 @@ public class PremiumsContainer {
         return this.pageSize;
     }
 
-    public void setPageSize(final Long pageSize) {
+    public final void setPageSize(final Long pageSize) {
         this.pageSize = pageSize;
     }
 
@@ -60,12 +58,12 @@ public class PremiumsContainer {
         return this.totalItems;
     }
 
-    public void setTotalItems(final Long totalItems) {
+    public final void setTotalItems(final Long totalItems) {
         this.totalItems = totalItems;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "PremiumsContainer{" +
                 "embeded=" + this.embeded +
                 ", pageCount=" + this.pageCount +

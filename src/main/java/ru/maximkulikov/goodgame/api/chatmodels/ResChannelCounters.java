@@ -8,40 +8,43 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 09.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResChannelCounters  implements ResChatObject{
+public class ResChannelCounters implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channel_id;
+
     @JsonProperty("clients_in_channel")
     private Long clientsInChannel;
+
     @JsonProperty("users_in_channel")
     private Long usersInChannel;
 
-    public String getChannel_id() {
+    public final String getChannel_id() {
         return channel_id;
     }
 
-    public void setChannel_id(String channel_id) {
+    public final void setChannel_id(final String channel_id) {
         this.channel_id = channel_id;
     }
 
-    public Long getClientsInChannel() {
+    public final Long getClientsInChannel() {
         return clientsInChannel;
     }
 
-    public void setClientsInChannel(Long clientsInChannel) {
+    public final void setClientsInChannel(final Long clientsInChannel) {
         this.clientsInChannel = clientsInChannel;
     }
 
-    public Long getUsersInChannel() {
+    public final Long getUsersInChannel() {
         return usersInChannel;
     }
 
-    public void setUsersInChannel(Long usersInChannel) {
+    public final void setUsersInChannel(final Long usersInChannel) {
         this.usersInChannel = usersInChannel;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResChannelCounters{" +
                 "channel_id='" + channel_id + '\'' +
                 ", clientsInChannel=" + clientsInChannel +

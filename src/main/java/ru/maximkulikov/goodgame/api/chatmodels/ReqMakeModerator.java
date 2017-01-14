@@ -9,8 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqMakeModerator {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     @JsonProperty("user_id")
     private String userId;
 
@@ -19,24 +21,24 @@ public class ReqMakeModerator {
         this.userId = userId;
     }
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public String getUserId() {
+    public final String getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public final void setUserId(final String userId) {
         this.userId = userId;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqMakeModerator{" +
                 "channelId='" + channelId + '\'' +
                 ", userId='" + userId + '\'' +

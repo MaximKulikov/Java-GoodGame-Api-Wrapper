@@ -7,28 +7,30 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 10.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResChannelHistoryContainer  {
+public class ResChannelHistoryContainer {
+
     private String type;
+
     private ResChannelHistory data;
 
-    public ResChannelHistory getData() {
+    public final ResChannelHistory getData() {
         return data;
     }
 
-    public void setData(ResChannelHistory data) {
+    public final void setData(final ResChannelHistory data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResChannelHistoryContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +

@@ -7,24 +7,33 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 08.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResAutorizationContainer   {
+public class ResAutorizationContainer {
 
     private String type;
+
     private ResAutorization data;
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public ResAutorization getData() {
+    public final ResAutorization getData() {
         return data;
     }
 
-    public void setData(ResAutorization data) {
+    public final void setData(final ResAutorization data) {
         this.data = data;
+    }
+
+    public final String getType() {
+        return type;
+    }
+
+    public final void setType(final String type) {
+        this.type = type;
+    }
+
+    @Override
+    public final String toString() {
+        return "ResAutorizationContainer{" +
+                "type='" + type + '\'' +
+                ", data=" + data +
+                '}';
     }
 }

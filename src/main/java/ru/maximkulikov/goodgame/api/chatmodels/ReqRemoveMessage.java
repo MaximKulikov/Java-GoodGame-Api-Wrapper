@@ -9,8 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqRemoveMessage {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     @JsonProperty("message_id")
     private String messageId;
 
@@ -19,27 +21,27 @@ public class ReqRemoveMessage {
         this.messageId = messageId;
     }
 
+    public final String getChannelId() {
+        return channelId;
+    }
+
+    public final void setChannelId(final String channelId) {
+        this.channelId = channelId;
+    }
+
+    public final String getMessageId() {
+        return messageId;
+    }
+
+    public final void setMessageId(final String messageId) {
+        this.messageId = messageId;
+    }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqRemoveMessage{" +
                 "channelId='" + channelId + '\'' +
                 ", messageId='" + messageId + '\'' +
                 '}';
-    }
-
-    public String getChannelId() {
-        return channelId;
-    }
-
-    public void setChannelId(String channelId) {
-        this.channelId = channelId;
-    }
-
-    public String getMessageId() {
-        return messageId;
-    }
-
-    public void setMessageId(String messageId) {
-        this.messageId = messageId;
     }
 }

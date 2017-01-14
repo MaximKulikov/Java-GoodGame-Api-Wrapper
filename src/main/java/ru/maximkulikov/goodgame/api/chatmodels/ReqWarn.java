@@ -9,11 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqWarn {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     @JsonProperty("user_id")
-    private String userId;  // кого предупреждаем
-    private String reason; //причина
+    private String userId;
+
+    private String reason;
 
     public ReqWarn(String channelId, String userId, String reason) {
         this.channelId = channelId;
@@ -21,32 +24,32 @@ public class ReqWarn {
         this.reason = reason;
     }
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public String getReason() {
+    public final String getReason() {
         return reason;
     }
 
-    public void setReason(String reason) {
+    public final void setReason(final String reason) {
         this.reason = reason;
     }
 
-    public String getUserId() {
+    public final String getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public final void setUserId(final String userId) {
         this.userId = userId;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqWarn{" +
                 "channelId='" + channelId + '\'' +
                 ", userId='" + userId + '\'' +

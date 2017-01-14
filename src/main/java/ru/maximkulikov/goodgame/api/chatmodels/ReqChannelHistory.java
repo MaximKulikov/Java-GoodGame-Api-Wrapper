@@ -8,27 +8,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 10.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqChannelHistory
-{
+public class ReqChannelHistory {
     @JsonProperty("channel_id")
     private String channelId;
-
-    public String getChannelId() {
-        return channelId;
-    }
 
     public ReqChannelHistory(String channelId) {
         this.channelId = channelId;
     }
 
+    public final String getChannelId() {
+        return channelId;
+    }
+
+    public final void setChannelId(final String channelId) {
+        this.channelId = channelId;
+    }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqChannelHistory{" +
                 "channelId='" + channelId + '\'' +
                 '}';
-    }
-
-    public void setChannelId(String channelId) {
-        this.channelId = channelId;
     }
 }

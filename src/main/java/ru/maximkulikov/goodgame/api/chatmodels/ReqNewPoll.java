@@ -11,13 +11,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqNewPoll {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     @JsonProperty("moder_id")
     private String moderId;
+
     @JsonProperty("moder_name")
     private String moderName;
+
     private String title;
+
     private List<PollAnswer> answers;
 
     public ReqNewPoll(String channelId, String moderId, String moderName, String title, List<String> answers) {
@@ -33,48 +38,48 @@ public class ReqNewPoll {
         this.answers = pollAnswers;
     }
 
-    public List<PollAnswer> getAnswers() {
+    public final List<PollAnswer> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(List<PollAnswer> answers) {
+    public final void setAnswers(final List<PollAnswer> answers) {
         this.answers = answers;
     }
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public String getModerId() {
+    public final String getModerId() {
         return moderId;
     }
 
-    public void setModerId(String moderId) {
+    public final void setModerId(final String moderId) {
         this.moderId = moderId;
     }
 
-    public String getModerName() {
+    public final String getModerName() {
         return moderName;
     }
 
-    public void setModerName(String moderName) {
+    public final void setModerName(final String moderName) {
         this.moderName = moderName;
     }
 
-    public String getTitle() {
+    public final String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public final void setTitle(final String title) {
         this.title = title;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqNewPoll{" +
                 "channelId='" + channelId + '\'' +
                 ", moderId='" + moderId + '\'' +
@@ -84,4 +89,3 @@ public class ReqNewPoll {
                 '}';
     }
 }
-

@@ -8,40 +8,43 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PollResult {
+
     private int id;
+
     private String text;
+
     private Long voters;
 
+    public final int getId() {
+        return id;
+    }
+
+    public final void setId(final int id) {
+        this.id = id;
+    }
+
+    public final String getText() {
+        return text;
+    }
+
+    public final void setText(final String text) {
+        this.text = text;
+    }
+
+    public final Long getVoters() {
+        return voters;
+    }
+
+    public final void setVoters(final Long voters) {
+        this.voters = voters;
+    }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "PollResult{" +
                 "id=" + id +
                 ", text='" + text + '\'' +
                 ", voters=" + voters +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Long getVoters() {
-        return voters;
-    }
-
-    public void setVoters(Long voters) {
-        this.voters = voters;
     }
 }

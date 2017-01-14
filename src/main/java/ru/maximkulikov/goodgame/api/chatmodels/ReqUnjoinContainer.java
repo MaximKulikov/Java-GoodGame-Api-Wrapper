@@ -8,31 +8,33 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqUnjoinContainer implements ReqChatObject {
+
     private String type = "unjoin";
+
     private ReqUnjoin data;
 
     public ReqUnjoinContainer(String channelId) {
         this.data = new ReqUnjoin(channelId);
     }
 
-    public ReqUnjoin getData() {
+    public final ReqUnjoin getData() {
         return data;
     }
 
-    public void setData(ReqUnjoin data) {
+    public final void setData(final ReqUnjoin data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqUnjoinContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +

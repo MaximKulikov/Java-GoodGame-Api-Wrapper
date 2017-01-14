@@ -8,31 +8,33 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqCleanModeratorContainer implements ReqChatObject {
+
     private String type = "clean_moderator";
+
     private ReqMakeModerator data;
 
     public ReqCleanModeratorContainer(String channelId, String userId) {
         this.data = new ReqMakeModerator(channelId, userId);
     }
 
-    public ReqMakeModerator getData() {
+    public final ReqMakeModerator getData() {
         return data;
     }
 
-    public void setData(ReqMakeModerator data) {
+    public final void setData(final ReqMakeModerator data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqCleanModeratorContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +

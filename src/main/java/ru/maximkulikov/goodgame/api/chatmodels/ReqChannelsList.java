@@ -8,32 +8,34 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqChannelsList {
-    private int start; // стартовая позиция (отсчет с 0)
-    private int count; // количество каналов на страницу (max - 50)
+
+    private int start;
+
+    private int count;
 
     public ReqChannelsList(int start, int count) {
         this.start = start;
         this.count = count;
     }
 
-    public int getCount() {
+    public final int getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public final void setCount(final int count) {
         this.count = count;
     }
 
-    public int getStart() {
+    public final int getStart() {
         return start;
     }
 
-    public void setStart(int start) {
+    public final void setStart(final int start) {
         this.start = start;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqChannelsList{" +
                 "start=" + start +
                 ", count=" + count +

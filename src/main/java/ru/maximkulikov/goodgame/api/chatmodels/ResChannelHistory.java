@@ -9,29 +9,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 10.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResChannelHistory  implements ResChatObject {
+public class ResChannelHistory implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     private List<ChatMessage> messages;
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public List<ChatMessage> getMessages() {
+    public final List<ChatMessage> getMessages() {
         return messages;
     }
 
-    public void setMessages(List<ChatMessage> messages) {
+    public final void setMessages(final List<ChatMessage> messages) {
         this.messages = messages;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResChannelHistory{" +
                 "channelId='" + channelId + '\'' +
                 ", messages=" + messages +

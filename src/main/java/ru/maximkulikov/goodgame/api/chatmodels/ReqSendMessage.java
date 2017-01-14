@@ -9,13 +9,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqSendMessage {
+
     @JsonProperty("channel_id")
     private String channelId;
-    private String text;
-    private Boolean hideIcon;
-    private Boolean mobile;
 
-    public ReqSendMessage(String channelId, String text, Boolean hideIcon, Boolean mobile) {
+    private String text;
+
+    private boolean hideIcon;
+
+    private boolean mobile;
+
+    public ReqSendMessage(String channelId, String text, boolean hideIcon, boolean mobile) {
         this.channelId = channelId;
         this.text = text;
         this.hideIcon = hideIcon;
@@ -29,45 +33,45 @@ public class ReqSendMessage {
         this.mobile = false;
     }
 
+    public final String getChannelId() {
+        return channelId;
+    }
+
+    public final void setChannelId(final String channelId) {
+        this.channelId = channelId;
+    }
+
+    public final boolean getHideIcon() {
+        return hideIcon;
+    }
+
+    public final void setHideIcon(final boolean hideIcon) {
+        this.hideIcon = hideIcon;
+    }
+
+    public final boolean getMobile() {
+        return mobile;
+    }
+
+    public final void setMobile(final boolean mobile) {
+        this.mobile = mobile;
+    }
+
+    public final String getText() {
+        return text;
+    }
+
+    public final void setText(final String text) {
+        this.text = text;
+    }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqSendMessage{" +
                 "channelId='" + channelId + '\'' +
                 ", text='" + text + '\'' +
                 ", hideIcon=" + hideIcon +
                 ", mobile=" + mobile +
                 '}';
-    }
-
-    public String getChannelId() {
-        return channelId;
-    }
-
-    public void setChannelId(String channelId) {
-        this.channelId = channelId;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Boolean getHideIcon() {
-        return hideIcon;
-    }
-
-    public void setHideIcon(Boolean hideIcon) {
-        this.hideIcon = hideIcon;
-    }
-
-    public Boolean getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(Boolean mobile) {
-        this.mobile = mobile;
     }
 }

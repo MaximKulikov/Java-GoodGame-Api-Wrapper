@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqChangeIgnoreList {
+
     @JsonProperty("user_id")
     private String userId;
 
@@ -16,18 +17,18 @@ public class ReqChangeIgnoreList {
         this.userId = userId;
     }
 
-    @Override
-    public String toString() {
-        return "ReqAddToIgnoreList{" +
-                "userId='" + userId + '\'' +
-                '}';
-    }
-
-    public String getUserId() {
+    public final String getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public final void setUserId(final String userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public final String toString() {
+        return "ReqAddToIgnoreList{" +
+                "userId='" + userId + '\'' +
+                '}';
     }
 }

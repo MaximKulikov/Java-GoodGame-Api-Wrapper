@@ -9,38 +9,41 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResError implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
-    @JsonProperty("error_num")
-    private int errorNum; // Идентификатор ошибки, разбиты по уровням.
-    private String errorMsg; // Готовое сообщение.
 
-    public String getChannelId() {
+    @JsonProperty("error_num")
+    private int errorNum;
+
+    private String errorMsg;
+
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public String getErrorMsg() {
+    public final String getErrorMsg() {
         return errorMsg;
     }
 
-    public void setErrorMsg(String errorMsg) {
+    public final void setErrorMsg(final String errorMsg) {
         this.errorMsg = errorMsg;
     }
 
-    public int getErrorNum() {
+    public final int getErrorNum() {
         return errorNum;
     }
 
-    public void setErrorNum(int errorNum) {
+    public final void setErrorNum(final int errorNum) {
         this.errorNum = errorNum;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResError{" +
                 "channelId='" + channelId + '\'' +
                 ", errorNum=" + errorNum +

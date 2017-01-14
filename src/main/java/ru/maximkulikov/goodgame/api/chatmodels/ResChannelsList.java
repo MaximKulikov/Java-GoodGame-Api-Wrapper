@@ -8,21 +8,22 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 09.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResChannelsList  implements ResChatObject{
+public class ResChannelsList implements ResChatObject {
+
     private List<ChatChannel> channels;
 
-    @Override
-    public String toString() {
-        return "ResChannelsList{" +
-                "channels=" + channels +
-                '}';
-    }
-
-    public List<ChatChannel> getChannels() {
+    public final List<ChatChannel> getChannels() {
         return channels;
     }
 
-    public void setChannels(List<ChatChannel> channels) {
+    public final void setChannels(final List<ChatChannel> channels) {
         this.channels = channels;
+    }
+
+    @Override
+    public final String toString() {
+        return "ResChannelsList{" +
+                "channels=" + channels +
+                '}';
     }
 }

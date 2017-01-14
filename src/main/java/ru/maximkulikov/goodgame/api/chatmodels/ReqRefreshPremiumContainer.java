@@ -21,7 +21,7 @@ public class ReqRefreshPremiumContainer implements ReqChatObject {
         return this.data;
     }
 
-    public void setData(final ReqGetPoll data) {
+    public  final void setData(final ReqGetPoll data) {
         this.data = data;
     }
 
@@ -29,12 +29,12 @@ public class ReqRefreshPremiumContainer implements ReqChatObject {
         return this.type;
     }
 
-    public void setType(final String type) {
+    public  final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public  final String toString() {
         return "ReqRefreshPremiumContainer{" +
                 "type='" + this.type + '\'' +
                 ", data=" + this.data +

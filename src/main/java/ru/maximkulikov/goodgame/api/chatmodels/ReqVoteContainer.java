@@ -7,8 +7,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 11.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqVoteContainer  implements ReqChatObject {
+public class ReqVoteContainer implements ReqChatObject {
+
     private String type = "vote";
+
     private ReqVote data;
 
 
@@ -16,24 +18,24 @@ public class ReqVoteContainer  implements ReqChatObject {
         this.data = new ReqVote(channelId, answerId);
     }
 
-    public ReqVote getData() {
+    public final ReqVote getData() {
         return data;
     }
 
-    public void setData(ReqVote data) {
+    public final void setData(final ReqVote data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqVoteContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +

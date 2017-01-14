@@ -8,47 +8,50 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 09.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResChannelStreamer  implements ResChatObject{
+public class ResChannelStreamer implements ResChatObject {
 
     private Long id;
+
     private String name;
+
     private Long right;
+
     private List<String> groups;
 
-    public List<String> getGroups() {
+    public final List<String> getGroups() {
         return groups;
     }
 
-    public void setGroups(List<String> groups) {
+    public final void setGroups(final List<String> groups) {
         this.groups = groups;
     }
 
-    public Long getId() {
+    public final Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public final void setId(final Long id) {
         this.id = id;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
-    public Long getRight() {
+    public final Long getRight() {
         return right;
     }
 
-    public void setRight(Long right) {
+    public final void setRight(final Long right) {
         this.right = right;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResChannelStreamer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +

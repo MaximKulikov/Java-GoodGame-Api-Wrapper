@@ -9,11 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 class ReqAutorization {
+
     @JsonProperty("site_id")
-    private int siteId;  // идентификатор сайта (обязательно) - передается один раз, при авторизации.
+    private int siteId;
+
     @JsonProperty("user_id")
-    private int userId;       // идентификатор пользователя на сайте, либо 0 для гостей
-    private String token; // ключ авторизации. Если не указан, то будет запрошен гостевой доступ.
+    private int userId;
+
+    private String token;
 
     public ReqAutorization(int siteId, int userId, String token) {
         this.siteId = siteId;
@@ -26,32 +29,32 @@ class ReqAutorization {
         this.userId = userId;
     }
 
-    public int getSiteId() {
+    public final int getSiteId() {
         return siteId;
     }
 
-    public void setSiteId(int siteId) {
+    public final void setSiteId(final int siteId) {
         this.siteId = siteId;
     }
 
-    public String getToken() {
+    public final String getToken() {
         return token;
     }
 
-    public void setToken(String token) {
+    public final void setToken(final String token) {
         this.token = token;
     }
 
-    public int getUserId() {
+    public final int getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public final void setUserId(final int userId) {
         this.userId = userId;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "AutorizationReq{" +
                 "siteId=" + siteId +
                 ", userId=" + userId +

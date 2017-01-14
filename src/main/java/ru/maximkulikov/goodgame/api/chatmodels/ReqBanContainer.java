@@ -8,31 +8,34 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqBanContainer implements ReqChatObject {
+
     private String type = "ban";
+
     private ReqBan data;
 
-    public ReqBanContainer(String channelId, String banChannel, String userId, Long duration, String reason, String comment, Boolean show_ban) {
+    public ReqBanContainer(String channelId, String banChannel, String userId, Long duration,
+                           String reason, String comment, Boolean show_ban) {
         this.data = new ReqBan(channelId, banChannel, userId, duration, reason, comment, show_ban);
     }
 
-    public ReqBan getData() {
+    public final ReqBan getData() {
         return data;
     }
 
-    public void setData(ReqBan data) {
+    public final void setData(final ReqBan data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqBanContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +

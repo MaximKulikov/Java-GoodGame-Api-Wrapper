@@ -8,72 +8,79 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatUser implements ResChatObject {
+
     private String id;
+
     private String name;
+
     private Long right;
+
     private Boolean premium;
+
     private String payments;
+
     private Boolean mobile;
+
     private Boolean hidden;
 
-    public Boolean getHidden() {
+    public final Boolean getHidden() {
         return hidden;
     }
 
-    public void setHidden(Boolean hidden) {
+    public final void setHidden(final Boolean hidden) {
         this.hidden = hidden;
     }
 
-    public String getId() {
+    public final String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public final void setId(final String id) {
         this.id = id;
     }
 
-    public Boolean getMobile() {
+    public final Boolean getMobile() {
         return mobile;
     }
 
-    public void setMobile(Boolean mobile) {
+    public final void setMobile(final Boolean mobile) {
         this.mobile = mobile;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
-    public String getPayments() {
+    public final String getPayments() {
         return payments;
     }
 
-    public void setPayments(String payments) {
+    public final void setPayments(final String payments) {
         this.payments = payments;
     }
 
-    public Boolean getPremium() {
+    public final Boolean getPremium() {
         return premium;
     }
 
-    public void setPremium(Boolean premium) {
+    public final void setPremium(final Boolean premium) {
         this.premium = premium;
     }
 
-    public Long getRight() {
+    public final Long getRight() {
         return right;
     }
 
-    public void setRight(Long right) {
+    public final void setRight(final Long right) {
         this.right = right;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ChatUser{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +

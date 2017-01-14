@@ -8,31 +8,33 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqAddToIgnoreListContainer implements ReqChatObject {
+
     private String type = "add_to_ignore_list";
+
     private ReqChangeIgnoreList data;
 
     public ReqAddToIgnoreListContainer(String userId) {
         this.data = new ReqChangeIgnoreList(userId);
     }
 
-    public ReqChangeIgnoreList getData() {
+    public final ReqChangeIgnoreList getData() {
         return data;
     }
 
-    public void setData(ReqChangeIgnoreList data) {
+    public final void setData(final ReqChangeIgnoreList data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqAddToIgnoreListContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +

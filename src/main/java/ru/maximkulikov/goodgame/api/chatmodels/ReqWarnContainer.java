@@ -7,32 +7,34 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 10.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqWarnContainer  implements ReqChatObject {
+public class ReqWarnContainer implements ReqChatObject {
+
     private String type = "warn";
+
     private ReqWarn data;
 
     public ReqWarnContainer(String channelId, String userId, String reason) {
         this.data = new ReqWarn(channelId, userId, reason);
     }
 
-    public ReqWarn getData() {
+    public final ReqWarn getData() {
         return data;
     }
 
-    public void setData(ReqWarn data) {
+    public final void setData(final ReqWarn data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqWarnContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +

@@ -70,11 +70,13 @@ public class GoodChatSocket {
                     answer = new Response(response, resWelcomeContainer.getData());
                     break;
                 case SUCCESS_AUTH:
-                    ResAutorizationContainer resAutorizationContainer = objectMapper.readValue(msg, ResAutorizationContainer.class);
+                    ResAutorizationContainer resAutorizationContainer =
+                            objectMapper.readValue(msg, ResAutorizationContainer.class);
                     answer = new Response(response, resAutorizationContainer.getData());
                     break;
                 case CHANNELS_LIST:
-                    ResChannelsListContainer resChannelsListContainer = objectMapper.readValue(msg, ResChannelsListContainer.class);
+                    ResChannelsListContainer resChannelsListContainer =
+                            objectMapper.readValue(msg, ResChannelsListContainer.class);
                     answer = new Response(response, resChannelsListContainer.getData());
                     break;
                 case SUCCESS_JOIN:
@@ -86,31 +88,38 @@ public class GoodChatSocket {
                     answer = new Response(response, resUnjoinContainer.getData());
                     break;
                 case JOIN_TO_ROOM:
-                    ResJoinToRoomContainer resJoinToRoomContainer = objectMapper.readValue(msg, ResJoinToRoomContainer.class);
+                    ResJoinToRoomContainer resJoinToRoomContainer =
+                            objectMapper.readValue(msg, ResJoinToRoomContainer.class);
                     answer = new Response(response, resJoinToRoomContainer.getData());
                     break;
                 case USERS_LIST:
-                    ResUsersListContainer resUsersListContainer = objectMapper.readValue(msg, ResUsersListContainer.class);
+                    ResUsersListContainer resUsersListContainer =
+                            objectMapper.readValue(msg, ResUsersListContainer.class);
                     answer = new Response(response, resUsersListContainer.getData());
                     break;
                 case CHANNEL_COUNTERS:
-                    ResChannelCountersContainer resChannelCountersContainer = objectMapper.readValue(msg, ResChannelCountersContainer.class);
+                    ResChannelCountersContainer resChannelCountersContainer =
+                            objectMapper.readValue(msg, ResChannelCountersContainer.class);
                     answer = new Response(response, resChannelCountersContainer.getData());
                     break;
                 case LIST:
-                    ResModeratorsListContainer resModeratorsListContainer = objectMapper.readValue(msg, ResModeratorsListContainer.class);
+                    ResModeratorsListContainer resModeratorsListContainer =
+                            objectMapper.readValue(msg, ResModeratorsListContainer.class);
                     answer = new Response(response, resModeratorsListContainer.getData());
                     break;
                 case SETTING:
-                ResSettingsContainer resSettingsContainer = objectMapper.readValue(msg, ResSettingsContainer.class);
+                ResSettingsContainer resSettingsContainer =
+                        objectMapper.readValue(msg, ResSettingsContainer.class);
                     answer = new Response(response, resSettingsContainer.getData());
                     break;
                 case IGNORE_LIST:
-                    ResIgnoreListContainer resIgnoreListContainer = objectMapper.readValue(msg, ResIgnoreListContainer.class);
+                    ResIgnoreListContainer resIgnoreListContainer =
+                            objectMapper.readValue(msg, ResIgnoreListContainer.class);
                     answer = new Response(response, resIgnoreListContainer.getData());
                     break;
                 case CHANNEL_HISTORY:
-                    ResChannelHistoryContainer resChannelHistoryContainer = objectMapper.readValue(msg, ResChannelHistoryContainer.class);
+                    ResChannelHistoryContainer resChannelHistoryContainer =
+                            objectMapper.readValue(msg, ResChannelHistoryContainer.class);
                     answer = new Response(response, resChannelHistoryContainer.getData());
                     break;
                 case MOTD:
@@ -126,11 +135,13 @@ public class GoodChatSocket {
                     answer = new Response(response, resMessageContainer.getData());
                     break;
                 case PRIVATE_MESSAGE:
-                    ResPrivateMessageContainer resPrivateMessageContainer = objectMapper.readValue(msg, ResPrivateMessageContainer.class);
+                    ResPrivateMessageContainer resPrivateMessageContainer =
+                            objectMapper.readValue(msg, ResPrivateMessageContainer.class);
                     answer = new Response(response, resPrivateMessageContainer.getData());
                     break;
                 case REMOVE_MESSAGE:
-                    ResRemoveMessageContainer resRemoveMessageContainer = objectMapper.readValue(msg, ResRemoveMessageContainer.class);
+                    ResRemoveMessageContainer resRemoveMessageContainer =
+                            objectMapper.readValue(msg, ResRemoveMessageContainer.class);
                     answer = new Response(response, resRemoveMessageContainer.getData());
                     break;
                 case USER_BAN:
@@ -146,23 +157,28 @@ public class GoodChatSocket {
                     answer = new Response(response, resNewPollContainer.getData());
                     break;
                 case POLL_RESULTS:
-                    ResPollResultsContainer resPollResultsContainer = objectMapper.readValue(msg, ResPollResultsContainer.class);
+                    ResPollResultsContainer resPollResultsContainer =
+                            objectMapper.readValue(msg, ResPollResultsContainer.class);
                     answer = new Response(response, resPollResultsContainer.getData());
                     break;
                 case USER:
-                    ResGetUserInfoContainer resGetUserInfoContainer = objectMapper.readValue(msg, ResGetUserInfoContainer.class);
+                    ResGetUserInfoContainer resGetUserInfoContainer =
+                            objectMapper.readValue(msg, ResGetUserInfoContainer.class);
                     answer = new Response(response, resGetUserInfoContainer.getData());
                     break;
                 case UPDATE_RIGHTS:
-                    ResUpdateRightsContainer resUpdateRightsContainer = objectMapper.readValue(msg, ResUpdateRightsContainer.class);
+                    ResUpdateRightsContainer resUpdateRightsContainer =
+                            objectMapper.readValue(msg, ResUpdateRightsContainer.class);
                     answer = new Response(response, resUpdateRightsContainer.getData());
                     break;
                 case UPDATE_GROUPS:
-                    ResUpdateGroupsContainer resUpdateGroupsContainer = objectMapper.readValue(msg, ResUpdateGroupsContainer.class);
+                    ResUpdateGroupsContainer resUpdateGroupsContainer =
+                            objectMapper.readValue(msg, ResUpdateGroupsContainer.class);
                     answer = new Response(response, resUpdateGroupsContainer.getData());
                     break;
                 case UPDATE_PREMIUM:
-                    ResUpdatePremiumContainer resUpdatePremiumContainer = objectMapper.readValue(msg, ResUpdatePremiumContainer.class);
+                    ResUpdatePremiumContainer resUpdatePremiumContainer =
+                            objectMapper.readValue(msg, ResUpdatePremiumContainer.class);
                     answer = new Response(response, resUpdatePremiumContainer.getData());
                     break;
                 case PAYMENT:
@@ -196,7 +212,8 @@ public class GoodChatSocket {
             try {
                 Future<Void> fut;
                 fut = session.getRemote().sendStringByFuture(s);
-                fut.get(2, TimeUnit.SECONDS); // wait for send to complete.
+                // wait for send to complete.
+                fut.get(2, TimeUnit.SECONDS);
 
             } catch (Throwable t) {
                 t.printStackTrace();

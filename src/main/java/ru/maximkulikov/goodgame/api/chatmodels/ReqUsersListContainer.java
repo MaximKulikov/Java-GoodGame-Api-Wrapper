@@ -8,34 +8,36 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqUsersListContainer implements ReqChatObject {
+
     private String type = "get_users_list";
+
     private ReqUsersList data;
 
     public ReqUsersListContainer(String channelId) {
         this.data = new ReqUsersList(channelId);
     }
 
+    public final ReqUsersList getData() {
+        return data;
+    }
+
+    public final void setData(final ReqUsersList data) {
+        this.data = data;
+    }
+
+    public final String getType() {
+        return type;
+    }
+
+    public final void setType(final String type) {
+        this.type = type;
+    }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqUsersListContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +
                 '}';
-    }
-
-    public ReqUsersList getData() {
-        return data;
-    }
-
-    public void setData(ReqUsersList data) {
-        this.data = data;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 }

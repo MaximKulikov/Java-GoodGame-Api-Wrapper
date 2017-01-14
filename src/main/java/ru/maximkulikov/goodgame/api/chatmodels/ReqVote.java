@@ -9,8 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqVote {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     @JsonProperty("answer_id")
     private int answerId;
 
@@ -19,27 +21,27 @@ public class ReqVote {
         this.answerId = answerId;
     }
 
+    public final int getAnswerId() {
+        return answerId;
+    }
+
+    public final void setAnswerId(final int answerId) {
+        this.answerId = answerId;
+    }
+
+    public final String getChannelId() {
+        return channelId;
+    }
+
+    public final void setChannelId(final String channelId) {
+        this.channelId = channelId;
+    }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqVote{" +
                 "channelId='" + channelId + '\'' +
                 ", answerId=" + answerId +
                 '}';
-    }
-
-    public String getChannelId() {
-        return channelId;
-    }
-
-    public void setChannelId(String channelId) {
-        this.channelId = channelId;
-    }
-
-    public int getAnswerId() {
-        return answerId;
-    }
-
-    public void setAnswerId(int answerId) {
-        this.answerId = answerId;
     }
 }

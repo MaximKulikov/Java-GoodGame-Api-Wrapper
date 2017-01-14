@@ -9,43 +9,46 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqJoin {
-    @JsonProperty("channel_id")
-    private String channelId;// идентификатор канала
-    private Boolean hidden;// для модераторов: не показывать ник в списке юзеров
-    private Boolean mobile;// флаг с какого устройства идет подключение
 
-    public ReqJoin(String channelId, Boolean hidden, Boolean mobile) {
+    @JsonProperty("channel_id")
+    private String channelId;
+
+    private boolean hidden;
+
+    private boolean mobile;
+
+    public ReqJoin(String channelId, boolean hidden, boolean mobile) {
         this.channelId = channelId;
         this.hidden = hidden;
         this.mobile = mobile;
     }
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public Boolean getHidden() {
+    public final boolean getHidden() {
         return hidden;
     }
 
-    public void setHidden(Boolean hidden) {
+    public final void setHidden(final boolean hidden) {
         this.hidden = hidden;
     }
 
-    public Boolean getMobile() {
+    public final boolean getMobile() {
         return mobile;
     }
 
-    public void setMobile(Boolean mobile) {
+    public final void setMobile(final boolean mobile) {
         this.mobile = mobile;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqJoin{" +
                 "channelId='" + channelId + '\'' +
                 ", hidden=" + hidden +

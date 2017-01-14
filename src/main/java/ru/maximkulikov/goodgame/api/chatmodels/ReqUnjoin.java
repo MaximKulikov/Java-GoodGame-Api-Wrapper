@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqUnjoin {
+
     @JsonProperty("channel_id")
     private String channelId;
 
@@ -16,16 +17,16 @@ public class ReqUnjoin {
         this.channelId = channelId;
     }
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqUnjoin{" +
                 "channelId='" + channelId + '\'' +
                 '}';

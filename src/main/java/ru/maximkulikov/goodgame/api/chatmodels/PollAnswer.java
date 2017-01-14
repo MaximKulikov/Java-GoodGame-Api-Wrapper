@@ -8,7 +8,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PollAnswer {
+
     private int id;
+
     private String text;
 
     public PollAnswer(int id, String text) {
@@ -16,19 +18,19 @@ public class PollAnswer {
         this.text = text;
     }
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public final void setId(final int id) {
         this.id = id;
     }
 
-    public String getText() {
+    public final String getText() {
         return text;
     }
 
-    public void setText(String text) {
+    public final void setText(final String text) {
         this.text = text;
     }
 

@@ -8,7 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 09.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqChannelCounters  implements ReqChatObject {
+public class ReqChannelCounters implements ReqChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
 
@@ -16,16 +17,16 @@ public class ReqChannelCounters  implements ReqChatObject {
         this.channelId = channelId;
     }
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqChannelCounters{" +
                 "channelId='" + channelId + '\'' +
                 '}';

@@ -4,31 +4,28 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 /**
  * Java-GoodGame-Api-Wrapper
  * Created by maxim on 14.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResNewPoll implements ResChatObject {
-
     @JsonProperty("channel_id")
     private String channelId;
-
     @JsonProperty("moder_id")
     private String moderId;
-
     @JsonProperty("moder_name")
     private String moderName;
-
     @JsonProperty("moder_rights")
     private Long moderRights;
-
     @JsonProperty("moder_groups")
     private List<String> moderGroups;
-
     private String title;
-
     private List<PollAnswer> answers;
+
+    public ResNewPoll() {
+    }
 
     public final List<PollAnswer> getAnswers() {
         return this.answers;

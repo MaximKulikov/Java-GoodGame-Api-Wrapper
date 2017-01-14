@@ -8,31 +8,33 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqGetPollContainer implements ReqChatObject {
+
     private String type = "get_poll";
+
     private ReqGetPoll data;
 
     public ReqGetPollContainer(String channelId) {
         this.data = new ReqGetPoll(channelId);
     }
 
-    public ReqGetPoll getData() {
+    public final ReqGetPoll getData() {
         return data;
     }
 
-    public void setData(ReqGetPoll data) {
+    public final void setData(final ReqGetPoll data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqGetPollContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +

@@ -9,29 +9,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResAutorization implements ResChatObject {
-    @JsonProperty("user_id")
-    private String userId; // id-пользователя на сайте, для гостей 0
-    @JsonProperty("user_name")
-    private String userName; // nick на сайте, для гостей ""
 
-    public String getUserId() {
+    @JsonProperty("user_id")
+    private String userId;
+
+    @JsonProperty("user_name")
+    private String userName;
+
+    public final String getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public final void setUserId(final String userId) {
         this.userId = userId;
     }
 
-    public String getUserName() {
+    public final String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    public final void setUserName(final String userName) {
         this.userName = userName;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResAutorization{" +
                 "userId='" + userId + '\'' +
                 ", userName='" + userName + '\'' +

@@ -9,67 +9,73 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatMessage {
+
     @JsonProperty("user_id")
     private String userId;
+
     @JsonProperty("user_name")
     private String userName;
-    @JsonProperty("user_group")
-    private Long userGroup;// на основе группы, определяется каким цветом выводить сообщения
-    @JsonProperty("message_id")
-    private String messageId;// номер сообщения, нужно для удаления сообщения из чата.
-    private String timestamp; // время прихода сообщения на сервер.
-    private String text; // оригинальное сообщение, за исключением того, что html-разметка эскейпится. Клиент сам занимается преобразованием спец. символов (например подстановка смайлов).
 
-    public String getMessageId() {
+    @JsonProperty("user_group")
+    private Long userGroup;
+
+    @JsonProperty("message_id")
+    private String messageId;
+
+    private String timestamp;
+
+    private String text;
+
+    public final String getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(String messageId) {
+    public final void setMessageId(final String messageId) {
         this.messageId = messageId;
     }
 
-    public String getText() {
+    public final String getText() {
         return text;
     }
 
-    public void setText(String text) {
+    public final void setText(final String text) {
         this.text = text;
     }
 
-    public String getTimestamp() {
+    public final String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public final void setTimestamp(final String timestamp) {
         this.timestamp = timestamp;
     }
 
-    public Long getUserGroup() {
+    public final Long getUserGroup() {
         return userGroup;
     }
 
-    public void setUserGroup(Long userGroup) {
+    public final void setUserGroup(final Long userGroup) {
         this.userGroup = userGroup;
     }
 
-    public String getUserId() {
+    public final String getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public final void setUserId(final String userId) {
         this.userId = userId;
     }
 
-    public String getUserName() {
+    public final String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    public final void setUserName(final String userName) {
         this.userName = userName;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ChatMessage{" +
                 "userId='" + userId + '\'' +
                 ", userName='" + userName + '\'' +
