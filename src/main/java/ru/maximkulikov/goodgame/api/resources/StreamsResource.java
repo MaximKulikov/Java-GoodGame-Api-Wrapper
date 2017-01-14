@@ -1,13 +1,12 @@
 package ru.maximkulikov.goodgame.api.resources;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.handlers.StreamChannelResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.StreamResponseHandler;
 import ru.maximkulikov.goodgame.api.models.ChannelContainer;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 
 public class StreamsResource extends AbstractResource {

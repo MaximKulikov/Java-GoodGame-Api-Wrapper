@@ -1,8 +1,7 @@
 package ru.maximkulikov.goodgame.api.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Java-GG-Api-Wrapper

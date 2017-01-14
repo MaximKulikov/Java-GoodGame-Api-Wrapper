@@ -10,7 +10,7 @@ public class StreamPreview {
     private String large;
     private String template;
 
-    public StreamPreview(String small, String medium, String large, String template) {
+    public StreamPreview(final String small, final String medium, final String large, final String template) {
         this.small = small;
         this.medium = medium;
         this.large = large;
@@ -18,35 +18,35 @@ public class StreamPreview {
     }
 
     public String getLarge() {
-        return large;
+        return this.large;
     }
 
-    public void setLarge(String large) {
+    public void setLarge(final String large) {
         this.large = large;
     }
 
     public String getMedium() {
-        return medium;
+        return this.medium;
     }
 
-    public void setMedium(String medium) {
+    public void setMedium(final String medium) {
         this.medium = medium;
     }
 
     public String getSmall() {
 
-        return small;
+        return this.small;
     }
 
-    public void setSmall(String small) {
+    public void setSmall(final String small) {
         this.small = small;
     }
 
     public String getTemplate() {
-        return template;
+        return this.template;
     }
 
-    public void setTemplate(String template) {
+    public void setTemplate(final String template) {
         this.template = template;
     }
 

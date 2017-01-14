@@ -1,8 +1,7 @@
 package ru.maximkulikov.goodgame.api.chatmodels;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Java-GoodGame-Api-Wrapper

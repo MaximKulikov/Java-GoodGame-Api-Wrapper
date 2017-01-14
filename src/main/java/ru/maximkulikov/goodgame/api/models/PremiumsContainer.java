@@ -12,62 +12,66 @@ public class PremiumsContainer {
 
     @JsonProperty("_embedded")
     private EmbededPremiums embeded;
+
     @JsonProperty("page_count")
     private Long pageCount;
+
     @JsonProperty("page_size")
     private Long pageSize;
+
     @JsonProperty("total_items")
     private Long totalItems;
+
     private Long page;
 
-    public EmbededPremiums getEmbeded() {
+    public final EmbededPremiums getEmbeded() {
         return embeded;
     }
 
-    public void setEmbeded(EmbededPremiums embeded) {
+    public void setEmbeded(final EmbededPremiums embeded) {
         this.embeded = embeded;
     }
 
-    public Long getPage() {
-        return page;
+    public final Long getPage() {
+        return this.page;
     }
 
-    public void setPage(Long page) {
+    public void setPage(final Long page) {
         this.page = page;
     }
 
-    public Long getPageCount() {
-        return pageCount;
+    public final Long getPageCount() {
+        return this.pageCount;
     }
 
-    public void setPageCount(Long pageCount) {
+    public void setPageCount(final Long pageCount) {
         this.pageCount = pageCount;
     }
 
-    public Long getPageSize() {
-        return pageSize;
+    public final Long getPageSize() {
+        return this.pageSize;
     }
 
-    public void setPageSize(Long pageSize) {
+    public void setPageSize(final Long pageSize) {
         this.pageSize = pageSize;
     }
 
-    public Long getTotalItems() {
-        return totalItems;
+    public final Long getTotalItems() {
+        return this.totalItems;
     }
 
-    public void setTotalItems(Long totalItems) {
+    public void setTotalItems(final Long totalItems) {
         this.totalItems = totalItems;
     }
 
     @Override
     public String toString() {
         return "PremiumsContainer{" +
-                "embeded=" + embeded +
-                ", pageCount=" + pageCount +
-                ", pageSize=" + pageSize +
-                ", totalItems=" + totalItems +
-                ", page=" + page +
+                "embeded=" + this.embeded +
+                ", pageCount=" + this.pageCount +
+                ", pageSize=" + this.pageSize +
+                ", totalItems=" + this.totalItems +
+                ", page=" + this.page +
                 '}';
     }
 }

@@ -1,16 +1,15 @@
 package ru.maximkulikov.goodgame.api.resources;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.auth.Authenticator;
 import ru.maximkulikov.goodgame.api.handlers.OauthResourceResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.OauthResponseHandler;
 import ru.maximkulikov.goodgame.api.models.AccessToken;
 import ru.maximkulikov.goodgame.api.models.OauthResourceCheck;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Java-GG-Api-Wrapper

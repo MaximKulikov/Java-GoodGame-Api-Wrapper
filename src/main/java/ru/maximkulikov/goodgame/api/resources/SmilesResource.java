@@ -1,12 +1,11 @@
 package ru.maximkulikov.goodgame.api.resources;
 
-import com.mb3364.http.RequestParams;
-import ru.maximkulikov.goodgame.api.handlers.SmilesResponseHandler;
-import ru.maximkulikov.goodgame.api.models.SmilesContainer;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import com.mb3364.http.RequestParams;
+import ru.maximkulikov.goodgame.api.handlers.SmilesResponseHandler;
+import ru.maximkulikov.goodgame.api.models.SmilesContainer;
 
 /**
  * Java-GG-Api-Wrapper

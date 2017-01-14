@@ -1,15 +1,14 @@
 package ru.maximkulikov.goodgame.api.resources;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.mb3364.http.AsyncHttpClient;
 import com.mb3364.http.StringHttpResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.BaseFailureHandler;
 import ru.maximkulikov.goodgame.api.models.Error;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * AbstractResource is the abstract base class of a Twitch resource.

@@ -1,12 +1,11 @@
 package ru.maximkulikov.goodgame.api.auth;
 
-import ru.maximkulikov.goodgame.api.auth.grants.implicit.AuthenticationCallbackServer;
-import ru.maximkulikov.goodgame.api.auth.grants.implicit.AuthenticationError;
-import ru.maximkulikov.goodgame.api.models.AccessToken;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
+import ru.maximkulikov.goodgame.api.auth.grants.implicit.AuthenticationCallbackServer;
+import ru.maximkulikov.goodgame.api.auth.grants.implicit.AuthenticationError;
+import ru.maximkulikov.goodgame.api.models.AccessToken;
 
 /**
  * The authenticator object allows a user to authenticate with the Twitch.tv servers.

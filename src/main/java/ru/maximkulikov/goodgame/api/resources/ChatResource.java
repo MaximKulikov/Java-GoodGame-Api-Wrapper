@@ -1,11 +1,10 @@
 package ru.maximkulikov.goodgame.api.resources;
 
-import ru.maximkulikov.goodgame.api.handlers.ChatTokenResponseHandler;
-import ru.maximkulikov.goodgame.api.models.ChatToken;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import ru.maximkulikov.goodgame.api.handlers.ChatTokenResponseHandler;
+import ru.maximkulikov.goodgame.api.models.ChatToken;
 
 /**
  * The {@link ChatResource} provides the functionality

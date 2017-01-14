@@ -8,87 +8,98 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 10.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResWarn implements ResChatObject{
+public class ResWarn implements ResChatObject {
     @JsonProperty("channel_id")
     private String channelId;
+
+    // id пользователя, кому вынесено предупреждение
     @JsonProperty("user_id")
-    private String userId; // id пользователя, кому вынесено предупреждение
+    private String userId;
+
+    // ник забаненого пользователя
     @JsonProperty("user_name")
-    private String userName; // ник забаненого пользователя
+    private String userName;
+
+    // id пользователя, вынесшего предупреждение
     @JsonProperty("moder_id")
-    private String moderId; // id пользователя, вынесшего предупреждение
+    private String moderId;
+
+    // ник пользователя, вынесшего бан
     @JsonProperty("moder_name")
-    private String moderName; // ник пользователя, вынесшего бан
+    private String moderName;
+
+    // на основе группы, определяется каким цветом выводить сообщения
     @JsonProperty("moder_group")
-    private Long moderGroup; // на основе группы, определяется каким цветом выводить сообщения
+    private Long moderGroup;
+
     private String reason;
 
-    public String getChannelId() {
-        return channelId;
+    public final String getChannelId() {
+        return this.channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public Long getModerGroup() {
-        return moderGroup;
+    public final Long getModerGroup() {
+        return this.moderGroup;
     }
 
-    public void setModerGroup(Long moderGroup) {
+    public void setModerGroup(final Long moderGroup) {
         this.moderGroup = moderGroup;
     }
 
-    public String getModerId() {
-        return moderId;
+    public final String getModerId() {
+        return this.moderId;
     }
 
-    public void setModerId(String moderId) {
+    public void setModerId(final String moderId) {
         this.moderId = moderId;
     }
 
-    public String getModerName() {
-        return moderName;
+    public final String getModerName() {
+        return this.moderName;
     }
 
-    public void setModerName(String moderName) {
+    public void setModerName(final String moderName) {
         this.moderName = moderName;
     }
 
-    public String getReason() {
-        return reason;
+    public final String getReason() {
+        return this.reason;
     }
 
-    public void setReason(String reason) {
+    public void setReason(final String reason) {
         this.reason = reason;
     }
 
-    public String getUserId() {
-        return userId;
+    public final String getUserId() {
+        return this.userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(final String userId) {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public final String getUserName() {
+        return this.userName;
     }
 
-    public void setUserName(String userName) {
+    public void setUserName(final String userName) {
         this.userName = userName;
     }
 
     @Override
     public String toString() {
         return "ResWarn{" +
-                "channelId='" + channelId + '\'' +
-                ", userId='" + userId + '\'' +
-                ", userName='" + userName + '\'' +
-                ", moderId='" + moderId + '\'' +
-                ", moderName='" + moderName + '\'' +
-                ", moderGroup=" + moderGroup +
-                ", reason='" + reason + '\'' +
+                "channelId='" + this.channelId + '\'' +
+                ", userId='" + this.userId + '\'' +
+                ", userName='" + this.userName + '\'' +
+                ", moderId='" + this.moderId + '\'' +
+                ", moderName='" + this.moderName + '\'' +
+                ", moderGroup=" + this.moderGroup +
+                ", reason='" + this.reason + '\'' +
                 '}';
     }
 }

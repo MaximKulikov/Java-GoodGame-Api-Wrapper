@@ -1,14 +1,13 @@
 package ru.maximkulikov.goodgame.api;
 
+import java.net.URI;
+import java.util.concurrent.TimeUnit;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 import ru.maximkulikov.goodgame.api.chatmodels.ReqChatObject;
 import ru.maximkulikov.goodgame.api.chatmodels.Response;
-
-import java.net.URI;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Java-GoodGame-Api-Wrapper

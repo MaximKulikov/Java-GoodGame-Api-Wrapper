@@ -1,55 +1,104 @@
 package ru.maximkulikov.goodgame.api.models;
 
+import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Stream {
 
     @JsonProperty("_id")
     private long id;
+
     private String game;
+
     private int viewers;
+
     private Date createdAt;
+
     private int videoHeight;
+
     private double averageFps;
+
     private StreamPreview preview;
+
     private ChannelContainer channel;
 
-    /**
-     * Check if a stream is online.
-     * If this is an empty stream object, then the stream is offline.
-     *
-     * @return <code>true</code> if the stream is online, <code>false</code> otherwise
-     */
-    public boolean isOnline() {
-        return id != 0;
+    public Stream(final long id, final String game, final int viewers, final Date createdAt, final int videoHeight,
+                  final double averageFps, final StreamPreview preview, final ChannelContainer channel) {
+        this.id = id;
+        this.game = game;
+        this.viewers = viewers;
+        this.createdAt = createdAt;
+        this.videoHeight = videoHeight;
+        this.averageFps = averageFps;
+        this.preview = preview;
+        this.channel = channel;
     }
 
-    @Override
-    public String toString() {
-        return "Stream{" +
-                "id=" + id +
-                ", game='" + game + '\'' +
-                ", viewers=" + viewers +
-                ", createdAt=" + createdAt +
-                ", videoHeight=" + videoHeight +
-                ", averageFps=" + averageFps +
-                ", preview=" + preview +
-                ", channel=" + channel +
-                '}';
+    public final double getAverageFps() {
+        return averageFps;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public void setAverageFps(final double averageFps) {
+        this.averageFps = averageFps;
+    }
 
-        Stream stream = (Stream) o;
+    public final ChannelContainer getChannel() {
+        return this.channel;
+    }
 
-        return id == stream.id;
+    public void setChannel(final ChannelContainer channel) {
+        this.channel = channel;
+    }
+
+    public final Date getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setCreatedAt(final Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public final String getGame() {
+        return this.game;
+    }
+
+    public void setGame(final String game) {
+        this.game = game;
+    }
+
+    public final long getId() {
+
+        return id;
+    }
+
+    public void setId(final long id) {
+        this.id = id;
+    }
+
+    public final StreamPreview getPreview() {
+        return this.preview;
+    }
+
+    public void setPreview(final StreamPreview preview) {
+        this.preview = preview;
+    }
+
+    public final int getVideoHeight() {
+        return this.videoHeight;
+    }
+
+    public void setVideoHeight(final int videoHeight) {
+        this.videoHeight = videoHeight;
+    }
+
+    public final int getViewers() {
+        return this.viewers;
+    }
+
+    public void setViewers(final int viewers) {
+        this.viewers = viewers;
     }
 
     @Override
@@ -57,68 +106,35 @@ public class Stream {
         return (int) (id ^ (id >>> 32));
     }
 
-    public StreamPreview getPreview() {
-        return preview;
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Stream stream = (Stream) o;
+
+        return this.id == stream.id;
     }
 
-    public void setPreview(StreamPreview preview) {
-        this.preview = preview;
+    @Override
+    public String toString() {
+        return "Stream{" +
+                "id=" + this.id +
+                ", game='" + this.game + '\'' +
+                ", viewers=" + this.viewers +
+                ", createdAt=" + this.createdAt +
+                ", videoHeight=" + this.videoHeight +
+                ", averageFps=" + this.averageFps +
+                ", preview=" + this.preview +
+                ", channel=" + this.channel +
+                '}';
     }
 
-    public long getId() {
-
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getGame() {
-        return game;
-    }
-
-    public void setGame(String game) {
-        this.game = game;
-    }
-
-    public int getViewers() {
-        return viewers;
-    }
-
-    public void setViewers(int viewers) {
-        this.viewers = viewers;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public int getVideoHeight() {
-        return videoHeight;
-    }
-
-    public void setVideoHeight(int videoHeight) {
-        this.videoHeight = videoHeight;
-    }
-
-    public double getAverageFps() {
-        return averageFps;
-    }
-
-    public void setAverageFps(double averageFps) {
-        this.averageFps = averageFps;
-    }
-
-    public ChannelContainer getChannel() {
-        return channel;
-    }
-
-    public void setChannel(ChannelContainer channel) {
-        this.channel = channel;
+    public final boolean isOnline() {
+        return this.id != 0;
     }
 }

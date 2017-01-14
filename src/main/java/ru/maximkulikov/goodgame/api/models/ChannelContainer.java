@@ -24,117 +24,135 @@ public class ChannelContainer {
     private String usersInChat;
     private Channel channel;
 
-    public Boolean getBroadcast() {
-        return isBroadcast;
-    }
-
-    public void setBroadcast(Boolean broadcast) {
-        isBroadcast = broadcast;
-    }
-
-    public String getBroadcastEnd() {
-        return broadcastEnd;
-    }
-
-    public void setBroadcastEnd(String broadcastEnd) {
-        this.broadcastEnd = broadcastEnd;
-    }
-
-    public String getBroadcastStarted() {
-        return broadcastStarted;
-    }
-
-    public void setBroadcastStarted(String broadcastStarted) {
+    public ChannelContainer(final String requestKey, final Long id, final String key, final Boolean isBroadcast,
+                            final String broadcastStarted, final String broadcastEnd, final String url,
+                            final String status, final String viewers, final String playerViewers,
+                            final String usersInChat, final Channel channel) {
+        this.requestKey = requestKey;
+        this.id = id;
+        this.key = key;
+        this.isBroadcast = isBroadcast;
         this.broadcastStarted = broadcastStarted;
-    }
-
-    public Channel getChannel() {
-        return channel;
-    }
-
-    public void setChannel(Channel channel) {
+        this.broadcastEnd = broadcastEnd;
+        this.url = url;
+        this.status = status;
+        this.viewers = viewers;
+        this.playerViewers = playerViewers;
+        this.usersInChat = usersInChat;
         this.channel = channel;
     }
 
-    public Long getId() {
-        return id;
+    public final Boolean getBroadcast() {
+        return this.isBroadcast;
     }
 
-    public void setId(Long id) {
+    public void setBroadcast(final Boolean broadcast) {
+        this.isBroadcast = broadcast;
+    }
+
+    public final String getBroadcastEnd() {
+        return this.broadcastEnd;
+    }
+
+    public void setBroadcastEnd(final String broadcastEnd) {
+        this.broadcastEnd = broadcastEnd;
+    }
+
+    public final String getBroadcastStarted() {
+        return this.broadcastStarted;
+    }
+
+    public void setBroadcastStarted(final String broadcastStarted) {
+        this.broadcastStarted = broadcastStarted;
+    }
+
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
+    public void setChannel(final Channel channel) {
+        this.channel = channel;
+    }
+
+    public final Long getId() {
+        return this.id;
+    }
+
+    public void setId(final Long id) {
         this.id = id;
     }
 
-    public String getKey() {
-        return key;
+    public final String getKey() {
+        return this.key;
     }
 
-    public void setKey(String key) {
+    public void setKey(final String key) {
         this.key = key;
     }
 
-    public String getPlayerViewers() {
-        return playerViewers;
+    public final String getPlayerViewers() {
+        return this.playerViewers;
     }
 
-    public void setPlayerViewers(String playerViewers) {
+    public void setPlayerViewers(final String playerViewers) {
         this.playerViewers = playerViewers;
     }
 
-    public String getRequestKey() {
-        return requestKey;
+    public final String getRequestKey() {
+        return this.requestKey;
     }
 
-    public void setRequestKey(String requestKey) {
+    public void setRequestKey(final String requestKey) {
         this.requestKey = requestKey;
     }
 
-    public String getStatus() {
-        return status;
+    public final String getStatus() {
+        return this.status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(final String status) {
         this.status = status;
     }
 
-    public String getUrl() {
-        return url;
+    public final String getUrl() {
+        return this.url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(final String url) {
         this.url = url;
     }
 
-    public String getUsersInChat() {
-        return usersInChat;
+    public final String getUsersInChat() {
+        return this.usersInChat;
     }
 
-    public void setUsersInChat(String usersInChat) {
+    public void setUsersInChat(final String usersInChat) {
         this.usersInChat = usersInChat;
     }
 
-    public String getViewers() {
-        return viewers;
+    public final String getViewers() {
+        return this.viewers;
     }
 
-    public void setViewers(String viewers) {
+    public void setViewers(final String viewers) {
         this.viewers = viewers;
     }
 
     @Override
     public String toString() {
         return "ChannelContainer{" +
-                "requestKey='" + requestKey + '\'' +
-                ", id=" + id +
-                ", key='" + key + '\'' +
-                ", isBroadcast=" + isBroadcast +
-                ", broadcastStarted='" + broadcastStarted + '\'' +
-                ", broadcastEnd='" + broadcastEnd + '\'' +
-                ", url='" + url + '\'' +
-                ", status='" + status + '\'' +
-                ", viewers='" + viewers + '\'' +
-                ", playerViewers='" + playerViewers + '\'' +
-                ", usersInChat='" + usersInChat + '\'' +
-                ", channel=" + channel +
+                "requestKey='" + this.requestKey + '\'' +
+                ", id=" + this.id +
+                ", key='" + this.key + '\'' +
+                ", isBroadcast=" + this.isBroadcast +
+                ", broadcastStarted='" + this.broadcastStarted + '\'' +
+                ", broadcastEnd='" + this.broadcastEnd + '\'' +
+                ", url='" + this.url + '\'' +
+                ", status='" + this.status + '\'' +
+                ", viewers='" + this.viewers + '\'' +
+                ", playerViewers='" + this.playerViewers + '\'' +
+                ", usersInChat='" + this.usersInChat + '\'' +
+                ", channel=" + this.channel +
                 '}';
     }
 }

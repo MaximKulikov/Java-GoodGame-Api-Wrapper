@@ -1,6 +1,9 @@
 package ru.maximkulikov.goodgame.api;
 
-
+import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.StatusCode;
@@ -10,10 +13,6 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import ru.maximkulikov.goodgame.api.chatmodels.*;
 
-import java.io.IOException;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Java-GoodGame-Api-Wrapper
@@ -99,7 +98,7 @@ public class GoodChatSocket {
                     answer = new Response(response, resChannelCountersContainer.getData());
                     break;
                 case LIST:
-                    ResModeratorsListContainer resModeratorsListContainer  = objectMapper.readValue(msg, ResModeratorsListContainer.class);
+                    ResModeratorsListContainer resModeratorsListContainer = objectMapper.readValue(msg, ResModeratorsListContainer.class);
                     answer = new Response(response, resModeratorsListContainer.getData());
                     break;
                 case SETTING: // TODO
@@ -107,7 +106,7 @@ public class GoodChatSocket {
                     System.out.println(msg);
                     break;
                 case IGNORE_LIST:
-                    ResIgnoreListContainer resIgnoreListContainer   = objectMapper.readValue(msg, ResIgnoreListContainer.class);
+                    ResIgnoreListContainer resIgnoreListContainer = objectMapper.readValue(msg, ResIgnoreListContainer.class);
                     answer = new Response(response, resIgnoreListContainer.getData());
                     break;
                 case CHANNEL_HISTORY:
@@ -123,7 +122,7 @@ public class GoodChatSocket {
                     answer = new Response(response, resSlowmodContainer.getData());
                     break;
                 case MESSAGE:
-                    ResMessageContainer resMessageContainer  = objectMapper.readValue(msg, ResMessageContainer.class);
+                    ResMessageContainer resMessageContainer = objectMapper.readValue(msg, ResMessageContainer.class);
                     answer = new Response(response, resMessageContainer.getData());
                     break;
                 case PRIVATE_MESSAGE:
@@ -131,7 +130,7 @@ public class GoodChatSocket {
                     answer = new Response(response, resPrivateMessageContainer.getData());
                     break;
                 case REMOVE_MESSAGE:
-                    ResRemoveMessageContainer resRemoveMessageContainer =objectMapper.readValue(msg, ResRemoveMessageContainer.class);
+                    ResRemoveMessageContainer resRemoveMessageContainer = objectMapper.readValue(msg, ResRemoveMessageContainer.class);
                     answer = new Response(response, resRemoveMessageContainer.getData());
                     break;
                 case USER_BAN:
@@ -139,7 +138,7 @@ public class GoodChatSocket {
                     answer = new Response(response, resUserBanContainer.getData());
                     break;
                 case USER_WARN:
-                    ResWarnContainer resWarnContainer =objectMapper.readValue(msg, ResWarnContainer.class);
+                    ResWarnContainer resWarnContainer = objectMapper.readValue(msg, ResWarnContainer.class);
                     answer = new Response(response, resWarnContainer.getData());
                     break;
                 case NEW_POLL: //TODO
@@ -175,7 +174,7 @@ public class GoodChatSocket {
                     answer = new Response(response, resPremiumContainer.getData());
                     break;
                 case ERROR:
-                    ResErrorContainer resErrorContainer=  objectMapper.readValue(msg, ResErrorContainer.class);
+                    ResErrorContainer resErrorContainer = objectMapper.readValue(msg, ResErrorContainer.class);
                     answer = new Response(response, resErrorContainer.getData());
                     break;
                 default:

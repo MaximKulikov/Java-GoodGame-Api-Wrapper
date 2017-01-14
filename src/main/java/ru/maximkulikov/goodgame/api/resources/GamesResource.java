@@ -1,14 +1,13 @@
 package ru.maximkulikov.goodgame.api.resources;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.handlers.GameResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.GamesResponseHandler;
 import ru.maximkulikov.goodgame.api.models.Game;
 import ru.maximkulikov.goodgame.api.models.GamesContainer;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * The {@link GamesResource} provides the functionality

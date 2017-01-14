@@ -1,50 +1,66 @@
 package ru.maximkulikov.goodgame.api;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import ru.maximkulikov.goodgame.api.auth.Authenticator;
 import ru.maximkulikov.goodgame.api.models.AccessToken;
 import ru.maximkulikov.goodgame.api.resources.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
-/**
- * Enables the ability to interact with the Twitch.tv REST API.
- *
- * @author Matthew Bell
- */
 public class GoodGame {
 
     public static final String DEFAULT_BASE_URL = "http://api2.goodgame.ru";
+
     public static final String OLD_BASE_URL = "http://goodgame.ru/api";
+
     public static final int DEFAULT_API_VERSION = 2;
 
-    private String clientId; // User's app client Id
+    // Initiate Keys
+    private static final String OAUTH = "oauth";
+
+    private static final String PLAYER = "player";
+
+    private static final String STREAMS = "streams";
+
+    private static final String CHANNELS = "channels";
+
+    private static final String CHAT = "chat";
+
+    private static final String GAMES = "games";
+
+    private static final String INFO = "info";
+
+    private static final String SMILES = "smiles";
+
+    private static final String GITHUBAPI = "githubapi";
+
+    // User's app client Id
+    private String clientId;
+
     private String state = null;
+
     private Authenticator authenticator;
+
     private Map<String, AbstractResource> resources;
 
 
-    public GoodGame(String baseUrl, int apiVersion) {
-        authenticator = new Authenticator(DEFAULT_BASE_URL);
+    public GoodGame(final String baseUrl, final int apiVersion) {
+        this.authenticator = new Authenticator(baseUrl);
         // Instantiate resource connectors
-        resources = new HashMap<String, AbstractResource>();
-        resources.put("oauth", new OauthResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
-        resources.put("player", new PlayerResourses(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
-        resources.put("streams", new StreamsResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
-        resources.put("channels", new ChannelsResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
-        resources.put("chat", new ChatResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
-        resources.put("games", new GamesResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
-        resources.put("info", new InfoResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
-        resources.put("smiles", new SmilesResource(DEFAULT_BASE_URL, DEFAULT_API_VERSION));
-        resources.put("githubapi", new GithubResource(OLD_BASE_URL));
-
-
+        this.resources = new HashMap<String, AbstractResource>();
+        this.resources.put(OAUTH, new OauthResource(baseUrl, apiVersion));
+        this.resources.put(PLAYER, new PlayerResourses(baseUrl, apiVersion));
+        this.resources.put(STREAMS, new StreamsResource(baseUrl, apiVersion));
+        this.resources.put(CHANNELS, new ChannelsResource(baseUrl, apiVersion));
+        this.resources.put(CHAT, new ChatResource(baseUrl, apiVersion));
+        this.resources.put(GAMES, new GamesResource(baseUrl, apiVersion));
+        this.resources.put(INFO, new InfoResource(baseUrl, apiVersion));
+        this.resources.put(SMILES, new SmilesResource(baseUrl, apiVersion));
+        this.resources.put(GITHUBAPI, new GithubResource(OLD_BASE_URL));
     }
 
-    /**
-     * Constructs a GoodGame application instance.
-     */
+
     public GoodGame() {
         this(DEFAULT_BASE_URL, DEFAULT_API_VERSION);
     }
@@ -53,30 +69,18 @@ public class GoodGame {
     public Authenticator auth() {
         return authenticator;
     }
-    public OauthResource oauth() {return (OauthResource) getResource("oauth");}
-    public PlayerResourses player() {return (PlayerResourses) getResource("player");}
-    public StreamsResource streams() {return (StreamsResource) getResource("streams");}
+
     public ChannelsResource channels() {
-        return (ChannelsResource) getResource("channels");
+        return (ChannelsResource) getResource(CHANNELS);
     }
+
     public ChatResource chat() {
-        return (ChatResource) getResource("chat");
+        return (ChatResource) getResource(CHAT);
     }
+
     public GamesResource games() {
-        return (GamesResource) getResource("games");
+        return (GamesResource) getResource(GAMES);
     }
-    public InfoResource info() {
-        return (InfoResource) getResource("info");
-    }
-    public SmilesResource smiles() {
-        return (SmilesResource) getResource("smiles");
-    }
-    public GithubResource githubapi() {
-        return (GithubResource) getResource("githubapi");
-    }
-
-
-
 
     public String getClientId() {
         return clientId;
@@ -94,7 +98,7 @@ public class GoodGame {
         AbstractResource r = resources.get(key);
         AccessToken accessToken = authenticator.getToken();
         if (accessToken != null) {
-            r.setAccessToken(accessToken.getAccess_token());
+            r.setAccessToken(accessToken.getAccessToken());
         }
 
         return r;
@@ -105,6 +109,30 @@ public class GoodGame {
             this.state = UUID.randomUUID().toString();
         }
         return this.state;
+    }
+
+    public final  GithubResource githubapi() {
+        return (GithubResource) getResource(GITHUBAPI);
+    }
+
+    public final  InfoResource info() {
+        return (InfoResource) getResource(INFO);
+    }
+
+    public final  OauthResource oauth() {
+        return (OauthResource) getResource(OAUTH);
+    }
+
+    public final PlayerResourses player() {
+        return (PlayerResourses) getResource(PLAYER);
+    }
+
+    public final  SmilesResource smiles() {
+        return (SmilesResource) getResource(SMILES);
+    }
+
+    public final  StreamsResource streams() {
+        return (StreamsResource) getResource(STREAMS);
     }
 
 }

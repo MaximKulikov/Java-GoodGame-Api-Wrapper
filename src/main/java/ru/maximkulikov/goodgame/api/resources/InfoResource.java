@@ -1,11 +1,10 @@
 package ru.maximkulikov.goodgame.api.resources;
 
-import ru.maximkulikov.goodgame.api.handlers.InfoResponseHandler;
-import ru.maximkulikov.goodgame.api.models.Info;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import ru.maximkulikov.goodgame.api.handlers.InfoResponseHandler;
+import ru.maximkulikov.goodgame.api.models.Info;
 
 /**
  * Java-GG-Api-Wrapper
