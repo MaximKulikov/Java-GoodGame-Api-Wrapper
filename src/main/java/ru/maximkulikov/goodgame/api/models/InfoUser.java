@@ -9,29 +9,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoUser {
+
     @JsonProperty("user_id")
     private String userId;
+
     @JsonProperty("username")
     private String userName;
 
-    public String getUserId() {
+    public final String getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public final void setUserId(final String userId) {
         this.userId = userId;
     }
 
-    public String getUserName() {
+    public final String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    public final void setUserName(final String userName) {
         this.userName = userName;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "InfoUser{" +
                 "userName='" + userName + '\'' +
                 ", userId='" + userId + '\'' +

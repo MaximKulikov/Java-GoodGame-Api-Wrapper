@@ -9,27 +9,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GitHubSubscribers {
+
     private Boolean success;
+
     private List<GitHubSubscriber> response;
 
-    public List<GitHubSubscriber> getResponse() {
+    public final List<GitHubSubscriber> getResponse() {
         return response;
     }
 
-    public void setResponse(List<GitHubSubscriber> response) {
+    public final void setResponse(final List<GitHubSubscriber> response) {
         this.response = response;
     }
 
-    public Boolean getSuccess() {
+    public final Boolean getSuccess() {
         return success;
     }
 
-    public void setSuccess(Boolean success) {
+    public final void setSuccess(final Boolean success) {
         this.success = success;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "GitHubSubscribers{" +
                 "success=" + success +
                 ", response=" + response +

@@ -9,20 +9,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmbededGames {
+
     private List<Game> games;
 
-    @Override
-    public String toString() {
-        return "EmbededGames{" +
-                "games=" + games +
-                '}';
-    }
-
-    public List<Game> getGames() {
+    public final List<Game> getGames() {
         return games;
     }
 
-    public void setGames(List<Game> games) {
+    public final void setGames(final List<Game> games) {
         this.games = games;
+    }
+
+    @Override
+    public final String toString() {
+        return "EmbededGames{" +
+                "games=" + games +
+                '}';
     }
 }

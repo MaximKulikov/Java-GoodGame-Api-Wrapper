@@ -7,31 +7,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Streams {
 
-    List<Stream> streams;
+    private List<Stream> streams;
+
     @JsonProperty("_total")
     private int total;
 
+    public final List<Stream> getStreams() {
+        return streams;
+    }
+
+    public final void setStreams(final List<Stream> streams) {
+        this.streams = streams;
+    }
+
+    public final int getTotal() {
+        return total;
+    }
+
+    public final void setTotal(final int total) {
+        this.total = total;
+    }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "Streams{" +
                 "total=" + total +
                 ", streams=" + streams +
                 '}';
-    }
-
-    public int getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
-    public List<Stream> getStreams() {
-        return streams;
-    }
-
-    public void setStreams(List<Stream> streams) {
-        this.streams = streams;
     }
 }

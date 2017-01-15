@@ -10,51 +10,55 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResPollResults implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     private Long voters;
+
     private String title;
+
     private List<PollResult> answers;
 
+    public final List<PollResult> getAnswers() {
+        return answers;
+    }
+
+    public final void setAnswers(final List<PollResult> answers) {
+        this.answers = answers;
+    }
+
+    public final String getChannelId() {
+        return channelId;
+    }
+
+    public final void setChannelId(final String channelId) {
+        this.channelId = channelId;
+    }
+
+    public final String getTitle() {
+        return title;
+    }
+
+    public final void setTitle(final String title) {
+        this.title = title;
+    }
+
+    public final Long getVoters() {
+        return voters;
+    }
+
+    public final void setVoters(final Long voters) {
+        this.voters = voters;
+    }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResPollResults{" +
                 "channelId='" + channelId + '\'' +
                 ", voters=" + voters +
                 ", title='" + title + '\'' +
                 ", answers=" + answers +
                 '}';
-    }
-
-    public String getChannelId() {
-        return channelId;
-    }
-
-    public void setChannelId(String channelId) {
-        this.channelId = channelId;
-    }
-
-    public Long getVoters() {
-        return voters;
-    }
-
-    public void setVoters(Long voters) {
-        this.voters = voters;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public List<PollResult> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<PollResult> answers) {
-        this.answers = answers;
     }
 }

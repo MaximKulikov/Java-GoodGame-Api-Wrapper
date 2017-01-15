@@ -8,30 +8,32 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResPaymentContainer {
+
     private String type;
+
     private ResPayment data;
 
+    public final ResPayment getData() {
+        return data;
+    }
+
+    public final void setData(final ResPayment data) {
+        this.data = data;
+    }
+
+    public final String getType() {
+        return type;
+    }
+
+    public final void setType(final String type) {
+        this.type = type;
+    }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResPaymentContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +
                 '}';
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public ResPayment getData() {
-        return data;
-    }
-
-    public void setData(ResPayment data) {
-        this.data = data;
     }
 }

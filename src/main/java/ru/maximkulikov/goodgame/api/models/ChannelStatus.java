@@ -19,11 +19,11 @@ public class ChannelStatus {
         this.profiles = map;
     }
 
-    public Map<String, String> getProfiles() {
+    public  final Map<String, String> getProfiles() {
         return profiles;
     }
 
-    public void setProfiles(Map<String, String> profiles) {
+    public  final void setProfiles( final Map<String, String> profiles) {
         this.profiles = profiles;
     }
 

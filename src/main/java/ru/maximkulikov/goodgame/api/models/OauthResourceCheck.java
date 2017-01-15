@@ -8,27 +8,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OauthResourceCheck {
+
     private Boolean success;
+
     private String message;
 
-    public String getMessage() {
+    public final String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public final void setMessage(final String message) {
         this.message = message;
     }
 
-    public Boolean getSuccess() {
+    public final Boolean getSuccess() {
         return success;
     }
 
-    public void setSuccess(Boolean success) {
+    public final void setSuccess(final Boolean success) {
         this.success = success;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "OauthResource{" +
                 "success=" + success +
                 ", message='" + message + '\'' +

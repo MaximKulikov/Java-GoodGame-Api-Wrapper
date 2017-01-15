@@ -9,16 +9,38 @@ public class UserSubscription {
 
     @JsonProperty("_id")
     private String id;
+
     private Date createdAt;
+
     private ChannelContainer channel;
 
+    public final ChannelContainer getChannel() {
+        return channel;
+    }
+
+    public final void setChannel(final ChannelContainer channel) {
+        this.channel = channel;
+    }
+
+    public final Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public final void setCreatedAt(final Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public final String getId() {
+        return id;
+    }
+
+    public final void setId(final String id) {
+        this.id = id;
+    }
+
     @Override
-    public String toString() {
-        return "UserSubscription{" +
-                "id='" + id + '\'' +
-                ", createdAt=" + createdAt +
-                ", channel=" + channel +
-                '}';
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
@@ -33,31 +55,11 @@ public class UserSubscription {
     }
 
     @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public ChannelContainer getChannel() {
-        return channel;
-    }
-
-    public void setChannel(ChannelContainer channel) {
-        this.channel = channel;
+    public final String toString() {
+        return "UserSubscription{" +
+                "id='" + id + '\'' +
+                ", createdAt=" + createdAt +
+                ", channel=" + channel +
+                '}';
     }
 }

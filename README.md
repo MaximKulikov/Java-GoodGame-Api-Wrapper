@@ -253,7 +253,6 @@ class SimpleExample extends GoodChat {
 | premium          | ResPremium         |
 | Остальное:UNKNOWN| null               |
 
-ResRefreshPremium
 
 
 #Text Below this not edited yet
@@ -356,7 +355,7 @@ twitch.auth().setAccessToken("my-access-token-289489");
 ## Зависимости
 
 * [Java Async HTTP Client](https://github.com/urgrue/java-async-http/releases/tag/2.1.2) ver. 2.1.2
-* [Jackson JSON Databind](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind/2.4.5) 
+* [Jackson JSON Databind](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind/2.4.5) ver. 2.4.5 
 * [Eclipse Websocket Client](https://mvnrepository.com/artifact/org.eclipse.jetty.websocket/websocket-client) ver. 9.2.19.v20160908
 
 ## Install

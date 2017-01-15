@@ -8,27 +8,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResWarnContainer {
+
     private String type;
+
     private ResWarn data;
 
-    public ResWarn getData() {
+    public final ResWarn getData() {
         return data;
     }
 
-    public void setData(ResWarn data) {
+    public final void setData(final ResWarn data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResWarnContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +

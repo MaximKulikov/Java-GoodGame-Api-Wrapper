@@ -9,29 +9,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResJoinToRoom implements ResChatObject {
-    @JsonProperty("channel_id")
-    private String channelId; // id-канала, из которого посылалась inline-команда /join
-    @JsonProperty("room_id")
-    private String roomId; // id-канала или если начинается с префикса "r" id-комнаты
 
-    public String getChannelId() {
+    @JsonProperty("channel_id")
+    private String channelId;
+
+    @JsonProperty("room_id")
+    private String roomId;
+
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public String getRoomId() {
+    public final String getRoomId() {
         return roomId;
     }
 
-    public void setRoomId(String roomId) {
+    public final void setRoomId(final String roomId) {
         this.roomId = roomId;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResJoinToRoom{" +
                 "channelId='" + channelId + '\'' +
                 ", roomId='" + roomId + '\'' +

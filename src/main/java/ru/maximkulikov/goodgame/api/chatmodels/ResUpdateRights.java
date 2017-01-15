@@ -8,30 +8,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 11.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResUpdateRights implements ResChatObject{
+public class ResUpdateRights implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     @JsonProperty("access_rights")
     private Long accessRights;
 
-    public Long getAccessRights() {
+    public final Long getAccessRights() {
         return accessRights;
     }
 
-    public void setAccessRights(Long accessRights) {
+    public final void setAccessRights(final Long accessRights) {
         this.accessRights = accessRights;
     }
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResUpdateRights{" +
                 "channelId='" + channelId + '\'' +
                 ", accessRights=" + accessRights +

@@ -8,27 +8,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResSlowmodContainer {
+
     private String type;
+
     private ResSlowmod data;
 
-    public ResSlowmod getData() {
+    public final ResSlowmod getData() {
         return data;
     }
 
-    public void setData(ResSlowmod data) {
+    public final void setData(final ResSlowmod data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResSlowmodContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +

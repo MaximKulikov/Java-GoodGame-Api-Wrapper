@@ -10,86 +10,101 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Player {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     @JsonProperty("channel_key")
     private String channelKey;
+
     @JsonProperty("channel_title")
     private String channelTitle;
+
     @JsonProperty("broadcast_title")
     private String broadcastTitle;
+
     @JsonProperty("channel_status")
     private String channelStatus;
+
     @JsonProperty("channel_poster")
     private String channelPoster;
+
     @JsonProperty("channel_premium")
     private String channelPremium;
+
     @JsonProperty("streamer_avatar")
     private String streamerAvatar;
+
     @JsonProperty("premium_only")
     private String premiumOnly;
+
     private String adult;
+
     @JsonProperty("channel_start")
     private String channelStart;
+
     @JsonProperty("ga_code")
     private String gaCode;
+
     private List<Broadcast> broadcasts;
+
     private PremiumPrices premiumPrices;
+
     private List<User> users;
 
-    public String getAdult() {
+    public final String getAdult() {
         return adult;
     }
 
-    public void setAdult(String adult) {
+    public final void setAdult(final String adult) {
         this.adult = adult;
     }
 
-    public String getBroadcastTitle() {
+    public final String getBroadcastTitle() {
         return broadcastTitle;
     }
 
-    public void setBroadcastTitle(String broadcastTitle) {
+    public final void setBroadcastTitle(final String broadcastTitle) {
         this.broadcastTitle = broadcastTitle;
     }
 
-    public List<Broadcast> getBroadcasts() {
+    public final List<Broadcast> getBroadcasts() {
         return broadcasts;
     }
 
-    public void setBroadcasts(List<Broadcast> broadcasts) {
+    public final void setBroadcasts(final List<Broadcast> broadcasts) {
         this.broadcasts = broadcasts;
     }
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public String getChannelKey() {
+    public final String getChannelKey() {
         return channelKey;
     }
 
-    public void setChannelKey(String channelKey) {
+    public final void setChannelKey(final String channelKey) {
         this.channelKey = channelKey;
     }
 
-    public String getChannelPoster() {
+    public final String getChannelPoster() {
         return channelPoster;
     }
 
-    public void setChannelPoster(String channelPoster) {
+    public final void setChannelPoster(final String channelPoster) {
         this.channelPoster = channelPoster;
     }
 
-    public String getChannelPremium() {
+    public final String getChannelPremium() {
         return channelPremium;
     }
 
-    public void setChannelPremium(String channelPremium) {
+    public final void setChannelPremium(final String channelPremium) {
         this.channelPremium = channelPremium;
     }
 
@@ -97,68 +112,68 @@ public class Player {
         return channelStart;
     }
 
-    public void setChannelStart(String channelStart) {
+    public final void setChannelStart(final String channelStart) {
         this.channelStart = channelStart;
     }
 
-    public String getChannelStatus() {
+    public final String getChannelStatus() {
         return channelStatus;
     }
 
-    public void setChannelStatus(String channelStatus) {
+    public final void setChannelStatus(final String channelStatus) {
         this.channelStatus = channelStatus;
     }
 
-    public String getChannelTitle() {
+    public final String getChannelTitle() {
         return channelTitle;
     }
 
-    public void setChannelTitle(String channelTitle) {
+    public final void setChannelTitle(final String channelTitle) {
         this.channelTitle = channelTitle;
     }
 
-    public String getGaCode() {
+    public final String getGaCode() {
         return gaCode;
     }
 
-    public void setGaCode(String gaCode) {
+    public final void setGaCode(final String gaCode) {
         this.gaCode = gaCode;
     }
 
-    public String getPremiumOnly() {
+    public final String getPremiumOnly() {
         return premiumOnly;
     }
 
-    public void setPremiumOnly(String premiumOnly) {
+    public final void setPremiumOnly(final String premiumOnly) {
         this.premiumOnly = premiumOnly;
     }
 
-    public PremiumPrices getPremiumPrices() {
+    public final PremiumPrices getPremiumPrices() {
         return premiumPrices;
     }
 
-    public void setPremiumPrices(PremiumPrices premiumPrices) {
+    public final void setPremiumPrices(final PremiumPrices premiumPrices) {
         this.premiumPrices = premiumPrices;
     }
 
-    public String getStreamerAvatar() {
+    public final String getStreamerAvatar() {
         return streamerAvatar;
     }
 
-    public void setStreamerAvatar(String streamerAvatar) {
+    public final void setStreamerAvatar(final String streamerAvatar) {
         this.streamerAvatar = streamerAvatar;
     }
 
-    public List<User> getUsers() {
+    public final List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public final void setUsers(final List<User> users) {
         this.users = users;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Player{" +
                 "channelId='" + channelId + '\'' +
                 ", channelKey='" + channelKey + '\'' +

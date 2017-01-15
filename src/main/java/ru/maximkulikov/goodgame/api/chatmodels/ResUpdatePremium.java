@@ -9,28 +9,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResUpdatePremium implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     private Boolean premium;
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public Boolean getPremium() {
+    public final Boolean getPremium() {
         return premium;
     }
 
-    public void setPremium(Boolean premium) {
+    public final void setPremium(final Boolean premium) {
         this.premium = premium;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResUpdatePremium{" +
                 "channelId='" + channelId + '\'' +
                 ", premium=" + premium +

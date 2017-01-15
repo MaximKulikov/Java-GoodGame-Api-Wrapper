@@ -9,59 +9,64 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Broadcast {
+
     @JsonProperty("broadcast_title")
     private String broadcastTitle;
+
     @JsonProperty("broadcast_start")
     private String broadcastStart;
+
     @JsonProperty("broadcast_games")
     private String broadcastGames;
+
     @JsonProperty("broadcast_description")
     private String broadcastDescription;
+
     @JsonProperty("broadcast_logo")
     private String broadcastLogo;
 
-    public String getBroadcastDescription() {
+    public final String getBroadcastDescription() {
         return broadcastDescription;
     }
 
-    public void setBroadcastDescription(String broadcastDescription) {
+    public final void setBroadcastDescription(final String broadcastDescription) {
         this.broadcastDescription = broadcastDescription;
     }
 
-    public String getBroadcastGames() {
+    public final String getBroadcastGames() {
         return broadcastGames;
     }
 
-    public void setBroadcastGames(String broadcastGames) {
+    public final void setBroadcastGames(final String broadcastGames) {
         this.broadcastGames = broadcastGames;
     }
 
-    public String getBroadcastLogo() {
+    public final String getBroadcastLogo() {
         return broadcastLogo;
     }
 
-    public void setBroadcastLogo(String broadcastLogo) {
+    public final void setBroadcastLogo(final String broadcastLogo) {
         this.broadcastLogo = broadcastLogo;
     }
 
-    public String getBroadcastStart() {
+    public final String getBroadcastStart() {
         return broadcastStart;
     }
 
-    public void setBroadcastStart(String broadcastStart) {
+    public final void setBroadcastStart(final String broadcastStart) {
         this.broadcastStart = broadcastStart;
     }
 
-    public String getBroadcastTitle() {
+    public final String getBroadcastTitle() {
         return broadcastTitle;
     }
 
-    public void setBroadcastTitle(String broadcastTitle) {
+    public final void setBroadcastTitle(final String broadcastTitle) {
         this.broadcastTitle = broadcastTitle;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Broadcast{" +
                 "broadcastTitle='" + broadcastTitle + '\'' +
                 ", broadcastStart='" + broadcastStart + '\'' +

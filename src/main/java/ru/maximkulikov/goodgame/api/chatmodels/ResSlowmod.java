@@ -8,59 +8,64 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 10.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResSlowmod implements ResChatObject{
+public class ResSlowmod implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     @JsonProperty("moder_id")
     private Long moderId;
+
     @JsonProperty("moder_name")
     private String moderName;
+
     @JsonProperty("moder_group")
     private Long moderGroup;
-    private Long slowmod;// в секундах
 
-    public String getChannelId() {
+    private Long slowmod;
+
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public Long getModerGroup() {
+    public final Long getModerGroup() {
         return moderGroup;
     }
 
-    public void setModerGroup(Long moderGroup) {
+    public final void setModerGroup(final Long moderGroup) {
         this.moderGroup = moderGroup;
     }
 
-    public Long getModerId() {
+    public final Long getModerId() {
         return moderId;
     }
 
-    public void setModerId(Long moderId) {
+    public final void setModerId(final Long moderId) {
         this.moderId = moderId;
     }
 
-    public String getModerName() {
+    public final String getModerName() {
         return moderName;
     }
 
-    public void setModerName(String moderName) {
+    public final void setModerName(final String moderName) {
         this.moderName = moderName;
     }
 
-    public Long getSlowmod() {
+    public final Long getSlowmod() {
         return slowmod;
     }
 
-    public void setSlowmod(Long slowmod) {
+    public final void setSlowmod(final Long slowmod) {
         this.slowmod = slowmod;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResSlowmod{" +
                 "channelId='" + channelId + '\'' +
                 ", moderId=" + moderId +

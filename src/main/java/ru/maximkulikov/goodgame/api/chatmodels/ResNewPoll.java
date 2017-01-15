@@ -11,17 +11,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResNewPoll implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     @JsonProperty("moder_id")
     private String moderId;
+
     @JsonProperty("moder_name")
     private String moderName;
+
     @JsonProperty("moder_rights")
     private Long moderRights;
+
     @JsonProperty("moder_groups")
     private List<String> moderGroups;
+
     private String title;
+
     private List<PollAnswer> answers;
 
     public ResNewPoll() {
@@ -31,7 +38,7 @@ public class ResNewPoll implements ResChatObject {
         return this.answers;
     }
 
-    public void setAnswers(final List<PollAnswer> answers) {
+    public final void setAnswers(final List<PollAnswer> answers) {
         this.answers = answers;
     }
 
@@ -39,7 +46,7 @@ public class ResNewPoll implements ResChatObject {
         return this.channelId;
     }
 
-    public void setChannelId(final String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
@@ -47,7 +54,7 @@ public class ResNewPoll implements ResChatObject {
         return this.moderGroups;
     }
 
-    public void setModerGroups(final List<String> moderGroups) {
+    public final void setModerGroups(final List<String> moderGroups) {
         this.moderGroups = moderGroups;
     }
 
@@ -55,7 +62,7 @@ public class ResNewPoll implements ResChatObject {
         return this.moderId;
     }
 
-    public void setModerId(final String moderId) {
+    public final void setModerId(final String moderId) {
         this.moderId = moderId;
     }
 
@@ -63,7 +70,7 @@ public class ResNewPoll implements ResChatObject {
         return this.moderName;
     }
 
-    public void setModerName(final String moderName) {
+    public final void setModerName(final String moderName) {
         this.moderName = moderName;
     }
 
@@ -71,7 +78,7 @@ public class ResNewPoll implements ResChatObject {
         return this.moderRights;
     }
 
-    public void setModerRights(final Long moderRights) {
+    public final void setModerRights(final Long moderRights) {
         this.moderRights = moderRights;
     }
 
@@ -79,12 +86,12 @@ public class ResNewPoll implements ResChatObject {
         return this.title;
     }
 
-    public void setTitle(final String title) {
+    public final void setTitle(final String title) {
         this.title = title;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResNewPoll{" +
                 "channelId='" + this.channelId + '\'' +
                 ", moderId='" + this.moderId + '\'' +

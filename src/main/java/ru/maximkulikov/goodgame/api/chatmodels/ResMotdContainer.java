@@ -7,28 +7,30 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by maxim on 10.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResMotdContainer  {
+public class ResMotdContainer {
+
     private String type;
+
     private ResMotd data;
 
-    public ResMotd getData() {
+    public final ResMotd getData() {
         return data;
     }
 
-    public void setData(ResMotd data) {
+    public final void setData(final ResMotd data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResMotdContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +

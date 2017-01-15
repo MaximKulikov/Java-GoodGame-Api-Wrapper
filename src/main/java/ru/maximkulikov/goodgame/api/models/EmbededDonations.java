@@ -9,55 +9,60 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmbededDonations {
+
     private String id;
+
     private String username;
+
     private String amount;
+
     @JsonProperty("paid_date")
     private String paidDate;
+
     private String comment;
 
-    public String getAmount() {
+    public final String getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public final void setAmount(final String amount) {
         this.amount = amount;
     }
 
-    public String getComment() {
+    public final String getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
+    public final void setComment(final String comment) {
         this.comment = comment;
     }
 
-    public String getId() {
+    public final String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public final void setId(final String id) {
         this.id = id;
     }
 
-    public String getPaidDate() {
+    public final String getPaidDate() {
         return paidDate;
     }
 
-    public void setPaidDate(String paidDate) {
+    public final void setPaidDate(final String paidDate) {
         this.paidDate = paidDate;
     }
 
-    public String getUsername() {
+    public final String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public final void setUsername(final String username) {
         this.username = username;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "EmbededDonations{" +
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +

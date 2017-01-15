@@ -8,22 +8,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResGetUserInfoContainer {
+
     private String type;
+
     private ChatUser data;
 
-    public ChatUser getData() {
+    public final ChatUser getData() {
         return data;
     }
 
-    public void setData(ChatUser data) {
+    public void setData(final ChatUser data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 

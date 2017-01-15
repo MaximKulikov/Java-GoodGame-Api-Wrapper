@@ -7,54 +7,58 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Game {
 
     private String id;
+
     private String title;
+
     private String url;
+
     @JsonProperty("short")
     private String shortTitle;
+
     private String poster;
 
-    public String getId() {
+    public final String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public final void setId(final String id) {
         this.id = id;
     }
 
-    public String getPoster() {
+    public final String getPoster() {
         return poster;
     }
 
-    public void setPoster(String poster) {
+    public final void setPoster(final String poster) {
         this.poster = poster;
     }
 
-    public String getShortTitle() {
+    public final String getShortTitle() {
         return shortTitle;
     }
 
-    public void setShortTitle(String shortTitle) {
+    public final void setShortTitle(final String shortTitle) {
         this.shortTitle = shortTitle;
     }
 
-    public String getTitle() {
+    public final String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public final void setTitle(final String title) {
         this.title = title;
     }
 
-    public String getUrl() {
+    public final String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public final void setUrl(final String url) {
         this.url = url;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Game{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +

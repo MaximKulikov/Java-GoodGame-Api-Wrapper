@@ -8,27 +8,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResUsersListContainer {
+
     private String type;
+
     private ResUsersList data;
 
-    public ResUsersList getData() {
+    public final ResUsersList getData() {
         return data;
     }
 
-    public void setData(ResUsersList data) {
+    public final void setData(final ResUsersList data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResUsersListContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +

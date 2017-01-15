@@ -9,37 +9,40 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Premium {
+
     private String id;
+
     private String username;
+
     @JsonProperty("created_at")
     private String createdAt;
 
-    public String getCreatedAt() {
+    public final String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public final void setCreatedAt(final String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public String getId() {
+    public final String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public final void setId(final String id) {
         this.id = id;
     }
 
-    public String getUsername() {
+    public final String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public final void setUsername(final String username) {
         this.username = username;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Premium{" +
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +

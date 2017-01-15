@@ -17,20 +17,20 @@ public class ResNewPollContainer {
         return this.data;
     }
 
-    public void setData( final ResNewPoll data) {
+    public final void setData(final ResNewPoll data) {
         this.data = data;
     }
 
-    public  final String getType() {
+    public final String getType() {
         return this.type;
     }
 
-    public void setType( final String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResNewPollContainer{" +
                 "type='" + this.type + '\'' +
                 ", data=" + this.data +

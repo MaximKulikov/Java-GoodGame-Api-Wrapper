@@ -16,24 +16,24 @@ public class ResRemoveMessage implements ResChatObject {
     @JsonProperty("message_id")
     private String messageId;
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public String getMessageId() {
+    public final String getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(String messageId) {
+    public final void setMessageId(final String messageId) {
         this.messageId = messageId;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResRemoveMessage{" +
                 "channelId='" + channelId + '\'' +
                 ", messageId='" + messageId + '\'' +

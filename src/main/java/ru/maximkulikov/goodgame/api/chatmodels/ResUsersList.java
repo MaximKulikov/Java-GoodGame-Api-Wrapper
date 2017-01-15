@@ -10,48 +10,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResUsersList implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
-    @JsonProperty("clients_in_channel")
-    private Long clientsInChannel; // всего клиентов в канале, включая гостей
-    @JsonProperty("users_in_channel")
-    private Long usersInChannel;// всего авторизованных пользователей в канале
-    private List<ChatUser> users; // Массив пользователей которые в данный момент находятся в канале
 
-    public String getChannelId() {
+    @JsonProperty("clients_in_channel")
+    private Long clientsInChannel;
+
+    @JsonProperty("users_in_channel")
+    private Long usersInChannel;
+
+    private List<ChatUser> users;
+
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public Long getClientsInChannel() {
+    public final Long getClientsInChannel() {
         return clientsInChannel;
     }
 
-    public void setClientsInChannel(Long clientsInChannel) {
+    public final void setClientsInChannel(final Long clientsInChannel) {
         this.clientsInChannel = clientsInChannel;
     }
 
-    public List<ChatUser> getUsers() {
+    public final List<ChatUser> getUsers() {
         return users;
     }
 
-    public void setUsers(List<ChatUser> users) {
+    public final void setUsers(final List<ChatUser> users) {
         this.users = users;
     }
 
-    public Long getUsersInChannel() {
+    public final Long getUsersInChannel() {
         return usersInChannel;
     }
 
-    public void setUsersInChannel(Long usersInChannel) {
+    public final void setUsersInChannel(final Long usersInChannel) {
         this.usersInChannel = usersInChannel;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResUsersList{" +
                 "channelId='" + channelId + '\'' +
                 ", clientsInChannel=" + clientsInChannel +

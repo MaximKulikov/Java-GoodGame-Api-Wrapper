@@ -9,30 +9,32 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoToken {
+
     private List<String> scopes;
+
     private String expires;
 
+    public final String getExpires() {
+        return expires;
+    }
+
+    public final void setExpires(final String expires) {
+        this.expires = expires;
+    }
+
+    public final List<String> getScopes() {
+        return scopes;
+    }
+
+    public final void setScopes(final List<String> scopes) {
+        this.scopes = scopes;
+    }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "InfoToken{" +
                 "scopes=" + scopes +
                 ", expires='" + expires + '\'' +
                 '}';
-    }
-
-    public List<String> getScopes() {
-        return scopes;
-    }
-
-    public void setScopes(List<String> scopes) {
-        this.scopes = scopes;
-    }
-
-    public String getExpires() {
-        return expires;
-    }
-
-    public void setExpires(String expires) {
-        this.expires = expires;
     }
 }

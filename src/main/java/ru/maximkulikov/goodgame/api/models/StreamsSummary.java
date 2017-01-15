@@ -6,14 +6,30 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class StreamsSummary {
 
     private int channels;
+
     private int viewers;
 
+    public final int getChannels() {
+        return channels;
+    }
+
+    public final void setChannels(final int channels) {
+        this.channels = channels;
+    }
+
+    public final int getViewers() {
+        return viewers;
+    }
+
+    public final void setViewers(final int viewers) {
+        this.viewers = viewers;
+    }
+
     @Override
-    public String toString() {
-        return "StreamsSummary{" +
-                "channels=" + channels +
-                ", viewers=" + viewers +
-                '}';
+    public int hashCode() {
+        int result = channels;
+        result = 31 * result + viewers;
+        return result;
     }
 
     @Override
@@ -28,25 +44,10 @@ public class StreamsSummary {
     }
 
     @Override
-    public int hashCode() {
-        int result = channels;
-        result = 31 * result + viewers;
-        return result;
-    }
-
-    public int getChannels() {
-        return channels;
-    }
-
-    public void setChannels(int channels) {
-        this.channels = channels;
-    }
-
-    public int getViewers() {
-        return viewers;
-    }
-
-    public void setViewers(int viewers) {
-        this.viewers = viewers;
+    public final String toString() {
+        return "StreamsSummary{" +
+                "channels=" + channels +
+                ", viewers=" + viewers +
+                '}';
     }
 }

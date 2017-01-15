@@ -17,7 +17,7 @@ public class ResUpdateGroupsContainer {
         return this.data;
     }
 
-    public void setData(final ResUpdateGroups data) {
+    public final void setData(final ResUpdateGroups data) {
         this.data = data;
     }
 
@@ -25,12 +25,12 @@ public class ResUpdateGroupsContainer {
         return this.type;
     }
 
-    public void setType(final String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResUpdateGroupsContainer{" +
                 "type='" + this.type + '\'' +
                 ", data=" + this.data +

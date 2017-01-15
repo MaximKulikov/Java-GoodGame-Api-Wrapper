@@ -9,19 +9,64 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PremiumPrices {
+
     @JsonProperty("1")
     private String id1;
+
     @JsonProperty("2")
     private String id2;
+
     @JsonProperty("3")
     private String id3;
+
     @JsonProperty("4")
     private String id4;
+
     @JsonProperty("5")
     private String id5;
 
+    public final String getId1() {
+        return id1;
+    }
+
+    public final void setId1(final String id1) {
+        this.id1 = id1;
+    }
+
+    public final String getId2() {
+        return id2;
+    }
+
+    public final void setId2(final String id2) {
+        this.id2 = id2;
+    }
+
+    public final String getId3() {
+        return id3;
+    }
+
+    public final void setId3(final String id3) {
+        this.id3 = id3;
+    }
+
+    public final String getId4() {
+        return id4;
+    }
+
+    public final void setId4(final String id4) {
+        this.id4 = id4;
+    }
+
+    public final String getId5() {
+        return id5;
+    }
+
+    public final void setId5(final String id5) {
+        this.id5 = id5;
+    }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "PremiumPrices{" +
                 "id1='" + id1 + '\'' +
                 ", id2='" + id2 + '\'' +
@@ -29,45 +74,5 @@ public class PremiumPrices {
                 ", id4='" + id4 + '\'' +
                 ", id5='" + id5 + '\'' +
                 '}';
-    }
-
-    public String getId1() {
-        return id1;
-    }
-
-    public void setId1(String id1) {
-        this.id1 = id1;
-    }
-
-    public String getId2() {
-        return id2;
-    }
-
-    public void setId2(String id2) {
-        this.id2 = id2;
-    }
-
-    public String getId3() {
-        return id3;
-    }
-
-    public void setId3(String id3) {
-        this.id3 = id3;
-    }
-
-    public String getId4() {
-        return id4;
-    }
-
-    public void setId4(String id4) {
-        this.id4 = id4;
-    }
-
-    public String getId5() {
-        return id5;
-    }
-
-    public void setId5(String id5) {
-        this.id5 = id5;
     }
 }

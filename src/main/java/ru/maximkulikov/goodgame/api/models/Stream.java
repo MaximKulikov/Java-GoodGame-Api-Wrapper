@@ -40,7 +40,7 @@ public class Stream {
         return averageFps;
     }
 
-    public void setAverageFps(final double averageFps) {
+    public final void setAverageFps(final double averageFps) {
         this.averageFps = averageFps;
     }
 
@@ -48,7 +48,7 @@ public class Stream {
         return this.channel;
     }
 
-    public void setChannel(final ChannelContainer channel) {
+    public final void setChannel(final ChannelContainer channel) {
         this.channel = channel;
     }
 
@@ -56,7 +56,7 @@ public class Stream {
         return this.createdAt;
     }
 
-    public void setCreatedAt(final Date createdAt) {
+    public final void setCreatedAt(final Date createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -64,7 +64,7 @@ public class Stream {
         return this.game;
     }
 
-    public void setGame(final String game) {
+    public final void setGame(final String game) {
         this.game = game;
     }
 
@@ -73,7 +73,7 @@ public class Stream {
         return id;
     }
 
-    public void setId(final long id) {
+    public final void setId(final long id) {
         this.id = id;
     }
 
@@ -81,7 +81,7 @@ public class Stream {
         return this.preview;
     }
 
-    public void setPreview(final StreamPreview preview) {
+    public final void setPreview(final StreamPreview preview) {
         this.preview = preview;
     }
 
@@ -89,7 +89,7 @@ public class Stream {
         return this.videoHeight;
     }
 
-    public void setVideoHeight(final int videoHeight) {
+    public final void setVideoHeight(final int videoHeight) {
         this.videoHeight = videoHeight;
     }
 
@@ -97,7 +97,7 @@ public class Stream {
         return this.viewers;
     }
 
-    public void setViewers(final int viewers) {
+    public final void setViewers(final int viewers) {
         this.viewers = viewers;
     }
 
@@ -121,7 +121,7 @@ public class Stream {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Stream{" +
                 "id=" + this.id +
                 ", game='" + this.game + '\'' +

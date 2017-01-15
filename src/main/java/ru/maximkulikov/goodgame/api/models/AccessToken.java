@@ -9,59 +9,64 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AccessToken {
+
     @JsonProperty("access_token")
     private String accessToken;
+
     @JsonProperty("expires_in")
     private long expiresIn;
+
     @JsonProperty("token_type")
     private String tokenType;
+
     private String scope;
+
     @JsonProperty("refresh_token")
     private String refreshToken;
 
 
-    public String getAccessToken() {
+    public final String getAccessToken() {
         return accessToken;
     }
 
-    public void setAccessToken(String accessToken) {
+    public final void setAccessToken(final String accessToken) {
         this.accessToken = accessToken;
     }
 
-    public long getExpiresIn() {
+    public final long getExpiresIn() {
         return expiresIn;
     }
 
-    public void setExpiresIn(long expiresIn) {
+    public final void setExpiresIn(final long expiresIn) {
         this.expiresIn = expiresIn;
     }
 
-    public String getRefreshToken() {
+    public final String getRefreshToken() {
         return refreshToken;
     }
 
-    public void setRefreshToken(String refreshToken) {
+    public final void setRefreshToken(final String refreshToken) {
         this.refreshToken = refreshToken;
     }
 
-    public String getScope() {
+    public final String getScope() {
         return scope;
     }
 
-    public void setScope(String scope) {
+    public final void setScope(final String scope) {
         this.scope = scope;
     }
 
-    public String getTokenType() {
+    public final String getTokenType() {
         return tokenType;
     }
 
-    public void setTokenType(String tokenType) {
+    public final void setTokenType(final String tokenType) {
         this.tokenType = tokenType;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "AccessToken{" +
                 "accessToken='" + accessToken + '\'' +
                 ", expiresIn=" + expiresIn +

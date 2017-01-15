@@ -8,30 +8,32 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResUpdateRightsContainer {
+
     private String type;
+
     private ResUpdateRights data;
 
+    public final ResUpdateRights getData() {
+        return data;
+    }
+
+    public final void setData(final ResUpdateRights data) {
+        this.data = data;
+    }
+
+    public final String getType() {
+        return type;
+    }
+
+    public final void setType(final String type) {
+        this.type = type;
+    }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResUpdateRightsContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +
                 '}';
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public ResUpdateRights getData() {
-        return data;
-    }
-
-    public void setData(ResUpdateRights data) {
-        this.data = data;
     }
 }

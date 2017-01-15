@@ -9,18 +9,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResIgnoreList implements ResChatObject {
+
     private List<ChatUser> users;
 
     public List<ChatUser> getUsers() {
         return users;
     }
 
-    public void setUsers(List<ChatUser> users) {
+    public final void setUsers(final List<ChatUser> users) {
         this.users = users;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResIgnoreList{" +
                 "users=" + users +
                 '}';

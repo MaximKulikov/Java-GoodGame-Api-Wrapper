@@ -20,7 +20,7 @@ public class ResUpdateGroups implements ResChatObject {
         return this.channelId;
     }
 
-    public void setChannelId(final String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
@@ -28,12 +28,12 @@ public class ResUpdateGroups implements ResChatObject {
         return this.groups;
     }
 
-    public void setGroups(final List<String> groups) {
+    public final void setGroups(final List<String> groups) {
         this.groups = groups;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResUpdateGroups{" +
                 "channelId='" + this.channelId + '\'' +
                 ", groups=" + this.groups +

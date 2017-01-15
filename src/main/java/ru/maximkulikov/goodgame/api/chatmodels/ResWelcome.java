@@ -8,27 +8,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResWelcome implements ResChatObject {
+
     private String protocolVersion;
+
     private String serverIdent;
 
-    public String getProtocolVersion() {
+    public final String getProtocolVersion() {
         return protocolVersion;
     }
 
-    public void setProtocolVersion(String protocolVersion) {
+    public final void setProtocolVersion(final String protocolVersion) {
         this.protocolVersion = protocolVersion;
     }
 
-    public String getServerIdent() {
+    public final String getServerIdent() {
         return serverIdent;
     }
 
-    public void setServerIdent(String serverIdent) {
+    public final void setServerIdent(final String serverIdent) {
         this.serverIdent = serverIdent;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResWelcome{" +
                 "protocolVersion='" + protocolVersion + '\'' +
                 ", serverIdent='" + serverIdent + '\'' +

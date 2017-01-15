@@ -7,7 +7,9 @@ import ru.maximkulikov.goodgame.api.ChatResponses;
  * Created by maxim on 12.01.2017.
  */
 public class Response {
+
     private ChatResponses type;
+
     private ResChatObject answer;
 
     public Response(ChatResponses type, ResChatObject answer) {
@@ -15,11 +17,11 @@ public class Response {
         this.answer = answer;
     }
 
-    public ChatResponses getType() {
-        return type;
+    public final ResChatObject getAnswer() {
+        return answer;
     }
 
-    public ResChatObject getAnswer() {
-        return answer;
+    public final ChatResponses getType() {
+        return type;
     }
 }

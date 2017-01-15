@@ -8,78 +8,85 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 10.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResPrivateMessage  implements ResChatObject{
+public class ResPrivateMessage implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     @JsonProperty("user_id")
     private String userId;
+
     @JsonProperty("user_name")
     private String userName;
+
     @JsonProperty("target_id")
     private String targetId;
+
     @JsonProperty("target_name")
     private String targetName;
+
     private String timestamp;
+
     private String text;
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public String getTargetId() {
+    public final String getTargetId() {
         return targetId;
     }
 
-    public void setTargetId(String targetId) {
+    public final void setTargetId(final String targetId) {
         this.targetId = targetId;
     }
 
-    public String getTargetName() {
+    public final String getTargetName() {
         return targetName;
     }
 
-    public void setTargetName(String targetName) {
+    public final void setTargetName(final String targetName) {
         this.targetName = targetName;
     }
 
-    public String getText() {
+    public final String getText() {
         return text;
     }
 
-    public void setText(String text) {
+    public final void setText(final String text) {
         this.text = text;
     }
 
-    public String getTimestamp() {
+    public final String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public final void setTimestamp(final String timestamp) {
         this.timestamp = timestamp;
     }
 
-    public String getUserId() {
+    public final String getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public final void setUserId(final String userId) {
         this.userId = userId;
     }
 
-    public String getUserName() {
+    public final String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    public final void setUserName(final String userName) {
         this.userName = userName;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResPrivateMessage{" +
                 "channelId='" + channelId + '\'' +
                 ", userId='" + userId + '\'' +

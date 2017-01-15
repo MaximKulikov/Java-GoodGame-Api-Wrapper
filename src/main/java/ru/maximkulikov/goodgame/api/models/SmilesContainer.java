@@ -9,58 +9,63 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SmilesContainer {
+
     @JsonProperty("_embedded")
     private EmbededSmiles smiles;
+
     @JsonProperty("page_count")
     private Long pageCount;
+
     @JsonProperty("page_size")
     private Long pageSize;
+
     @JsonProperty("total_items")
     private Long totalItems;
+
     private Long page;
 
-    public Long getPage() {
+    public final Long getPage() {
         return page;
     }
 
-    public void setPage(Long page) {
+    public final void setPage(final Long page) {
         this.page = page;
     }
 
-    public Long getPageCount() {
+    public final Long getPageCount() {
         return pageCount;
     }
 
-    public void setPageCount(Long pageCount) {
+    public final void setPageCount(final Long pageCount) {
         this.pageCount = pageCount;
     }
 
-    public Long getPageSize() {
+    public final Long getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(Long pageSize) {
+    public final void setPageSize(final Long pageSize) {
         this.pageSize = pageSize;
     }
 
-    public EmbededSmiles getSmiles() {
+    public final EmbededSmiles getSmiles() {
         return smiles;
     }
 
-    public void setSmiles(EmbededSmiles smiles) {
+    public final void setSmiles(final EmbededSmiles smiles) {
         this.smiles = smiles;
     }
 
-    public Long getTotalItems() {
+    public final Long getTotalItems() {
         return totalItems;
     }
 
-    public void setTotalItems(Long totalItems) {
+    public final void setTotalItems(final Long totalItems) {
         this.totalItems = totalItems;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "SmilesContainer{" +
                 "smiles=" + smiles +
                 ", pageCount=" + pageCount +

@@ -28,7 +28,7 @@ public class DonationsContainer {
         return this.donations;
     }
 
-    public void setDonations(final EmbededDonations donations) {
+    public final void setDonations(final EmbededDonations donations) {
         this.donations = donations;
     }
 
@@ -36,7 +36,7 @@ public class DonationsContainer {
         return this.page;
     }
 
-    public void setPage(final Long page) {
+    public final void setPage(final Long page) {
         this.page = page;
     }
 
@@ -44,7 +44,7 @@ public class DonationsContainer {
         return this.pageCount;
     }
 
-    public void setPageCount(final Long pageCount) {
+    public final void setPageCount(final Long pageCount) {
         this.pageCount = pageCount;
     }
 
@@ -52,7 +52,7 @@ public class DonationsContainer {
         return this.pageSize;
     }
 
-    public void setPageSize(final Long pageSize) {
+    public final void setPageSize(final Long pageSize) {
         this.pageSize = pageSize;
     }
 
@@ -60,12 +60,12 @@ public class DonationsContainer {
         return this.totalItems;
     }
 
-    public void setTotalItems(final Long totalItems) {
+    public final void setTotalItems(final Long totalItems) {
         this.totalItems = totalItems;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "DonationsContainer{" +
                 "donations=" + this.donations +
                 ", pageCount=" + this.pageCount +

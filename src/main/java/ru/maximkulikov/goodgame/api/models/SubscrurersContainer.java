@@ -27,7 +27,7 @@ public class SubscrurersContainer {
         return embeded;
     }
 
-    public void setEmbeded(final EmbededSubscribers embeded) {
+    public final void setEmbeded(final EmbededSubscribers embeded) {
         this.embeded = embeded;
     }
 
@@ -35,7 +35,7 @@ public class SubscrurersContainer {
         return this.page;
     }
 
-    public void setPage(final Long page) {
+    public final void setPage(final Long page) {
         this.page = page;
     }
 
@@ -43,7 +43,7 @@ public class SubscrurersContainer {
         return this.pageCount;
     }
 
-    public void setPageCount(final Long pageCount) {
+    public final void setPageCount(final Long pageCount) {
         this.pageCount = pageCount;
     }
 
@@ -51,7 +51,7 @@ public class SubscrurersContainer {
         return this.pageSize;
     }
 
-    public void setPageSize(final Long pageSize) {
+    public final void setPageSize(final Long pageSize) {
         this.pageSize = pageSize;
     }
 
@@ -59,12 +59,12 @@ public class SubscrurersContainer {
         return this.totalItems;
     }
 
-    public void setTotalItems(final Long totalItems) {
+    public final void setTotalItems(final Long totalItems) {
         this.totalItems = totalItems;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "SubscrurersContainer{" +
                 "embeded=" + this.embeded +
                 ", pageCount=" + this.pageCount +

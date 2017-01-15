@@ -8,18 +8,44 @@ public class Error {
 
     @JsonProperty("title")
     private String statusText;
+
     @JsonProperty("status")
     private int statusCode;
+
     @JsonProperty("detail")
     private String message;
 
+    public final String getMessage() {
+        return message;
+    }
+
+    public final void setMessage(final String message) {
+        this.message = message;
+    }
+
+    public final int getStatusCode() {
+        return statusCode;
+    }
+
+    public final void setStatusCode(final int statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public final String getStatusText() {
+
+        return statusText;
+    }
+
+    public final void setStatusText(final String statusText) {
+        this.statusText = statusText;
+    }
+
     @Override
-    public String toString() {
-        return "Error{" +
-                "statusText='" + statusText + '\'' +
-                ", statusCode=" + statusCode +
-                ", message='" + message + '\'' +
-                '}';
+    public int hashCode() {
+        int result = statusText != null ? statusText.hashCode() : 0;
+        result = 31 * result + statusCode;
+        result = 31 * result + (message != null ? message.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -36,35 +62,11 @@ public class Error {
     }
 
     @Override
-    public int hashCode() {
-        int result = statusText != null ? statusText.hashCode() : 0;
-        result = 31 * result + statusCode;
-        result = 31 * result + (message != null ? message.hashCode() : 0);
-        return result;
-    }
-
-    public String getStatusText() {
-
-        return statusText;
-    }
-
-    public void setStatusText(String statusText) {
-        this.statusText = statusText;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
-    }
-
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    public final String toString() {
+        return "Error{" +
+                "statusText='" + statusText + '\'' +
+                ", statusCode=" + statusCode +
+                ", message='" + message + '\'' +
+                '}';
     }
 }

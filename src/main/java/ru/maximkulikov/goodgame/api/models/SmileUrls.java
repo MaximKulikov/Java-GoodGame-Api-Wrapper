@@ -8,36 +8,39 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SmileUrls {
+
     private String img;
+
     private String big;
+
     private String gif;
 
-    public String getBig() {
+    public final String getBig() {
         return big;
     }
 
-    public void setBig(String big) {
+    public final void setBig(final String big) {
         this.big = big;
     }
 
-    public String getGif() {
+    public final String getGif() {
         return gif;
     }
 
-    public void setGif(String gif) {
+    public final void setGif(final String gif) {
         this.gif = gif;
     }
 
-    public String getImg() {
+    public final String getImg() {
         return img;
     }
 
-    public void setImg(String img) {
+    public final void setImg(final String img) {
         this.img = img;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "SmileUrls{" +
                 "img='" + img + '\'' +
                 ", big='" + big + '\'' +

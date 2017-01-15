@@ -9,37 +9,40 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoChannel {
+
     private String channel;
+
     @JsonProperty("channel_id")
     private String channelId;
+
     private String src;
 
-    public String getChannel() {
+    public final String getChannel() {
         return channel;
     }
 
-    public void setChannel(String channel) {
+    public final void setChannel(final String channel) {
         this.channel = channel;
     }
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public String getSrc() {
+    public final String getSrc() {
         return src;
     }
 
-    public void setSrc(String src) {
+    public final void setSrc(final String src) {
         this.src = src;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "InfoChannel{" +
                 "channel='" + channel + '\'' +
                 ", channelId='" + channelId + '\'' +

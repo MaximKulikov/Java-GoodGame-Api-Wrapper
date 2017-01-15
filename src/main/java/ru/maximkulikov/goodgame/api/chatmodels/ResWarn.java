@@ -38,7 +38,7 @@ public class ResWarn implements ResChatObject {
         return this.channelId;
     }
 
-    public void setChannelId(final String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
@@ -46,7 +46,7 @@ public class ResWarn implements ResChatObject {
         return this.moderGroup;
     }
 
-    public void setModerGroup(final Long moderGroup) {
+    public final void setModerGroup(final Long moderGroup) {
         this.moderGroup = moderGroup;
     }
 
@@ -54,7 +54,7 @@ public class ResWarn implements ResChatObject {
         return this.moderId;
     }
 
-    public void setModerId(final String moderId) {
+    public final void setModerId(final String moderId) {
         this.moderId = moderId;
     }
 
@@ -62,7 +62,7 @@ public class ResWarn implements ResChatObject {
         return this.moderName;
     }
 
-    public void setModerName(final String moderName) {
+    public final void setModerName(final String moderName) {
         this.moderName = moderName;
     }
 
@@ -70,7 +70,7 @@ public class ResWarn implements ResChatObject {
         return this.reason;
     }
 
-    public void setReason(final String reason) {
+    public final void setReason(final String reason) {
         this.reason = reason;
     }
 
@@ -78,7 +78,7 @@ public class ResWarn implements ResChatObject {
         return this.userId;
     }
 
-    public void setUserId(final String userId) {
+    public final void setUserId(final String userId) {
         this.userId = userId;
     }
 
@@ -86,12 +86,12 @@ public class ResWarn implements ResChatObject {
         return this.userName;
     }
 
-    public void setUserName(final String userName) {
+    public final void setUserName(final String userName) {
         this.userName = userName;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResWarn{" +
                 "channelId='" + this.channelId + '\'' +
                 ", userId='" + this.userId + '\'' +

@@ -9,58 +9,63 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResMotd implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     @JsonProperty("moder_id")
     private Long moderId;
+
     @JsonProperty("moder_name")
     private String moderName;
+
     @JsonProperty("moder_group")
     private Long moderGroup;
+
     private String text;
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public Long getModerGroup() {
+    public final Long getModerGroup() {
         return moderGroup;
     }
 
-    public void setModerGroup(Long moderGroup) {
+    public final void setModerGroup(final Long moderGroup) {
         this.moderGroup = moderGroup;
     }
 
-    public Long getModerId() {
+    public final Long getModerId() {
         return moderId;
     }
 
-    public void setModerId(Long moderId) {
+    public final void setModerId(final Long moderId) {
         this.moderId = moderId;
     }
 
-    public String getModerName() {
+    public final String getModerName() {
         return moderName;
     }
 
-    public void setModerName(String moderName) {
+    public final void setModerName(final String moderName) {
         this.moderName = moderName;
     }
 
-    public String getText() {
+    public final String getText() {
         return text;
     }
 
-    public void setText(String text) {
+    public final void setText(final String text) {
         this.text = text;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResMotd{" +
                 "channelId='" + channelId + '\'' +
                 ", moderId=" + moderId +

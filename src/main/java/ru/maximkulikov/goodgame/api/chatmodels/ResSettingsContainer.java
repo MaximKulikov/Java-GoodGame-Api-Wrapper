@@ -13,24 +13,24 @@ public class ResSettingsContainer {
 
     private ResSettings data;
 
+    public final ResSettings getData() {
+        return this.data;
+    }
+
+    public final void setData(final ResSettings data) {
+        this.data = data;
+    }
+
     public final String getType() {
         return this.type;
     }
 
-    public void setType( final String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
-    public final  ResSettings getData() {
-        return this.data;
-    }
-
-    public void setData( final ResSettings data) {
-        this.data = data;
-    }
-
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResSettingsContainer{" +
                 "type='" + this.type + '\'' +
                 ", data=" + this.data +

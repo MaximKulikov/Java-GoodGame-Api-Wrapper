@@ -8,30 +8,32 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResWelcomeContainer {
+
     private String type;
-private ResWelcome data;
+
+    private ResWelcome data;
+
+    public final ResWelcome getData() {
+        return data;
+    }
+
+    public final void setData(final ResWelcome data) {
+        this.data = data;
+    }
+
+    public final String getType() {
+        return type;
+    }
+
+    public final void setType(final String type) {
+        this.type = type;
+    }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResWelcomeContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +
                 '}';
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public ResWelcome getData() {
-        return data;
-    }
-
-    public void setData(ResWelcome data) {
-        this.data = data;
     }
 }

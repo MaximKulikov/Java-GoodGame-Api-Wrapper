@@ -13,24 +13,24 @@ public class ResRemoveMessageContainer {
 
     private ResRemoveMessage data;
 
-    public ResRemoveMessage getData() {
+    public final ResRemoveMessage getData() {
         return data;
     }
 
-    public void setData(ResRemoveMessage data) {
+    public final void setData(final ResRemoveMessage data) {
         this.data = data;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResRemoveMessageContainer{" +
                 "type='" + type + '\'' +
                 ", data=" + data +

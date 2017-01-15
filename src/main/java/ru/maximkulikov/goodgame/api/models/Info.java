@@ -8,36 +8,39 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Info {
+
     private InfoToken token;
+
     private InfoUser user;
+
     private InfoChannel channel;
 
-    public InfoChannel getChannel() {
+    public final InfoChannel getChannel() {
         return channel;
     }
 
-    public void setChannel(InfoChannel channel) {
+    public final void setChannel(final InfoChannel channel) {
         this.channel = channel;
     }
 
-    public InfoToken getToken() {
+    public final InfoToken getToken() {
         return token;
     }
 
-    public void setToken(InfoToken token) {
+    public final void setToken(final InfoToken token) {
         this.token = token;
     }
 
-    public InfoUser getUser() {
+    public final InfoUser getUser() {
         return user;
     }
 
-    public void setUser(InfoUser user) {
+    public final void setUser(final InfoUser user) {
         this.user = user;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Info{" +
                 "channel=" + channel +
                 ", user=" + user +

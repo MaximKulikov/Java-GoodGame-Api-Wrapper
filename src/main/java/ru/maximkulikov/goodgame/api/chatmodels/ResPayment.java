@@ -8,65 +8,71 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 11.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResPayment  implements ResChatObject{
+public class ResPayment implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     private String userName;
+
     private Long amount;
+
     private String message;
+
     private Long total;
+
     private String title;
 
-    public Long getAmount() {
+    public final Long getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public final void setAmount(final Long amount) {
         this.amount = amount;
     }
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public String getMessage() {
+    public final String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public final void setMessage(final String message) {
         this.message = message;
     }
 
-    public String getTitle() {
+    public final String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public final void setTitle(final String title) {
         this.title = title;
     }
 
-    public Long getTotal() {
+    public final Long getTotal() {
         return total;
     }
 
-    public void setTotal(Long total) {
+    public final void setTotal(final Long total) {
         this.total = total;
     }
 
-    public String getUserName() {
+    public final String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    public final void setUserName(final String userName) {
         this.userName = userName;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResPayment{" +
                 "channelId='" + channelId + '\'' +
                 ", userName='" + userName + '\'' +

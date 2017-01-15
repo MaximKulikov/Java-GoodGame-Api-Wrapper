@@ -9,14 +9,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PremiumsContainer {
+
     @JsonProperty("_embedded")
     private EmbededPremiums embeded;
+
     @JsonProperty("page_count")
     private Long pageCount;
+
     @JsonProperty("page_size")
     private Long pageSize;
+
     @JsonProperty("total_items")
     private Long totalItems;
+
     private Long page;
 
     public PremiumsContainer() {

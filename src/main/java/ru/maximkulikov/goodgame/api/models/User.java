@@ -9,84 +9,92 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
+
     @JsonProperty("user_id")
     private String userId;
+
     private String secure;
+
     private String email;
+
     private String payments;
+
     private String subscribed;
+
     @JsonProperty("subscribed_stream")
     private String subscribedStream;
+
     @JsonProperty("subscribed_anons")
     private String subscribedAnons;
+
     private String wallet;
 
-    public String getEmail() {
+    public final String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public final void setEmail(final String email) {
         this.email = email;
     }
 
-    public String getPayments() {
+    public final String getPayments() {
         return payments;
     }
 
-    public void setPayments(String payments) {
+    public final void setPayments(final String payments) {
         this.payments = payments;
     }
 
-    public String getSecure() {
+    public final String getSecure() {
         return secure;
     }
 
-    public void setSecure(String secure) {
+    public final void setSecure(final String secure) {
         this.secure = secure;
     }
 
-    public String getSubscribed() {
+    public final String getSubscribed() {
         return subscribed;
     }
 
-    public void setSubscribed(String subscribed) {
+    public final void setSubscribed(final String subscribed) {
         this.subscribed = subscribed;
     }
 
-    public String getSubscribedAnons() {
+    public final String getSubscribedAnons() {
         return subscribedAnons;
     }
 
-    public void setSubscribedAnons(String subscribedAnons) {
+    public final void setSubscribedAnons(final String subscribedAnons) {
         this.subscribedAnons = subscribedAnons;
     }
 
-    public String getSubscribedStream() {
+    public final String getSubscribedStream() {
         return subscribedStream;
     }
 
-    public void setSubscribedStream(String subscribedStream) {
+    public final void setSubscribedStream(final String subscribedStream) {
         this.subscribedStream = subscribedStream;
     }
 
-    public String getUserId() {
+    public final String getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public final void setUserId(final String userId) {
         this.userId = userId;
     }
 
-    public String getWallet() {
+    public final String getWallet() {
         return wallet;
     }
 
-    public void setWallet(String wallet) {
+    public final void setWallet(final String wallet) {
         this.wallet = wallet;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "User{" +
                 "userId='" + userId + '\'' +
                 ", secure='" + secure + '\'' +

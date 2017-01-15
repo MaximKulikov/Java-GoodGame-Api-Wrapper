@@ -36,7 +36,7 @@ public class ResSettings implements ResChatObject {
         return channelId;
     }
 
-    public void setChannelId(final String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
@@ -44,7 +44,7 @@ public class ResSettings implements ResChatObject {
         return this.moderGroups;
     }
 
-    public void setModerGroups(final List<String> moderGroups) {
+    public final void setModerGroups(final List<String> moderGroups) {
         this.moderGroups = moderGroups;
     }
 
@@ -52,7 +52,7 @@ public class ResSettings implements ResChatObject {
         return this.moderId;
     }
 
-    public void setModerId(final String moderId) {
+    public final void setModerId(final String moderId) {
         this.moderId = moderId;
     }
 
@@ -60,7 +60,7 @@ public class ResSettings implements ResChatObject {
         return this.moderName;
     }
 
-    public void setModerName(final String moderName) {
+    public final void setModerName(final String moderName) {
         this.moderName = moderName;
     }
 
@@ -68,7 +68,7 @@ public class ResSettings implements ResChatObject {
         return this.moderRights;
     }
 
-    public void setModerRights(final Long moderRights) {
+    public final void setModerRights(final Long moderRights) {
         this.moderRights = moderRights;
     }
 
@@ -76,7 +76,7 @@ public class ResSettings implements ResChatObject {
         return this.name;
     }
 
-    public void setName(final String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
@@ -84,7 +84,7 @@ public class ResSettings implements ResChatObject {
         return this.silent;
     }
 
-    public void setSilent(final Long silent) {
+    public final void setSilent(final Long silent) {
         this.silent = silent;
     }
 
@@ -97,7 +97,7 @@ public class ResSettings implements ResChatObject {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResSettings{" +
                 "channelId='" + this.channelId + '\'' +
                 ", name='" + this.name + '\'' +

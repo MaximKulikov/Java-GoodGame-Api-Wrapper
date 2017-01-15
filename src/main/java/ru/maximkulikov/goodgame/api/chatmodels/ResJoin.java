@@ -9,193 +9,212 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by maxim on 09.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResJoin  implements ResChatObject{
+public class ResJoin implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
+
     @JsonProperty("channel_name")
     private String channelName;
+
     @JsonProperty("channel_streamer")
     private ResChannelStreamer channelStreamer;
+
     private String motd;
-    private int slowmod; // задержка в секундах между отправкой сообщений
+
+    private int slowmod;
+
     private int smiles;
+
     private int smilePeka;
+
     @JsonProperty("clients_in_channel")
-    private Long clientsInChannel; // всего клиентов в канале, включая гостей
+    private Long clientsInChannel;
+
     @JsonProperty("users_in_channel")
-    private Long usersInChannel; // всего авторизованных пользователей в канале
+    private Long usersInChannel;
+
     @JsonProperty("user_id")
-    private String userId; // для гостей "0"
-    private String name; // для гостей ""
+    private String userId;
+
+    private String name;
+
     @JsonProperty("access_rights")
-    private String accessRights; // по этому полю клиент понимает права пользователя, в этом канале.
+    private String accessRights;
+
     @JsonProperty("room_privacy")
-    private int roomPrivacy; // Уровень приватности комнаты
+    private int roomPrivacy;
+
     @JsonProperty("room_role")
-    private int roomRole; // Уровоень доступа пользователя
+    private int roomRole;
+
     @JsonProperty("user_groups")
-    private List<String> userGroups; //группы в которых состоит пользователь для данного канала
+    private List<String> userGroups;
+
     @JsonProperty("is_banned")
-    private Boolean isBanned; // забанен или нет в этом канале
+    private Boolean isBanned;
+
     @JsonProperty("banned_time")
-    private Long bannedTime; // до какого времени забанен.
-    private String reason; // текстовая строка с причиной бана.
+    private Long bannedTime;
+
+    private String reason;
+
     private List<String> paidsmiles;
 
-    public String getAccessRights() {
+    public final String getAccessRights() {
         return accessRights;
     }
 
-    public void setAccessRights(String accessRights) {
+    public final void setAccessRights(final String accessRights) {
         this.accessRights = accessRights;
     }
 
-    public Boolean getBanned() {
+    public final Boolean getBanned() {
         return isBanned;
     }
 
-    public void setBanned(Boolean banned) {
+    public final void setBanned(final Boolean banned) {
         isBanned = banned;
     }
 
-    public Long getBannedTime() {
+    public final Long getBannedTime() {
         return bannedTime;
     }
 
-    public void setBannedTime(Long bannedTime) {
+    public final void setBannedTime(final Long bannedTime) {
         this.bannedTime = bannedTime;
     }
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public String getChannelName() {
+    public final String getChannelName() {
         return channelName;
     }
 
-    public void setChannelName(String channelName) {
+    public final void setChannelName(final String channelName) {
         this.channelName = channelName;
     }
 
-    public ResChannelStreamer getChannelStreamer() {
+    public final ResChannelStreamer getChannelStreamer() {
         return channelStreamer;
     }
 
-    public void setChannelStreamer(ResChannelStreamer channelStreamer) {
+    public final void setChannelStreamer(final ResChannelStreamer channelStreamer) {
         this.channelStreamer = channelStreamer;
     }
 
-    public Long getClientsInChannel() {
+    public final Long getClientsInChannel() {
         return clientsInChannel;
     }
 
-    public void setClientsInChannel(Long clientsInChannel) {
+    public final void setClientsInChannel(final Long clientsInChannel) {
         this.clientsInChannel = clientsInChannel;
     }
 
-    public String getMotd() {
+    public final String getMotd() {
         return motd;
     }
 
-    public void setMotd(String motd) {
+    public final void setMotd(final String motd) {
         this.motd = motd;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
-    public List<String> getPaidsmiles() {
+    public final List<String> getPaidsmiles() {
         return paidsmiles;
     }
 
-    public void setPaidsmiles(List<String> paidsmiles) {
+    public final void setPaidsmiles(final List<String> paidsmiles) {
         this.paidsmiles = paidsmiles;
     }
 
-    public String getReason() {
+    public final String getReason() {
         return reason;
     }
 
-    public void setReason(String reason) {
+    public final void setReason(final String reason) {
         this.reason = reason;
     }
 
-    public int getRoomPrivacy() {
+    public final int getRoomPrivacy() {
         return roomPrivacy;
     }
 
-    public void setRoomPrivacy(int roomPrivacy) {
+    public final void setRoomPrivacy(final int roomPrivacy) {
         this.roomPrivacy = roomPrivacy;
     }
 
-    public int getRoomRole() {
+    public final int getRoomRole() {
         return roomRole;
     }
 
-    public void setRoomRole(int roomRole) {
+    public final void setRoomRole(final int roomRole) {
         this.roomRole = roomRole;
     }
 
-    public int getSlowmod() {
+    public final int getSlowmod() {
         return slowmod;
     }
 
-    public void setSlowmod(int slowmod) {
+    public final void setSlowmod(final int slowmod) {
         this.slowmod = slowmod;
     }
 
-    public int getSmilePeka() {
+    public final int getSmilePeka() {
         return smilePeka;
     }
 
-    public void setSmilePeka(int smilePeka) {
+    public final void setSmilePeka(final int smilePeka) {
         this.smilePeka = smilePeka;
     }
 
-    public int getSmiles() {
+    public final int getSmiles() {
         return smiles;
     }
 
-    public void setSmiles(int smiles) {
+    public final void setSmiles(final int smiles) {
         this.smiles = smiles;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public List<String> getUserGroups() {
+    public final List<String> getUserGroups() {
         return userGroups;
     }
 
-    public void setUserGroups(List<String> userGroups) {
+    public final void setUserGroups(final List<String> userGroups) {
         this.userGroups = userGroups;
     }
 
-    public Long getUsersInChannel() {
+    public final String getUserId() {
+        return userId;
+    }
+
+    public final void setUserId(final String userId) {
+        this.userId = userId;
+    }
+
+    public final Long getUsersInChannel() {
         return usersInChannel;
     }
 
-    public void setUsersInChannel(Long usersInChannel) {
+    public final void setUsersInChannel(final Long usersInChannel) {
         this.usersInChannel = usersInChannel;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResJoin{" +
                 "channelId='" + channelId + '\'' +
                 ", channelName='" + channelName + '\'' +

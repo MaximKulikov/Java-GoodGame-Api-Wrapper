@@ -9,147 +9,162 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChannelProfile {
+
     @JsonProperty("stream_id")
     private String streamId;
+
     private String key;
+
     private String premium;
+
     private String title;
+
     private String status;
+
     private String viewers;
+
     @JsonProperty("max_viewers")
     private Boolean maxViewers;
+
     @JsonProperty("usersinchat")
     private String usersInChat;
+
     private String embed;
+
     private String img;
+
     private String thumb;
+
     private String description;
+
     private String adult;
+
     private String games;
+
     private String url;
 
-    public String getAdult() {
+    public final String getAdult() {
         return adult;
     }
 
-    public void setAdult(String adult) {
+    public final void setAdult(final String adult) {
         this.adult = adult;
     }
 
-    public String getDescription() {
+    public final String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public final void setDescription(final String description) {
         this.description = description;
     }
 
-    public String getEmbed() {
+    public final String getEmbed() {
         return embed;
     }
 
-    public void setEmbed(String embed) {
+    public final void setEmbed(final String embed) {
         this.embed = embed;
     }
 
-    public String getGames() {
+    public final String getGames() {
         return games;
     }
 
-    public void setGames(String games) {
+    public final void setGames(final String games) {
         this.games = games;
     }
 
-    public String getImg() {
+    public final String getImg() {
         return img;
     }
 
-    public void setImg(String img) {
+    public final void setImg(final String img) {
         this.img = img;
     }
 
-    public String getKey() {
+    public final String getKey() {
         return key;
     }
 
-    public void setKey(String key) {
+    public final void setKey(final String key) {
         this.key = key;
     }
 
-    public Boolean getMaxViewers() {
+    public final Boolean getMaxViewers() {
         return maxViewers;
     }
 
-    public void setMaxViewers(Boolean maxViewers) {
+    public final void setMaxViewers(final Boolean maxViewers) {
         this.maxViewers = maxViewers;
     }
 
-    public String getPremium() {
+    public final String getPremium() {
         return premium;
     }
 
-    public void setPremium(String premium) {
+    public final void setPremium(final String premium) {
         this.premium = premium;
     }
 
-    public String getStatus() {
+    public final String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public final void setStatus(final String status) {
         this.status = status;
     }
 
-    public String getStreamId() {
+    public final String getStreamId() {
         return streamId;
     }
 
-    public void setStreamId(String streamId) {
+    public final void setStreamId(final String streamId) {
         this.streamId = streamId;
     }
 
-    public String getThumb() {
+    public final String getThumb() {
         return thumb;
     }
 
-    public void setThumb(String thumb) {
+    public final void setThumb(final String thumb) {
         this.thumb = thumb;
     }
 
-    public String getTitle() {
+    public final String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public final void setTitle(final String title) {
         this.title = title;
     }
 
-    public String getUrl() {
+    public final String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public final void setUrl(final String url) {
         this.url = url;
     }
 
-    public String getUsersInChat() {
+    public final String getUsersInChat() {
         return usersInChat;
     }
 
-    public void setUsersInChat(String usersInChat) {
+    public final void setUsersInChat(final String usersInChat) {
         this.usersInChat = usersInChat;
     }
 
-    public String getViewers() {
+    public final String getViewers() {
         return viewers;
     }
 
-    public void setViewers(String viewers) {
+    public final void setViewers(final String viewers) {
         this.viewers = viewers;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ChannelProfile{" +
                 "streamId='" + streamId + '\'' +
                 ", key='" + key + '\'' +

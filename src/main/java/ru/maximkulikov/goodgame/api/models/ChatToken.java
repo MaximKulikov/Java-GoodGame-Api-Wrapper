@@ -9,29 +9,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatToken {
+
     @JsonProperty("user_id")
     private String userId;
+
     @JsonProperty("chat_token")
     private String chatToken;
 
-    public String getChatToken() {
+    public final String getChatToken() {
         return chatToken;
     }
 
-    public void setChatToken(String chatToken) {
+    public final void setChatToken(final String chatToken) {
         this.chatToken = chatToken;
     }
 
-    public String getUserId() {
+    public final String getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public final void setUserId(final String userId) {
         this.userId = userId;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ChatToken{" +
                 "userId='" + userId + '\'' +
                 ", chatToken='" + chatToken + '\'' +

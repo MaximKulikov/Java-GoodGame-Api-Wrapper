@@ -6,8 +6,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class StreamPreview {
 
     private String small;
+
     private String medium;
+
     private String large;
+
     private String template;
 
     public StreamPreview(final String small, final String medium, final String large, final String template) {
@@ -17,36 +20,36 @@ public class StreamPreview {
         this.template = template;
     }
 
-    public String getLarge() {
+    public final String getLarge() {
         return this.large;
     }
 
-    public void setLarge(final String large) {
+    public final void setLarge(final String large) {
         this.large = large;
     }
 
-    public String getMedium() {
+    public final String getMedium() {
         return this.medium;
     }
 
-    public void setMedium(final String medium) {
+    public final void setMedium(final String medium) {
         this.medium = medium;
     }
 
-    public String getSmall() {
+    public final String getSmall() {
 
         return this.small;
     }
 
-    public void setSmall(final String small) {
+    public final void setSmall(final String small) {
         this.small = small;
     }
 
-    public String getTemplate() {
+    public final String getTemplate() {
         return this.template;
     }
 
-    public void setTemplate(final String template) {
+    public final void setTemplate(final String template) {
         this.template = template;
     }
 

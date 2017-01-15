@@ -9,20 +9,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmbededPremiums {
+
     private List<Premium> premiums;
 
-    @Override
-    public String toString() {
-        return "EmbededPremiums{" +
-                "premiums=" + premiums +
-                '}';
-    }
-
-    public List<Premium> getPremiums() {
+    public final List<Premium> getPremiums() {
         return premiums;
     }
 
-    public void setPremiums(List<Premium> premiums) {
+    public final void setPremiums(final List<Premium> premiums) {
         this.premiums = premiums;
+    }
+
+    @Override
+    public final String toString() {
+        return "EmbededPremiums{" +
+                "premiums=" + premiums +
+                '}';
     }
 }
