@@ -14,7 +14,7 @@ public class ResSlowmodContainer {
     private ResSlowmod data;
 
     public final ResSlowmod getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResSlowmod data) {
@@ -22,7 +22,7 @@ public class ResSlowmodContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResSlowmodContainer {
     @Override
     public final String toString() {
         return "ResSlowmodContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

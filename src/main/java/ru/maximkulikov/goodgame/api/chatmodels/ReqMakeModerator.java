@@ -22,7 +22,7 @@ public class ReqMakeModerator {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -30,7 +30,7 @@ public class ReqMakeModerator {
     }
 
     public final String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public final void setUserId(final String userId) {
@@ -40,8 +40,8 @@ public class ReqMakeModerator {
     @Override
     public final String toString() {
         return "ReqMakeModerator{" +
-                "channelId='" + channelId + '\'' +
-                ", userId='" + userId + '\'' +
+                "channelId='" + this.channelId + '\'' +
+                ", userId='" + this.userId + '\'' +
                 '}';
     }
 }

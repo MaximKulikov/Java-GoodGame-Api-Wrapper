@@ -44,7 +44,7 @@ public class ChannelProfile {
     private String url;
 
     public final String getAdult() {
-        return adult;
+        return this.adult;
     }
 
     public final void setAdult(final String adult) {
@@ -52,7 +52,7 @@ public class ChannelProfile {
     }
 
     public final String getDescription() {
-        return description;
+        return this.description;
     }
 
     public final void setDescription(final String description) {
@@ -60,7 +60,7 @@ public class ChannelProfile {
     }
 
     public final String getEmbed() {
-        return embed;
+        return this.embed;
     }
 
     public final void setEmbed(final String embed) {
@@ -68,7 +68,7 @@ public class ChannelProfile {
     }
 
     public final String getGames() {
-        return games;
+        return this.games;
     }
 
     public final void setGames(final String games) {
@@ -76,7 +76,7 @@ public class ChannelProfile {
     }
 
     public final String getImg() {
-        return img;
+        return this.img;
     }
 
     public final void setImg(final String img) {
@@ -84,7 +84,7 @@ public class ChannelProfile {
     }
 
     public final String getKey() {
-        return key;
+        return this.key;
     }
 
     public final void setKey(final String key) {
@@ -92,7 +92,7 @@ public class ChannelProfile {
     }
 
     public final Boolean getMaxViewers() {
-        return maxViewers;
+        return this.maxViewers;
     }
 
     public final void setMaxViewers(final Boolean maxViewers) {
@@ -100,7 +100,7 @@ public class ChannelProfile {
     }
 
     public final String getPremium() {
-        return premium;
+        return this.premium;
     }
 
     public final void setPremium(final String premium) {
@@ -108,7 +108,7 @@ public class ChannelProfile {
     }
 
     public final String getStatus() {
-        return status;
+        return this.status;
     }
 
     public final void setStatus(final String status) {
@@ -116,7 +116,7 @@ public class ChannelProfile {
     }
 
     public final String getStreamId() {
-        return streamId;
+        return this.streamId;
     }
 
     public final void setStreamId(final String streamId) {
@@ -124,7 +124,7 @@ public class ChannelProfile {
     }
 
     public final String getThumb() {
-        return thumb;
+        return this.thumb;
     }
 
     public final void setThumb(final String thumb) {
@@ -132,7 +132,7 @@ public class ChannelProfile {
     }
 
     public final String getTitle() {
-        return title;
+        return this.title;
     }
 
     public final void setTitle(final String title) {
@@ -140,7 +140,7 @@ public class ChannelProfile {
     }
 
     public final String getUrl() {
-        return url;
+        return this.url;
     }
 
     public final void setUrl(final String url) {
@@ -148,7 +148,7 @@ public class ChannelProfile {
     }
 
     public final String getUsersInChat() {
-        return usersInChat;
+        return this.usersInChat;
     }
 
     public final void setUsersInChat(final String usersInChat) {
@@ -156,7 +156,7 @@ public class ChannelProfile {
     }
 
     public final String getViewers() {
-        return viewers;
+        return this.viewers;
     }
 
     public final void setViewers(final String viewers) {
@@ -166,21 +166,21 @@ public class ChannelProfile {
     @Override
     public final String toString() {
         return "ChannelProfile{" +
-                "streamId='" + streamId + '\'' +
-                ", key='" + key + '\'' +
-                ", premium='" + premium + '\'' +
-                ", title='" + title + '\'' +
-                ", status='" + status + '\'' +
-                ", viewers='" + viewers + '\'' +
-                ", maxViewers=" + maxViewers +
-                ", usersInChat='" + usersInChat + '\'' +
-                ", embed='" + embed + '\'' +
-                ", img='" + img + '\'' +
-                ", thumb='" + thumb + '\'' +
-                ", description='" + description + '\'' +
-                ", adult='" + adult + '\'' +
-                ", games='" + games + '\'' +
-                ", url='" + url + '\'' +
+                "streamId='" + this.streamId + '\'' +
+                ", key='" + this.key + '\'' +
+                ", premium='" + this.premium + '\'' +
+                ", title='" + this.title + '\'' +
+                ", status='" + this.status + '\'' +
+                ", viewers='" + this.viewers + '\'' +
+                ", maxViewers=" + this.maxViewers +
+                ", usersInChat='" + this.usersInChat + '\'' +
+                ", embed='" + this.embed + '\'' +
+                ", img='" + this.img + '\'' +
+                ", thumb='" + this.thumb + '\'' +
+                ", description='" + this.description + '\'' +
+                ", adult='" + this.adult + '\'' +
+                ", games='" + this.games + '\'' +
+                ", url='" + this.url + '\'' +
                 '}';
     }
 }

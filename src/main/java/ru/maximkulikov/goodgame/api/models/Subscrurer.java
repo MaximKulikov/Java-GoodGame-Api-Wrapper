@@ -18,7 +18,7 @@ public class Subscrurer {
     private String createdAt;
 
     public final String getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     public final void setCreatedAt(final String createdAt) {
@@ -26,7 +26,7 @@ public class Subscrurer {
     }
 
     public final String getId() {
-        return id;
+        return this.id;
     }
 
     public final void setId(final String id) {
@@ -34,7 +34,7 @@ public class Subscrurer {
     }
 
     public final String getUsername() {
-        return username;
+        return this.username;
     }
 
     public final void setUsername(final String username) {
@@ -44,9 +44,9 @@ public class Subscrurer {
     @Override
     public final String toString() {
         return "Subscrurer{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
-                ", createdAt='" + createdAt + '\'' +
+                "id='" + this.id + '\'' +
+                ", username='" + this.username + '\'' +
+                ", createdAt='" + this.createdAt + '\'' +
                 '}';
     }
 }

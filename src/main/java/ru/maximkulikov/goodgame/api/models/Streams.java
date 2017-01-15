@@ -13,7 +13,7 @@ public class Streams {
     private int total;
 
     public final List<Stream> getStreams() {
-        return streams;
+        return this.streams;
     }
 
     public final void setStreams(final List<Stream> streams) {
@@ -21,7 +21,7 @@ public class Streams {
     }
 
     public final int getTotal() {
-        return total;
+        return this.total;
     }
 
     public final void setTotal(final int total) {
@@ -31,8 +31,8 @@ public class Streams {
     @Override
     public final String toString() {
         return "Streams{" +
-                "total=" + total +
-                ", streams=" + streams +
+                "total=" + this.total +
+                ", streams=" + this.streams +
                 '}';
     }
 }

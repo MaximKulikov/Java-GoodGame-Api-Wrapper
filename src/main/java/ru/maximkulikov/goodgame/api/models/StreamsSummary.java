@@ -10,7 +10,7 @@ public class StreamsSummary {
     private int viewers;
 
     public final int getChannels() {
-        return channels;
+        return this.channels;
     }
 
     public final void setChannels(final int channels) {
@@ -18,7 +18,7 @@ public class StreamsSummary {
     }
 
     public final int getViewers() {
-        return viewers;
+        return this.viewers;
     }
 
     public final void setViewers(final int viewers) {
@@ -46,8 +46,8 @@ public class StreamsSummary {
     @Override
     public final String toString() {
         return "StreamsSummary{" +
-                "channels=" + channels +
-                ", viewers=" + viewers +
+                "channels=" + this.channels +
+                ", viewers=" + this.viewers +
                 '}';
     }
 }

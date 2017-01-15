@@ -17,7 +17,7 @@ public class ResChannelHistory implements ResChatObject {
     private List<ChatMessage> messages;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -25,7 +25,7 @@ public class ResChannelHistory implements ResChatObject {
     }
 
     public final List<ChatMessage> getMessages() {
-        return messages;
+        return this.messages;
     }
 
     public final void setMessages(final List<ChatMessage> messages) {
@@ -35,8 +35,8 @@ public class ResChannelHistory implements ResChatObject {
     @Override
     public final String toString() {
         return "ResChannelHistory{" +
-                "channelId='" + channelId + '\'' +
-                ", messages=" + messages +
+                "channelId='" + this.channelId + '\'' +
+                ", messages=" + this.messages +
                 '}';
     }
 }

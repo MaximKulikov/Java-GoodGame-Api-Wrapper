@@ -53,7 +53,7 @@ public class Player {
     private List<User> users;
 
     public final String getAdult() {
-        return adult;
+        return this.adult;
     }
 
     public final void setAdult(final String adult) {
@@ -61,7 +61,7 @@ public class Player {
     }
 
     public final String getBroadcastTitle() {
-        return broadcastTitle;
+        return this.broadcastTitle;
     }
 
     public final void setBroadcastTitle(final String broadcastTitle) {
@@ -69,7 +69,7 @@ public class Player {
     }
 
     public final List<Broadcast> getBroadcasts() {
-        return broadcasts;
+        return this.broadcasts;
     }
 
     public final void setBroadcasts(final List<Broadcast> broadcasts) {
@@ -77,7 +77,7 @@ public class Player {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -85,7 +85,7 @@ public class Player {
     }
 
     public final String getChannelKey() {
-        return channelKey;
+        return this.channelKey;
     }
 
     public final void setChannelKey(final String channelKey) {
@@ -93,7 +93,7 @@ public class Player {
     }
 
     public final String getChannelPoster() {
-        return channelPoster;
+        return this.channelPoster;
     }
 
     public final void setChannelPoster(final String channelPoster) {
@@ -101,7 +101,7 @@ public class Player {
     }
 
     public final String getChannelPremium() {
-        return channelPremium;
+        return this.channelPremium;
     }
 
     public final void setChannelPremium(final String channelPremium) {
@@ -109,7 +109,7 @@ public class Player {
     }
 
     public String getChannelStart() {
-        return channelStart;
+        return this.channelStart;
     }
 
     public final void setChannelStart(final String channelStart) {
@@ -117,7 +117,7 @@ public class Player {
     }
 
     public final String getChannelStatus() {
-        return channelStatus;
+        return this.channelStatus;
     }
 
     public final void setChannelStatus(final String channelStatus) {
@@ -125,7 +125,7 @@ public class Player {
     }
 
     public final String getChannelTitle() {
-        return channelTitle;
+        return this.channelTitle;
     }
 
     public final void setChannelTitle(final String channelTitle) {
@@ -133,7 +133,7 @@ public class Player {
     }
 
     public final String getGaCode() {
-        return gaCode;
+        return this.gaCode;
     }
 
     public final void setGaCode(final String gaCode) {
@@ -141,7 +141,7 @@ public class Player {
     }
 
     public final String getPremiumOnly() {
-        return premiumOnly;
+        return this.premiumOnly;
     }
 
     public final void setPremiumOnly(final String premiumOnly) {
@@ -149,7 +149,7 @@ public class Player {
     }
 
     public final PremiumPrices getPremiumPrices() {
-        return premiumPrices;
+        return this.premiumPrices;
     }
 
     public final void setPremiumPrices(final PremiumPrices premiumPrices) {
@@ -157,7 +157,7 @@ public class Player {
     }
 
     public final String getStreamerAvatar() {
-        return streamerAvatar;
+        return this.streamerAvatar;
     }
 
     public final void setStreamerAvatar(final String streamerAvatar) {
@@ -165,7 +165,7 @@ public class Player {
     }
 
     public final List<User> getUsers() {
-        return users;
+        return this.users;
     }
 
     public final void setUsers(final List<User> users) {
@@ -175,21 +175,21 @@ public class Player {
     @Override
     public final String toString() {
         return "Player{" +
-                "channelId='" + channelId + '\'' +
-                ", channelKey='" + channelKey + '\'' +
-                ", channelTitle='" + channelTitle + '\'' +
-                ", broadcastTitle='" + broadcastTitle + '\'' +
-                ", channelStatus='" + channelStatus + '\'' +
-                ", channelPoster='" + channelPoster + '\'' +
-                ", channelPremium='" + channelPremium + '\'' +
-                ", streamerAvatar='" + streamerAvatar + '\'' +
-                ", premiumOnly='" + premiumOnly + '\'' +
-                ", adult='" + adult + '\'' +
-                ", channelStart='" + channelStart + '\'' +
-                ", gaCode='" + gaCode + '\'' +
-                ", broadcasts=" + broadcasts +
-                ", premiumPrices=" + premiumPrices +
-                ", users=" + users +
+                "channelId='" + this.channelId + '\'' +
+                ", channelKey='" + this.channelKey + '\'' +
+                ", channelTitle='" + this.channelTitle + '\'' +
+                ", broadcastTitle='" + this.broadcastTitle + '\'' +
+                ", channelStatus='" + this.channelStatus + '\'' +
+                ", channelPoster='" + this.channelPoster + '\'' +
+                ", channelPremium='" + this.channelPremium + '\'' +
+                ", streamerAvatar='" + this.streamerAvatar + '\'' +
+                ", premiumOnly='" + this.premiumOnly + '\'' +
+                ", adult='" + this.adult + '\'' +
+                ", channelStart='" + this.channelStart + '\'' +
+                ", gaCode='" + this.gaCode + '\'' +
+                ", broadcasts=" + this.broadcasts +
+                ", premiumPrices=" + this.premiumPrices +
+                ", users=" + this.users +
                 '}';
     }
 }

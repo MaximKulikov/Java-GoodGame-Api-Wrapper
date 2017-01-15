@@ -17,7 +17,7 @@ public class ResModeratorsList implements ResChatObject {
     private List<ChatUser> users;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -25,7 +25,7 @@ public class ResModeratorsList implements ResChatObject {
     }
 
     public final List<ChatUser> getUsers() {
-        return users;
+        return this.users;
     }
 
     public final void setUsers(final List<ChatUser> users) {
@@ -35,8 +35,8 @@ public class ResModeratorsList implements ResChatObject {
     @Override
     public final String toString() {
         return "ResModeratorsList{" +
-                "channelId='" + channelId + '\'' +
-                ", users=" + users +
+                "channelId='" + this.channelId + '\'' +
+                ", users=" + this.users +
                 '}';
     }
 }

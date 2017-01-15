@@ -17,7 +17,7 @@ public class ChatToken {
     private String chatToken;
 
     public final String getChatToken() {
-        return chatToken;
+        return this.chatToken;
     }
 
     public final void setChatToken(final String chatToken) {
@@ -25,7 +25,7 @@ public class ChatToken {
     }
 
     public final String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public final void setUserId(final String userId) {
@@ -35,8 +35,8 @@ public class ChatToken {
     @Override
     public final String toString() {
         return "ChatToken{" +
-                "userId='" + userId + '\'' +
-                ", chatToken='" + chatToken + '\'' +
+                "userId='" + this.userId + '\'' +
+                ", chatToken='" + this.chatToken + '\'' +
                 '}';
     }
 }

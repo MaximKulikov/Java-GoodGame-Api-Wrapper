@@ -22,7 +22,7 @@ public class ReqAutorizationContainer implements ReqChatObject {
     }
 
     public final ReqAutorization getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ReqAutorization data) {
@@ -30,7 +30,7 @@ public class ReqAutorizationContainer implements ReqChatObject {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -40,8 +40,8 @@ public class ReqAutorizationContainer implements ReqChatObject {
     @Override
     public final String toString() {
         return "ReqAutorizationContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

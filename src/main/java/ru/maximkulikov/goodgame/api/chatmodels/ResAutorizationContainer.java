@@ -14,7 +14,7 @@ public class ResAutorizationContainer {
     private ResAutorization data;
 
     public final ResAutorization getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResAutorization data) {
@@ -22,7 +22,7 @@ public class ResAutorizationContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResAutorizationContainer {
     @Override
     public final String toString() {
         return "ResAutorizationContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

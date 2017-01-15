@@ -25,7 +25,7 @@ public class SmilesContainer {
     private Long page;
 
     public final Long getPage() {
-        return page;
+        return this.page;
     }
 
     public final void setPage(final Long page) {
@@ -33,7 +33,7 @@ public class SmilesContainer {
     }
 
     public final Long getPageCount() {
-        return pageCount;
+        return this.pageCount;
     }
 
     public final void setPageCount(final Long pageCount) {
@@ -41,7 +41,7 @@ public class SmilesContainer {
     }
 
     public final Long getPageSize() {
-        return pageSize;
+        return this.pageSize;
     }
 
     public final void setPageSize(final Long pageSize) {
@@ -49,7 +49,7 @@ public class SmilesContainer {
     }
 
     public final EmbededSmiles getSmiles() {
-        return smiles;
+        return this.smiles;
     }
 
     public final void setSmiles(final EmbededSmiles smiles) {
@@ -57,7 +57,7 @@ public class SmilesContainer {
     }
 
     public final Long getTotalItems() {
-        return totalItems;
+        return this.totalItems;
     }
 
     public final void setTotalItems(final Long totalItems) {
@@ -67,11 +67,11 @@ public class SmilesContainer {
     @Override
     public final String toString() {
         return "SmilesContainer{" +
-                "smiles=" + smiles +
-                ", pageCount=" + pageCount +
-                ", pageSize=" + pageSize +
-                ", totalItems=" + totalItems +
-                ", page=" + page +
+                "smiles=" + this.smiles +
+                ", pageCount=" + this.pageCount +
+                ", pageSize=" + this.pageSize +
+                ", totalItems=" + this.totalItems +
+                ", page=" + this.page +
                 '}';
     }
 }

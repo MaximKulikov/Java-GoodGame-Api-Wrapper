@@ -15,7 +15,7 @@ public class GitHubSubscribers {
     private List<GitHubSubscriber> response;
 
     public final List<GitHubSubscriber> getResponse() {
-        return response;
+        return this.response;
     }
 
     public final void setResponse(final List<GitHubSubscriber> response) {
@@ -23,7 +23,7 @@ public class GitHubSubscribers {
     }
 
     public final Boolean getSuccess() {
-        return success;
+        return this.success;
     }
 
     public final void setSuccess(final Boolean success) {
@@ -33,8 +33,8 @@ public class GitHubSubscribers {
     @Override
     public final String toString() {
         return "GitHubSubscribers{" +
-                "success=" + success +
-                ", response=" + response +
+                "success=" + this.success +
+                ", response=" + this.response +
                 '}';
     }
 }

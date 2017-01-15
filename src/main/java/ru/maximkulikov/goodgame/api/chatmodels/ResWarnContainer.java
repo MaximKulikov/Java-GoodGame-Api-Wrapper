@@ -14,7 +14,7 @@ public class ResWarnContainer {
     private ResWarn data;
 
     public final ResWarn getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResWarn data) {
@@ -22,7 +22,7 @@ public class ResWarnContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResWarnContainer {
     @Override
     public final String toString() {
         return "ResWarnContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

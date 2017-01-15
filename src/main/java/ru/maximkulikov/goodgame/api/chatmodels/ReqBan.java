@@ -33,8 +33,8 @@ public class ReqBan {
     @JsonProperty("show_ban")
     private Boolean showBan;
 
-    public ReqBan(final String channelId,  final String banChannel, final  String userId,  final Long duration,
-                  final  String reason,  final String comment,
+    public ReqBan(final String channelId, final String banChannel, final String userId, final Long duration,
+                  final String reason, final String comment,
                   Boolean showBan) {
         this.channelId = channelId;
         this.banChannel = banChannel;
@@ -49,7 +49,7 @@ public class ReqBan {
         return this.banChannel;
     }
 
-    public void setBanChannel(final String banChannel) {
+    public final void setBanChannel(final String banChannel) {
         this.banChannel = banChannel;
     }
 
@@ -57,7 +57,7 @@ public class ReqBan {
         return this.channelId;
     }
 
-    public void setChannelId(final String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
@@ -65,7 +65,7 @@ public class ReqBan {
         return this.comment;
     }
 
-    public void setComment(final String comment) {
+    public final void setComment(final String comment) {
         this.comment = comment;
     }
 
@@ -73,7 +73,7 @@ public class ReqBan {
         return this.duration;
     }
 
-    public void setDuration(final Long duration) {
+    public final void setDuration(final Long duration) {
         this.duration = duration;
     }
 
@@ -81,7 +81,7 @@ public class ReqBan {
         return this.reason;
     }
 
-    public void setReason(final String reason) {
+    public final void setReason(final String reason) {
         this.reason = reason;
     }
 
@@ -89,7 +89,7 @@ public class ReqBan {
         return this.showBan;
     }
 
-    public void setShowBan(final Boolean show_ban) {
+    public final void setShowBan(final Boolean showBan) {
         this.showBan = showBan;
     }
 
@@ -97,7 +97,7 @@ public class ReqBan {
         return this.userId;
     }
 
-    public void setUserId(final String userId) {
+    public final void setUserId(final String userId) {
         this.userId = userId;
     }
 

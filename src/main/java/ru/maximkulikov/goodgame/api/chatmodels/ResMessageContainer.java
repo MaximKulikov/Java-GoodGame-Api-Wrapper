@@ -14,7 +14,7 @@ public class ResMessageContainer {
     private ResMessage data;
 
     public final ResMessage getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResMessage data) {
@@ -22,7 +22,7 @@ public class ResMessageContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResMessageContainer {
     @Override
     public final String toString() {
         return "ResMessageContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

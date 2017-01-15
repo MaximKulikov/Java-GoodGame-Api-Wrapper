@@ -62,7 +62,7 @@ public class ResJoin implements ResChatObject {
     private List<String> paidsmiles;
 
     public final String getAccessRights() {
-        return accessRights;
+        return this.accessRights;
     }
 
     public final void setAccessRights(final String accessRights) {
@@ -70,7 +70,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final Boolean getBanned() {
-        return isBanned;
+        return this.isBanned;
     }
 
     public final void setBanned(final Boolean banned) {
@@ -78,7 +78,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final Long getBannedTime() {
-        return bannedTime;
+        return this.bannedTime;
     }
 
     public final void setBannedTime(final Long bannedTime) {
@@ -86,7 +86,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -94,7 +94,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final String getChannelName() {
-        return channelName;
+        return this.channelName;
     }
 
     public final void setChannelName(final String channelName) {
@@ -102,7 +102,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final ResChannelStreamer getChannelStreamer() {
-        return channelStreamer;
+        return this.channelStreamer;
     }
 
     public final void setChannelStreamer(final ResChannelStreamer channelStreamer) {
@@ -110,7 +110,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final Long getClientsInChannel() {
-        return clientsInChannel;
+        return this.clientsInChannel;
     }
 
     public final void setClientsInChannel(final Long clientsInChannel) {
@@ -118,7 +118,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final String getMotd() {
-        return motd;
+        return this.motd;
     }
 
     public final void setMotd(final String motd) {
@@ -126,7 +126,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final String getName() {
-        return name;
+        return this.name;
     }
 
     public final void setName(final String name) {
@@ -134,7 +134,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final List<String> getPaidsmiles() {
-        return paidsmiles;
+        return this.paidsmiles;
     }
 
     public final void setPaidsmiles(final List<String> paidsmiles) {
@@ -142,7 +142,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final String getReason() {
-        return reason;
+        return this.reason;
     }
 
     public final void setReason(final String reason) {
@@ -150,7 +150,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final int getRoomPrivacy() {
-        return roomPrivacy;
+        return this.roomPrivacy;
     }
 
     public final void setRoomPrivacy(final int roomPrivacy) {
@@ -158,7 +158,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final int getRoomRole() {
-        return roomRole;
+        return this.roomRole;
     }
 
     public final void setRoomRole(final int roomRole) {
@@ -166,7 +166,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final int getSlowmod() {
-        return slowmod;
+        return this.slowmod;
     }
 
     public final void setSlowmod(final int slowmod) {
@@ -174,7 +174,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final int getSmilePeka() {
-        return smilePeka;
+        return this.smilePeka;
     }
 
     public final void setSmilePeka(final int smilePeka) {
@@ -182,7 +182,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final int getSmiles() {
-        return smiles;
+        return this.smiles;
     }
 
     public final void setSmiles(final int smiles) {
@@ -190,7 +190,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final List<String> getUserGroups() {
-        return userGroups;
+        return this.userGroups;
     }
 
     public final void setUserGroups(final List<String> userGroups) {
@@ -198,7 +198,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public final void setUserId(final String userId) {
@@ -206,7 +206,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final Long getUsersInChannel() {
-        return usersInChannel;
+        return this.usersInChannel;
     }
 
     public final void setUsersInChannel(final Long usersInChannel) {
@@ -216,25 +216,25 @@ public class ResJoin implements ResChatObject {
     @Override
     public final String toString() {
         return "ResJoin{" +
-                "channelId='" + channelId + '\'' +
-                ", channelName='" + channelName + '\'' +
-                ", channelStreamer=" + channelStreamer +
-                ", motd='" + motd + '\'' +
-                ", slowmod=" + slowmod +
-                ", smiles=" + smiles +
-                ", smilePeka=" + smilePeka +
-                ", clientsInChannel=" + clientsInChannel +
-                ", usersInChannel=" + usersInChannel +
-                ", userId='" + userId + '\'' +
-                ", name='" + name + '\'' +
-                ", accessRights='" + accessRights + '\'' +
-                ", roomPrivacy=" + roomPrivacy +
-                ", roomRole=" + roomRole +
-                ", userGroups=" + userGroups +
-                ", isBanned=" + isBanned +
-                ", bannedTime=" + bannedTime +
-                ", reason='" + reason + '\'' +
-                ", paidsmiles=" + paidsmiles +
+                "channelId='" + this.channelId + '\'' +
+                ", channelName='" + this.channelName + '\'' +
+                ", channelStreamer=" + this.channelStreamer +
+                ", motd='" + this.motd + '\'' +
+                ", slowmod=" + this.slowmod +
+                ", smiles=" + this.smiles +
+                ", smilePeka=" + this.smilePeka +
+                ", clientsInChannel=" + this.clientsInChannel +
+                ", usersInChannel=" + this.usersInChannel +
+                ", userId='" + this.userId + '\'' +
+                ", name='" + this.name + '\'' +
+                ", accessRights='" + this.accessRights + '\'' +
+                ", roomPrivacy=" + this.roomPrivacy +
+                ", roomRole=" + this.roomRole +
+                ", userGroups=" + this.userGroups +
+                ", isBanned=" + this.isBanned +
+                ", bannedTime=" + this.bannedTime +
+                ", reason='" + this.reason + '\'' +
+                ", paidsmiles=" + this.paidsmiles +
                 '}';
     }
 }

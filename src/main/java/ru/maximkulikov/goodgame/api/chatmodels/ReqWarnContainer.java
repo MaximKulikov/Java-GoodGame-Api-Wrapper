@@ -18,7 +18,7 @@ public class ReqWarnContainer implements ReqChatObject {
     }
 
     public final ReqWarn getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ReqWarn data) {
@@ -26,7 +26,7 @@ public class ReqWarnContainer implements ReqChatObject {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -36,8 +36,8 @@ public class ReqWarnContainer implements ReqChatObject {
     @Override
     public final String toString() {
         return "ReqWarnContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

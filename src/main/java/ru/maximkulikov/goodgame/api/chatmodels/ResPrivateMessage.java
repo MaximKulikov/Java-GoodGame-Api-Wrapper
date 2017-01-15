@@ -30,7 +30,7 @@ public class ResPrivateMessage implements ResChatObject {
     private String text;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -38,7 +38,7 @@ public class ResPrivateMessage implements ResChatObject {
     }
 
     public final String getTargetId() {
-        return targetId;
+        return this.targetId;
     }
 
     public final void setTargetId(final String targetId) {
@@ -46,7 +46,7 @@ public class ResPrivateMessage implements ResChatObject {
     }
 
     public final String getTargetName() {
-        return targetName;
+        return this.targetName;
     }
 
     public final void setTargetName(final String targetName) {
@@ -54,7 +54,7 @@ public class ResPrivateMessage implements ResChatObject {
     }
 
     public final String getText() {
-        return text;
+        return this.text;
     }
 
     public final void setText(final String text) {
@@ -62,7 +62,7 @@ public class ResPrivateMessage implements ResChatObject {
     }
 
     public final String getTimestamp() {
-        return timestamp;
+        return this.timestamp;
     }
 
     public final void setTimestamp(final String timestamp) {
@@ -70,7 +70,7 @@ public class ResPrivateMessage implements ResChatObject {
     }
 
     public final String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public final void setUserId(final String userId) {
@@ -78,7 +78,7 @@ public class ResPrivateMessage implements ResChatObject {
     }
 
     public final String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     public final void setUserName(final String userName) {
@@ -88,13 +88,13 @@ public class ResPrivateMessage implements ResChatObject {
     @Override
     public final String toString() {
         return "ResPrivateMessage{" +
-                "channelId='" + channelId + '\'' +
-                ", userId='" + userId + '\'' +
-                ", userName='" + userName + '\'' +
-                ", targetId='" + targetId + '\'' +
-                ", targetName='" + targetName + '\'' +
-                ", timestamp='" + timestamp + '\'' +
-                ", text='" + text + '\'' +
+                "channelId='" + this.channelId + '\'' +
+                ", userId='" + this.userId + '\'' +
+                ", userName='" + this.userName + '\'' +
+                ", targetId='" + this.targetId + '\'' +
+                ", targetName='" + this.targetName + '\'' +
+                ", timestamp='" + this.timestamp + '\'' +
+                ", text='" + this.text + '\'' +
                 '}';
     }
 }

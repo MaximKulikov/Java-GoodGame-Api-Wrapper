@@ -14,7 +14,7 @@ public class ResJoinToRoomContainer {
     private ResJoinToRoom data;
 
     public final ResJoinToRoom getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResJoinToRoom data) {
@@ -22,7 +22,7 @@ public class ResJoinToRoomContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResJoinToRoomContainer {
     @Override
     public final String toString() {
         return "ResJoinToRoomContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

@@ -14,7 +14,7 @@ public class OauthResourceCheck {
     private String message;
 
     public final String getMessage() {
-        return message;
+        return this.message;
     }
 
     public final void setMessage(final String message) {
@@ -22,7 +22,7 @@ public class OauthResourceCheck {
     }
 
     public final Boolean getSuccess() {
-        return success;
+        return this.success;
     }
 
     public final void setSuccess(final Boolean success) {
@@ -32,8 +32,8 @@ public class OauthResourceCheck {
     @Override
     public final String toString() {
         return "OauthResource{" +
-                "success=" + success +
-                ", message='" + message + '\'' +
+                "success=" + this.success +
+                ", message='" + this.message + '\'' +
                 '}';
     }
 }

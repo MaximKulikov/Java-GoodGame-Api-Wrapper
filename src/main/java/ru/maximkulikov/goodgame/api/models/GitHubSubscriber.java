@@ -14,7 +14,7 @@ public class GitHubSubscriber {
     private String username;
 
     public final String getId() {
-        return id;
+        return this.id;
     }
 
     public final void setId(final String id) {
@@ -22,7 +22,7 @@ public class GitHubSubscriber {
     }
 
     public final String getUsername() {
-        return username;
+        return this.username;
     }
 
     public final void setUsername(final String username) {
@@ -32,8 +32,8 @@ public class GitHubSubscriber {
     @Override
     public final String toString() {
         return "GitHubSubscriber{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
+                "id='" + this.id + '\'' +
+                ", username='" + this.username + '\'' +
                 '}';
     }
 }

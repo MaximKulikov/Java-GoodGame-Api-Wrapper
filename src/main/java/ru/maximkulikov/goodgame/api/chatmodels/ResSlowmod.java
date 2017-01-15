@@ -25,7 +25,7 @@ public class ResSlowmod implements ResChatObject {
     private Long slowmod;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -33,7 +33,7 @@ public class ResSlowmod implements ResChatObject {
     }
 
     public final Long getModerGroup() {
-        return moderGroup;
+        return this.moderGroup;
     }
 
     public final void setModerGroup(final Long moderGroup) {
@@ -41,7 +41,7 @@ public class ResSlowmod implements ResChatObject {
     }
 
     public final Long getModerId() {
-        return moderId;
+        return this.moderId;
     }
 
     public final void setModerId(final Long moderId) {
@@ -49,7 +49,7 @@ public class ResSlowmod implements ResChatObject {
     }
 
     public final String getModerName() {
-        return moderName;
+        return this.moderName;
     }
 
     public final void setModerName(final String moderName) {
@@ -57,7 +57,7 @@ public class ResSlowmod implements ResChatObject {
     }
 
     public final Long getSlowmod() {
-        return slowmod;
+        return this.slowmod;
     }
 
     public final void setSlowmod(final Long slowmod) {
@@ -67,11 +67,11 @@ public class ResSlowmod implements ResChatObject {
     @Override
     public final String toString() {
         return "ResSlowmod{" +
-                "channelId='" + channelId + '\'' +
-                ", moderId=" + moderId +
-                ", moderName='" + moderName + '\'' +
-                ", moderGroup=" + moderGroup +
-                ", slowmod=" + slowmod +
+                "channelId='" + this.channelId + '\'' +
+                ", moderId=" + this.moderId +
+                ", moderName='" + this.moderName + '\'' +
+                ", moderGroup=" + this.moderGroup +
+                ", slowmod=" + this.slowmod +
                 '}';
     }
 }

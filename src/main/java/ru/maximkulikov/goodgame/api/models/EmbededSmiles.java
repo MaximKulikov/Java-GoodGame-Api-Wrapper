@@ -13,7 +13,7 @@ public class EmbededSmiles {
     private List<Smile> smiles;
 
     public final List<Smile> getSmiles() {
-        return smiles;
+        return this.smiles;
     }
 
     public final void setSmiles(final List<Smile> smiles) {
@@ -23,7 +23,7 @@ public class EmbededSmiles {
     @Override
     public final String toString() {
         return "EmbededSmiles{" +
-                "smiles=" + smiles +
+                "smiles=" + this.smiles +
                 '}';
     }
 }

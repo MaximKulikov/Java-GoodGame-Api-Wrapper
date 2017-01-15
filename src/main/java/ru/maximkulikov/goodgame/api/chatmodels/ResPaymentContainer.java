@@ -14,7 +14,7 @@ public class ResPaymentContainer {
     private ResPayment data;
 
     public final ResPayment getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResPayment data) {
@@ -22,7 +22,7 @@ public class ResPaymentContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResPaymentContainer {
     @Override
     public final String toString() {
         return "ResPaymentContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

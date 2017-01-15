@@ -43,7 +43,7 @@ public class ResMessage implements ResChatObject {
     private String text;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -51,7 +51,7 @@ public class ResMessage implements ResChatObject {
     }
 
     public final String getColor() {
-        return color;
+        return this.color;
     }
 
     public final void setColor(final String color) {
@@ -59,7 +59,7 @@ public class ResMessage implements ResChatObject {
     }
 
     public final Boolean getHideIcon() {
-        return hideIcon;
+        return this.hideIcon;
     }
 
     public final void setHideIcon(final Boolean hideIcon) {
@@ -67,7 +67,7 @@ public class ResMessage implements ResChatObject {
     }
 
     public final String getMessageId() {
-        return messageId;
+        return this.messageId;
     }
 
     public final void setMessageId(final String messageId) {
@@ -75,7 +75,7 @@ public class ResMessage implements ResChatObject {
     }
 
     public final Boolean getMobile() {
-        return mobile;
+        return this.mobile;
     }
 
     public final void setMobile(final Boolean mobile) {
@@ -83,7 +83,7 @@ public class ResMessage implements ResChatObject {
     }
 
     public final List<String> getPaidsmiles() {
-        return paidsmiles;
+        return this.paidsmiles;
     }
 
     public final void setPaidsmiles(final List<String> paidsmiles) {
@@ -91,7 +91,7 @@ public class ResMessage implements ResChatObject {
     }
 
     public final String getPayments() {
-        return payments;
+        return this.payments;
     }
 
     public final void setPayments(final String payments) {
@@ -99,7 +99,7 @@ public class ResMessage implements ResChatObject {
     }
 
     public final Boolean getPremium() {
-        return premium;
+        return this.premium;
     }
 
     public final void setPremium(final Boolean premium) {
@@ -107,7 +107,7 @@ public class ResMessage implements ResChatObject {
     }
 
     public final String getText() {
-        return text;
+        return this.text;
     }
 
     public final void setText(final String text) {
@@ -115,7 +115,7 @@ public class ResMessage implements ResChatObject {
     }
 
     public final String getTimestamp() {
-        return timestamp;
+        return this.timestamp;
     }
 
     public final void setTimestamp(final String timestamp) {
@@ -123,7 +123,7 @@ public class ResMessage implements ResChatObject {
     }
 
     public final String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public final void setUserId(final String userId) {
@@ -131,7 +131,7 @@ public class ResMessage implements ResChatObject {
     }
 
     public final String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     public final void setUserName(final String userName) {
@@ -139,7 +139,7 @@ public class ResMessage implements ResChatObject {
     }
 
     public final Long getUserRights() {
-        return userRights;
+        return this.userRights;
     }
 
     public final void setUserRights(final Long userRights) {
@@ -149,19 +149,19 @@ public class ResMessage implements ResChatObject {
     @Override
     public final String toString() {
         return "ResMessage{" +
-                "channelId='" + channelId + '\'' +
-                ", userId='" + userId + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userRights=" + userRights +
-                ", premium=" + premium +
-                ", hideIcon=" + hideIcon +
-                ", mobile=" + mobile +
-                ", payments='" + payments + '\'' +
-                ", paidsmiles=" + paidsmiles +
-                ", messageId='" + messageId + '\'' +
-                ", timestamp='" + timestamp + '\'' +
-                ", color='" + color + '\'' +
-                ", text='" + text + '\'' +
+                "channelId='" + this.channelId + '\'' +
+                ", userId='" + this.userId + '\'' +
+                ", userName='" + this.userName + '\'' +
+                ", userRights=" + this.userRights +
+                ", premium=" + this.premium +
+                ", hideIcon=" + this.hideIcon +
+                ", mobile=" + this.mobile +
+                ", payments='" + this.payments + '\'' +
+                ", paidsmiles=" + this.paidsmiles +
+                ", messageId='" + this.messageId + '\'' +
+                ", timestamp='" + this.timestamp + '\'' +
+                ", color='" + this.color + '\'' +
+                ", text='" + this.text + '\'' +
                 '}';
     }
 }

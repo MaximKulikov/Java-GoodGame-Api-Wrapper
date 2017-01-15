@@ -14,15 +14,15 @@ public class ResGetUserInfoContainer {
     private ChatUser data;
 
     public final ChatUser getData() {
-        return data;
+        return this.data;
     }
 
-    public void setData(final ChatUser data) {
+    public final void setData(final ChatUser data) {
         this.data = data;
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResGetUserInfoContainer {
     @Override
     public String toString() {
         return "ResGetUserInfoContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

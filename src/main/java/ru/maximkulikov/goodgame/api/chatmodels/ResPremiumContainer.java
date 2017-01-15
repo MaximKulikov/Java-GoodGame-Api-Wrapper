@@ -14,7 +14,7 @@ public class ResPremiumContainer {
     private ResPremium data;
 
     public final ResPremium getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResPremium data) {
@@ -22,7 +22,7 @@ public class ResPremiumContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResPremiumContainer {
     @Override
     public final String toString() {
         return "ResPremiumContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

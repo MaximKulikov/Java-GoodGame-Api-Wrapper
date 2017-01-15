@@ -17,7 +17,7 @@ public class ResRemoveMessage implements ResChatObject {
     private String messageId;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -25,7 +25,7 @@ public class ResRemoveMessage implements ResChatObject {
     }
 
     public final String getMessageId() {
-        return messageId;
+        return this.messageId;
     }
 
     public final void setMessageId(final String messageId) {
@@ -35,8 +35,8 @@ public class ResRemoveMessage implements ResChatObject {
     @Override
     public final String toString() {
         return "ResRemoveMessage{" +
-                "channelId='" + channelId + '\'' +
-                ", messageId='" + messageId + '\'' +
+                "channelId='" + this.channelId + '\'' +
+                ", messageId='" +this.messageId + '\'' +
                 '}';
     }
 }

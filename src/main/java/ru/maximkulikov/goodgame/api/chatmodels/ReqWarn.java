@@ -25,7 +25,7 @@ public class ReqWarn {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -33,7 +33,7 @@ public class ReqWarn {
     }
 
     public final String getReason() {
-        return reason;
+        return this.reason;
     }
 
     public final void setReason(final String reason) {
@@ -41,7 +41,7 @@ public class ReqWarn {
     }
 
     public final String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public final void setUserId(final String userId) {
@@ -51,9 +51,9 @@ public class ReqWarn {
     @Override
     public final String toString() {
         return "ReqWarn{" +
-                "channelId='" + channelId + '\'' +
-                ", userId='" + userId + '\'' +
-                ", reason='" + reason + '\'' +
+                "channelId='" + this.channelId + '\'' +
+                ", userId='" + this.userId + '\'' +
+                ", reason='" + this.reason + '\'' +
                 '}';
     }
 }

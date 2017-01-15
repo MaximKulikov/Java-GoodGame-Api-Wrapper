@@ -13,7 +13,7 @@ public class EmbededSubscribers {
     private List<Subscrurer> subscribers;
 
     public final List<Subscrurer> getSubscribers() {
-        return subscribers;
+        return this.subscribers;
     }
 
     public final void setSubscribers(final List<Subscrurer> subscribers) {
@@ -23,7 +23,7 @@ public class EmbededSubscribers {
     @Override
     public final String toString() {
         return "EmbededSubscribers{" +
-                "subscribers=" + subscribers +
+                "subscribers=" + this.subscribers +
                 '}';
     }
 }

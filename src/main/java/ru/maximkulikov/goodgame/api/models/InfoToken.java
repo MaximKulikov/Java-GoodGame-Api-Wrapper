@@ -15,7 +15,7 @@ public class InfoToken {
     private String expires;
 
     public final String getExpires() {
-        return expires;
+        return this.expires;
     }
 
     public final void setExpires(final String expires) {
@@ -23,7 +23,7 @@ public class InfoToken {
     }
 
     public final List<String> getScopes() {
-        return scopes;
+        return this.scopes;
     }
 
     public final void setScopes(final List<String> scopes) {
@@ -33,8 +33,8 @@ public class InfoToken {
     @Override
     public final String toString() {
         return "InfoToken{" +
-                "scopes=" + scopes +
-                ", expires='" + expires + '\'' +
+                "scopes=" + this.scopes +
+                ", expires='" + this.expires + '\'' +
                 '}';
     }
 }

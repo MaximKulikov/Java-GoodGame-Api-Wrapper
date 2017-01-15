@@ -21,7 +21,7 @@ public class ResPollResults implements ResChatObject {
     private List<PollResult> answers;
 
     public final List<PollResult> getAnswers() {
-        return answers;
+        return this.answers;
     }
 
     public final void setAnswers(final List<PollResult> answers) {
@@ -29,7 +29,7 @@ public class ResPollResults implements ResChatObject {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -37,7 +37,7 @@ public class ResPollResults implements ResChatObject {
     }
 
     public final String getTitle() {
-        return title;
+        return this.title;
     }
 
     public final void setTitle(final String title) {
@@ -45,7 +45,7 @@ public class ResPollResults implements ResChatObject {
     }
 
     public final Long getVoters() {
-        return voters;
+        return this.voters;
     }
 
     public final void setVoters(final Long voters) {
@@ -55,10 +55,10 @@ public class ResPollResults implements ResChatObject {
     @Override
     public final String toString() {
         return "ResPollResults{" +
-                "channelId='" + channelId + '\'' +
-                ", voters=" + voters +
-                ", title='" + title + '\'' +
-                ", answers=" + answers +
+                "channelId='" + this.channelId + '\'' +
+                ", voters=" + this.voters +
+                ", title='" + this.title + '\'' +
+                ", answers=" + this.answers +
                 '}';
     }
 }

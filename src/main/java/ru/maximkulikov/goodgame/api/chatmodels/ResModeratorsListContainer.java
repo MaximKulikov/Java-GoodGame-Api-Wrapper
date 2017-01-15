@@ -14,7 +14,7 @@ public class ResModeratorsListContainer {
     private ResModeratorsList data;
 
     public final ResModeratorsList getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResModeratorsList data) {
@@ -22,7 +22,7 @@ public class ResModeratorsListContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResModeratorsListContainer {
     @Override
     public final String toString() {
         return "ResModeratorsListContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

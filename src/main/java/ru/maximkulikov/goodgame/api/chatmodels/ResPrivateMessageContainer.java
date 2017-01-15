@@ -14,7 +14,7 @@ public class ResPrivateMessageContainer {
     private ResPrivateMessage data;
 
     public final ResPrivateMessage getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResPrivateMessage data) {
@@ -22,7 +22,7 @@ public class ResPrivateMessageContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResPrivateMessageContainer {
     @Override
     public final String toString() {
         return "ResPrivateMessageContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

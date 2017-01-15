@@ -18,7 +18,7 @@ public class Game {
     private String poster;
 
     public final String getId() {
-        return id;
+        return this.id;
     }
 
     public final void setId(final String id) {
@@ -26,7 +26,7 @@ public class Game {
     }
 
     public final String getPoster() {
-        return poster;
+        return this.poster;
     }
 
     public final void setPoster(final String poster) {
@@ -34,7 +34,7 @@ public class Game {
     }
 
     public final String getShortTitle() {
-        return shortTitle;
+        return this.shortTitle;
     }
 
     public final void setShortTitle(final String shortTitle) {
@@ -42,7 +42,7 @@ public class Game {
     }
 
     public final String getTitle() {
-        return title;
+        return this.title;
     }
 
     public final void setTitle(final String title) {
@@ -50,7 +50,7 @@ public class Game {
     }
 
     public final String getUrl() {
-        return url;
+        return this.url;
     }
 
     public final void setUrl(final String url) {
@@ -60,11 +60,11 @@ public class Game {
     @Override
     public final String toString() {
         return "Game{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", url='" + url + '\'' +
-                ", shortTitle='" + shortTitle + '\'' +
-                ", poster='" + poster + '\'' +
+                "id='" + this.id + '\'' +
+                ", title='" + this.title + '\'' +
+                ", url='" + this.url + '\'' +
+                ", shortTitle='" + this.shortTitle + '\'' +
+                ", poster='" + this.poster + '\'' +
                 '}';
     }
 }

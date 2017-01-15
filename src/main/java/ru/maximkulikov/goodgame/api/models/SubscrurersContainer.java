@@ -24,7 +24,7 @@ public class SubscrurersContainer {
     private Long page;
 
     public final EmbededSubscribers getEmbeded() {
-        return embeded;
+        return this.embeded;
     }
 
     public final void setEmbeded(final EmbededSubscribers embeded) {

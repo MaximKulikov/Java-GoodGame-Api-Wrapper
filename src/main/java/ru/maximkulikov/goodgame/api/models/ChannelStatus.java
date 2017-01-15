@@ -14,17 +14,23 @@ public class ChannelStatus {
 
     private Map<String, String> profiles = new HashMap<>();
 
+    public final Map<String, String> getProfiles() {
+        return this.profiles;
+    }
+
+    public final void setProfiles(final Map<String, String> profiles) {
+        this.profiles = profiles;
+    }
+
     @JsonAnySetter
     public void setDynamicProperty(String name, Map<String, String> map) {
         this.profiles = map;
     }
 
-    public  final Map<String, String> getProfiles() {
-        return profiles;
+    @Override
+    public String toString() {
+        return "ChannelStatus{" +
+                "profiles=" + this.profiles +
+                '}';
     }
-
-    public  final void setProfiles( final Map<String, String> profiles) {
-        this.profiles = profiles;
-    }
-
 }

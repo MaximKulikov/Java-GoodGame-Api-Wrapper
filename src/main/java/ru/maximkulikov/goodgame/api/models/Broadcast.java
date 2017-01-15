@@ -34,7 +34,7 @@ public class Broadcast {
     }
 
     public final String getBroadcastGames() {
-        return broadcastGames;
+        return this.broadcastGames;
     }
 
     public final void setBroadcastGames(final String broadcastGames) {
@@ -42,7 +42,7 @@ public class Broadcast {
     }
 
     public final String getBroadcastLogo() {
-        return broadcastLogo;
+        return this.broadcastLogo;
     }
 
     public final void setBroadcastLogo(final String broadcastLogo) {
@@ -50,7 +50,7 @@ public class Broadcast {
     }
 
     public final String getBroadcastStart() {
-        return broadcastStart;
+        return this.broadcastStart;
     }
 
     public final void setBroadcastStart(final String broadcastStart) {
@@ -58,7 +58,7 @@ public class Broadcast {
     }
 
     public final String getBroadcastTitle() {
-        return broadcastTitle;
+        return this.broadcastTitle;
     }
 
     public final void setBroadcastTitle(final String broadcastTitle) {
@@ -68,11 +68,11 @@ public class Broadcast {
     @Override
     public final String toString() {
         return "Broadcast{" +
-                "broadcastTitle='" + broadcastTitle + '\'' +
-                ", broadcastStart='" + broadcastStart + '\'' +
-                ", broadcastGames='" + broadcastGames + '\'' +
-                ", broadcastDescription='" + broadcastDescription + '\'' +
-                ", broadcastLogo='" + broadcastLogo + '\'' +
+                "broadcastTitle='" + this.broadcastTitle + '\'' +
+                ", broadcastStart='" + this.broadcastStart + '\'' +
+                ", broadcastGames='" + this.broadcastGames + '\'' +
+                ", broadcastDescription='" + this.broadcastDescription + '\'' +
+                ", broadcastLogo='" + this.broadcastLogo + '\'' +
                 '}';
     }
 }

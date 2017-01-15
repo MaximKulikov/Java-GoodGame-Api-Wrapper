@@ -14,7 +14,7 @@ public class ResUsersListContainer {
     private ResUsersList data;
 
     public final ResUsersList getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResUsersList data) {
@@ -22,7 +22,7 @@ public class ResUsersListContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResUsersListContainer {
     @Override
     public final String toString() {
         return "ResUsersListContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

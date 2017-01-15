@@ -6,5 +6,4 @@ package ru.maximkulikov.goodgame.api.chatmodels;
  */
 public interface ReqChatObject {
 
-
 }

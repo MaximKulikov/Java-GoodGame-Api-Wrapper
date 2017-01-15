@@ -27,7 +27,7 @@ public class ChatMessage {
     private String text;
 
     public final String getMessageId() {
-        return messageId;
+        return this.messageId;
     }
 
     public final void setMessageId(final String messageId) {
@@ -35,7 +35,7 @@ public class ChatMessage {
     }
 
     public final String getText() {
-        return text;
+        return this.text;
     }
 
     public final void setText(final String text) {
@@ -43,7 +43,7 @@ public class ChatMessage {
     }
 
     public final String getTimestamp() {
-        return timestamp;
+        return this.timestamp;
     }
 
     public final void setTimestamp(final String timestamp) {
@@ -51,7 +51,7 @@ public class ChatMessage {
     }
 
     public final Long getUserGroup() {
-        return userGroup;
+        return this.userGroup;
     }
 
     public final void setUserGroup(final Long userGroup) {
@@ -59,7 +59,7 @@ public class ChatMessage {
     }
 
     public final String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public final void setUserId(final String userId) {
@@ -67,7 +67,7 @@ public class ChatMessage {
     }
 
     public final String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     public final void setUserName(final String userName) {
@@ -77,12 +77,12 @@ public class ChatMessage {
     @Override
     public final String toString() {
         return "ChatMessage{" +
-                "userId='" + userId + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userGroup=" + userGroup +
-                ", messageId='" + messageId + '\'' +
-                ", timestamp='" + timestamp + '\'' +
-                ", text='" + text + '\'' +
+                "userId='" + this.userId + '\'' +
+                ", userName='" + this.userName + '\'' +
+                ", userGroup=" + this.userGroup +
+                ", messageId='" + this.messageId + '\'' +
+                ", timestamp='" + this.timestamp + '\'' +
+                ", text='" + this.text + '\'' +
                 '}';
     }
 }

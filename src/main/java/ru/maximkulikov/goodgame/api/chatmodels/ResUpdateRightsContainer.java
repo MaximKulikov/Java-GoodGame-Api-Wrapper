@@ -14,7 +14,7 @@ public class ResUpdateRightsContainer {
     private ResUpdateRights data;
 
     public final ResUpdateRights getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResUpdateRights data) {
@@ -22,7 +22,7 @@ public class ResUpdateRightsContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResUpdateRightsContainer {
     @Override
     public final String toString() {
         return "ResUpdateRightsContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

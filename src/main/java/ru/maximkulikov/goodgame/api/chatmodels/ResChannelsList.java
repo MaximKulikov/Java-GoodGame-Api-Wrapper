@@ -13,7 +13,7 @@ public class ResChannelsList implements ResChatObject {
     private List<ChatChannel> channels;
 
     public final List<ChatChannel> getChannels() {
-        return channels;
+        return this.channels;
     }
 
     public final void setChannels(final List<ChatChannel> channels) {
@@ -23,7 +23,7 @@ public class ResChannelsList implements ResChatObject {
     @Override
     public final String toString() {
         return "ResChannelsList{" +
-                "channels=" + channels +
+                "channels=" + this.channels +
                 '}';
     }
 }

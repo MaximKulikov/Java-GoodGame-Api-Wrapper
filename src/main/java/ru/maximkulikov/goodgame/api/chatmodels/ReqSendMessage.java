@@ -34,7 +34,7 @@ public class ReqSendMessage {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -42,7 +42,7 @@ public class ReqSendMessage {
     }
 
     public final boolean getHideIcon() {
-        return hideIcon;
+        return this.hideIcon;
     }
 
     public final void setHideIcon(final boolean hideIcon) {
@@ -50,7 +50,7 @@ public class ReqSendMessage {
     }
 
     public final boolean getMobile() {
-        return mobile;
+        return this.mobile;
     }
 
     public final void setMobile(final boolean mobile) {
@@ -58,7 +58,7 @@ public class ReqSendMessage {
     }
 
     public final String getText() {
-        return text;
+        return this.text;
     }
 
     public final void setText(final String text) {
@@ -68,10 +68,10 @@ public class ReqSendMessage {
     @Override
     public final String toString() {
         return "ReqSendMessage{" +
-                "channelId='" + channelId + '\'' +
-                ", text='" + text + '\'' +
-                ", hideIcon=" + hideIcon +
-                ", mobile=" + mobile +
+                "channelId='" + this.channelId + '\'' +
+                ", text='" + this.text + '\'' +
+                ", hideIcon=" + this.hideIcon +
+                ", mobile=" + this.mobile +
                 '}';
     }
 }

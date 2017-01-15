@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ResChannelCounters implements ResChatObject {
 
     @JsonProperty("channel_id")
-    private String channel_id;
+    private String channelId;
 
     @JsonProperty("clients_in_channel")
     private Long clientsInChannel;
@@ -19,12 +19,12 @@ public class ResChannelCounters implements ResChatObject {
     @JsonProperty("users_in_channel")
     private Long usersInChannel;
 
-    public final String getChannel_id() {
-        return channel_id;
+    public final String getChannelId() {
+        return this.channelId;
     }
 
-    public final void setChannel_id(final String channel_id) {
-        this.channel_id = channel_id;
+    public final void setChannelId(final String channelId) {
+        this.channelId = channelId;
     }
 
     public final Long getClientsInChannel() {
@@ -36,7 +36,7 @@ public class ResChannelCounters implements ResChatObject {
     }
 
     public final Long getUsersInChannel() {
-        return usersInChannel;
+        return this.usersInChannel;
     }
 
     public final void setUsersInChannel(final Long usersInChannel) {
@@ -46,9 +46,9 @@ public class ResChannelCounters implements ResChatObject {
     @Override
     public final String toString() {
         return "ResChannelCounters{" +
-                "channel_id='" + channel_id + '\'' +
-                ", clientsInChannel=" + clientsInChannel +
-                ", usersInChannel=" + usersInChannel +
+                "channelId='" + this.channelId + '\'' +
+                ", clientsInChannel=" + this.clientsInChannel +
+                ", usersInChannel=" + this.usersInChannel +
                 '}';
     }
 }

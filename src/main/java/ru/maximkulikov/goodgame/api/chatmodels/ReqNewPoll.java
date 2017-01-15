@@ -39,7 +39,7 @@ public class ReqNewPoll {
     }
 
     public final List<PollAnswer> getAnswers() {
-        return answers;
+        return this.answers;
     }
 
     public final void setAnswers(final List<PollAnswer> answers) {
@@ -47,7 +47,7 @@ public class ReqNewPoll {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -55,7 +55,7 @@ public class ReqNewPoll {
     }
 
     public final String getModerId() {
-        return moderId;
+        return this.moderId;
     }
 
     public final void setModerId(final String moderId) {
@@ -63,7 +63,7 @@ public class ReqNewPoll {
     }
 
     public final String getModerName() {
-        return moderName;
+        return this.moderName;
     }
 
     public final void setModerName(final String moderName) {
@@ -71,7 +71,7 @@ public class ReqNewPoll {
     }
 
     public final String getTitle() {
-        return title;
+        return this.title;
     }
 
     public final void setTitle(final String title) {
@@ -81,11 +81,11 @@ public class ReqNewPoll {
     @Override
     public final String toString() {
         return "ReqNewPoll{" +
-                "channelId='" + channelId + '\'' +
-                ", moderId='" + moderId + '\'' +
-                ", moderName='" + moderName + '\'' +
-                ", title='" + title + '\'' +
-                ", answers=" + answers +
+                "channelId='" + this.channelId + '\'' +
+                ", moderId='" + this.moderId + '\'' +
+                ", moderName='" + this.moderName + '\'' +
+                ", title='" + this.title + '\'' +
+                ", answers=" + this.answers +
                 '}';
     }
 }

@@ -18,10 +18,10 @@ public class Response {
     }
 
     public final ResChatObject getAnswer() {
-        return answer;
+        return this.answer;
     }
 
     public final ChatResponses getType() {
-        return type;
+        return this.type;
     }
 }

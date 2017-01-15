@@ -16,7 +16,7 @@ public class ResUpdatePremium implements ResChatObject {
     private Boolean premium;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -24,7 +24,7 @@ public class ResUpdatePremium implements ResChatObject {
     }
 
     public final Boolean getPremium() {
-        return premium;
+        return this.premium;
     }
 
     public final void setPremium(final Boolean premium) {
@@ -34,8 +34,8 @@ public class ResUpdatePremium implements ResChatObject {
     @Override
     public final String toString() {
         return "ResUpdatePremium{" +
-                "channelId='" + channelId + '\'' +
-                ", premium=" + premium +
+                "channelId='" + this.channelId + '\'' +
+                ", premium=" + this.premium +
                 '}';
     }
 }

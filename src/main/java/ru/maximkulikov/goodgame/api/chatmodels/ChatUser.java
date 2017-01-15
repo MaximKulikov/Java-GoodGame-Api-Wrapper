@@ -24,7 +24,7 @@ public class ChatUser implements ResChatObject {
     private Boolean hidden;
 
     public final Boolean getHidden() {
-        return hidden;
+        return this.hidden;
     }
 
     public final void setHidden(final Boolean hidden) {
@@ -32,7 +32,7 @@ public class ChatUser implements ResChatObject {
     }
 
     public final String getId() {
-        return id;
+        return this.id;
     }
 
     public final void setId(final String id) {
@@ -40,7 +40,7 @@ public class ChatUser implements ResChatObject {
     }
 
     public final Boolean getMobile() {
-        return mobile;
+        return this.mobile;
     }
 
     public final void setMobile(final Boolean mobile) {
@@ -48,7 +48,7 @@ public class ChatUser implements ResChatObject {
     }
 
     public final String getName() {
-        return name;
+        return this.name;
     }
 
     public final void setName(final String name) {
@@ -56,7 +56,7 @@ public class ChatUser implements ResChatObject {
     }
 
     public final String getPayments() {
-        return payments;
+        return this.payments;
     }
 
     public final void setPayments(final String payments) {
@@ -64,7 +64,7 @@ public class ChatUser implements ResChatObject {
     }
 
     public final Boolean getPremium() {
-        return premium;
+        return this.premium;
     }
 
     public final void setPremium(final Boolean premium) {
@@ -72,7 +72,7 @@ public class ChatUser implements ResChatObject {
     }
 
     public final Long getRight() {
-        return right;
+        return this.right;
     }
 
     public final void setRight(final Long right) {
@@ -82,13 +82,13 @@ public class ChatUser implements ResChatObject {
     @Override
     public final String toString() {
         return "ChatUser{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", right=" + right +
-                ", premium=" + premium +
-                ", payments='" + payments + '\'' +
-                ", mobile=" + mobile +
-                ", hidden=" + hidden +
+                "id='" + this.id + '\'' +
+                ", name='" + this.name + '\'' +
+                ", right=" + this.right +
+                ", premium=" + this.premium +
+                ", payments='" + this.payments + '\'' +
+                ", mobile=" + this.mobile +
+                ", hidden=" + this.hidden +
                 '}';
     }
 }

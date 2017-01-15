@@ -27,7 +27,7 @@ public class Smile {
     private SmileUrls urls;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -35,7 +35,7 @@ public class Smile {
     }
 
     public final Long getDonateLvl() {
-        return donateLvl;
+        return this.donateLvl;
     }
 
     public final void setDonateLvl(final Long donateLvl) {
@@ -43,7 +43,7 @@ public class Smile {
     }
 
     public final String getKey() {
-        return key;
+        return this.key;
     }
 
     public final void setKey(final String key) {
@@ -51,7 +51,7 @@ public class Smile {
     }
 
     public final Boolean getPaid() {
-        return paid;
+        return this.paid;
     }
 
     public final void setPaid(final Boolean paid) {
@@ -59,7 +59,7 @@ public class Smile {
     }
 
     public final Boolean getPremium() {
-        return premium;
+        return this.premium;
     }
 
     public final void setPremium(final Boolean premium) {
@@ -67,7 +67,7 @@ public class Smile {
     }
 
     public final SmileUrls getUrls() {
-        return urls;
+        return this.urls;
     }
 
     public final void setUrls(final SmileUrls urls) {
@@ -77,12 +77,12 @@ public class Smile {
     @Override
     public final String toString() {
         return "Smile{" +
-                "key='" + key + '\'' +
-                ", donateLvl=" + donateLvl +
-                ", premium=" + premium +
-                ", paid=" + paid +
-                ", channelId='" + channelId + '\'' +
-                ", urls=" + urls +
+                "key='" + this.key + '\'' +
+                ", donateLvl=" + this.donateLvl +
+                ", premium=" + this.premium +
+                ", paid=" + this.paid +
+                ", channelId='" + this.channelId + '\'' +
+                ", urls=" + this.urls +
                 '}';
     }
 }

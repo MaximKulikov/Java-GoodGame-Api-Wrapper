@@ -30,7 +30,7 @@ public class User {
     private String wallet;
 
     public final String getEmail() {
-        return email;
+        return this.email;
     }
 
     public final void setEmail(final String email) {
@@ -38,7 +38,7 @@ public class User {
     }
 
     public final String getPayments() {
-        return payments;
+        return this.payments;
     }
 
     public final void setPayments(final String payments) {
@@ -46,7 +46,7 @@ public class User {
     }
 
     public final String getSecure() {
-        return secure;
+        return this.secure;
     }
 
     public final void setSecure(final String secure) {
@@ -54,7 +54,7 @@ public class User {
     }
 
     public final String getSubscribed() {
-        return subscribed;
+        return this.subscribed;
     }
 
     public final void setSubscribed(final String subscribed) {
@@ -62,7 +62,7 @@ public class User {
     }
 
     public final String getSubscribedAnons() {
-        return subscribedAnons;
+        return this.subscribedAnons;
     }
 
     public final void setSubscribedAnons(final String subscribedAnons) {
@@ -70,7 +70,7 @@ public class User {
     }
 
     public final String getSubscribedStream() {
-        return subscribedStream;
+        return this.subscribedStream;
     }
 
     public final void setSubscribedStream(final String subscribedStream) {
@@ -78,7 +78,7 @@ public class User {
     }
 
     public final String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public final void setUserId(final String userId) {
@@ -86,7 +86,7 @@ public class User {
     }
 
     public final String getWallet() {
-        return wallet;
+        return this.wallet;
     }
 
     public final void setWallet(final String wallet) {
@@ -96,14 +96,14 @@ public class User {
     @Override
     public final String toString() {
         return "User{" +
-                "userId='" + userId + '\'' +
-                ", secure='" + secure + '\'' +
-                ", email='" + email + '\'' +
-                ", payments='" + payments + '\'' +
-                ", subscribed='" + subscribed + '\'' +
-                ", subscribedStream='" + subscribedStream + '\'' +
-                ", subscribedAnons='" + subscribedAnons + '\'' +
-                ", wallet='" + wallet + '\'' +
+                "userId='" + this.userId + '\'' +
+                ", secure='" + this.secure + '\'' +
+                ", email='" + this.email + '\'' +
+                ", payments='" + this.payments + '\'' +
+                ", subscribed='" + this.subscribed + '\'' +
+                ", subscribedStream='" + this.subscribedStream + '\'' +
+                ", subscribedAnons='" + this.subscribedAnons + '\'' +
+                ", wallet='" + this.wallet + '\'' +
                 '}';
     }
 }

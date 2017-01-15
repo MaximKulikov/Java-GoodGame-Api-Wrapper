@@ -18,7 +18,7 @@ public class ResUnjoin implements ResChatObject {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -28,7 +28,7 @@ public class ResUnjoin implements ResChatObject {
     @Override
     public final String toString() {
         return "ReqUnjoin{" +
-                "channelId='" + channelId + '\'' +
+                "channelId='" + this.channelId + '\'' +
                 '}';
     }
 }

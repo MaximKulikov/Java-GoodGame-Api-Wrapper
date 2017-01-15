@@ -16,7 +16,7 @@ public class PollResult {
     private Long voters;
 
     public final int getId() {
-        return id;
+        return this.id;
     }
 
     public final void setId(final int id) {
@@ -24,7 +24,7 @@ public class PollResult {
     }
 
     public final String getText() {
-        return text;
+        return this.text;
     }
 
     public final void setText(final String text) {
@@ -32,7 +32,7 @@ public class PollResult {
     }
 
     public final Long getVoters() {
-        return voters;
+        return this.voters;
     }
 
     public final void setVoters(final Long voters) {
@@ -42,9 +42,9 @@ public class PollResult {
     @Override
     public final String toString() {
         return "PollResult{" +
-                "id=" + id +
-                ", text='" + text + '\'' +
-                ", voters=" + voters +
+                "id=" + this.id +
+                ", text='" + this.text + '\'' +
+                ", voters=" + this.voters +
                 '}';
     }
 }

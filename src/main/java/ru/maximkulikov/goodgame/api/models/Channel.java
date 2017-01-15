@@ -43,7 +43,7 @@ public class Channel {
     private String url;
 
     public final Boolean getAdult() {
-        return adult;
+        return this.adult;
     }
 
     public final void setAdult(final Boolean adult) {
@@ -51,7 +51,7 @@ public class Channel {
     }
 
     public final String getDescription() {
-        return description;
+        return this.description;
     }
 
     public final void setDescription(final String description) {
@@ -59,7 +59,7 @@ public class Channel {
     }
 
     public final String getEmbed() {
-        return embed;
+        return this.embed;
     }
 
     public final void setEmbed(final String embed) {
@@ -67,7 +67,7 @@ public class Channel {
     }
 
     public final List<Game> getGames() {
-        return games;
+        return this.games;
     }
 
     public final void setGames(final List<Game> games) {
@@ -75,7 +75,7 @@ public class Channel {
     }
 
     public final String getGgPlayerSrc() {
-        return ggPlayerSrc;
+        return this.ggPlayerSrc;
     }
 
     public final void setGgPlayerSrc(final String ggPlayerSrc) {
@@ -83,7 +83,7 @@ public class Channel {
     }
 
     public final Long getId() {
-        return id;
+        return this.id;
     }
 
     public final void setId(final Long id) {
@@ -91,7 +91,7 @@ public class Channel {
     }
 
     public final String getImg() {
-        return img;
+        return this.img;
     }
 
     public final void setImg(final String img) {
@@ -99,7 +99,7 @@ public class Channel {
     }
 
     public final String getKey() {
-        return key;
+        return this.key;
     }
 
     public final void setKey(final String key) {
@@ -107,7 +107,7 @@ public class Channel {
     }
 
     public final String getMaxViewers() {
-        return maxViewers;
+        return this.maxViewers;
     }
 
     public final void setMaxViewers(final String maxViewers) {
@@ -115,7 +115,7 @@ public class Channel {
     }
 
     public final String getPlayerType() {
-        return playerType;
+        return this.playerType;
     }
 
     public final void setPlayerType(final String playerType) {
@@ -123,7 +123,7 @@ public class Channel {
     }
 
     public final String getPremium() {
-        return premium;
+        return this.premium;
     }
 
     public final void setPremium(final String premium) {
@@ -131,7 +131,7 @@ public class Channel {
     }
 
     public final String getThumb() {
-        return thumb;
+        return this.thumb;
     }
 
     public final void setThumb(final String thumb) {
@@ -139,7 +139,7 @@ public class Channel {
     }
 
     public final String getTitle() {
-        return title;
+        return this.title;
     }
 
     public final void setTitle(final String title) {
@@ -147,7 +147,7 @@ public class Channel {
     }
 
     public final String getUrl() {
-        return url;
+        return this.url;
     }
 
     public final void setUrl(final String url) {
@@ -157,20 +157,20 @@ public class Channel {
     @Override
     public final String toString() {
         return "Channel{" +
-                "id=" + id +
-                ", key='" + key + '\'' +
-                ", premium='" + premium + '\'' +
-                ", title='" + title + '\'' +
-                ", maxViewers='" + maxViewers + '\'' +
-                ", playerType='" + playerType + '\'' +
-                ", ggPlayerSrc='" + ggPlayerSrc + '\'' +
-                ", embed='" + embed + '\'' +
-                ", img='" + img + '\'' +
-                ", thumb='" + thumb + '\'' +
-                ", description='" + description + '\'' +
-                ", adult=" + adult +
-                ", games=" + games +
-                ", url='" + url + '\'' +
+                "id=" + this.id +
+                ", key='" + this.key + '\'' +
+                ", premium='" + this.premium + '\'' +
+                ", title='" + this.title + '\'' +
+                ", maxViewers='" + this.maxViewers + '\'' +
+                ", playerType='" + this.playerType + '\'' +
+                ", ggPlayerSrc='" + this.ggPlayerSrc + '\'' +
+                ", embed='" + this.embed + '\'' +
+                ", img='" + this.img + '\'' +
+                ", thumb='" + this.thumb + '\'' +
+                ", description='" + this.description + '\'' +
+                ", adult=" + this.adult +
+                ", games=" + this.games +
+                ", url='" + this.url + '\'' +
                 '}';
     }
 }

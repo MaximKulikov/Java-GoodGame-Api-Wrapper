@@ -16,7 +16,7 @@ public class ResPremium implements ResChatObject {
     private String userName;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -24,7 +24,7 @@ public class ResPremium implements ResChatObject {
     }
 
     public final String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     public final void setUserName(final String userName) {
@@ -34,8 +34,8 @@ public class ResPremium implements ResChatObject {
     @Override
     public final String toString() {
         return "ResPremium{" +
-                "channelId='" + channelId + '\'' +
-                ", userName='" + userName + '\'' +
+                "channelId='" + this.channelId + '\'' +
+                ", userName='" + this.userName + '\'' +
                 '}';
     }
 }

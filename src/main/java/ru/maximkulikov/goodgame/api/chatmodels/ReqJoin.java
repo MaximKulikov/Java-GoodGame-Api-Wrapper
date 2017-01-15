@@ -24,7 +24,7 @@ public class ReqJoin {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -32,7 +32,7 @@ public class ReqJoin {
     }
 
     public final boolean getHidden() {
-        return hidden;
+        return this.hidden;
     }
 
     public final void setHidden(final boolean hidden) {
@@ -40,7 +40,7 @@ public class ReqJoin {
     }
 
     public final boolean getMobile() {
-        return mobile;
+        return this.mobile;
     }
 
     public final void setMobile(final boolean mobile) {
@@ -50,9 +50,9 @@ public class ReqJoin {
     @Override
     public final String toString() {
         return "ReqJoin{" +
-                "channelId='" + channelId + '\'' +
-                ", hidden=" + hidden +
-                ", mobile=" + mobile +
+                "channelId='" + this.channelId + '\'' +
+                ", hidden=" + this.hidden +
+                ", mobile=" + this.mobile +
                 '}';
     }
 }

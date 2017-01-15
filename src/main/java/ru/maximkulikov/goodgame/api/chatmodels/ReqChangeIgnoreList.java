@@ -18,7 +18,7 @@ public class ReqChangeIgnoreList {
     }
 
     public final String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public final void setUserId(final String userId) {
@@ -28,7 +28,7 @@ public class ReqChangeIgnoreList {
     @Override
     public final String toString() {
         return "ReqAddToIgnoreList{" +
-                "userId='" + userId + '\'' +
+                "userId='" + this.userId + '\'' +
                 '}';
     }
 }

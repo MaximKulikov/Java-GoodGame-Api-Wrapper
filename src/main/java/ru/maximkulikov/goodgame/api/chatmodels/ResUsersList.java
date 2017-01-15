@@ -23,7 +23,7 @@ public class ResUsersList implements ResChatObject {
     private List<ChatUser> users;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -31,7 +31,7 @@ public class ResUsersList implements ResChatObject {
     }
 
     public final Long getClientsInChannel() {
-        return clientsInChannel;
+        return this.clientsInChannel;
     }
 
     public final void setClientsInChannel(final Long clientsInChannel) {
@@ -39,7 +39,7 @@ public class ResUsersList implements ResChatObject {
     }
 
     public final List<ChatUser> getUsers() {
-        return users;
+        return this.users;
     }
 
     public final void setUsers(final List<ChatUser> users) {
@@ -47,7 +47,7 @@ public class ResUsersList implements ResChatObject {
     }
 
     public final Long getUsersInChannel() {
-        return usersInChannel;
+        return this.usersInChannel;
     }
 
     public final void setUsersInChannel(final Long usersInChannel) {
@@ -57,10 +57,10 @@ public class ResUsersList implements ResChatObject {
     @Override
     public final String toString() {
         return "ResUsersList{" +
-                "channelId='" + channelId + '\'' +
-                ", clientsInChannel=" + clientsInChannel +
-                ", usersInChannel=" + usersInChannel +
-                ", users=" + users +
+                "channelId='" + this.channelId + '\'' +
+                ", clientsInChannel=" + this.clientsInChannel +
+                ", usersInChannel=" + this.usersInChannel +
+                ", users=" + this.users +
                 '}';
     }
 }

@@ -18,7 +18,7 @@ public class ReqGetUserInfo {
     }
 
     public final String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public final void setUserId(final String userId) {
@@ -28,7 +28,7 @@ public class ReqGetUserInfo {
     @Override
     public final String toString() {
         return "ReqGetUserInfo{" +
-                "userId='" + userId + '\'' +
+                "userId='" + this.userId + '\'' +
                 '}';
     }
 }

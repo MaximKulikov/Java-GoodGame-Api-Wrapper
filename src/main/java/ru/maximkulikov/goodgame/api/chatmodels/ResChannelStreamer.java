@@ -19,7 +19,7 @@ public class ResChannelStreamer implements ResChatObject {
     private List<String> groups;
 
     public final List<String> getGroups() {
-        return groups;
+        return this.groups;
     }
 
     public final void setGroups(final List<String> groups) {
@@ -27,7 +27,7 @@ public class ResChannelStreamer implements ResChatObject {
     }
 
     public final Long getId() {
-        return id;
+        return this.id;
     }
 
     public final void setId(final Long id) {
@@ -35,7 +35,7 @@ public class ResChannelStreamer implements ResChatObject {
     }
 
     public final String getName() {
-        return name;
+        return this.name;
     }
 
     public final void setName(final String name) {
@@ -43,7 +43,7 @@ public class ResChannelStreamer implements ResChatObject {
     }
 
     public final Long getRight() {
-        return right;
+        return this.right;
     }
 
     public final void setRight(final Long right) {
@@ -53,10 +53,10 @@ public class ResChannelStreamer implements ResChatObject {
     @Override
     public final String toString() {
         return "ResChannelStreamer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", right=" + right +
-                ", groups=" + groups +
+                "id=" +this.id +
+                ", name='" + this.name + '\'' +
+                ", right=" + this.right +
+                ", groups=" + this.groups +
                 '}';
     }
 }

@@ -26,7 +26,7 @@ public class PremiumPrices {
     private String id5;
 
     public final String getId1() {
-        return id1;
+        return this.id1;
     }
 
     public final void setId1(final String id1) {
@@ -34,7 +34,7 @@ public class PremiumPrices {
     }
 
     public final String getId2() {
-        return id2;
+        return this.id2;
     }
 
     public final void setId2(final String id2) {
@@ -42,7 +42,7 @@ public class PremiumPrices {
     }
 
     public final String getId3() {
-        return id3;
+        return this.id3;
     }
 
     public final void setId3(final String id3) {
@@ -50,7 +50,7 @@ public class PremiumPrices {
     }
 
     public final String getId4() {
-        return id4;
+        return this.id4;
     }
 
     public final void setId4(final String id4) {
@@ -58,7 +58,7 @@ public class PremiumPrices {
     }
 
     public final String getId5() {
-        return id5;
+        return this.id5;
     }
 
     public final void setId5(final String id5) {
@@ -68,11 +68,11 @@ public class PremiumPrices {
     @Override
     public final String toString() {
         return "PremiumPrices{" +
-                "id1='" + id1 + '\'' +
-                ", id2='" + id2 + '\'' +
-                ", id3='" + id3 + '\'' +
-                ", id4='" + id4 + '\'' +
-                ", id5='" + id5 + '\'' +
+                "id1='" + this.id1 + '\'' +
+                ", id2='" + this.id2 + '\'' +
+                ", id3='" + this.id3 + '\'' +
+                ", id4='" + this.id4 + '\'' +
+                ", id5='" + this.id5 + '\'' +
                 '}';
     }
 }

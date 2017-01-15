@@ -18,7 +18,7 @@ public class ReqChannelCounters implements ReqChatObject {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -28,7 +28,7 @@ public class ReqChannelCounters implements ReqChatObject {
     @Override
     public final String toString() {
         return "ReqChannelCounters{" +
-                "channelId='" + channelId + '\'' +
+                "channelId='" + this.channelId + '\'' +
                 '}';
     }
 }

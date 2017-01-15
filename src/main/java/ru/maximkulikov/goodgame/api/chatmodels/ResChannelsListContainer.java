@@ -14,7 +14,7 @@ public class ResChannelsListContainer {
     private ResChannelsList data;
 
     public final ResChannelsList getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResChannelsList data) {
@@ -22,7 +22,7 @@ public class ResChannelsListContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResChannelsListContainer {
     @Override
     public final String toString() {
         return "ResChannelsListContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

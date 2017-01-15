@@ -17,7 +17,7 @@ public class ResAutorization implements ResChatObject {
     private String userName;
 
     public final String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public final void setUserId(final String userId) {
@@ -25,7 +25,7 @@ public class ResAutorization implements ResChatObject {
     }
 
     public final String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     public final void setUserName(final String userName) {
@@ -35,8 +35,8 @@ public class ResAutorization implements ResChatObject {
     @Override
     public final String toString() {
         return "ResAutorization{" +
-                "userId='" + userId + '\'' +
-                ", userName='" + userName + '\'' +
+                "userId='" + this.userId + '\'' +
+                ", userName='" + this.userName + '\'' +
                 '}';
     }
 }

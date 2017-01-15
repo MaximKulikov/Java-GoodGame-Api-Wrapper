@@ -18,7 +18,7 @@ public class InfoChannel {
     private String src;
 
     public final String getChannel() {
-        return channel;
+        return this.channel;
     }
 
     public final void setChannel(final String channel) {
@@ -26,7 +26,7 @@ public class InfoChannel {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -34,7 +34,7 @@ public class InfoChannel {
     }
 
     public final String getSrc() {
-        return src;
+        return this.src;
     }
 
     public final void setSrc(final String src) {
@@ -44,9 +44,9 @@ public class InfoChannel {
     @Override
     public final String toString() {
         return "InfoChannel{" +
-                "channel='" + channel + '\'' +
-                ", channelId='" + channelId + '\'' +
-                ", src='" + src + '\'' +
+                "channel='" + this.channel + '\'' +
+                ", channelId='" + this.channelId + '\'' +
+                ", src='" + this.src + '\'' +
                 '}';
     }
 }

@@ -17,7 +17,7 @@ public class ReqChannelHistory {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -27,7 +27,7 @@ public class ReqChannelHistory {
     @Override
     public final String toString() {
         return "ReqChannelHistory{" +
-                "channelId='" + channelId + '\'' +
+                "channelId='" + this.channelId + '\'' +
                 '}';
     }
 }

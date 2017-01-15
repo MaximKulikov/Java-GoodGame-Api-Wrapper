@@ -13,7 +13,7 @@ public class ResIgnoreList implements ResChatObject {
     private List<ChatUser> users;
 
     public List<ChatUser> getUsers() {
-        return users;
+        return this.users;
     }
 
     public final void setUsers(final List<ChatUser> users) {
@@ -23,7 +23,7 @@ public class ResIgnoreList implements ResChatObject {
     @Override
     public final String toString() {
         return "ResIgnoreList{" +
-                "users=" + users +
+                "users=" + this.users +
                 '}';
     }
 }

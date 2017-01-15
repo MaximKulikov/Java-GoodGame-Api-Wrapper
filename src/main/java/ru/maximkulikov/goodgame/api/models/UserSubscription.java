@@ -15,7 +15,7 @@ public class UserSubscription {
     private ChannelContainer channel;
 
     public final ChannelContainer getChannel() {
-        return channel;
+        return this.channel;
     }
 
     public final void setChannel(final ChannelContainer channel) {
@@ -23,7 +23,7 @@ public class UserSubscription {
     }
 
     public final Date getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     public final void setCreatedAt(final Date createdAt) {
@@ -31,7 +31,7 @@ public class UserSubscription {
     }
 
     public final String getId() {
-        return id;
+        return this.id;
     }
 
     public final void setId(final String id) {
@@ -57,9 +57,9 @@ public class UserSubscription {
     @Override
     public final String toString() {
         return "UserSubscription{" +
-                "id='" + id + '\'' +
-                ", createdAt=" + createdAt +
-                ", channel=" + channel +
+                "id='" + this.id + '\'' +
+                ", createdAt=" + this.createdAt +
+                ", channel=" + this.channel +
                 '}';
     }
 }

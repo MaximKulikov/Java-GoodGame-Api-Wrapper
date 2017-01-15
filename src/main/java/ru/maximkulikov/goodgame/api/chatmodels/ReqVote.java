@@ -22,7 +22,7 @@ public class ReqVote {
     }
 
     public final int getAnswerId() {
-        return answerId;
+        return this.answerId;
     }
 
     public final void setAnswerId(final int answerId) {
@@ -30,7 +30,7 @@ public class ReqVote {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -40,8 +40,8 @@ public class ReqVote {
     @Override
     public final String toString() {
         return "ReqVote{" +
-                "channelId='" + channelId + '\'' +
-                ", answerId=" + answerId +
+                "channelId='" + this.channelId + '\'' +
+                ", answerId=" + this.answerId +
                 '}';
     }
 }

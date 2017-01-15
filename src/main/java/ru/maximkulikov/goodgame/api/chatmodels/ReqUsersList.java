@@ -18,7 +18,7 @@ public class ReqUsersList {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -28,7 +28,7 @@ public class ReqUsersList {
     @Override
     public final String toString() {
         return "ReqUsersList{" +
-                "channelId='" + channelId + '\'' +
+                "channelId='" + this.channelId + '\'' +
                 '}';
     }
 }

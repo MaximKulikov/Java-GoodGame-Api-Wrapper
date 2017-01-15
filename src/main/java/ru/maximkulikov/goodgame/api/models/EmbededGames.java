@@ -13,7 +13,7 @@ public class EmbededGames {
     private List<Game> games;
 
     public final List<Game> getGames() {
-        return games;
+        return this.games;
     }
 
     public final void setGames(final List<Game> games) {
@@ -23,7 +23,7 @@ public class EmbededGames {
     @Override
     public final String toString() {
         return "EmbededGames{" +
-                "games=" + games +
+                "games=" + this.games +
                 '}';
     }
 }

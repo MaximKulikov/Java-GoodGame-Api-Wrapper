@@ -19,7 +19,7 @@ public class ReqBanContainer implements ReqChatObject {
     }
 
     public final ReqBan getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ReqBan data) {
@@ -27,7 +27,7 @@ public class ReqBanContainer implements ReqChatObject {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -37,8 +37,8 @@ public class ReqBanContainer implements ReqChatObject {
     @Override
     public final String toString() {
         return "ReqBanContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

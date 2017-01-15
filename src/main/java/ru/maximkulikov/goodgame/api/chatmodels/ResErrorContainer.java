@@ -14,7 +14,7 @@ public class ResErrorContainer {
     private ResError data;
 
     public final ResError getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResError data) {
@@ -22,7 +22,7 @@ public class ResErrorContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResErrorContainer {
     @Override
     public final String toString() {
         return "ResErrorContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

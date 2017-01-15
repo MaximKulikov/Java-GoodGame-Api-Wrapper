@@ -22,7 +22,7 @@ public class EmbededDonations {
     private String comment;
 
     public final String getAmount() {
-        return amount;
+        return this.amount;
     }
 
     public final void setAmount(final String amount) {
@@ -30,7 +30,7 @@ public class EmbededDonations {
     }
 
     public final String getComment() {
-        return comment;
+        return this.comment;
     }
 
     public final void setComment(final String comment) {
@@ -38,7 +38,7 @@ public class EmbededDonations {
     }
 
     public final String getId() {
-        return id;
+        return this.id;
     }
 
     public final void setId(final String id) {
@@ -46,7 +46,7 @@ public class EmbededDonations {
     }
 
     public final String getPaidDate() {
-        return paidDate;
+        return this.paidDate;
     }
 
     public final void setPaidDate(final String paidDate) {
@@ -54,7 +54,7 @@ public class EmbededDonations {
     }
 
     public final String getUsername() {
-        return username;
+        return this.username;
     }
 
     public final void setUsername(final String username) {
@@ -64,11 +64,11 @@ public class EmbededDonations {
     @Override
     public final String toString() {
         return "EmbededDonations{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
-                ", amount='" + amount + '\'' +
-                ", paidDate='" + paidDate + '\'' +
-                ", comment='" + comment + '\'' +
+                "id='" + this.id + '\'' +
+                ", username='" + this.username + '\'' +
+                ", amount='" + this.amount + '\'' +
+                ", paidDate='" + this.paidDate + '\'' +
+                ", comment='" + this.comment + '\'' +
                 '}';
     }
 }

@@ -24,7 +24,7 @@ public class ResPayment implements ResChatObject {
     private String title;
 
     public final Long getAmount() {
-        return amount;
+        return this.amount;
     }
 
     public final void setAmount(final Long amount) {
@@ -32,7 +32,7 @@ public class ResPayment implements ResChatObject {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -40,7 +40,7 @@ public class ResPayment implements ResChatObject {
     }
 
     public final String getMessage() {
-        return message;
+        return this.message;
     }
 
     public final void setMessage(final String message) {
@@ -48,7 +48,7 @@ public class ResPayment implements ResChatObject {
     }
 
     public final String getTitle() {
-        return title;
+        return this.title;
     }
 
     public final void setTitle(final String title) {
@@ -56,7 +56,7 @@ public class ResPayment implements ResChatObject {
     }
 
     public final Long getTotal() {
-        return total;
+        return this.total;
     }
 
     public final void setTotal(final Long total) {
@@ -64,7 +64,7 @@ public class ResPayment implements ResChatObject {
     }
 
     public final String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     public final void setUserName(final String userName) {
@@ -74,12 +74,12 @@ public class ResPayment implements ResChatObject {
     @Override
     public final String toString() {
         return "ResPayment{" +
-                "channelId='" + channelId + '\'' +
-                ", userName='" + userName + '\'' +
-                ", amount=" + amount +
-                ", message='" + message + '\'' +
-                ", total=" + total +
-                ", title='" + title + '\'' +
+                "channelId='" + this.channelId + '\'' +
+                ", userName='" + this.userName + '\'' +
+                ", amount=" + this.amount +
+                ", message='" + this.message + '\'' +
+                ", total=" + this.total +
+                ", title='" + this.title + '\'' +
                 '}';
     }
 }

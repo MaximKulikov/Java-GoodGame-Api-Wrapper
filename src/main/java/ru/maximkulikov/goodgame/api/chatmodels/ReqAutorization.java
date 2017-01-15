@@ -30,7 +30,7 @@ class ReqAutorization {
     }
 
     public final int getSiteId() {
-        return siteId;
+        return this.siteId;
     }
 
     public final void setSiteId(final int siteId) {
@@ -38,7 +38,7 @@ class ReqAutorization {
     }
 
     public final String getToken() {
-        return token;
+        return this.token;
     }
 
     public final void setToken(final String token) {
@@ -46,7 +46,7 @@ class ReqAutorization {
     }
 
     public final int getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public final void setUserId(final int userId) {
@@ -56,9 +56,9 @@ class ReqAutorization {
     @Override
     public final String toString() {
         return "AutorizationReq{" +
-                "siteId=" + siteId +
-                ", userId=" + userId +
-                ", token='" + token + '\'' +
+                "siteId=" + this.siteId +
+                ", userId=" + this.userId +
+                ", token='" + this.token + '\'' +
                 '}';
     }
 }

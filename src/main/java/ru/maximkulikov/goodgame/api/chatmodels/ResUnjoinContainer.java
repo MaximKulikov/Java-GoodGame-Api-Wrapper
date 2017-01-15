@@ -14,7 +14,7 @@ public class ResUnjoinContainer {
     private ResUnjoin data;
 
     public final ResUnjoin getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResUnjoin data) {
@@ -22,7 +22,7 @@ public class ResUnjoinContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResUnjoinContainer {
     @Override
     public final String toString() {
         return "ResUnjoinContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

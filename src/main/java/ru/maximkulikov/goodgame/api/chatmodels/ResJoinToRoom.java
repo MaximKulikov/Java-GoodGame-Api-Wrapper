@@ -17,7 +17,7 @@ public class ResJoinToRoom implements ResChatObject {
     private String roomId;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -25,7 +25,7 @@ public class ResJoinToRoom implements ResChatObject {
     }
 
     public final String getRoomId() {
-        return roomId;
+        return this.roomId;
     }
 
     public final void setRoomId(final String roomId) {
@@ -35,8 +35,8 @@ public class ResJoinToRoom implements ResChatObject {
     @Override
     public final String toString() {
         return "ResJoinToRoom{" +
-                "channelId='" + channelId + '\'' +
-                ", roomId='" + roomId + '\'' +
+                "channelId='" + this.channelId + '\'' +
+                ", roomId='" + this.roomId + '\'' +
                 '}';
     }
 }

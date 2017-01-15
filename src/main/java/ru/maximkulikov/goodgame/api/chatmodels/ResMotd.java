@@ -25,7 +25,7 @@ public class ResMotd implements ResChatObject {
     private String text;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -33,7 +33,7 @@ public class ResMotd implements ResChatObject {
     }
 
     public final Long getModerGroup() {
-        return moderGroup;
+        return this.moderGroup;
     }
 
     public final void setModerGroup(final Long moderGroup) {
@@ -41,7 +41,7 @@ public class ResMotd implements ResChatObject {
     }
 
     public final Long getModerId() {
-        return moderId;
+        return this.moderId;
     }
 
     public final void setModerId(final Long moderId) {
@@ -49,7 +49,7 @@ public class ResMotd implements ResChatObject {
     }
 
     public final String getModerName() {
-        return moderName;
+        return this.moderName;
     }
 
     public final void setModerName(final String moderName) {
@@ -57,7 +57,7 @@ public class ResMotd implements ResChatObject {
     }
 
     public final String getText() {
-        return text;
+        return this.text;
     }
 
     public final void setText(final String text) {
@@ -67,11 +67,11 @@ public class ResMotd implements ResChatObject {
     @Override
     public final String toString() {
         return "ResMotd{" +
-                "channelId='" + channelId + '\'' +
-                ", moderId=" + moderId +
-                ", moderName='" + moderName + '\'' +
-                ", moderGroup=" + moderGroup +
-                ", text='" + text + '\'' +
+                "channelId='" + this.channelId + '\'' +
+                ", moderId=" + this.moderId +
+                ", moderName='" + this.moderName + '\'' +
+                ", moderGroup=" + this.moderGroup +
+                ", text='" + this.text + '\'' +
                 '}';
     }
 }

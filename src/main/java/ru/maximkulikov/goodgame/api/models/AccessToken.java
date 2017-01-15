@@ -26,7 +26,7 @@ public class AccessToken {
 
 
     public final String getAccessToken() {
-        return accessToken;
+        return this.accessToken;
     }
 
     public final void setAccessToken(final String accessToken) {
@@ -34,7 +34,7 @@ public class AccessToken {
     }
 
     public final long getExpiresIn() {
-        return expiresIn;
+        return this.expiresIn;
     }
 
     public final void setExpiresIn(final long expiresIn) {
@@ -42,7 +42,7 @@ public class AccessToken {
     }
 
     public final String getRefreshToken() {
-        return refreshToken;
+        return this.refreshToken;
     }
 
     public final void setRefreshToken(final String refreshToken) {
@@ -50,7 +50,7 @@ public class AccessToken {
     }
 
     public final String getScope() {
-        return scope;
+        return this.scope;
     }
 
     public final void setScope(final String scope) {
@@ -58,7 +58,7 @@ public class AccessToken {
     }
 
     public final String getTokenType() {
-        return tokenType;
+        return this.tokenType;
     }
 
     public final void setTokenType(final String tokenType) {
@@ -68,11 +68,11 @@ public class AccessToken {
     @Override
     public final String toString() {
         return "AccessToken{" +
-                "accessToken='" + accessToken + '\'' +
-                ", expiresIn=" + expiresIn +
-                ", tokenType='" + tokenType + '\'' +
-                ", scope='" + scope + '\'' +
-                ", refreshToken='" + refreshToken + '\'' +
+                "accessToken='" + this.accessToken + '\'' +
+                ", expiresIn=" + this.expiresIn +
+                ", tokenType='" + this.tokenType + '\'' +
+                ", scope='" + this.scope + '\'' +
+                ", refreshToken='" + this.refreshToken + '\'' +
                 '}';
     }
 }

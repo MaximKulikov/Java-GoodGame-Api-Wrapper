@@ -18,7 +18,7 @@ public class ReqChannelHistoryContainer implements ReqChatObject {
     }
 
     public final ReqChannelHistory getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ReqChannelHistory data) {
@@ -26,7 +26,7 @@ public class ReqChannelHistoryContainer implements ReqChatObject {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -36,8 +36,8 @@ public class ReqChannelHistoryContainer implements ReqChatObject {
     @Override
     public final String toString() {
         return "ReqChannelHistoryContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

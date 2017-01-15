@@ -37,7 +37,7 @@ public class Stream {
     }
 
     public final double getAverageFps() {
-        return averageFps;
+        return this.averageFps;
     }
 
     public final void setAverageFps(final double averageFps) {

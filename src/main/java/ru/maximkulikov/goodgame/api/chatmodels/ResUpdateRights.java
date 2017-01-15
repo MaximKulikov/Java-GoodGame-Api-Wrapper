@@ -17,7 +17,7 @@ public class ResUpdateRights implements ResChatObject {
     private Long accessRights;
 
     public final Long getAccessRights() {
-        return accessRights;
+        return this.accessRights;
     }
 
     public final void setAccessRights(final Long accessRights) {
@@ -25,7 +25,7 @@ public class ResUpdateRights implements ResChatObject {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -35,8 +35,8 @@ public class ResUpdateRights implements ResChatObject {
     @Override
     public final String toString() {
         return "ResUpdateRights{" +
-                "channelId='" + channelId + '\'' +
-                ", accessRights=" + accessRights +
+                "channelId='" + this.channelId + '\'' +
+                ", accessRights=" + this.accessRights +
                 '}';
     }
 }

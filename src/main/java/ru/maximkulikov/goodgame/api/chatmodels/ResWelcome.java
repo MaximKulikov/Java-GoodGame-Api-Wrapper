@@ -14,7 +14,7 @@ public class ResWelcome implements ResChatObject {
     private String serverIdent;
 
     public final String getProtocolVersion() {
-        return protocolVersion;
+        return this.protocolVersion;
     }
 
     public final void setProtocolVersion(final String protocolVersion) {
@@ -22,7 +22,7 @@ public class ResWelcome implements ResChatObject {
     }
 
     public final String getServerIdent() {
-        return serverIdent;
+        return this.serverIdent;
     }
 
     public final void setServerIdent(final String serverIdent) {
@@ -32,8 +32,8 @@ public class ResWelcome implements ResChatObject {
     @Override
     public final String toString() {
         return "ResWelcome{" +
-                "protocolVersion='" + protocolVersion + '\'' +
-                ", serverIdent='" + serverIdent + '\'' +
+                "protocolVersion='" + this.protocolVersion + '\'' +
+                ", serverIdent='" + this.serverIdent + '\'' +
                 '}';
     }
 }

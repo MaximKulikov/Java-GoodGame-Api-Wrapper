@@ -47,14 +47,14 @@ public class Token {
     @Override
     public final String toString() {
         return "Token{" +
-                "userName='" + userName + '\'' +
-                ", valid=" + valid +
-                ", authorization=" + authorization +
+                "userName='" + this.userName + '\'' +
+                ", valid=" + this.valid +
+                ", authorization=" + this.authorization +
                 '}';
     }
 
     public final boolean isValid() {
-        return valid;
+        return this.valid;
     }
 
     public final void setValid(final boolean valid) {

@@ -19,7 +19,7 @@ public class ReqVoteContainer implements ReqChatObject {
     }
 
     public final ReqVote getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ReqVote data) {
@@ -27,7 +27,7 @@ public class ReqVoteContainer implements ReqChatObject {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -37,8 +37,8 @@ public class ReqVoteContainer implements ReqChatObject {
     @Override
     public final String toString() {
         return "ReqVoteContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

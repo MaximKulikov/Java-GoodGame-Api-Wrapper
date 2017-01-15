@@ -16,7 +16,7 @@ public class TokenAuthorization {
     private Date updatedAt;
 
     public final Date getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     public final void setCreatedAt(final Date createdAt) {
@@ -24,7 +24,7 @@ public class TokenAuthorization {
     }
 
     public final List<Scopes> getScopes() {
-        return scopes;
+        return this.scopes;
     }
 
     public final void setScopes(final List<String> scopes) {
@@ -35,7 +35,7 @@ public class TokenAuthorization {
     }
 
     public final Date getUpdatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     public final void setUpdatedAt(final Date updatedAt) {
@@ -65,9 +65,9 @@ public class TokenAuthorization {
     @Override
     public final String toString() {
         return "TokenAuthorization{" +
-                "scopes=" + scopes +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
+                "scopes=" + this.scopes +
+                ", createdAt=" + this.createdAt +
+                ", updatedAt=" + this.updatedAt +
                 '}';
     }
 }

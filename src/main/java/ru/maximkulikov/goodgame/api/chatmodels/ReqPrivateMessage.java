@@ -25,7 +25,7 @@ public class ReqPrivateMessage {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -33,7 +33,7 @@ public class ReqPrivateMessage {
     }
 
     public final String getText() {
-        return text;
+        return this.text;
     }
 
     public final void setText(final String text) {
@@ -41,7 +41,7 @@ public class ReqPrivateMessage {
     }
 
     public final String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public final void setUserId(final String userId) {
@@ -51,9 +51,9 @@ public class ReqPrivateMessage {
     @Override
     public final String toString() {
         return "ReqPrivateMessage{" +
-                "channelId='" + channelId + '\'' +
-                ", userId='" + userId + '\'' +
-                ", text='" + text + '\'' +
+                "channelId='" + this.channelId + '\'' +
+                ", userId='" + this.userId + '\'' +
+                ", text='" + this.text + '\'' +
                 '}';
     }
 }

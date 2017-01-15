@@ -18,7 +18,7 @@ public class ReqPrivateMessageContainer implements ReqChatObject {
     }
 
     public final ReqPrivateMessage getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ReqPrivateMessage data) {
@@ -26,7 +26,7 @@ public class ReqPrivateMessageContainer implements ReqChatObject {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -36,8 +36,8 @@ public class ReqPrivateMessageContainer implements ReqChatObject {
     @Override
     public final String toString() {
         return "ReqPrivateMessageContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

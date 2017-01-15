@@ -22,7 +22,7 @@ public class ReqRemoveMessage {
     }
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -30,7 +30,7 @@ public class ReqRemoveMessage {
     }
 
     public final String getMessageId() {
-        return messageId;
+        return this.messageId;
     }
 
     public final void setMessageId(final String messageId) {
@@ -40,8 +40,8 @@ public class ReqRemoveMessage {
     @Override
     public final String toString() {
         return "ReqRemoveMessage{" +
-                "channelId='" + channelId + '\'' +
-                ", messageId='" + messageId + '\'' +
+                "channelId='" + this.channelId + '\'' +
+                ", messageId='" + this.messageId + '\'' +
                 '}';
     }
 }

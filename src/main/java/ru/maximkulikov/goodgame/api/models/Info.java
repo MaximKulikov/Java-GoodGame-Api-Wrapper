@@ -16,7 +16,7 @@ public class Info {
     private InfoChannel channel;
 
     public final InfoChannel getChannel() {
-        return channel;
+        return this.channel;
     }
 
     public final void setChannel(final InfoChannel channel) {
@@ -24,7 +24,7 @@ public class Info {
     }
 
     public final InfoToken getToken() {
-        return token;
+        return this.token;
     }
 
     public final void setToken(final InfoToken token) {
@@ -32,7 +32,7 @@ public class Info {
     }
 
     public final InfoUser getUser() {
-        return user;
+        return this.user;
     }
 
     public final void setUser(final InfoUser user) {
@@ -42,9 +42,9 @@ public class Info {
     @Override
     public final String toString() {
         return "Info{" +
-                "channel=" + channel +
-                ", user=" + user +
-                ", token=" + token +
+                "channel=" + this.channel +
+                ", user=" + this.user +
+                ", token=" + this.token +
                 '}';
     }
 }

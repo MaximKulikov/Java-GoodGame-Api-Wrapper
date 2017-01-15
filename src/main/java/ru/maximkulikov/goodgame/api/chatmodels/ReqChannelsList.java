@@ -19,7 +19,7 @@ public class ReqChannelsList {
     }
 
     public final int getCount() {
-        return count;
+        return this.count;
     }
 
     public final void setCount(final int count) {
@@ -27,7 +27,7 @@ public class ReqChannelsList {
     }
 
     public final int getStart() {
-        return start;
+        return this.start;
     }
 
     public final void setStart(final int start) {
@@ -37,8 +37,8 @@ public class ReqChannelsList {
     @Override
     public final String toString() {
         return "ReqChannelsList{" +
-                "start=" + start +
-                ", count=" + count +
+                "start=" + this.start +
+                ", count=" + this.count +
                 '}';
     }
 }

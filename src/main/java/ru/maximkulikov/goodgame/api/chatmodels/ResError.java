@@ -19,7 +19,7 @@ public class ResError implements ResChatObject {
     private String errorMsg;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {
@@ -27,7 +27,7 @@ public class ResError implements ResChatObject {
     }
 
     public final String getErrorMsg() {
-        return errorMsg;
+        return this.errorMsg;
     }
 
     public final void setErrorMsg(final String errorMsg) {
@@ -35,7 +35,7 @@ public class ResError implements ResChatObject {
     }
 
     public final int getErrorNum() {
-        return errorNum;
+        return this.errorNum;
     }
 
     public final void setErrorNum(final int errorNum) {
@@ -45,9 +45,9 @@ public class ResError implements ResChatObject {
     @Override
     public final String toString() {
         return "ResError{" +
-                "channelId='" + channelId + '\'' +
-                ", errorNum=" + errorNum +
-                ", errorMsg='" + errorMsg + '\'' +
+                "channelId='" + this.channelId + '\'' +
+                ", errorNum=" + this.errorNum +
+                ", errorMsg='" + this.errorMsg + '\'' +
                 '}';
     }
 }

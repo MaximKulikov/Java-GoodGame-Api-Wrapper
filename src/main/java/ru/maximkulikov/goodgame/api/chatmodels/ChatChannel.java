@@ -9,57 +9,58 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatChannel {
+
     @JsonProperty("channel_id")
     private String channelId;
 
     @JsonProperty("channel_name")
-    private String channelName; // "имя канала"
+    private String channelName;
 
     @JsonProperty("clients_in_channel")
-    private Long clientsInChannel;// всего клиентов в канале, включая гостей
+    private Long clientsInChannel;
 
     @JsonProperty("users_in_channel")
-    private Long usersInChannel;  // всего авторизованных пользователей в канале
+    private Long usersInChannel;
 
-    public String getChannelId() {
-        return channelId;
+    public final String getChannelId() {
+        return this.channelId;
     }
 
-    public void setChannelId(String channelId) {
+    public final void setChannelId(final String channelId) {
         this.channelId = channelId;
     }
 
-    public String getChannelName() {
-        return channelName;
+    public final String getChannelName() {
+        return this.channelName;
     }
 
-    public void setChannelName(String channelName) {
+    public final void setChannelName(final String channelName) {
         this.channelName = channelName;
     }
 
-    public Long getClientsInChannel() {
-        return clientsInChannel;
+    public final Long getClientsInChannel() {
+        return this.clientsInChannel;
     }
 
-    public void setClientsInChannel(Long clientsInChannel) {
+    public final void setClientsInChannel(final Long clientsInChannel) {
         this.clientsInChannel = clientsInChannel;
     }
 
-    public Long getUsersInChannel() {
-        return usersInChannel;
+    public final Long getUsersInChannel() {
+        return this.usersInChannel;
     }
 
-    public void setUsersInChannel(Long usersInChannel) {
+    public final void setUsersInChannel(final Long usersInChannel) {
         this.usersInChannel = usersInChannel;
     }
 
     @Override
     public String toString() {
         return "ChatChannel{" +
-                "channelId='" + channelId + '\'' +
-                ", channelName='" + channelName + '\'' +
-                ", clientsInChannel=" + clientsInChannel +
-                ", usersInChannel=" + usersInChannel +
+                "channelId='" + this.channelId + '\'' +
+                ", channelName='" + this.channelName + '\'' +
+                ", clientsInChannel=" + this.clientsInChannel +
+                ", usersInChannel=" + this.usersInChannel +
                 '}';
     }
 }

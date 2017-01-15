@@ -14,7 +14,7 @@ public class ResUserBanContainer {
     private ResUserBan data;
 
     public final ResUserBan getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResUserBan data) {
@@ -22,7 +22,7 @@ public class ResUserBanContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResUserBanContainer {
     @Override
     public final String toString() {
         return "ResUserBanContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

@@ -17,7 +17,7 @@ public class ReqIgnoreListContainer implements ReqChatObject {
     }
 
     public final Object getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final Object data) {
@@ -25,7 +25,7 @@ public class ReqIgnoreListContainer implements ReqChatObject {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -35,8 +35,8 @@ public class ReqIgnoreListContainer implements ReqChatObject {
     @Override
     public final String toString() {
         return "ReqIgnoreListContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

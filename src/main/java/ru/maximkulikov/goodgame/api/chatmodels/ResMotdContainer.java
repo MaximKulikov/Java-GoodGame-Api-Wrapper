@@ -14,7 +14,7 @@ public class ResMotdContainer {
     private ResMotd data;
 
     public final ResMotd getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResMotd data) {
@@ -22,7 +22,7 @@ public class ResMotdContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResMotdContainer {
     @Override
     public final String toString() {
         return "ResMotdContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

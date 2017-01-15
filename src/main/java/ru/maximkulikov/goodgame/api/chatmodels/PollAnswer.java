@@ -19,7 +19,7 @@ public class PollAnswer {
     }
 
     public final int getId() {
-        return id;
+        return this.id;
     }
 
     public final void setId(final int id) {
@@ -27,7 +27,7 @@ public class PollAnswer {
     }
 
     public final String getText() {
-        return text;
+        return this.text;
     }
 
     public final void setText(final String text) {
@@ -37,8 +37,8 @@ public class PollAnswer {
     @Override
     public String toString() {
         return "PollAnswer{" +
-                "id='" + id + '\'' +
-                ", text='" + text + '\'' +
+                "id='" + this.id + '\'' +
+                ", text='" + this.text + '\'' +
                 '}';
     }
 }

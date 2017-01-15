@@ -33,7 +33,7 @@ public class ResSettings implements ResChatObject {
     private Long silent;
 
     public final String getChannelId() {
-        return channelId;
+        return this.channelId;
     }
 
     public final void setChannelId(final String channelId) {

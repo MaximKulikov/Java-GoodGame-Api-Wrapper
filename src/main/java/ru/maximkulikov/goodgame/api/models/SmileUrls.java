@@ -16,7 +16,7 @@ public class SmileUrls {
     private String gif;
 
     public final String getBig() {
-        return big;
+        return this.big;
     }
 
     public final void setBig(final String big) {
@@ -24,7 +24,7 @@ public class SmileUrls {
     }
 
     public final String getGif() {
-        return gif;
+        return this.gif;
     }
 
     public final void setGif(final String gif) {
@@ -32,7 +32,7 @@ public class SmileUrls {
     }
 
     public final String getImg() {
-        return img;
+        return this.img;
     }
 
     public final void setImg(final String img) {
@@ -42,9 +42,9 @@ public class SmileUrls {
     @Override
     public final String toString() {
         return "SmileUrls{" +
-                "img='" + img + '\'' +
-                ", big='" + big + '\'' +
-                ", gif='" + gif + '\'' +
+                "img='" + this.img + '\'' +
+                ", big='" + this.big + '\'' +
+                ", gif='" + this.gif + '\'' +
                 '}';
     }
 }

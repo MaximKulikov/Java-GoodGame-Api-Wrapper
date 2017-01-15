@@ -14,7 +14,7 @@ public class ResPollResultsContainer {
     private ResPollResults data;
 
     public final ResPollResults getData() {
-        return data;
+        return this.data;
     }
 
     public final void setData(final ResPollResults data) {
@@ -22,7 +22,7 @@ public class ResPollResultsContainer {
     }
 
     public final String getType() {
-        return type;
+        return this.type;
     }
 
     public final void setType(final String type) {
@@ -32,8 +32,8 @@ public class ResPollResultsContainer {
     @Override
     public final String toString() {
         return "ResPollResultsContainer{" +
-                "type='" + type + '\'' +
-                ", data=" + data +
+                "type='" + this.type + '\'' +
+                ", data=" + this.data +
                 '}';
     }
 }

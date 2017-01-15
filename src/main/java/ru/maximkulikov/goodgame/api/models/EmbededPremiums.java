@@ -13,7 +13,7 @@ public class EmbededPremiums {
     private List<Premium> premiums;
 
     public final List<Premium> getPremiums() {
-        return premiums;
+        return this.premiums;
     }
 
     public final void setPremiums(final List<Premium> premiums) {
@@ -23,7 +23,7 @@ public class EmbededPremiums {
     @Override
     public final String toString() {
         return "EmbededPremiums{" +
-                "premiums=" + premiums +
+                "premiums=" + this.premiums +
                 '}';
     }
 }

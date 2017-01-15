@@ -16,7 +16,7 @@ public class Error {
     private String message;
 
     public final String getMessage() {
-        return message;
+        return this.message;
     }
 
     public final void setMessage(final String message) {
@@ -24,7 +24,7 @@ public class Error {
     }
 
     public final int getStatusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     public final void setStatusCode(final int statusCode) {
@@ -33,7 +33,7 @@ public class Error {
 
     public final String getStatusText() {
 
-        return statusText;
+        return this.statusText;
     }
 
     public final void setStatusText(final String statusText) {
@@ -64,9 +64,9 @@ public class Error {
     @Override
     public final String toString() {
         return "Error{" +
-                "statusText='" + statusText + '\'' +
-                ", statusCode=" + statusCode +
-                ", message='" + message + '\'' +
+                "statusText='" + this.statusText + '\'' +
+                ", statusCode=" + this.statusCode +
+                ", message='" + this.message + '\'' +
                 '}';
     }
 }

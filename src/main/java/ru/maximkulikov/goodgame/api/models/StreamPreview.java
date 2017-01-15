@@ -90,10 +90,10 @@ public class StreamPreview {
     @Override
     public final String toString() {
         return "StreamPreview{" +
-                "small='" + small + '\'' +
-                ", medium='" + medium + '\'' +
-                ", large='" + large + '\'' +
-                ", template='" + template + '\'' +
+                "small='" + this.small + '\'' +
+                ", medium='" + this.medium + '\'' +
+                ", large='" + this.large + '\'' +
+                ", template='" + this.template + '\'' +
                 '}';
     }
 }
