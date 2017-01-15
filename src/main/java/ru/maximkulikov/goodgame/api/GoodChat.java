@@ -15,7 +15,9 @@ import ru.maximkulikov.goodgame.api.chatmodels.Response;
 public abstract class GoodChat {
 
     protected static final ObjectMapper objectMapper = new ObjectMapper();
+
     private static final String DEFAULT_CHAT_URL = "ws://chat.goodgame.ru:8081/chat/websocket";
+
     private GoodChatSocket socket;
 
     private boolean connected;

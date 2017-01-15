@@ -24,9 +24,6 @@ public class PremiumsContainer {
 
     private Long page;
 
-    public PremiumsContainer() {
-    }
-
     public final EmbededPremiums getEmbeded() {
         return this.embeded;
     }

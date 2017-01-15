@@ -1,17 +1,11 @@
+Code Style: [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e363ff624c2343e8acbb08e96b61d7d6)](https://www.codacy.com/app/Trinion/Java-GoodGame-Api-Wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Trinion/Java-GoodGame-Api-Wrapper&amp;utm_campaign=Badge_Grade)  
+
 # Async GoodGame API Wrapper
 JGAW - обертка над [GoodGame API](https://github.com/GoodGame/API), позволяющая выполнять асинхронные запросы. 
 
 Please feel free to report any issues or contribute code.
 
 За основу проекта взята разработка `Matthew J. Bell @urgrue` [Java-Twitch-Api-Wrapper](https://github.com/urgrue/Java-Twitch-Api-Wrapper)
-
-##In Progress
-
-Разобраться с путаницей в авторизационном токене и токене доступа  
-Сделать тесты  
-Написать вменяемую инструкцию  
-Выложить релиз  
-
 
 # Основная идея
 
@@ -30,14 +24,17 @@ Please feel free to report any issues or contribute code.
 Работа с АПИ чата происходит в унаследованном от `GoodChat` классе
 
 
-
 #### Простой пример
 
 ```java
 class SimpleExample {
     public void example() {
+        
         GoodGame gg = new GoodGame();
-        gg.setClientId("shjdkashjkfdl"); // Идентификатор приложения   (https://goodgame.ru/user/***userId***/edit) 
+        
+        // Идентификатор приложения   (https://goodgame.ru/user/***userId***/edit)
+        gg.setClientId("shjdkashjkfdl");
+        
         gg.smiles().getSmiles(new SmilesResponseHandler() {
 
             @Override
@@ -66,7 +63,9 @@ class SimpleExample {
 /* Получение подписчиков, начиная с конкретного времени */
 class SimpleExample {
     public void example() {
+        
         RequestParams params = new RequestParams();
+        
         params.put("from_timestamp", "1453592975");
 
         gg.channels().getSubscribers("channelName", params, new SubscriberResponseHandler() {
@@ -89,61 +88,32 @@ class SimpleExample {
     }
 }
 ```
-### Вызовы апи стримингового сервиса
+### Соответствия JGAW и Goodgame API 
 
-***gg.auth().awaitAutorizationCode()***  
-// Получение авторизационного токена
+| Получение Access Token'а        |  JGAW                                   |
+|---------------------------------|-----------------------------------------|
+| Запрос кода авторизации         |  `gg.auth().awaitAutorizationCode()`    |
+| Запрос Access Token             |  `gg.oauth().getAccessToken()`          |
+| Refresh Token                   |  Отсутствует                            | 
 
-***gg.oauth().getAccessToken()***   
-//Получение токена доступа  
-
-***gg.player().getPlayer()***   
-// Получение информации о плеере, передается Player source  
-
-***gg.streams.getChannel()***   
-// Получение информации о конкретном стриме. Query-параметры не работают.  
-
-***gg.channels().getSubscribers(channel, new SubscriberResponseHandler()***   
-// Список подписчиков указанного канала. Scope: channel.subscribers  
-
-***gg.channels().getSubscribers(channel, requestParams, new SubscriberResponseHandler()***   
-// Список подписчиков указанного канала c параметрами. Scope: channel.subscribers  
-
-***gg.channels().getPremiums(channel, new PremiumsResponseHandler()***   
-// Список премиум подписчиков указанного канала. Scope: channel.premiums  
-
-***gg.channels().getPremiums(channel, requestParams, new PremiumsResponseHandler()***   
-// Список премиум подписчиков указанного канала с параметрами. Scope: channel.premiums  
-
-***gg.channels().getDonations(channel, new DonationsResponseHandler()***   
-// Список поддержки указанного канала. Scope: channel.donations  
-
-***gg.channels().getDonations(channel, requestParams, new DonationsResponseHandler()***   
-// Список поддержки указанного канала с параметрами. Scope: channel.donations  
-
-***gg.chat().getChatToken(new ChatTokenResponseHandler()***    
-// Получение токена чата для конкретного пользователя. Id-пользователя определяется из Access Token'a. Scope: chat.token  
-
-***gg.games().getGames(new GamesResponseHandler()***   
-// Получение коллекции игр  
-
-Не проверено ***gg.games().getGames(requestParams, new GamesResponseHandler()***   
-// Получение коллекции игр  
-
-***gg.games().getGame(gameUrl, new GameResponseHandler()***  
-// Получение информации по игре, зная ее url  
-
-***gg.info().getInfo(new InfoResponseHandler()***   
-// Получение информации по Access Token'у  
-
-***gg.smiles().getSmiles(new SmilesResponseHandler()***   
-// Получение коллекции смайлов. Если не указан channel_id, то вернется список всех смайлов.  
-
-***gg.smiles().getChannelSmiles(channelId, new SmilesResponseHandler()***   
-//Получение коллекции смайлов.  
-
-***gg.githubapi()*** Возврщает данные в json формате. Спасибо ГГ за динамические ключи  
-Как-то реализовано то что тут описано https://github.com/GoodGame/API/blob/master/Streams/stream_api.md  
+| API                                 |  JGAW               |  Описание               |
+|-------------------------------------|---------------------------------------------------------------------------|-------------------------|
+| `GET /player/:src`                  | `gg.player().getPlayer()`                                                 | Получение информации о плеере.  |
+| `GET /streams`                      | //TODO    | Получение информации обо всех онлайн стримах на Goodgame. Можно использовать query-параметры.  |
+| `GET /streams[/:channel]`           | //TODO `gg.streams.getChannel()`                                                 | Получение информации о конкретном стриме. Query-параметры не работают.  |
+| `GET /channel/:channel/subscribers` | `gg.channels().getSubscribers(channel, new SubscriberResponseHandler())`<br /> `gg.channels().getSubscribers(channel, requestParams, new SubscriberResponseHandler()`   | Список подписчиков указанного канала.  |
+| `GET /channel/:channel/premiums`    | `gg.channels().getPremiums(channel, new PremiumsResponseHandler())` <br /> `gg.channels().getPremiums(channel, requestParams, new PremiumsResponseHandler()`   | Список премиум подписчиков указанного канала  |
+| `GET /channel/:channel/donations`   | `gg.channels().getDonations(channel, new DonationsResponseHandler())` <br /> `gg.channels().getDonations(channel, requestParams, new DonationsResponseHandler()`  | Список поддержки указанного канала.  |
+| `GET /chat/token`                   | `gg.chat().getChatToken(new ChatTokenResponseHandler())`   | Получение токена чата для конкретного пользователя. Id-пользователя определяется из Access Token'a.  |
+| `GET /games`                        | `gg.games().getGames(new GamesResponseHandler())` <br /> `gg.games().getGames(requestParams, new GamesResponseHandler()`   | Получение коллекции игр  |
+| `GET /games[/:game]`                | `gg.games().getGame(gameUrl, new GameResponseHandler())`   | Получение информации по игре, зная ее url  |
+| `GET /info`                         | `gg.info().getInfo(new InfoResponseHandler())`   | Получение информации по Access Token'у  |
+| `GET /smiles[/:channel_id]`         | `gg.smiles().getSmiles(new SmilesResponseHandler()` <br /> `gg.smiles().getChannelSmiles(channelId, new SmilesResponseHandler()`   | Получение коллекции смайлов.  |
+| `http://goodgame.ru/api/getggchannelstatus`    | `gg.githubapi().getChannelStatus()` <br /> `gg.githubapi().getGgChannelStatus`  | Получение информации о статусе плееров GoodGame.  |
+| `http://goodgame.ru/api/getupcomingbroadcast`  | `gg.githubapi().getUpcomingBroadcast()`   | Получение информации о предстоящей трансляции (анонс).  |
+| `http://goodgame.ru/api/getchannelsbygame`     | `gg.githubapi().getChannelsByGame()`   | Получение информации о трансляциях по конкретной игре.  |
+| `http://goodgame.ru/api/token`                 | `gg.githubapi().getToken()`   | Получение токена авторизации.  |
+| `http://goodgame.ru/api/getchannelsubscribers` | `gg.githubapi().getChannelSubscribers()`   | Список подписчиков.  |
 
 
 # API чата
@@ -152,18 +122,24 @@ class SimpleExample {
 ```java
 class SimpleExample {
     public void example() {
+        
         GGChat goodgameChat = new GGChat();
+        
         goodgameChat.connect();
     } 
 
     class GGChat extends GoodChat {  
     
         @Override  
-        public void onMessage(Response answer) {   
-            answer.getType(); // Возвращает значение Enum с типом пришедшего сообщения
-            answer.getAnswer(); // Возвращает базовый ResChatObject
+        public void onMessage(Response answer) {
             
-            // Пример
+            // Возвращает значение Enum с типом пришедшего сообщения
+            answer.getType(); 
+            
+            // Возвращает базовый ResChatObject
+            answer.getAnswer(); 
+            
+            // Пример:
             switch (answer.getType()) {  
                 case CHANNEL_HISTORY:  
                     ResChannelHistory resChannelHistory = (ResChannelHistory) answer.getAnswer();  
@@ -180,32 +156,32 @@ class SimpleExample {
 после соединения с сервером
 
 
-| Запросы                | Классы ReqChatObject                                                                                                                                           |
-|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| auth                   | ***ReqAutorizationContainer***(int siteId, int userId, String token)                                                                                           |
-| get_channels_list      | ***ReqChannelsListContainer***() <br /> ***ReqChannelsListContainer***(int start, int count)                                                                   |
-| join                   | ***ReqJoinContainer***(String channelId) <br />***ReqJoinContainer***(String channelId, boolean hidden, boolean mobile)                                        |
-| unjoin                 | ***ReqUnjoinContainer***(String channelId)                                                                                                                     |
-| get_users_list         | ***ReqUsersListContainer***(String channelId)                                                                                                                  |
-| get_channel_counters   | ***ReqChannelCountersContainer***(String channelId)                                                                                                            |
-| get_ignore_list        | ***ReqIgnoreListContainer***()                                                                                                                                 |
-| add_to_ignore_list     | ***ReqAddToIgnoreListContainer***(String userId)                                                                                                               |
-| del_from_ignore_list   | ***ReqDelFromIgnoreListContainer***(String userId)                                                                                                             |
-| get_channel_history    | ***ReqChannelHistoryContainer***(String channelId)                                                                                                             |
-| send_message           | ***ReqSendMessageContainer***(String channelId, String text) <br /> ***ReqSendMessageContainer***(String channelId, String text, Boolean hideIcon, Boolean mobile)   |
-| send_private_message   | ***ReqPrivateMessageContainer***(String channelId, String userId, String text)                                                                                 |
-| remove_message         | ***ReqRemoveMessageContainer***(String channelId, String messageId)                                                                                            |
-| ban                    | ***ReqBanContainer***(String channelId, String banChannel, String userId, Long duration, String reason, String comment, Boolean show_ban)                      |
-| warn                   | ***ReqWarnContainer***(String channelId, String userId, String reason)                                                                                         |
-| new_poll               | ***ReqNewPollContainer***(String channelId, String moderId, String moderName, String title, List<String> answers)                                              |
-| get_poll               | ***ReqGetPollContainer***(String channelId)                                                                                                                    |
-| vote                   | ***ReqVoteContainer***(String channelId, int answerId)                                                                                                         |
-| get_poll_results       | ***ReqPollResultsContainer***(String channelId)                                                                                                                |
-| get_user_info          | ***ReqGetUserInfoContainer***(String userId)                                                                                                                   |
-| make_moderator         | ***ReqMakeModeratorContainer***(String channelId, String userId)                                                                                               |
-| clean_moderator        | ***ReqCleanModeratorContainer***(String channelId, String userId)                                                                                              |
-| refresh_premium        | ***ReqRefreshPremiumContainer***(String channelId)                                                                                                             |
-| refresh_groups v.2     | **ReqRefreshGroupsContainer***(final String channelId)                                                                                                         |
+| Запросы                | Классы ReqChatObject                                                                                                                                       |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| auth                   | `ReqAutorizationContainer(int siteId, int userId, String token)`                                                                                           |
+| get_channels_list      | `ReqChannelsListContainer()` <br /> `ReqChannelsListContainer(int start, int count)`                                                                       |
+| join                   | `ReqJoinContainer(String channelId)` <br />`ReqJoinContainer(String channelId, boolean hidden, boolean mobile)`                                            |
+| unjoin                 | `ReqUnjoinContainer(String channelId)`                                                                                                                     |
+| get_users_list         | `ReqUsersListContainer(String channelId)`                                                                                                                  |
+| get_channel_counters   | `ReqChannelCountersContainer(String channelId)`                                                                                                            |
+| get_ignore_list        | `ReqIgnoreListContainer()`                                                                                                                                 |
+| add_to_ignore_list     | `ReqAddToIgnoreListContainer(String userId)`                                                                                                               |
+| del_from_ignore_list   | `ReqDelFromIgnoreListContainer(String userId)`                                                                                                             |
+| get_channel_history    | `ReqChannelHistoryContainer(String channelId)`                                                                                                             |
+| send_message           | `ReqSendMessageContainer(String channelId, String text)` <br /> `ReqSendMessageContainer(String channelId, String text, Boolean hideIcon, Boolean mobile)` |
+| send_private_message   | `ReqPrivateMessageContainer(String channelId, String userId, String text)`                                                                                 |
+| remove_message         | `ReqRemoveMessageContainer(String channelId, String messageId)`                                                                                            |
+| ban                    | `ReqBanContainer(String channelId, String banChannel, String userId, Long duration, String reason, String comment, Boolean show_ban)`                      |
+| warn                   | `ReqWarnContainer(String channelId, String userId, String reason)`                                                                                         |
+| new_poll               | `ReqNewPollContainer(String channelId, String moderId, String moderName, String title, List<String> answers)`                                              |
+| get_poll               | `ReqGetPollContainer(String channelId)`                                                                                                                    |
+| vote                   | `ReqVoteContainer(String channelId, int answerId)`                                                                                                         |
+| get_poll_results       | `ReqPollResultsContainer(String channelId)`                                                                                                                |
+| get_user_info          | `ReqGetUserInfoContainer(String userId)`                                                                                                                   |
+| make_moderator         | `ReqMakeModeratorContainer(String channelId, String userId)`                                                                                               |
+| clean_moderator        | `ReqCleanModeratorContainer(String channelId, String userId)`                                                                                              |
+| refresh_premium        | `ReqRefreshPremiumContainer(String channelId)`                                                                                                             |
+| refresh_groups v.2     | `ReqRefreshGroupsContainer(final String channelId)`                                                                                                         |
 
 
 ### Соответствие ответов сервера чата классам библиотеки
@@ -362,7 +338,10 @@ twitch.auth().setAccessToken("my-access-token-289489");
 
 * Скоро
 
-## Roadmap
+## In Progress
 
-Выпустить релиз  
-Improve CodeStyle: [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e363ff624c2343e8acbb08e96b61d7d6)](https://www.codacy.com/app/Trinion/Java-GoodGame-Api-Wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Trinion/Java-GoodGame-Api-Wrapper&amp;utm_campaign=Badge_Grade)
+Разобраться с путаницей в авторизационном токене и токене доступа      
+Написать вменяемую инструкцию    
+Проверить работу  
+Сделать тесты  
+Выложить альфа .jar релиз  

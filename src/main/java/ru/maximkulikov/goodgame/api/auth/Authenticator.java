@@ -15,6 +15,7 @@ import ru.maximkulikov.goodgame.api.models.AccessToken;
 public class Authenticator {
 
     private static final int DEFAULT_HTTP_PORT = 80;
+
     // Base twitch api url
     private String goodgameBaseUrl;
 
@@ -42,7 +43,7 @@ public class Authenticator {
         return this.awaitAutorizationCode(null, null, null);
     }
 
-    public final boolean awaitAutorizationCode(final URL authUrl, URL successUrl, URL failUrl) {
+    public final boolean awaitAutorizationCode(final URL authUrl, final URL successUrl, final URL failUrl) {
         if (this.clientId == null || this.redirectUri == null) {
             return false;
         }
@@ -69,7 +70,8 @@ public class Authenticator {
         return this.authenticationError;
     }
 
-    public String getAuthenticationUrl(final String clientId, URI redirectURI, String state, Scopes... scopes) {
+    public String getAuthenticationUrl(final String clientId, final URI redirectURI,
+                                       final String state, final Scopes... scopes) {
         this.clientId = clientId;
         this.redirectUri = redirectURI;
         this.state = state;
