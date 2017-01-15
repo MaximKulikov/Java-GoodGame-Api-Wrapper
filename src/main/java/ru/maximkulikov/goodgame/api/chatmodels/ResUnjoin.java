@@ -13,7 +13,7 @@ public class ResUnjoin implements ResChatObject {
     @JsonProperty("channel_id")
     private String channelId;
 
-    public ResUnjoin(String channelId) {
+    public ResUnjoin(final String channelId) {
         this.channelId = channelId;
     }
 

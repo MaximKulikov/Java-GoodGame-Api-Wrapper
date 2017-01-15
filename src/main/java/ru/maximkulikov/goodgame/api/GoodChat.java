@@ -80,8 +80,10 @@ public abstract class GoodChat {
                 e.printStackTrace();
             }
         } else {
-            // Интересно можем ли мы отправить подобную конструкцию сразу в this.onMessage???
-            socket.onMessage(new Response(ChatResponses.ERROR, new ResError(null, 0, "GoodGameChat not connected proper, Message did not send")));
+            // Можем ли мы отправить подобную
+            // конструкцию сразу в this.onMessage???
+            this.socket.onMessage(new Response(ChatResponses.ERROR, new ResError(null, 0,
+                    "GoodGameChat not connected proper, Message did not send")));
         }
     }
 

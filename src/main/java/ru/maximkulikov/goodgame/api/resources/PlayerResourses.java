@@ -12,17 +12,17 @@ import ru.maximkulikov.goodgame.api.models.Player;
  */
 public class PlayerResourses extends AbstractResource {
 
-    public PlayerResourses(final String defaultBaseUrl, int defaultApiVersion) {
+    public PlayerResourses(final String defaultBaseUrl, final int defaultApiVersion) {
         super(defaultBaseUrl, defaultApiVersion);
     }
 
-    public final void getPlayer(String playerSource, final PlayerResponseHandler handler) {
+    public final void getPlayer(final String playerSource, final PlayerResponseHandler handler) {
         String url = String.format("%s/player/%s", getBaseUrl(), playerSource);
 
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     Player value = objectMapper.readValue(content, Player.class);
                     handler.onSuccess(value);

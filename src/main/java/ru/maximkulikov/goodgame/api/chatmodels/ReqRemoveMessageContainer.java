@@ -13,7 +13,7 @@ public class ReqRemoveMessageContainer implements ReqChatObject {
 
     private ReqRemoveMessage data;
 
-    public ReqRemoveMessageContainer(String channelId, String messageId) {
+    public ReqRemoveMessageContainer(final String channelId, final String messageId) {
         this.data = new ReqRemoveMessage(channelId, messageId);
     }
 

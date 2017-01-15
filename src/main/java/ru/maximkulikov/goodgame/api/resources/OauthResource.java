@@ -37,7 +37,7 @@ public class OauthResource extends AbstractResource {
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
 
                     AccessToken value = objectMapper.readValue(content, AccessToken.class);
@@ -56,7 +56,7 @@ public class OauthResource extends AbstractResource {
 
         http.post(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
 
                     OauthResourceCheck value = objectMapper.readValue(content, OauthResourceCheck.class);

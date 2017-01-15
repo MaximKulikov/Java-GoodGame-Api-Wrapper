@@ -25,7 +25,7 @@ public class InfoResource extends AbstractResource {
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     Info value = objectMapper.readValue(content, Info.class);
                     handler.onSuccess(value);

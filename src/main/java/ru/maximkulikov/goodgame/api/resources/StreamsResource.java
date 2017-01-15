@@ -21,7 +21,7 @@ public class StreamsResource extends AbstractResource {
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     ChannelContainer value = objectMapper.readValue(content, ChannelContainer.class);
                     handler.onSuccess(value);
@@ -39,7 +39,7 @@ public class StreamsResource extends AbstractResource {
 
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     ChannelContainer value = objectMapper.readValue(content, ChannelContainer.class);
                     handler.onSuccess(value);
@@ -62,7 +62,7 @@ public class StreamsResource extends AbstractResource {
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     ChannelContainer value = objectMapper.readValue(content, ChannelContainer.class);
                     handler.onSuccess(value);
@@ -79,7 +79,7 @@ public class StreamsResource extends AbstractResource {
 
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     ChannelContainer value = objectMapper.readValue(content, ChannelContainer.class);
                     handler.onSuccess(value);

@@ -13,7 +13,7 @@ public class ReqGetUserInfoContainer implements ReqChatObject {
 
     private ReqGetUserInfo data;
 
-    public ReqGetUserInfoContainer(String userId) {
+    public ReqGetUserInfoContainer(final String userId) {
         this.data = new ReqGetUserInfo(userId);
     }
 

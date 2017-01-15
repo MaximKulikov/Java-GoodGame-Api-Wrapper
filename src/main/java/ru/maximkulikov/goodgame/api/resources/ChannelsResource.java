@@ -20,7 +20,7 @@ import ru.maximkulikov.goodgame.api.models.SubscrurersContainer;
 public class ChannelsResource extends AbstractResource {
 
 
-    public ChannelsResource(final String baseUrl, int apiVersion) {
+    public ChannelsResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);
     }
 
@@ -28,7 +28,7 @@ public class ChannelsResource extends AbstractResource {
         String url = String.format("%s/channel/%s/donations", getBaseUrl(), channel);
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     DonationsContainer value = objectMapper.readValue(content, DonationsContainer.class);
                     handler.onSuccess(value);
@@ -44,7 +44,7 @@ public class ChannelsResource extends AbstractResource {
         String url = String.format("%s/channel/%s/donations", getBaseUrl(), channel);
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     DonationsContainer value = objectMapper.readValue(content, DonationsContainer.class);
                     handler.onSuccess(value);
@@ -60,7 +60,7 @@ public class ChannelsResource extends AbstractResource {
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     PremiumsContainer value = objectMapper.readValue(content, PremiumsContainer.class);
                     handler.onSuccess(value);
@@ -77,7 +77,7 @@ public class ChannelsResource extends AbstractResource {
 
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     PremiumsContainer value = objectMapper.readValue(content, PremiumsContainer.class);
                     handler.onSuccess(value);
@@ -94,7 +94,7 @@ public class ChannelsResource extends AbstractResource {
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     SubscrurersContainer value = objectMapper.readValue(content, SubscrurersContainer.class);
                     handler.onSuccess(value);
@@ -112,7 +112,7 @@ public class ChannelsResource extends AbstractResource {
 
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     SubscrurersContainer value = objectMapper.readValue(content, SubscrurersContainer.class);
                     handler.onSuccess(value);

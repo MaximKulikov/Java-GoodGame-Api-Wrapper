@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqBan {
+
     // канал в котором вынесен бан
     @JsonProperty("channel_id")
     private String channelId;
@@ -34,8 +35,7 @@ public class ReqBan {
     private Boolean showBan;
 
     public ReqBan(final String channelId, final String banChannel, final String userId, final Long duration,
-                  final String reason, final String comment,
-                  Boolean showBan) {
+                  final String reason, final String comment, final Boolean showBan) {
         this.channelId = channelId;
         this.banChannel = banChannel;
         this.userId = userId;

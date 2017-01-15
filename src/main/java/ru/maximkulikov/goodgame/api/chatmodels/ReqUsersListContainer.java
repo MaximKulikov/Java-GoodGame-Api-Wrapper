@@ -13,7 +13,7 @@ public class ReqUsersListContainer implements ReqChatObject {
 
     private ReqUsersList data;
 
-    public ReqUsersListContainer(String channelId) {
+    public ReqUsersListContainer(final String channelId) {
         this.data = new ReqUsersList(channelId);
     }
 

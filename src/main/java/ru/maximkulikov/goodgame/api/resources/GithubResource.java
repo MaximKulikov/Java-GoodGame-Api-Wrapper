@@ -28,7 +28,7 @@ public class GithubResource extends AbstractResource {
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
 
                 handler.onSuccess(content);
 
@@ -53,7 +53,7 @@ public class GithubResource extends AbstractResource {
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
 
                 try {
                     GitHubSubscribers value = objectMapper.readValue(content, GitHubSubscribers.class);
@@ -74,7 +74,7 @@ public class GithubResource extends AbstractResource {
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
 
                 handler.onSuccess(content);
 
@@ -98,7 +98,7 @@ public class GithubResource extends AbstractResource {
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
 
                 handler.onSuccess(content);
 
@@ -123,7 +123,7 @@ public class GithubResource extends AbstractResource {
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
 
                 handler.onSuccess(content);
 
@@ -147,7 +147,7 @@ public class GithubResource extends AbstractResource {
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
 
                 handler.onSuccess(content);
 

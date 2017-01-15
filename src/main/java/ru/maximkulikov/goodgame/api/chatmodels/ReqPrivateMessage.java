@@ -18,7 +18,7 @@ public class ReqPrivateMessage {
 
     private String text;
 
-    public ReqPrivateMessage(String channelId, String userId, String text) {
+    public ReqPrivateMessage(final String channelId, final String userId, final String text) {
         this.channelId = channelId;
         this.userId = userId;
         this.text = text;

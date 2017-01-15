@@ -13,7 +13,7 @@ public class PollAnswer {
 
     private String text;
 
-    public PollAnswer(int id, String text) {
+    public PollAnswer(final int id, final String text) {
         this.id = id;
         this.text = text;
     }

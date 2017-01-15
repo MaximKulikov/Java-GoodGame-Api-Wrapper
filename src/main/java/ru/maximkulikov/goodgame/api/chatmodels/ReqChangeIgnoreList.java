@@ -13,7 +13,7 @@ public class ReqChangeIgnoreList {
     @JsonProperty("user_id")
     private String userId;
 
-    public ReqChangeIgnoreList(String userId) {
+    public ReqChangeIgnoreList(final String userId) {
         this.userId = userId;
     }
 

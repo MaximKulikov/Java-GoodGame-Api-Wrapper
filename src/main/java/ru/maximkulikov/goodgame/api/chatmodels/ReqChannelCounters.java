@@ -13,7 +13,7 @@ public class ReqChannelCounters implements ReqChatObject {
     @JsonProperty("channel_id")
     private String channelId;
 
-    public ReqChannelCounters(String channelId) {
+    public ReqChannelCounters(final String channelId) {
         this.channelId = channelId;
     }
 

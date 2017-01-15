@@ -18,7 +18,7 @@ public class ReqWarn {
 
     private String reason;
 
-    public ReqWarn(String channelId, String userId, String reason) {
+    public ReqWarn(final String channelId, final String userId, final String reason) {
         this.channelId = channelId;
         this.userId = userId;
         this.reason = reason;

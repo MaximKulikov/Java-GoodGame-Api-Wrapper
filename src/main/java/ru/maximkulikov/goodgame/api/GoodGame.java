@@ -67,7 +67,7 @@ public class GoodGame {
         return this.clientId;
     }
 
-    public void setClientId(String clientId) {
+    public void setClientId(final String clientId) {
         this.clientId = clientId;
         // Update client id in all resources
         for (AbstractResource r : this.resources.values()) {
@@ -75,7 +75,7 @@ public class GoodGame {
         }
     }
 
-    private AbstractResource getResource(StreamResources key) {
+    private AbstractResource getResource(final StreamResources key) {
         AbstractResource r = this.resources.get(key);
         AccessToken accessToken = this.authenticator.getToken();
         if (accessToken != null) {

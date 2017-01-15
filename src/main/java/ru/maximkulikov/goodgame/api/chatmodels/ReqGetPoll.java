@@ -13,7 +13,7 @@ public class ReqGetPoll {
     @JsonProperty("channel_id")
     private String channelId;
 
-    public ReqGetPoll(String channelId) {
+    public ReqGetPoll(final String channelId) {
         this.channelId = channelId;
     }
 

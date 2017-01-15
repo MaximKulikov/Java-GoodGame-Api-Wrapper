@@ -23,7 +23,7 @@ public class ChatResource extends AbstractResource {
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     ChatToken value = objectMapper.readValue(content, ChatToken.class);
                     handler.onSuccess(value);

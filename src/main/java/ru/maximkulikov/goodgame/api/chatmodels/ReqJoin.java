@@ -17,7 +17,7 @@ public class ReqJoin {
 
     private boolean mobile;
 
-    public ReqJoin(String channelId, boolean hidden, boolean mobile) {
+    public ReqJoin(final String channelId, final boolean hidden, final boolean mobile) {
         this.channelId = channelId;
         this.hidden = hidden;
         this.mobile = mobile;

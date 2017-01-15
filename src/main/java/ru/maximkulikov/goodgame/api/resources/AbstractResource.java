@@ -72,7 +72,7 @@ public abstract class AbstractResource {
 
         private BaseFailureHandler apiHandler;
 
-        public GoodGameHttpResponseHandler(BaseFailureHandler apiHandler) {
+        public GoodGameHttpResponseHandler(final BaseFailureHandler apiHandler) {
             this.apiHandler = apiHandler;
         }
 
@@ -80,7 +80,7 @@ public abstract class AbstractResource {
         public abstract void onSuccess(int statusCode, Map<String, List<String>> headers, String content);
 
         @Override
-        public final void onFailure(final int statusCode, final Map<String, List<String>> headers, String content) {
+        public final void onFailure(final int statusCode, final Map<String, List<String>> headers, final String content) {
             try {
                 if (content.length() > 0) {
                     Error error = objectMapper.readValue(content, Error.class);

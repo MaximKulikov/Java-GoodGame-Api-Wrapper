@@ -16,7 +16,7 @@ public class ReqRemoveMessage {
     @JsonProperty("message_id")
     private String messageId;
 
-    public ReqRemoveMessage(String channelId, String messageId) {
+    public ReqRemoveMessage(final String channelId, final String messageId) {
         this.channelId = channelId;
         this.messageId = messageId;
     }

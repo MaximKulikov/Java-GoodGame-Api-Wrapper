@@ -16,7 +16,7 @@ public class ReqMakeModerator {
     @JsonProperty("user_id")
     private String userId;
 
-    public ReqMakeModerator(String channelId, String userId) {
+    public ReqMakeModerator(final String channelId, final String userId) {
         this.channelId = channelId;
         this.userId = userId;
     }

@@ -25,7 +25,8 @@ public class ReqNewPoll {
 
     private List<PollAnswer> answers;
 
-    public ReqNewPoll(String channelId, String moderId, String moderName, String title, List<String> answers) {
+    public ReqNewPoll(final String channelId, final String moderId, final String moderName,
+                      final String title, final List<String> answers) {
         this.channelId = channelId;
         this.moderId = moderId;
         this.moderName = moderName;

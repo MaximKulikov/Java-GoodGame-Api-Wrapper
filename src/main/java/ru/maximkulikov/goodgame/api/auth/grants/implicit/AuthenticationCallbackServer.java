@@ -43,7 +43,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
     private String stateAnswer;
 
 
-    public AuthenticationCallbackServer(int port) {
+    public AuthenticationCallbackServer(final int port) {
         this.port = port;
         // Load default pages
         this.authPage = getClass().getResource(this.DEFAULT_AUTH_PAGE);
@@ -52,7 +52,8 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
     }
 
 
-    public AuthenticationCallbackServer(int port, URL authPage, URL failurePage, URL successPage, String stateRequest) {
+    public AuthenticationCallbackServer(final int port, final URL authPage, final URL failurePage,
+                                        final URL successPage, final String stateRequest) {
         this.port = port;
         this.authPage = authPage == null ? getClass().getResource(this.DEFAULT_AUTH_PAGE) : authPage;
         this.failurePage = failurePage == null ? getClass().getResource(this.DEFAULT_FAILURE_PAGE) : failurePage;
@@ -76,12 +77,12 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
         return this.authenticationError != null;
     }
 
-    public boolean isRunning() {
+    public final boolean isRunning() {
         return this.serverSocket != null;
     }
 
     @Override
-    public void onAccessTokenReceived(String token, String state) {
+    public void onAccessTokenReceived(final String token, final String state) {
 
         if (token != null && state.equals(this.stateRequest)) {
             this.accessToken = token;
@@ -91,7 +92,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
     }
 
     @Override
-    public void onAuthenticationError(String error, String description) {
+    public void onAuthenticationError(final String error, final String description) {
         this.authenticationError = new AuthenticationError(error, description);
         // Stop the server
         this.stop();
@@ -117,7 +118,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
         }
     }
 
-    public void start() throws IOException {
+    public final void start() throws IOException {
         // Establish the listen socket
         // For security reasons, the third parameter is set to not accept connections from outside the localhost
         this.serverSocket = new ServerSocket(this.port, 0, InetAddress.getByName("127.0.0.1"));

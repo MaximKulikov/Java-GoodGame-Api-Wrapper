@@ -13,7 +13,7 @@ public class ReqChannelsList {
 
     private int count;
 
-    public ReqChannelsList(int start, int count) {
+    public ReqChannelsList(final int start, final int count) {
         this.start = start;
         this.count = count;
     }

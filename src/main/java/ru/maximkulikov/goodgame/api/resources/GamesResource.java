@@ -17,7 +17,7 @@ import ru.maximkulikov.goodgame.api.models.GamesContainer;
  */
 public class GamesResource extends AbstractResource {
 
-    public GamesResource(final String baseUrl, int apiVersion) {
+    public GamesResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);
     }
 
@@ -26,7 +26,7 @@ public class GamesResource extends AbstractResource {
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     Game value = objectMapper.readValue(content, Game.class);
                     handler.onSuccess(value);
@@ -42,7 +42,7 @@ public class GamesResource extends AbstractResource {
 
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
                     handler.onSuccess(value, value.getGames().getGames());
@@ -58,7 +58,7 @@ public class GamesResource extends AbstractResource {
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
                     handler.onSuccess(value, value.getGames().getGames());

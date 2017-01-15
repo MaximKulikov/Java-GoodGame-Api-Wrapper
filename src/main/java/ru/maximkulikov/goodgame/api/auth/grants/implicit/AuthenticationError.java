@@ -33,7 +33,7 @@ public class AuthenticationError {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(final Object o) {
         if (this == o) {
             return true;
         }

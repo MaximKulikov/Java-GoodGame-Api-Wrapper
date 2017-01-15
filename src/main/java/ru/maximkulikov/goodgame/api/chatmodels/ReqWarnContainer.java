@@ -13,7 +13,7 @@ public class ReqWarnContainer implements ReqChatObject {
 
     private ReqWarn data;
 
-    public ReqWarnContainer(String channelId, String userId, String reason) {
+    public ReqWarnContainer(final String channelId, final String userId, final String reason) {
         this.data = new ReqWarn(channelId, userId, reason);
     }
 

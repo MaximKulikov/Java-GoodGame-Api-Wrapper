@@ -13,11 +13,11 @@ public class ReqAutorizationContainer implements ReqChatObject {
 
     private ReqAutorization data;
 
-    public ReqAutorizationContainer(int siteId, int userId, String token) {
+    public ReqAutorizationContainer(final int siteId, final int userId, final String token) {
         this.data = new ReqAutorization(siteId, userId, token);
     }
 
-    public ReqAutorizationContainer(int siteId, int userId) {
+    public ReqAutorizationContainer(final int siteId, final int userId) {
         this.data = new ReqAutorization(siteId, userId);
     }
 

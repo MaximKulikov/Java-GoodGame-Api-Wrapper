@@ -13,11 +13,11 @@ public class ReqSendMessageContainer implements ReqChatObject {
 
     private ReqSendMessage data;
 
-    public ReqSendMessageContainer(String channelId, String text, boolean hideIcon, boolean mobile) {
+    public ReqSendMessageContainer(final String channelId, final String text, boolean hideIcon, boolean mobile) {
         this.data = new ReqSendMessage(channelId, text, hideIcon, mobile);
     }
 
-    public ReqSendMessageContainer(String channelId, String text) {
+    public ReqSendMessageContainer(final String channelId, final String text) {
         this.data = new ReqSendMessage(channelId, text);
     }
 

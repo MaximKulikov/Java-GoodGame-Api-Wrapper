@@ -13,7 +13,7 @@ public class ReqUnjoinContainer implements ReqChatObject {
 
     private ReqUnjoin data;
 
-    public ReqUnjoinContainer(String channelId) {
+    public ReqUnjoinContainer(final String channelId) {
         this.data = new ReqUnjoin(channelId);
     }
 

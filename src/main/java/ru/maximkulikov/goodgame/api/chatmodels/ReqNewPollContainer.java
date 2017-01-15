@@ -14,7 +14,8 @@ public class ReqNewPollContainer implements ReqChatObject {
 
     private ReqNewPoll data;
 
-    public ReqNewPollContainer(String channelId, String moderId, String moderName, String title, List<String> answers) {
+    public ReqNewPollContainer(final String channelId, final String moderId, final String moderName,
+                               final String title, final List<String> answers) {
         this.data = new ReqNewPoll(channelId, moderId, moderName, title, answers);
     }
 

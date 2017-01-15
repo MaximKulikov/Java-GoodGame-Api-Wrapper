@@ -16,7 +16,7 @@ public class ReqVote {
     @JsonProperty("answer_id")
     private int answerId;
 
-    public ReqVote(String channelId, int answerId) {
+    public ReqVote(final String channelId, final int answerId) {
         this.channelId = channelId;
         this.answerId = answerId;
     }

@@ -14,7 +14,7 @@ public class ReqVoteContainer implements ReqChatObject {
     private ReqVote data;
 
 
-    public ReqVoteContainer(String channelId, int answerId) {
+    public ReqVoteContainer(final String channelId, final int answerId) {
         this.data = new ReqVote(channelId, answerId);
     }
 

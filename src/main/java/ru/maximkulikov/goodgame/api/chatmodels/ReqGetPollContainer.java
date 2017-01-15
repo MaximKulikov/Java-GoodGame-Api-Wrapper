@@ -13,7 +13,7 @@ public class ReqGetPollContainer implements ReqChatObject {
 
     private ReqGetPoll data;
 
-    public ReqGetPollContainer(String channelId) {
+    public ReqGetPollContainer(final String channelId) {
         this.data = new ReqGetPoll(channelId);
     }
 

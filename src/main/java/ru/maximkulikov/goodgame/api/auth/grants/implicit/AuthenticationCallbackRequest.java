@@ -41,7 +41,7 @@ public class AuthenticationCallbackRequest implements Runnable {
     }
 
 
-    private static void sendFileBytes(InputStream fis, OutputStream os) throws IOException {
+    private static void sendFileBytes(final InputStream fis, final OutputStream os) throws IOException {
         // Construct a 1K buffer to hold bytes on their way to the socket.
         byte[] buffer = new byte[1024];
         int bytes;
@@ -52,7 +52,7 @@ public class AuthenticationCallbackRequest implements Runnable {
     }
 
 
-    private static Map<String, String> extractQueryParams(String request) {
+    private static Map<String, String> extractQueryParams(final String request) {
         Map<String, String> params = new HashMap<>();
 
         String[] parts = request.split("\\?", 2);

@@ -13,7 +13,7 @@ public class ReqUsersList {
     @JsonProperty("channel_id")
     private String channelId;
 
-    public ReqUsersList(String channelId) {
+    public ReqUsersList(final String channelId) {
         this.channelId = channelId;
     }
 

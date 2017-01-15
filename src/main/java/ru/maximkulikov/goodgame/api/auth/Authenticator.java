@@ -70,8 +70,8 @@ public class Authenticator {
         return this.authenticationError;
     }
 
-    public String getAuthenticationUrl(final String clientId, final URI redirectURI,
-                                       final String state, final Scopes... scopes) {
+    public final String getAuthenticationUrl(final String clientId, final URI redirectURI,
+                                             final String state, final Scopes... scopes) {
         this.clientId = clientId;
         this.redirectUri = redirectURI;
         this.state = state;

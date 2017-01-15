@@ -13,7 +13,7 @@ public class ReqGetUserInfo {
     @JsonProperty("user_id")
     private String userId;
 
-    public ReqGetUserInfo(String userId) {
+    public ReqGetUserInfo(final String userId) {
         this.userId = userId;
     }
 

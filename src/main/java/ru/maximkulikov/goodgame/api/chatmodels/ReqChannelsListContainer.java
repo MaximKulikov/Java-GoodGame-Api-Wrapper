@@ -13,7 +13,7 @@ public class ReqChannelsListContainer implements ReqChatObject {
 
     private ReqChannelsList data;
 
-    public ReqChannelsListContainer(int start, int count) {
+    public ReqChannelsListContainer(final int start, final int count) {
         this.data = new ReqChannelsList(start, count);
     }
 

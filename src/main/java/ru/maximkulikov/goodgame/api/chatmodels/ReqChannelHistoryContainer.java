@@ -13,7 +13,7 @@ public class ReqChannelHistoryContainer implements ReqChatObject {
 
     private ReqChannelHistory data;
 
-    public ReqChannelHistoryContainer(String channelId) {
+    public ReqChannelHistoryContainer(final String channelId) {
         this.data = new ReqChannelHistory(channelId);
     }
 

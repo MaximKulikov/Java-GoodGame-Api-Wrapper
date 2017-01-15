@@ -13,7 +13,7 @@ public class ReqDelFromIgnoreListContainer implements ReqChatObject {
 
     private ReqChangeIgnoreList data;
 
-    public ReqDelFromIgnoreListContainer(String userId) {
+    public ReqDelFromIgnoreListContainer(final String userId) {
         this.data = new ReqChangeIgnoreList(userId);
     }
 

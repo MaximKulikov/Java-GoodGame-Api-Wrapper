@@ -12,7 +12,7 @@ public class Response {
 
     private ResChatObject answer;
 
-    public Response(ChatResponses type, ResChatObject answer) {
+    public Response(final ChatResponses type, final ResChatObject answer) {
         this.type = type;
         this.answer = answer;
     }

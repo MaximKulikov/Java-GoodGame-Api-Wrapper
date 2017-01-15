@@ -13,7 +13,7 @@ public class ReqUnjoin {
     @JsonProperty("channel_id")
     private String channelId;
 
-    public ReqUnjoin(String channelId) {
+    public ReqUnjoin(final String channelId) {
         this.channelId = channelId;
     }
 

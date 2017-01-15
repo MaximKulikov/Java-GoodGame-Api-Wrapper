@@ -18,7 +18,7 @@ public class ResError implements ResChatObject {
 
     private String errorMsg;
 
-    public ResError(String channelId, int errorNum, String errorMsg) {
+    public ResError(final String channelId, final int errorNum, final String errorMsg) {
         this.channelId = channelId;
         this.errorNum = errorNum;
         this.errorMsg = errorMsg;

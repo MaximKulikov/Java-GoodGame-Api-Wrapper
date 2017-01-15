@@ -12,7 +12,7 @@ public class ReqChannelHistory {
     @JsonProperty("channel_id")
     private String channelId;
 
-    public ReqChannelHistory(String channelId) {
+    public ReqChannelHistory(final String channelId) {
         this.channelId = channelId;
     }
 

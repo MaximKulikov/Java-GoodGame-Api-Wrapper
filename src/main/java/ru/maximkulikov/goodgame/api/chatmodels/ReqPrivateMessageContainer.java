@@ -13,7 +13,7 @@ public class ReqPrivateMessageContainer implements ReqChatObject {
 
     private ReqPrivateMessage data;
 
-    public ReqPrivateMessageContainer(String channelId, String userId, String text) {
+    public ReqPrivateMessageContainer(final String channelId, final String userId, final String text) {
         this.data = new ReqPrivateMessage(channelId, userId, text);
     }
 

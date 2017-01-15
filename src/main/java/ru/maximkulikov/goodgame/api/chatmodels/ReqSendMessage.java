@@ -19,14 +19,14 @@ public class ReqSendMessage {
 
     private boolean mobile;
 
-    public ReqSendMessage(String channelId, String text, boolean hideIcon, boolean mobile) {
+    public ReqSendMessage(final String channelId, final String text, final boolean hideIcon, final boolean mobile) {
         this.channelId = channelId;
         this.text = text;
         this.hideIcon = hideIcon;
         this.mobile = mobile;
     }
 
-    public ReqSendMessage(String channelId, String text) {
+    public ReqSendMessage(final String channelId, final String text) {
         this.channelId = channelId;
         this.text = text;
         this.hideIcon = false;
