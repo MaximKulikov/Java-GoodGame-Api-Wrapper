@@ -14,27 +14,16 @@ import ru.maximkulikov.goodgame.api.models.ChatToken;
  */
 public class ChatResource extends AbstractResource {
 
-    /**
-     * Construct the resource using the Twitch API base URL and specified API version.
-     *
-     * @param baseUrl    the base URL of the Twitch API
-     * @param apiVersion the requested version of the Twitch API
-     */
-    public ChatResource(String baseUrl, int apiVersion) {
+    public ChatResource(final String baseUrl, int apiVersion) {
         super(baseUrl, apiVersion);
     }
 
-
-
-
-
-
-    public void getChatToken(final ChatTokenResponseHandler handler) {
+    public final void getChatToken(final ChatTokenResponseHandler handler) {
         String url = String.format("%s/chat/token", getBaseUrl());
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
                 try {
                     ChatToken value = objectMapper.readValue(content, ChatToken.class);
                     handler.onSuccess(value);
@@ -44,6 +33,4 @@ public class ChatResource extends AbstractResource {
             }
         });
     }
-
-
 }

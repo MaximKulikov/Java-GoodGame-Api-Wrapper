@@ -1,7 +1,6 @@
 package ru.maximkulikov.goodgame.api.resources;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
@@ -18,30 +17,26 @@ import ru.maximkulikov.goodgame.api.models.OauthResourceCheck;
 public class OauthResource extends AbstractResource {
 
 
-    public OauthResource(String defaultBaseUrl, int defaultApiVersion) {
+    public OauthResource(final String defaultBaseUrl, int defaultApiVersion) {
         super(defaultBaseUrl, defaultApiVersion);
     }
 
-    /**
-     * Returns a AccessToken object of authenticated user.
-     *
-     * @param handler the response handler
-     */
-    public void getAccessToken(final Authenticator authenticator, final String clientSecret, final OauthResponseHandler handler) {
+
+    public final void getAccessToken(final Authenticator authenticator, final String clientSecret, final OauthResponseHandler handler) {
         String url = String.format("%s/oauth", getBaseUrl());
 
         RequestParams params = new RequestParams();
-        Map<String, String> map = new HashMap<>();
-        map.put("redirect_uri", authenticator.getRedirectUri().toString());
-        map.put("client_id", authenticator.getClientId());
-        map.put("client_secret", clientSecret);
-        map.put("code", authenticator.getAutorizationCode());
-        map.put("grant_type", "authorization_code");
-        params.put(map);
+
+        params.put("redirect_uri", authenticator.getRedirectUri().toString());
+        params.put("client_id", authenticator.getClientId());
+        params.put("client_secret", clientSecret);
+        params.put("code", authenticator.getAutorizationCode());
+        params.put("grant_type", "authorization_code");
+
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
                 try {
 
                     AccessToken value = objectMapper.readValue(content, AccessToken.class);
@@ -55,12 +50,12 @@ public class OauthResource extends AbstractResource {
         });
     }
 
-    public void getResource (final OauthResourceResponseHandler handler) {
+    public final void getResource(final OauthResourceResponseHandler handler) {
         String url = String.format("%s/oauth/resource", getBaseUrl());
 
         http.post(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
                 try {
 
                     OauthResourceCheck value = objectMapper.readValue(content, OauthResourceCheck.class);
@@ -70,7 +65,5 @@ public class OauthResource extends AbstractResource {
                 }
             }
         });
-
     }
-
 }

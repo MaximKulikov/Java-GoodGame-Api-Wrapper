@@ -16,16 +16,23 @@ import java.util.StringTokenizer;
 
 public class AuthenticationCallbackRequest implements Runnable {
 
-    private static final String EOL = "\r\n"; // as specified by HTTP/1.1 spec
+    // as specified by HTTP/1.1 spec
+    private static final String EOL = "\r\n";
+
+    private static final String UTF8 = "UTF-8";
 
     private Socket socket;
+
     private URL authPage;
+
     private URL failurePage;
+
     private URL successPage;
 
-    private AuthenticationListener authenticationListener; // Will receive auth callbacks
+    // Will receive auth callbacks
+    private AuthenticationListener authenticationListener;
 
-    public AuthenticationCallbackRequest(Socket socket, URL authPage, URL failurePage, URL successPage) {
+    public AuthenticationCallbackRequest(final Socket socket, URL authPage, URL failurePage, URL successPage) {
         this.socket = socket;
         this.authPage = authPage;
         this.failurePage = failurePage;
@@ -36,7 +43,7 @@ public class AuthenticationCallbackRequest implements Runnable {
     private static void sendFileBytes(InputStream fis, OutputStream os) throws IOException {
         // Construct a 1K buffer to hold bytes on their way to the socket.
         byte[] buffer = new byte[1024];
-        int bytes = 0;
+        int bytes;
         // Copy requested file into the socket's output stream.
         while ((bytes = fis.read(buffer)) != -1) {
             os.write(buffer, 0, bytes);
@@ -45,11 +52,12 @@ public class AuthenticationCallbackRequest implements Runnable {
 
 
     private static Map<String, String> extractQueryParams(String request) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
 
         String[] parts = request.split("\\?", 2);
         if (parts.length < 2) {
-            return params; // No params
+            // No params
+            return params;
         }
 
         String query = parts[1];
@@ -57,10 +65,10 @@ public class AuthenticationCallbackRequest implements Runnable {
             String[] pair = param.split("=");
 
             try {
-                String key = URLDecoder.decode(pair[0], "UTF-8");
+                String key = URLDecoder.decode(pair[0], UTF8);
                 String value = "";
                 if (pair.length > 1) {
-                    value = URLDecoder.decode(pair[1], "UTF-8");
+                    value = URLDecoder.decode(pair[1], UTF8);
                 }
                 params.put(key, value);
             } catch (UnsupportedEncodingException ignored) {
@@ -70,12 +78,12 @@ public class AuthenticationCallbackRequest implements Runnable {
         return params;
     }
 
-    public void setAuthenticationListener(AuthenticationListener receiver) {
+    public final void setAuthenticationListener(final AuthenticationListener receiver) {
         this.authenticationListener = receiver;
     }
 
     @Override
-    public void run() {
+    public final void run() {
         try {
             processRequest();
         } catch (Exception ignored) {
@@ -85,11 +93,11 @@ public class AuthenticationCallbackRequest implements Runnable {
 
     private void processRequest() throws IOException {
         // Get a reference to the socket's input and output streams.
-        InputStream is = socket.getInputStream();
-        DataOutputStream os = new DataOutputStream(socket.getOutputStream());
+       // InputStream is = socket.getInputStream();
+        DataOutputStream os = new DataOutputStream(this.socket.getOutputStream());
 
         // Set up input stream filters.
-        BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        BufferedReader br = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
 
         // Get the request line of the HTTP request message.
         String requestLine = br.readLine();
@@ -98,17 +106,18 @@ public class AuthenticationCallbackRequest implements Runnable {
         //String rawRequest = "\n" + requestLine;
 
         // Read the header lines.
-        String headerLine = null;
-        while ((headerLine = br.readLine()).length() != 0) {
-            //rawRequest += headerLine + "\n";
-        }
+//        String headerLine = null;
+//        while ((headerLine = br.readLine()).length() != 0) {
+//            //rawRequest += headerLine + "\n";
+//        }
 
         // DEBUG: Print request
         //System.out.println(rawRequest);
 
         // Parse the request line.
         StringTokenizer tokens = new StringTokenizer(requestLine);
-      //  String requestMethod = tokens.nextToken();  // Request method, which should be "GET"
+        // Request method, which should be "GET"
+        //  String requestMethod = tokens.nextToken();
         String requestFilename = tokens.nextToken();
         Map<String, String> queryParams = extractQueryParams(requestFilename);
 
@@ -131,11 +140,11 @@ public class AuthenticationCallbackRequest implements Runnable {
             contentTypeLine = "Content-type: text/javascript" + EOL;
         } else {
             if (accessToken != null) {
-                fis = successPage.openStream();
+                fis = this.successPage.openStream();
             } else if (error != null) {
-                fis = failurePage.openStream();
+                fis = this.failurePage.openStream();
             } else {
-                fis = authPage.openStream();
+                fis = this.authPage.openStream();
             }
             contentTypeLine = "Content-type: text/html" + EOL;
         }
@@ -172,18 +181,18 @@ public class AuthenticationCallbackRequest implements Runnable {
         // Close streams and socket.
         os.close();
         br.close();
-        socket.close();
+        this.socket.close();
 
         // Send callbacks
-        if (authenticationListener != null) {
+        if (this.authenticationListener != null) {
             // Send callback if access token received
             if (accessToken != null) {
 
-                authenticationListener.onAccessTokenReceived(accessToken, state);
+                this.authenticationListener.onAccessTokenReceived(accessToken, state);
             }
             // Send callback if authorization error
             if (error != null) {
-                authenticationListener.onAuthenticationError(error, errorDescription);
+                this.authenticationListener.onAuthenticationError(error, errorDescription);
             }
         }
     }

@@ -17,55 +17,16 @@ import ru.maximkulikov.goodgame.api.models.GamesContainer;
  */
 public class GamesResource extends AbstractResource {
 
-    /**
-     * Construct the resource using the Twitch API base URL and specified API version.
-     *
-     * @param baseUrl    the base URL of the Twitch API
-     * @param apiVersion the requested version of the Twitch API
-     */
-    public GamesResource(String baseUrl, int apiVersion) {
+    public GamesResource(final String baseUrl, int apiVersion) {
         super(baseUrl, apiVersion);
     }
 
-
-    public void getGames (final GamesResponseHandler handler) {
-        String url = String.format("%s/games", getBaseUrl());
-
-        http.get(url, new GoodGameHttpResponseHandler(handler) {
-            @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
-                try {
-                    GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
-                    handler.onSuccess(value, value.getGames().getGames());
-                } catch (IOException e) {
-                    handler.onFailure(e);
-                }
-            }
-        });
-    }
-
-    public void getGames (final RequestParams params, final GamesResponseHandler handler) {
-        String url = String.format("%s/games", getBaseUrl());
-
-        http.get(url, params, new GoodGameHttpResponseHandler(handler) {
-            @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
-                try {
-                    GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
-                    handler.onSuccess(value, value.getGames().getGames());
-                } catch (IOException e) {
-                    handler.onFailure(e);
-                }
-            }
-        });
-    }
-
-    public void getGame (final String gameUrl, final GameResponseHandler handler) {
+    public final void getGame(final String gameUrl, final GameResponseHandler handler) {
         String url = String.format("%s/games/%s", getBaseUrl(), gameUrl);
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
                 try {
                     Game value = objectMapper.readValue(content, Game.class);
                     handler.onSuccess(value);
@@ -74,9 +35,37 @@ public class GamesResource extends AbstractResource {
                 }
             }
         });
-
     }
 
+    public final void getGames(final RequestParams params, final GamesResponseHandler handler) {
+        String url = String.format("%s/games", getBaseUrl());
 
+        http.get(url, params, new GoodGameHttpResponseHandler(handler) {
+            @Override
+            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
+                try {
+                    GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
+                    handler.onSuccess(value, value.getGames().getGames());
+                } catch (IOException e) {
+                    handler.onFailure(e);
+                }
+            }
+        });
+    }
 
+    public void getGames(final GamesResponseHandler handler) {
+        String url = String.format("%s/games", getBaseUrl());
+
+        http.get(url, new GoodGameHttpResponseHandler(handler) {
+            @Override
+            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
+                try {
+                    GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
+                    handler.onSuccess(value, value.getGames().getGames());
+                } catch (IOException e) {
+                    handler.onFailure(e);
+                }
+            }
+        });
+    }
 }

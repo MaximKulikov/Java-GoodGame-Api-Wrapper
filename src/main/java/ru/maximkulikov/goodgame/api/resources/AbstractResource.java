@@ -18,77 +18,56 @@ import ru.maximkulikov.goodgame.api.models.Error;
  */
 public abstract class AbstractResource {
 
-    protected static final ObjectMapper objectMapper = new ObjectMapper(); // can reuse
-    protected static final AsyncHttpClient http = new AsyncHttpClient(); // can reuse
-    private final String baseUrl; // Base url for twitch rest api
+    protected static final ObjectMapper objectMapper = new ObjectMapper();
 
-    /**
-     * Construct a resource using the Twitch API base URL and specified API version.
-     *
-     * @param baseUrl    the base URL of the Twitch API
-     * @param apiVersion the requested version of the Twitch API
-     */
-    protected AbstractResource(String baseUrl, int apiVersion) {
+    protected static final AsyncHttpClient http = new AsyncHttpClient();
+
+    // Base url for twitch rest api
+    private final String baseUrl;
+
+
+    protected AbstractResource(final String baseUrl, int apiVersion) {
         this.baseUrl = baseUrl;
-        http.setHeader("ACCEPT", "application/vnd.goodgame.v" + Integer.toString(apiVersion) + "+json"); // Specify API version
+        // Specify API version
+        http.setHeader("ACCEPT", "application/vnd.goodgame.v" + Integer.toString(apiVersion) + "+json");
 
-        configureObjectMapper();
+        this.configureObjectMapper();
     }
 
-    protected AbstractResource(String baseUrl) {
+    protected AbstractResource(final String baseUrl) {
         this.baseUrl = baseUrl;
-        http.setHeader("Accept", "application/json");
-        http.setHeader("Content-Type", "application/json");
+        String applicationJson = "application/json";
+        http.setHeader("Accept", applicationJson);
+        http.setHeader("Content-Type", applicationJson);
     }
 
-    /**
-     * Configure the Jackson JSON {@link ObjectMapper} to properly parse the API responses.
-     */
+
     private void configureObjectMapper() {
         objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
     }
 
-    /**
-     * Sets the authentication access token to be included in the HTTP headers of each
-     * API request.
-     *
-     * @param accessToken the user's authentication access token
-     */
-    public void setAccessToken(String accessToken) {
+    protected final String getBaseUrl() {
+        return this.baseUrl;
+    }
+
+    public final void setAccessToken(String accessToken) {
+        String authorization = "Authorization";
         if (accessToken != null && accessToken.length() > 0) {
-            http.setHeader("Authorization", String.format("Bearer %s", accessToken));
+            http.setHeader(authorization, String.format("Bearer %s", accessToken));
         } else {
-            http.removeHeader("Authorization");
+            http.removeHeader(authorization);
         }
     }
 
-    /**
-     * Sets the application's client ID to be included in the HTTP headers of each API request.
-     *
-     * @param clientId the application's client ID
-     */
-    public void setClientId(String clientId) {
+    public final void setClientId(final String clientId) {
+        String clientIdKey = "Client-ID";
         if (clientId != null && clientId.length() > 0) {
-            http.setHeader("Client-ID", clientId);
+            http.setHeader(clientIdKey, clientId);
         } else {
-            http.removeHeader("Client-ID");
+            http.removeHeader(clientIdKey);
         }
     }
 
-    /**
-     * Get the base URL to the Twitch API. Intended to be called by subclasses when generating
-     * their resource URL endpoint.
-     *
-     * @return the base URL to the Twitch API
-     */
-    protected String getBaseUrl() {
-        return baseUrl;
-    }
-
-    /**
-     * Handles HTTP response's from the Twitch API.
-     * <p>Since all Http failure logic is the same, we handle it all in one place: here.</p>
-     */
     protected static abstract class GoodGameHttpResponseHandler extends StringHttpResponseHandler {
 
         private BaseFailureHandler apiHandler;
@@ -101,22 +80,22 @@ public abstract class AbstractResource {
         public abstract void onSuccess(int statusCode, Map<String, List<String>> headers, String content);
 
         @Override
-        public void onFailure(int statusCode, Map<String, List<String>> headers, String content) {
+        public final void onFailure(final int statusCode, Map<String, List<String>> headers, String content) {
             try {
                 if (content.length() > 0) {
                     Error error = objectMapper.readValue(content, Error.class);
-                    apiHandler.onFailure(statusCode, error.getStatusText(), error.getMessage());
+                    this.apiHandler.onFailure(statusCode, error.getStatusText(), error.getMessage());
                 } else {
-                    apiHandler.onFailure(statusCode, "", "");
+                    this.apiHandler.onFailure(statusCode, "", "");
                 }
             } catch (IOException e) {
-                apiHandler.onFailure(e);
+                this.apiHandler.onFailure(e);
             }
         }
 
         @Override
-        public void onFailure(Throwable throwable) {
-            apiHandler.onFailure(throwable);
+        public final void onFailure(Throwable throwable) {
+            this.apiHandler.onFailure(throwable);
         }
     }
 }

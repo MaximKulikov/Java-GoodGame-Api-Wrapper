@@ -36,7 +36,7 @@ public class ResRemoveMessage implements ResChatObject {
     public final String toString() {
         return "ResRemoveMessage{" +
                 "channelId='" + this.channelId + '\'' +
-                ", messageId='" +this.messageId + '\'' +
+                ", messageId='" + this.messageId + '\'' +
                 '}';
     }
 }

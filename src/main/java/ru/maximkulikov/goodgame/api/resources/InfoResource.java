@@ -12,8 +12,7 @@ import ru.maximkulikov.goodgame.api.models.Info;
  */
 public class InfoResource extends AbstractResource {
 
-
-    public InfoResource(String baseUrl, int apiVersion) {
+    public InfoResource(final String baseUrl, int apiVersion) {
         super(baseUrl, apiVersion);
     }
 
@@ -21,12 +20,12 @@ public class InfoResource extends AbstractResource {
         super(baseUrl);
     }
 
-    public void getInfo (final InfoResponseHandler handler) {
+    public final void getInfo(final InfoResponseHandler handler) {
         String url = String.format("%s/info", getBaseUrl());
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
                 try {
                     Info value = objectMapper.readValue(content, Info.class);
                     handler.onSuccess(value);
@@ -35,6 +34,5 @@ public class InfoResource extends AbstractResource {
                 }
             }
         });
-
     }
 }

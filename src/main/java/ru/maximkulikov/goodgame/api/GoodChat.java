@@ -13,17 +13,21 @@ import ru.maximkulikov.goodgame.api.chatmodels.Response;
  * Java-GoodGame-Api-Wrapper
  */
 public class GoodChat {
-    public static final String DEFAULT_CHAT_URL = "ws://chat.goodgame.ru:8081/chat/websocket";
-    protected static final ObjectMapper objectMapper = new ObjectMapper();
-    private GoodChatSocket socket = null;
-    private boolean connected = false;
 
-    public void connect() {
+    private static final String DEFAULT_CHAT_URL = "ws://chat.goodgame.ru:8081/chat/websocket";
+
+    protected static final ObjectMapper objectMapper = new ObjectMapper();
+
+    private GoodChatSocket socket;
+
+    private boolean connected;
+
+    public final void connect() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 WebSocketClient client = new WebSocketClient();
-                socket = new GoodChatSocket();
+                GoodChat.this.socket = new GoodChatSocket();
                 try {
                     client.start();
                     URI echoUri = new URI(DEFAULT_CHAT_URL);
@@ -31,8 +35,8 @@ public class GoodChat {
                     client.connect(socket, echoUri, request);
                     System.out.printf("Connecting to : %s%n", echoUri);
                     // wait for closed socket connection.
-                    socket.setChat(GoodChat.this);
-                    socket.awaitClose(24, TimeUnit.HOURS);
+                    GoodChat.this.socket.setChat(GoodChat.this);
+                    GoodChat.this.socket.awaitClose(24, TimeUnit.HOURS);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -47,35 +51,35 @@ public class GoodChat {
         }).start();
     }
 
-    public boolean isConnected() {
-        return connected;
+    public final boolean isConnected() {
+        return this.connected;
     }
 
-    public void setConnected(boolean connected) {
+    final void setConnected(final boolean connected) {
         this.connected = connected;
     }
 
-    public void onMessage(Response answer) {
-//Переопредели меня :D
+    public void onMessage(final Response answer) {
+
     }
 
-    public void sendMessage(ReqChatObject chatObject) {
-        if (socket != null) {
+    public final void sendMessage(final ReqChatObject chatObject) {
+
+        if (this.socket == null) try {
+            wait(700);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        if (this.socket != null) {
             ObjectMapper mapper = new ObjectMapper();
             try {
-                socket.sendMessage(mapper.writeValueAsString(chatObject));
+                this.socket.sendMessage(mapper.writeValueAsString(chatObject));
             } catch (JsonProcessingException e) {
-
+//TODO
             }
         } else {
-            try {
-                Thread.sleep(777);
-                sendMessage(chatObject);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            //throw new NullPointerException("GoodGameChat not connected proper");
+            throw new NullPointerException("GoodGameChat not connected proper");
 
         }
     }

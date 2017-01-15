@@ -14,49 +14,38 @@ import ru.maximkulikov.goodgame.api.models.AccessToken;
  */
 public class Authenticator {
 
-    private String twitchBaseUrl; // Base twitch api url
-    private int listenPort; // The port to listen for the authentication callback on
+    // Base twitch api url
+    private String twitchBaseUrl;
+
+    // The port to listen for the authentication callback on
+    private int listenPort;
+
     private String clientId;
+
     private URI redirectUri;
+
     private String state;
 
     private String accessToken;
-    private AccessToken token;
-    private AuthenticationError authenticationError;
 
-    public AccessToken getToken() {
-        return token;
-    }
+    private AccessToken token;
+
+    private AuthenticationError authenticationError;
 
     public Authenticator(String twitchBaseUrl) {
         this.twitchBaseUrl = twitchBaseUrl;
     }
 
-     public String getAuthenticationUrl(String clientId, URI redirectURI, String state, Scopes... scopes ) {
-        this.clientId = clientId;
-        this.redirectUri = redirectURI;
-        this.state = state;
-
-        // Set the listening port for the callback, default to 80 if not specified
-        this.listenPort = redirectUri.getPort();
-        if (this.listenPort == -1) {
-            this.listenPort = 80; // HTTP default
-        }
-
-        return String.format("%s/oauth/authorize?response_type=code" +
-                        "&client_id=%s&redirect_uri=%s&state=%s&scope=%s",
-                twitchBaseUrl, clientId, redirectUri, state, Scopes.join(scopes));
-    }
-
-
     public boolean awaitAutorizationCode() {
-        return awaitAutorizationCode(null, null, null); // Use default pages
+        // Use default pages
+        return awaitAutorizationCode(null, null, null);
     }
 
-      public boolean awaitAutorizationCode(URL authUrl, URL successUrl, URL failUrl) {
+    public boolean awaitAutorizationCode(URL authUrl, URL successUrl, URL failUrl) {
         if (clientId == null || redirectUri == null) return false;
 
-        AuthenticationCallbackServer server = new AuthenticationCallbackServer(listenPort, authUrl, successUrl, failUrl, state);
+        AuthenticationCallbackServer server =
+                new AuthenticationCallbackServer(listenPort, authUrl, successUrl, failUrl, state);
         try {
             server.start();
         } catch (IOException e) {
@@ -73,39 +62,57 @@ public class Authenticator {
         return true;
     }
 
-    public String getClientId() {
-        return clientId;
+    public final AuthenticationError getAuthenticationError() {
+        return this.authenticationError;
     }
 
-    public URI getRedirectUri() {
-        return redirectUri;
+    public String getAuthenticationUrl(String clientId, URI redirectURI, String state, Scopes... scopes) {
+        this.clientId = clientId;
+        this.redirectUri = redirectURI;
+        this.state = state;
+
+        // Set the listening port for the callback, default to 80 if not specified
+        this.listenPort = redirectUri.getPort();
+        if (this.listenPort == -1) {
+            // HTTP default
+            this.listenPort = 80;
+        }
+
+        return String.format("%s/oauth/authorize?response_type=code" +
+                        "&client_id=%s&redirect_uri=%s&state=%s&scope=%s",
+                twitchBaseUrl, clientId, redirectUri, state, Scopes.join(scopes));
     }
 
-    public String getAutorizationCode() {
-        return accessToken;
+    public final String getAutorizationCode() {
+        return this.accessToken;
     }
 
-    public void setAccessToken(AccessToken accessToken) {
-        this.token = accessToken;
+    public final String getClientId() {
+        return this.clientId;
     }
 
-    public void setAccessTokenHeader(String accessToken) {
-        this.accessToken = accessToken;
+    public final URI getRedirectUri() {
+        return this.redirectUri;
     }
 
+    public AccessToken getToken() {
+        return this.token;
+    }
 
     public boolean hasAccessToken() {
         return accessToken != null;
     }
 
-
-    public AuthenticationError getAuthenticationError() {
-        return authenticationError;
-    }
-
-
     public boolean hasAuthenticationError() {
         return authenticationError != null;
+    }
+
+    public final void setAccessToken(final AccessToken accessToken) {
+        this.token = accessToken;
+    }
+
+    public final void setAccessTokenHeader(final String accessToken) {
+        this.accessToken = accessToken;
     }
 
 }

@@ -23,42 +23,45 @@ import ru.maximkulikov.goodgame.api.chatmodels.*;
 public class GoodChatSocket {
 
     protected static final ObjectMapper objectMapper = new ObjectMapper();
+
     private final CountDownLatch closeLatch;
 
     private Session session;
+
     private GoodChat chat;
 
     public GoodChatSocket() {
         this.closeLatch = new CountDownLatch(1);
     }
 
-    public boolean awaitClose(int duration, TimeUnit unit) throws InterruptedException {
+    public final boolean awaitClose(final int duration, TimeUnit unit) throws InterruptedException {
         return this.closeLatch.await(duration, unit);
     }
 
-    public void close() {
-        session.close(StatusCode.NORMAL, "Session close");
-        chat.setConnected(false);
+    public final void close() {
+        this.session.close(StatusCode.NORMAL, "Session close");
+        this.chat.setConnected(false);
     }
 
     @OnWebSocketClose
-    public void onClose(int statusCode, String reason) {
+    public final void onClose(int statusCode, String reason) {
         System.out.printf("Connection closed: %d - %s%n", statusCode, reason);
         this.session = null;
-        this.closeLatch.countDown(); // trigger latch
+        // trigger latch
+        this.closeLatch.countDown();
     }
 
     @OnWebSocketConnect
-    public void onConnect(Session session) {
+    public final void onConnect(Session session) {
         System.out.printf("Got connect: %s%n", session);
         this.session = session;
-        chat.setConnected(true);
+        this.chat.setConnected(true);
 
     }
 
     @OnWebSocketMessage
-    public void onMessage(String msg) {
-        Response answer = null;
+    public final void onMessage(final String msg) {
+        Response answer;
         try {
             ObjectMapper mapper = new ObjectMapper();
             String type = mapper.readTree(msg).get("type").asText();
@@ -108,8 +111,8 @@ public class GoodChatSocket {
                     answer = new Response(response, resModeratorsListContainer.getData());
                     break;
                 case SETTING:
-                ResSettingsContainer resSettingsContainer =
-                        objectMapper.readValue(msg, ResSettingsContainer.class);
+                    ResSettingsContainer resSettingsContainer =
+                            objectMapper.readValue(msg, ResSettingsContainer.class);
                     answer = new Response(response, resSettingsContainer.getData());
                     break;
                 case IGNORE_LIST:
@@ -198,7 +201,7 @@ public class GoodChatSocket {
                     System.out.println(msg);
                     break;
             }
-            chat.onMessage(answer);
+            this.chat.onMessage(answer);
 
 
         } catch (IOException e) {
@@ -207,11 +210,11 @@ public class GoodChatSocket {
     }
 
 
-    protected void sendMessage(String s) {
-        if (session != null) {
+    protected final void sendMessage(String s) {
+        if (this.session != null) {
             try {
                 Future<Void> fut;
-                fut = session.getRemote().sendStringByFuture(s);
+                fut = this.session.getRemote().sendStringByFuture(s);
                 // wait for send to complete.
                 fut.get(2, TimeUnit.SECONDS);
 
@@ -222,7 +225,7 @@ public class GoodChatSocket {
 
     }
 
-    public void setChat(GoodChat chat) {
+    public final void setChat(final GoodChat chat) {
         this.chat = chat;
     }
 }

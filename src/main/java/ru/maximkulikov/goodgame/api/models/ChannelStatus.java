@@ -28,7 +28,7 @@ public class ChannelStatus {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ChannelStatus{" +
                 "profiles=" + this.profiles +
                 '}';

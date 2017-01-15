@@ -20,7 +20,7 @@ import ru.maximkulikov.goodgame.api.models.SubscrurersContainer;
 public class ChannelsResource extends AbstractResource {
 
 
-    public ChannelsResource(String baseUrl, int apiVersion) {
+    public ChannelsResource(final String baseUrl, int apiVersion) {
         super(baseUrl, apiVersion);
     }
 
@@ -28,7 +28,7 @@ public class ChannelsResource extends AbstractResource {
         String url = String.format("%s/channel/%s/donations", getBaseUrl(), channel);
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
                 try {
                     DonationsContainer value = objectMapper.readValue(content, DonationsContainer.class);
                     handler.onSuccess(value);
@@ -39,7 +39,8 @@ public class ChannelsResource extends AbstractResource {
         });
     }
 
-    public final void getDonations(final String channel, final RequestParams params, final DonationsResponseHandler handler) {
+    public final void getDonations(final String channel, final RequestParams params,
+                                   final DonationsResponseHandler handler) {
         String url = String.format("%s/channel/%s/donations", getBaseUrl(), channel);
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
@@ -70,7 +71,8 @@ public class ChannelsResource extends AbstractResource {
         });
     }
 
-    public final void getPremiums(final String channel, final RequestParams params, final PremiumsResponseHandler handler) {
+    public final void getPremiums(final String channel, final RequestParams params,
+                                  final PremiumsResponseHandler handler) {
         String url = String.format("%s/channel/%s/premiums", getBaseUrl(), channel);
 
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
@@ -103,7 +105,8 @@ public class ChannelsResource extends AbstractResource {
         });
     }
 
-    public final void getSubscribers(final String channel, final RequestParams params, final SubscriberResponseHandler handler) {
+    public final void getSubscribers(final String channel, final RequestParams params,
+                                     final SubscriberResponseHandler handler) {
         String url = String.format("%s/channel/%s/subscribers", getBaseUrl(), channel);
 
 

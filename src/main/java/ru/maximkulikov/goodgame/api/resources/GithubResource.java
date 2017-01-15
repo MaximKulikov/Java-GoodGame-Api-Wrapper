@@ -1,7 +1,6 @@
 package ru.maximkulikov.goodgame.api.resources;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
@@ -16,18 +15,16 @@ import ru.maximkulikov.goodgame.api.models.GitHubSubscribers;
 public class GithubResource extends AbstractResource {
 
 
-    public GithubResource(String baseUrl) {
+    public GithubResource(final String baseUrl) {
         super(baseUrl);
     }
 
-    public final  void getChannelStatus(final String id, final GitHubSharedHandler handler) {
+    public final void getChannelStatus(final String id, final GitHubSharedHandler handler) {
         String url = String.format("%s/getchannelstatus", getBaseUrl());
 
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id);
-        map.put("fmt", "json");
         RequestParams params = new RequestParams();
-        params.put(map);
+        params.put("id", id);
+        params.put("fmt", "json");
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
@@ -46,22 +43,19 @@ public class GithubResource extends AbstractResource {
         });
     }
 
-    public final  void getChannelSubscribers(final String oauthToken, final GitHubChannelSubscribersResponseHandler handler) {
+    public final void getChannelSubscribers(final String oauthToken,
+                                            final GitHubChannelSubscribersResponseHandler handler) {
         String url = String.format("%s/getchannelsubscribers", getBaseUrl());
 
-
-        Map<String, String> map = new HashMap<>();
-        map.put("oauth_token ", oauthToken);
-        map.put("fmt", "json");
         RequestParams params = new RequestParams();
-        params.put(map);
+        params.put("oauth_token ", oauthToken);
+        params.put("fmt", "json");
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
 
                 try {
-
                     GitHubSubscribers value = objectMapper.readValue(content, GitHubSubscribers.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
@@ -71,18 +65,16 @@ public class GithubResource extends AbstractResource {
         });
     }
 
-    public final  void getChannelsByGame(final String gameUrl, final GitHubSharedHandler handler) {
+    public final void getChannelsByGame(final String gameUrl, final GitHubSharedHandler handler) {
         String url = String.format("%s/getchannelsbygame", getBaseUrl());
 
-        Map<String, String> map = new HashMap<>();
-        map.put("game", gameUrl);
-        map.put("fmt", "json");
         RequestParams params = new RequestParams();
-        params.put(map);
+        params.put("game", gameUrl);
+        params.put("fmt", "json");
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
 
                 handler.onSuccess(content);
 
@@ -97,18 +89,16 @@ public class GithubResource extends AbstractResource {
         });
     }
 
-    public final  void getGgChannelStatus(final String id, final GitHubSharedHandler handler) {
+    public final void getGgChannelStatus(final String id, final GitHubSharedHandler handler) {
         String url = String.format("%s/getggchannelstatus", getBaseUrl());
 
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id);
-        map.put("fmt", "json");
         RequestParams params = new RequestParams();
-        params.put(map);
+        params.put("id", id);
+        params.put("fmt", "json");
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
 
                 handler.onSuccess(content);
 
@@ -126,16 +116,14 @@ public class GithubResource extends AbstractResource {
     public final void getToken(final String username, final String password, final GitHubSharedHandler handler) {
         String url = String.format("%s/token", getBaseUrl());
 
-        Map<String, String> map = new HashMap<>();
-        map.put("username", username);
-        map.put("password", password);
-        map.put("fmt", "json");
         RequestParams params = new RequestParams();
-        params.put(map);
+        params.put("username", username);
+        params.put("password", password);
+        params.put("fmt", "json");
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
 
                 handler.onSuccess(content);
 
@@ -150,18 +138,16 @@ public class GithubResource extends AbstractResource {
         });
     }
 
-    public final  void getUpcomingBroadcast(final String id, final GitHubSharedHandler handler) {
+    public final void getUpcomingBroadcast(final String id, final GitHubSharedHandler handler) {
         String url = String.format("%s/getggchannelstatus", getBaseUrl());
 
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id);
-        map.put("fmt", "json");
         RequestParams params = new RequestParams();
-        params.put(map);
+        params.put("id", id);
+        params.put("fmt", "json");
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
 
                 handler.onSuccess(content);
 
@@ -175,6 +161,4 @@ public class GithubResource extends AbstractResource {
             }
         });
     }
-
-
 }

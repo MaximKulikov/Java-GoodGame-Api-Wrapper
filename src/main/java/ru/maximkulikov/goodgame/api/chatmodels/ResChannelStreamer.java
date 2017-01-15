@@ -53,7 +53,7 @@ public class ResChannelStreamer implements ResChatObject {
     @Override
     public final String toString() {
         return "ResChannelStreamer{" +
-                "id=" +this.id +
+                "id=" + this.id +
                 ", name='" + this.name + '\'' +
                 ", right=" + this.right +
                 ", groups=" + this.groups +
