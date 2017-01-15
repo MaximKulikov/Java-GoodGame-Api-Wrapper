@@ -38,7 +38,7 @@ public class ReqSendMessageContainer implements ReqChatObject {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqSendMessageContainer{" +
                 "type='" + this.type + '\'' +
                 ", data=" + this.data +

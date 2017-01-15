@@ -31,9 +31,6 @@ public class ResNewPoll implements ResChatObject {
 
     private List<PollAnswer> answers;
 
-    public ResNewPoll() {
-    }
-
     public final List<PollAnswer> getAnswers() {
         return this.answers;
     }

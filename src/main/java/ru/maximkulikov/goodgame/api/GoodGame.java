@@ -85,7 +85,7 @@ public class GoodGame {
         return r;
     }
 
-    public String getState() {
+    public final String getState() {
         if (this.state == null) {
             this.state = UUID.randomUUID().toString();
         }

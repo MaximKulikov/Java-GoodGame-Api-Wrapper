@@ -28,7 +28,7 @@ public class ResWarn implements ResChatObject {
     @JsonProperty("moder_name")
     private String moderName;
 
-    // на основе группы, определяется каким цветом выводить сообщения
+    // определяет каким цветом выводить сообщения
     @JsonProperty("moder_group")
     private Long moderGroup;
 

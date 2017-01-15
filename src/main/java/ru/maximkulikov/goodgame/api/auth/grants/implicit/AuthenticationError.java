@@ -26,7 +26,7 @@ public class AuthenticationError {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int result = this.name != null ? this.name.hashCode() : 0;
         result = 31 * result + (this.description != null ? this.description.hashCode() : 0);
         return result;

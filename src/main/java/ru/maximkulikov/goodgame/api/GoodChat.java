@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 import ru.maximkulikov.goodgame.api.chatmodels.ReqChatObject;
+import ru.maximkulikov.goodgame.api.chatmodels.ResError;
 import ru.maximkulikov.goodgame.api.chatmodels.Response;
 
 /**
@@ -32,7 +33,7 @@ public abstract class GoodChat {
                     client.start();
                     URI echoUri = new URI(DEFAULT_CHAT_URL);
                     ClientUpgradeRequest request = new ClientUpgradeRequest();
-                    client.connect(socket, echoUri, request);
+                    client.connect(GoodChat.this.socket, echoUri, request);
                     System.out.printf("Connecting to : %s%n", echoUri);
                     // wait for closed socket connection.
                     GoodChat.this.socket.setChat(GoodChat.this);
@@ -76,11 +77,11 @@ public abstract class GoodChat {
             try {
                 this.socket.sendMessage(mapper.writeValueAsString(chatObject));
             } catch (JsonProcessingException e) {
-//TODO
+                e.printStackTrace();
             }
         } else {
-            throw new NullPointerException("GoodGameChat not connected proper");
-
+            // Интересно можем ли мы отправить подобную конструкцию сразу в this.onMessage???
+            socket.onMessage(new Response(ChatResponses.ERROR, new ResError(null, 0, "GoodGameChat not connected proper, Message did not send")));
         }
     }
 

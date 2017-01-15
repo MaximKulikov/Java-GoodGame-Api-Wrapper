@@ -73,17 +73,17 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
     }
 
     public final boolean hasAuthenticationError() {
-        return authenticationError != null;
+        return this.authenticationError != null;
     }
 
     public boolean isRunning() {
-        return serverSocket != null;
+        return this.serverSocket != null;
     }
 
     @Override
     public void onAccessTokenReceived(String token, String state) {
 
-        if (token != null && state.equals(stateRequest)) {
+        if (token != null && state.equals(this.stateRequest)) {
             this.accessToken = token;
         }
         // Stop the server, we no longer need to process requests
@@ -94,7 +94,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
     public void onAuthenticationError(String error, String description) {
         this.authenticationError = new AuthenticationError(error, description);
         // Stop the server
-        stop();
+        this.stop();
     }
 
     private void run() throws IOException {
@@ -102,7 +102,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
         while (true) {
             try {
                 // Listen for a TCP connection request
-                Socket connectionSocket = serverSocket.accept();
+                Socket connectionSocket = this.serverSocket.accept();
                 // Handle request
                 AuthenticationCallbackRequest request = new AuthenticationCallbackRequest(connectionSocket,
                         this.authPage, this.failurePage, this.successPage);
@@ -121,14 +121,14 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
         // Establish the listen socket
         // For security reasons, the third parameter is set to not accept connections from outside the localhost
         this.serverSocket = new ServerSocket(this.port, 0, InetAddress.getByName("127.0.0.1"));
-        run();
+        this.run();
     }
 
     /**
      * Stops the server.
      */
     public final void stop() {
-        if (serverSocket != null && !serverSocket.isClosed()) {
+        if (this.serverSocket != null && !this.serverSocket.isClosed()) {
             try {
                 this.serverSocket.close();
             } catch (IOException ignored) {

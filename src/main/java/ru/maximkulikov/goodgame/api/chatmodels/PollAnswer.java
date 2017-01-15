@@ -35,7 +35,7 @@ public class PollAnswer {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "PollAnswer{" +
                 "id='" + this.id + '\'' +
                 ", text='" + this.text + '\'' +

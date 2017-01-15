@@ -74,7 +74,7 @@ public class ResJoin implements ResChatObject {
     }
 
     public final void setBanned(final Boolean banned) {
-        isBanned = banned;
+        this.isBanned = banned;
     }
 
     public final Long getBannedTime() {

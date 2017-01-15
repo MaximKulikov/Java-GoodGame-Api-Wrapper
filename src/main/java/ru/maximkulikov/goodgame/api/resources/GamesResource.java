@@ -53,7 +53,7 @@ public class GamesResource extends AbstractResource {
         });
     }
 
-    public void getGames(final GamesResponseHandler handler) {
+    public final void getGames(final GamesResponseHandler handler) {
         String url = String.format("%s/games", getBaseUrl());
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {

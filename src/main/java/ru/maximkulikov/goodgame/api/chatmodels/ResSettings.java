@@ -92,7 +92,7 @@ public class ResSettings implements ResChatObject {
         return this.value;
     }
 
-    public void setValue(final String value) {
+    public final void setValue(final String value) {
         this.value = value;
     }
 

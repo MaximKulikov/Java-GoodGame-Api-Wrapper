@@ -16,7 +16,7 @@ public class StreamContainer {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "StreamContainer{" +
                 "stream=" + this.stream +
                 '}';

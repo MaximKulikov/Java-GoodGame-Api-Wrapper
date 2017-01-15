@@ -30,7 +30,7 @@ public class ResGetUserInfoContainer {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ResGetUserInfoContainer{" +
                 "type='" + this.type + '\'' +
                 ", data=" + this.data +

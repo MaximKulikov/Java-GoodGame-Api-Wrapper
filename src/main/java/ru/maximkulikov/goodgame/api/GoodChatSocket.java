@@ -209,6 +209,10 @@ public class GoodChatSocket {
         }
     }
 
+    public final void onMessage(final Response response) {
+        this.chat.onMessage(response);
+    }
+
 
     protected final void sendMessage(final String s) {
         if (this.session != null) {
@@ -229,5 +233,3 @@ public class GoodChatSocket {
         this.chat = chat;
     }
 }
-
-

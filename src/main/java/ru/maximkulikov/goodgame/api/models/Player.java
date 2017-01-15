@@ -108,7 +108,7 @@ public class Player {
         this.channelPremium = channelPremium;
     }
 
-    public String getChannelStart() {
+    public final String getChannelStart() {
         return this.channelStart;
     }
 

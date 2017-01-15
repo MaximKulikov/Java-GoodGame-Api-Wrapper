@@ -68,7 +68,7 @@ public abstract class AbstractResource {
         }
     }
 
-    protected static abstract class GoodGameHttpResponseHandler extends StringHttpResponseHandler {
+    protected abstract static class GoodGameHttpResponseHandler extends StringHttpResponseHandler {
 
         private BaseFailureHandler apiHandler;
 

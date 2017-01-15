@@ -55,7 +55,7 @@ public class ChatChannel {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ChatChannel{" +
                 "channelId='" + this.channelId + '\'' +
                 ", channelName='" + this.channelName + '\'' +

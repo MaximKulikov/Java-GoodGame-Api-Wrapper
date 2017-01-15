@@ -49,7 +49,7 @@ public class Authenticator {
         }
 
         AuthenticationCallbackServer server =
-                new AuthenticationCallbackServer(this.listenPort, authUrl, successUrl, failUrl, state);
+                new AuthenticationCallbackServer(this.listenPort, authUrl, successUrl, failUrl, this.state);
         try {
             server.start();
         } catch (IOException e) {
@@ -77,7 +77,7 @@ public class Authenticator {
         this.state = state;
 
         // Set the listening port for the callback, default to 80 if not specified
-        this.listenPort = redirectUri.getPort();
+        this.listenPort = this.redirectUri.getPort();
         if (this.listenPort == -1) {
             // HTTP default
             this.listenPort = DEFAULT_HTTP_PORT;

@@ -12,7 +12,7 @@ public class ResIgnoreList implements ResChatObject {
 
     private List<ChatUser> users;
 
-    public List<ChatUser> getUsers() {
+    public final List<ChatUser> getUsers() {
         return this.users;
     }
 

@@ -26,7 +26,7 @@ public class Broadcast {
     private String broadcastLogo;
 
     public final String getBroadcastDescription() {
-        return broadcastDescription;
+        return this.broadcastDescription;
     }
 
     public final void setBroadcastDescription(final String broadcastDescription) {

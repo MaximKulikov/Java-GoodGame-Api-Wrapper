@@ -24,16 +24,14 @@ public enum ChatResponses {
     REMOVE_MESSAGE,
     USER_BAN,
     USER_WARN,
-    NEW_POLL, //нет контейнера?
+    NEW_POLL,
     POLL_RESULTS,
     USER,
     UPDATE_RIGHTS,
-    UPDATE_GROUPS, //нет контейнера?
+    UPDATE_GROUPS,
     UPDATE_PREMIUM,
     PAYMENT,
     PREMIUM,
     ERROR,
     UNKNOWN
-
-
 }

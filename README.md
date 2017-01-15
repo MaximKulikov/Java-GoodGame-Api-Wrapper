@@ -102,12 +102,12 @@ class SimpleExample {
 | `GET /streams`                      | //TODO    | Получение информации обо всех онлайн стримах на Goodgame. Можно использовать query-параметры.  |
 | `GET /streams[/:channel]`           | //TODO `gg.streams.getChannel()`                                                 | Получение информации о конкретном стриме. Query-параметры не работают.  |
 | `GET /channel/:channel/subscribers` | `gg.channels().getSubscribers(channel, new SubscriberResponseHandler())`<br /> `gg.channels().getSubscribers(channel, requestParams, new SubscriberResponseHandler()`   | Список подписчиков указанного канала.  |
-| `GET /channel/:channel/premiums`    | `gg.channels().getPremiums(channel, new PremiumsResponseHandler())` <br /> `gg.channels().getPremiums(channel, requestParams, new PremiumsResponseHandler()`   | Список премиум подписчиков указанного канала  |
+| `GET /channel/:channel/premiums`    | `gg.channels().getPremiums(channel, new PremiumsResponseHandler())` <br /> `gg.channels().getPremiums(channel, requestParams, new PremiumsResponseHandler()`   | Список премиум подписчиков указанного канала.  |
 | `GET /channel/:channel/donations`   | `gg.channels().getDonations(channel, new DonationsResponseHandler())` <br /> `gg.channels().getDonations(channel, requestParams, new DonationsResponseHandler()`  | Список поддержки указанного канала.  |
 | `GET /chat/token`                   | `gg.chat().getChatToken(new ChatTokenResponseHandler())`   | Получение токена чата для конкретного пользователя. Id-пользователя определяется из Access Token'a.  |
-| `GET /games`                        | `gg.games().getGames(new GamesResponseHandler())` <br /> `gg.games().getGames(requestParams, new GamesResponseHandler()`   | Получение коллекции игр  |
-| `GET /games[/:game]`                | `gg.games().getGame(gameUrl, new GameResponseHandler())`   | Получение информации по игре, зная ее url  |
-| `GET /info`                         | `gg.info().getInfo(new InfoResponseHandler())`   | Получение информации по Access Token'у  |
+| `GET /games`                        | `gg.games().getGames(new GamesResponseHandler())` <br /> `gg.games().getGames(requestParams, new GamesResponseHandler()`   | Получение коллекции игр.  |
+| `GET /games[/:game]`                | `gg.games().getGame(gameUrl, new GameResponseHandler())`   | Получение информации по игре, зная ее url.  |
+| `GET /info`                         | `gg.info().getInfo(new InfoResponseHandler())`   | Получение информации по Access Token'у.  |
 | `GET /smiles[/:channel_id]`         | `gg.smiles().getSmiles(new SmilesResponseHandler()` <br /> `gg.smiles().getChannelSmiles(channelId, new SmilesResponseHandler()`   | Получение коллекции смайлов.  |
 | `http://goodgame.ru/api/getggchannelstatus`    | `gg.githubapi().getChannelStatus()` <br /> `gg.githubapi().getGgChannelStatus`  | Получение информации о статусе плееров GoodGame.  |
 | `http://goodgame.ru/api/getupcomingbroadcast`  | `gg.githubapi().getUpcomingBroadcast()`   | Получение информации о предстоящей трансляции (анонс).  |

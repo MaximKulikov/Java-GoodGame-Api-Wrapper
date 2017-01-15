@@ -191,7 +191,7 @@ public class AuthenticationCallbackRequest implements Runnable {
     @Override
     public final void run() {
         try {
-            processRequest();
+            this.processRequest();
         } catch (Exception ignored) {
         }
     }

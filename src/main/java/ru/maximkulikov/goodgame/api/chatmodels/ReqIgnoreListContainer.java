@@ -13,9 +13,6 @@ public class ReqIgnoreListContainer implements ReqChatObject {
 
     private Object data = new Object();
 
-    public ReqIgnoreListContainer() {
-    }
-
     public final Object getData() {
         return this.data;
     }

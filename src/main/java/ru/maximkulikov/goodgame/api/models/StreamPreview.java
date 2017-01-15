@@ -54,7 +54,7 @@ public class StreamPreview {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int result = this.small != null ? this.small.hashCode() : 0;
         result = 31 * result + (this.medium != null ? this.medium.hashCode() : 0);
         result = 31 * result + (this.large != null ? this.large.hashCode() : 0);

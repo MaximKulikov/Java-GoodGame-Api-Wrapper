@@ -23,7 +23,7 @@ public class ChannelStatus {
     }
 
     @JsonAnySetter
-    public void setDynamicProperty(String name, Map<String, String> map) {
+    public final void setDynamicProperty(String name, Map<String, String> map) {
         this.profiles = map;
     }
 

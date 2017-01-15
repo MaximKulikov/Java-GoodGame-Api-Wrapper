@@ -32,10 +32,6 @@ public class ResUserBan implements ResChatObject {
 
     private String reason;
 
-
-    public ResUserBan() {
-    }
-
     public final String getChannelId() {
         return this.channelId;
     }

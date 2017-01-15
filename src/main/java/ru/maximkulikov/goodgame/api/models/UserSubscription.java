@@ -39,18 +39,22 @@ public class UserSubscription {
     }
 
     @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+    public final int hashCode() {
+        return this.id != null ? this.id.hashCode() : 0;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         UserSubscription that = (UserSubscription) o;
 
-        return !(id != null ? !id.equals(that.id) : that.id != null);
+        return !(this.id != null ? !this.id.equals(that.id) : that.id != null);
 
     }
 

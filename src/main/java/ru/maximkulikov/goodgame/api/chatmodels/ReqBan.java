@@ -102,7 +102,7 @@ public class ReqBan {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "ReqBan{" +
                 "channelId='" + this.channelId + '\'' +
                 ", banChannel='" + this.banChannel + '\'' +

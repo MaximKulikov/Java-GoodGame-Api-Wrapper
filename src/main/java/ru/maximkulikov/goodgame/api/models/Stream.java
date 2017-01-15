@@ -69,8 +69,7 @@ public class Stream {
     }
 
     public final long getId() {
-
-        return id;
+        return this.id;
     }
 
     public final void setId(final long id) {
@@ -102,8 +101,8 @@ public class Stream {
     }
 
     @Override
-    public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+    public final int hashCode() {
+        return (int) (this.id ^ (this.id >>> 32));
     }
 
     @Override

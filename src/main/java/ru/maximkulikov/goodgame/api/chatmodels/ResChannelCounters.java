@@ -28,7 +28,7 @@ public class ResChannelCounters implements ResChatObject {
     }
 
     public final Long getClientsInChannel() {
-        return clientsInChannel;
+        return this.clientsInChannel;
     }
 
     public final void setClientsInChannel(final Long clientsInChannel) {
