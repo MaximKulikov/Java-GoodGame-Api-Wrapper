@@ -26,7 +26,7 @@ public abstract class AbstractResource {
     private final String baseUrl;
 
 
-    protected AbstractResource(final String baseUrl, int apiVersion) {
+    protected AbstractResource(final String baseUrl, final int apiVersion) {
         this.baseUrl = baseUrl;
         // Specify API version
         http.setHeader("ACCEPT", "application/vnd.goodgame.v" + Integer.toString(apiVersion) + "+json");
@@ -50,7 +50,7 @@ public abstract class AbstractResource {
         return this.baseUrl;
     }
 
-    public final void setAccessToken(String accessToken) {
+    public final void setAccessToken(final String accessToken) {
         String authorization = "Authorization";
         if (accessToken != null && accessToken.length() > 0) {
             http.setHeader(authorization, String.format("Bearer %s", accessToken));
@@ -80,7 +80,7 @@ public abstract class AbstractResource {
         public abstract void onSuccess(int statusCode, Map<String, List<String>> headers, String content);
 
         @Override
-        public final void onFailure(final int statusCode, Map<String, List<String>> headers, String content) {
+        public final void onFailure(final int statusCode, final Map<String, List<String>> headers, String content) {
             try {
                 if (content.length() > 0) {
                     Error error = objectMapper.readValue(content, Error.class);
@@ -94,7 +94,7 @@ public abstract class AbstractResource {
         }
 
         @Override
-        public final void onFailure(Throwable throwable) {
+        public final void onFailure(final Throwable throwable) {
             this.apiHandler.onFailure(throwable);
         }
     }

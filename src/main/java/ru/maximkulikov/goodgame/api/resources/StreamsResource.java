@@ -12,22 +12,57 @@ import ru.maximkulikov.goodgame.api.models.ChannelContainer;
 public class StreamsResource extends AbstractResource {
 
 
-    public StreamsResource(String baseUrl, int apiVersion) {
+    public StreamsResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);
     }
 
+    public final void getChannel(final String channel, final StreamChannelResponseHandler handler) {
+        String url = String.format("%s/streams/%s", getBaseUrl(), channel);
+
+        http.get(url, new GoodGameHttpResponseHandler(handler) {
+            @Override
+            public void onSuccess(int statusCode, final Map<String, List<String>> headers, String content) {
+                try {
+                    ChannelContainer value = objectMapper.readValue(content, ChannelContainer.class);
+                    handler.onSuccess(value);
+                } catch (IOException e) {
+                    handler.onFailure(e);
+                }
+            }
+        });
+    }
+
+    public final void getChannel(final String channel, final RequestParams params,
+                                 final StreamChannelResponseHandler handler) {
+
+        String url = String.format("%s/streams/%s", getBaseUrl(), channel);
+
+        http.get(url, params, new GoodGameHttpResponseHandler(handler) {
+            @Override
+            public void onSuccess(int statusCode, final Map<String, List<String>> headers, String content) {
+                try {
+                    ChannelContainer value = objectMapper.readValue(content, ChannelContainer.class);
+                    handler.onSuccess(value);
+                } catch (IOException e) {
+                    handler.onFailure(e);
+                }
+            }
+        });
+    }
 
     /**
-     * Получение информации обо всех онлайн стримах на Goodgame. Можно использовать query-параметры.
-     * <p>The stream object in the onSuccess() response will be <code>null</code> if the stream is offline.</p>
+     * Получение информации обо всех онлайн стримах
+     * на Goodgame. Можно использовать query-параметры.
+     * <p>The stream object in the onSuccess() response
+     * will be <code>null</code> if the stream is offline.</p>
      */
 
-    public void getStreams(final StreamResponseHandler handler) {
+    public final void getStreams(final StreamResponseHandler handler) {
         String url = String.format("%s/streams", getBaseUrl());
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(int statusCode, final Map<String, List<String>> headers, String content) {
                 try {
                     ChannelContainer value = objectMapper.readValue(content, ChannelContainer.class);
                     handler.onSuccess(value);
@@ -38,13 +73,13 @@ public class StreamsResource extends AbstractResource {
         });
     }
 
-    public void getStreams(final RequestParams params, final StreamResponseHandler handler) {
+    public final void getStreams(final RequestParams params, final StreamResponseHandler handler) {
 
         String url = String.format("%s/streams", getBaseUrl());
 
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(int statusCode, final Map<String, List<String>> headers, String content) {
                 try {
                     ChannelContainer value = objectMapper.readValue(content, ChannelContainer.class);
                     handler.onSuccess(value);
@@ -54,38 +89,4 @@ public class StreamsResource extends AbstractResource {
             }
         });
     }
-
-    public void getChannel(final String channel, final StreamChannelResponseHandler handler) {
-        String url = String.format("%s/streams/%s", getBaseUrl(), channel);
-
-        http.get(url, new GoodGameHttpResponseHandler(handler) {
-            @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
-                try {
-                    ChannelContainer value = objectMapper.readValue(content, ChannelContainer.class);
-                    handler.onSuccess(value);
-                } catch (IOException e) {
-                    handler.onFailure(e);
-                }
-            }
-        });
-    }
-
-    public void getChannel(final String channel, final RequestParams params, final StreamChannelResponseHandler handler) {
-
-        String url = String.format("%s/streams/%s", getBaseUrl(), channel);
-
-        http.get(url, params, new GoodGameHttpResponseHandler(handler) {
-            @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
-                try {
-                    ChannelContainer value = objectMapper.readValue(content, ChannelContainer.class);
-                    handler.onSuccess(value);
-                } catch (IOException e) {
-                    handler.onFailure(e);
-                }
-            }
-        });
-    }
-
 }

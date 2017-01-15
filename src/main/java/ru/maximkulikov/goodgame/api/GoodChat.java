@@ -12,12 +12,10 @@ import ru.maximkulikov.goodgame.api.chatmodels.Response;
 /**
  * Java-GoodGame-Api-Wrapper
  */
-public class GoodChat {
-
-    private static final String DEFAULT_CHAT_URL = "ws://chat.goodgame.ru:8081/chat/websocket";
+public abstract class GoodChat {
 
     protected static final ObjectMapper objectMapper = new ObjectMapper();
-
+    private static final String DEFAULT_CHAT_URL = "ws://chat.goodgame.ru:8081/chat/websocket";
     private GoodChatSocket socket;
 
     private boolean connected;
@@ -55,20 +53,20 @@ public class GoodChat {
         return this.connected;
     }
 
-    final void setConnected(final boolean connected) {
+    public final void setConnected(final boolean connected) {
         this.connected = connected;
     }
 
-    public void onMessage(final Response answer) {
-
-    }
+    public abstract void onMessage(final Response answer);
 
     public final void sendMessage(final ReqChatObject chatObject) {
 
-        if (this.socket == null) try {
-            wait(700);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        if (this.socket == null) {
+            try {
+                wait(700);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         if (this.socket != null) {

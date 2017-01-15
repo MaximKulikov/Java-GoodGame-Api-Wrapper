@@ -12,7 +12,7 @@ public class AuthenticationError {
     // the description of the error
     private final String description;
 
-    public AuthenticationError(final String name, String description) {
+    public AuthenticationError(final String name, final String description) {
         this.name = name;
         this.description = description;
     }

@@ -28,7 +28,7 @@ public class ChannelsResource extends AbstractResource {
         String url = String.format("%s/channel/%s/donations", getBaseUrl(), channel);
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
                 try {
                     DonationsContainer value = objectMapper.readValue(content, DonationsContainer.class);
                     handler.onSuccess(value);

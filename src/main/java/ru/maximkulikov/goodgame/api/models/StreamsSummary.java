@@ -26,21 +26,27 @@ public class StreamsSummary {
     }
 
     @Override
-    public int hashCode() {
-        int result = channels;
-        result = 31 * result + viewers;
+    public final int hashCode() {
+        int result = this.channels;
+        result = 31 * result + this.viewers;
         return result;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         StreamsSummary that = (StreamsSummary) o;
 
-        if (channels != that.channels) return false;
-        return viewers == that.viewers;
+        if (this.channels != that.channels) {
+            return false;
+        }
+        return this.viewers == that.viewers;
     }
 
     @Override

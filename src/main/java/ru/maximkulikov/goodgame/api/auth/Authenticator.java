@@ -14,8 +14,9 @@ import ru.maximkulikov.goodgame.api.models.AccessToken;
  */
 public class Authenticator {
 
+    private static final int DEFAULT_HTTP_PORT = 80;
     // Base twitch api url
-    private String twitchBaseUrl;
+    private String goodgameBaseUrl;
 
     // The port to listen for the authentication callback on
     private int listenPort;
@@ -32,33 +33,35 @@ public class Authenticator {
 
     private AuthenticationError authenticationError;
 
-    public Authenticator(String twitchBaseUrl) {
-        this.twitchBaseUrl = twitchBaseUrl;
+    public Authenticator(final String goodgameBaseUrl) {
+        this.goodgameBaseUrl = goodgameBaseUrl;
     }
 
-    public boolean awaitAutorizationCode() {
+    public final boolean awaitAutorizationCode() {
         // Use default pages
-        return awaitAutorizationCode(null, null, null);
+        return this.awaitAutorizationCode(null, null, null);
     }
 
-    public boolean awaitAutorizationCode(URL authUrl, URL successUrl, URL failUrl) {
-        if (clientId == null || redirectUri == null) return false;
+    public final boolean awaitAutorizationCode(final URL authUrl, URL successUrl, URL failUrl) {
+        if (this.clientId == null || this.redirectUri == null) {
+            return false;
+        }
 
         AuthenticationCallbackServer server =
-                new AuthenticationCallbackServer(listenPort, authUrl, successUrl, failUrl, state);
+                new AuthenticationCallbackServer(this.listenPort, authUrl, successUrl, failUrl, state);
         try {
             server.start();
         } catch (IOException e) {
-            authenticationError = new AuthenticationError("JavaException", e.toString());
+            this.authenticationError = new AuthenticationError("JavaException", e.toString());
             return false;
         }
 
         if (server.hasAuthenticationError() || server.getAccessToken() == null) {
-            authenticationError = server.getAuthenticationError();
+            this.authenticationError = server.getAuthenticationError();
             return false;
         }
 
-        accessToken = server.getAccessToken();
+        this.accessToken = server.getAccessToken();
         return true;
     }
 
@@ -66,7 +69,7 @@ public class Authenticator {
         return this.authenticationError;
     }
 
-    public String getAuthenticationUrl(String clientId, URI redirectURI, String state, Scopes... scopes) {
+    public String getAuthenticationUrl(final String clientId, URI redirectURI, String state, Scopes... scopes) {
         this.clientId = clientId;
         this.redirectUri = redirectURI;
         this.state = state;
@@ -75,12 +78,12 @@ public class Authenticator {
         this.listenPort = redirectUri.getPort();
         if (this.listenPort == -1) {
             // HTTP default
-            this.listenPort = 80;
+            this.listenPort = DEFAULT_HTTP_PORT;
         }
 
         return String.format("%s/oauth/authorize?response_type=code" +
                         "&client_id=%s&redirect_uri=%s&state=%s&scope=%s",
-                twitchBaseUrl, clientId, redirectUri, state, Scopes.join(scopes));
+                this.goodgameBaseUrl, clientId, this.redirectUri, state, Scopes.join(scopes));
     }
 
     public final String getAutorizationCode() {
@@ -95,16 +98,16 @@ public class Authenticator {
         return this.redirectUri;
     }
 
-    public AccessToken getToken() {
+    public final AccessToken getToken() {
         return this.token;
     }
 
-    public boolean hasAccessToken() {
-        return accessToken != null;
+    public final boolean hasAccessToken() {
+        return this.accessToken != null;
     }
 
-    public boolean hasAuthenticationError() {
-        return authenticationError != null;
+    public final boolean hasAuthenticationError() {
+        return this.authenticationError != null;
     }
 
     public final void setAccessToken(final AccessToken accessToken) {

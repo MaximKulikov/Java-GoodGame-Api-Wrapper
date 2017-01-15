@@ -14,7 +14,7 @@ import ru.maximkulikov.goodgame.api.models.ChatToken;
  */
 public class ChatResource extends AbstractResource {
 
-    public ChatResource(final String baseUrl, int apiVersion) {
+    public ChatResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);
     }
 
@@ -23,7 +23,7 @@ public class ChatResource extends AbstractResource {
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
                 try {
                     ChatToken value = objectMapper.readValue(content, ChatToken.class);
                     handler.onSuccess(value);

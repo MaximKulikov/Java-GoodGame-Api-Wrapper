@@ -13,7 +13,7 @@ import ru.maximkulikov.goodgame.api.models.SmilesContainer;
  */
 public class SmilesResource extends AbstractResource {
 
-    public SmilesResource(final String baseUrl, int apiVersion) {
+    public SmilesResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);
     }
 
@@ -26,7 +26,7 @@ public class SmilesResource extends AbstractResource {
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
                 try {
                     SmilesContainer value = objectMapper.readValue(content, SmilesContainer.class);
                     handler.onSuccess(value);
@@ -44,7 +44,7 @@ public class SmilesResource extends AbstractResource {
 
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(int statusCode, final Map<String, List<String>> headers, String content) {
                 try {
                     SmilesContainer value = objectMapper.readValue(content, SmilesContainer.class);
                     handler.onSuccess(value);
@@ -61,7 +61,7 @@ public class SmilesResource extends AbstractResource {
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
                 try {
                     SmilesContainer value = objectMapper.readValue(content, SmilesContainer.class);
                     handler.onSuccess(value);
@@ -73,12 +73,12 @@ public class SmilesResource extends AbstractResource {
 
     }
 
-    public void getSmiles(RequestParams params, final SmilesResponseHandler handler) {
+    public final void getSmiles(RequestParams params, final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles", getBaseUrl());
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
                 try {
                     SmilesContainer value = objectMapper.readValue(content, SmilesContainer.class);
                     handler.onSuccess(value);

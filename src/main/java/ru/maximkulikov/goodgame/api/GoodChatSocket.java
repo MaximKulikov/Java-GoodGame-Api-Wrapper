@@ -34,7 +34,7 @@ public class GoodChatSocket {
         this.closeLatch = new CountDownLatch(1);
     }
 
-    public final boolean awaitClose(final int duration, TimeUnit unit) throws InterruptedException {
+    public final boolean awaitClose(final int duration, final TimeUnit unit) throws InterruptedException {
         return this.closeLatch.await(duration, unit);
     }
 
@@ -44,7 +44,7 @@ public class GoodChatSocket {
     }
 
     @OnWebSocketClose
-    public final void onClose(int statusCode, String reason) {
+    public final void onClose(final int statusCode, String reason) {
         System.out.printf("Connection closed: %d - %s%n", statusCode, reason);
         this.session = null;
         // trigger latch
@@ -52,7 +52,7 @@ public class GoodChatSocket {
     }
 
     @OnWebSocketConnect
-    public final void onConnect(Session session) {
+    public final void onConnect(final Session session) {
         System.out.printf("Got connect: %s%n", session);
         this.session = session;
         this.chat.setConnected(true);
@@ -210,7 +210,7 @@ public class GoodChatSocket {
     }
 
 
-    protected final void sendMessage(String s) {
+    protected final void sendMessage(final String s) {
         if (this.session != null) {
             try {
                 Future<Void> fut;

@@ -17,12 +17,13 @@ import ru.maximkulikov.goodgame.api.models.OauthResourceCheck;
 public class OauthResource extends AbstractResource {
 
 
-    public OauthResource(final String defaultBaseUrl, int defaultApiVersion) {
+    public OauthResource(final String defaultBaseUrl, final int defaultApiVersion) {
         super(defaultBaseUrl, defaultApiVersion);
     }
 
 
-    public final void getAccessToken(final Authenticator authenticator, final String clientSecret, final OauthResponseHandler handler) {
+    public final void getAccessToken(final Authenticator authenticator,
+                                     final String clientSecret, final OauthResponseHandler handler) {
         String url = String.format("%s/oauth", getBaseUrl());
 
         RequestParams params = new RequestParams();
@@ -36,7 +37,7 @@ public class OauthResource extends AbstractResource {
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
                 try {
 
                     AccessToken value = objectMapper.readValue(content, AccessToken.class);
@@ -55,7 +56,7 @@ public class OauthResource extends AbstractResource {
 
         http.post(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(final int statusCode, Map<String, List<String>> headers, String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, String content) {
                 try {
 
                     OauthResourceCheck value = objectMapper.readValue(content, OauthResourceCheck.class);

@@ -46,9 +46,9 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
     public AuthenticationCallbackServer(int port) {
         this.port = port;
         // Load default pages
-        authPage = getClass().getResource(this.DEFAULT_AUTH_PAGE);
-        failurePage = getClass().getResource(this.DEFAULT_FAILURE_PAGE);
-        successPage = getClass().getResource(this.DEFAULT_SUCCESS_PAGE);
+        this.authPage = getClass().getResource(this.DEFAULT_AUTH_PAGE);
+        this.failurePage = getClass().getResource(this.DEFAULT_FAILURE_PAGE);
+        this.successPage = getClass().getResource(this.DEFAULT_SUCCESS_PAGE);
     }
 
 
@@ -87,7 +87,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
             this.accessToken = token;
         }
         // Stop the server, we no longer need to process requests
-        stop();
+        this.stop();
     }
 
     @Override
@@ -104,8 +104,8 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
                 // Listen for a TCP connection request
                 Socket connectionSocket = serverSocket.accept();
                 // Handle request
-                AuthenticationCallbackRequest request =
-                        new AuthenticationCallbackRequest(connectionSocket, authPage, failurePage, successPage);
+                AuthenticationCallbackRequest request = new AuthenticationCallbackRequest(connectionSocket,
+                        this.authPage, this.failurePage, this.successPage);
                 request.setAuthenticationListener(this);
                 // Start thread
                 Thread thread = new Thread(request);
@@ -120,7 +120,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
     public void start() throws IOException {
         // Establish the listen socket
         // For security reasons, the third parameter is set to not accept connections from outside the localhost
-        this.serverSocket = new ServerSocket(port, 0, InetAddress.getByName("127.0.0.1"));
+        this.serverSocket = new ServerSocket(this.port, 0, InetAddress.getByName("127.0.0.1"));
         run();
     }
 

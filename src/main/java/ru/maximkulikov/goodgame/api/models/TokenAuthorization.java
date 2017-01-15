@@ -43,23 +43,31 @@ public class TokenAuthorization {
     }
 
     @Override
-    public int hashCode() {
-        int result = scopes != null ? scopes.hashCode() : 0;
-        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
-        result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
+    public final int hashCode() {
+        int result = this.scopes != null ? this.scopes.hashCode() : 0;
+        result = 31 * result + (this.createdAt != null ? this.createdAt.hashCode() : 0);
+        result = 31 * result + (this.updatedAt != null ? this.updatedAt.hashCode() : 0);
         return result;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         TokenAuthorization that = (TokenAuthorization) o;
 
-        if (scopes != null ? !scopes.equals(that.scopes) : that.scopes != null) return false;
-        if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
-        return !(updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null);
+        if (this.scopes != null ? !this.scopes.equals(that.scopes) : that.scopes != null) {
+            return false;
+        }
+        if (this.createdAt != null ? !this.createdAt.equals(that.createdAt) : that.createdAt != null) {
+            return false;
+        }
+        return !(this.updatedAt != null ? !this.updatedAt.equals(that.updatedAt) : that.updatedAt != null);
     }
 
     @Override

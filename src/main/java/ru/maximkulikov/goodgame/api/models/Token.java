@@ -12,7 +12,7 @@ public class Token {
     private TokenAuthorization authorization;
 
     public final TokenAuthorization getAuthorization() {
-        return authorization;
+        return this.authorization;
     }
 
     public final void setAuthorization(final TokenAuthorization authorization) {
@@ -21,7 +21,7 @@ public class Token {
 
     public final String getUserName() {
 
-        return userName;
+        return this.userName;
     }
 
     public final void setUserName(final String userName) {
@@ -29,18 +29,22 @@ public class Token {
     }
 
     @Override
-    public int hashCode() {
-        return userName != null ? userName.hashCode() : 0;
+    public final int hashCode() {
+        return this.userName != null ? this.userName.hashCode() : 0;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Token token = (Token) o;
 
-        return !(userName != null ? !userName.equals(token.userName) : token.userName != null);
+        return !(this.userName != null ? !this.userName.equals(token.userName) : token.userName != null);
 
     }
 

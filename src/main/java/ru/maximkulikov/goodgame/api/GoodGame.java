@@ -19,26 +19,26 @@ public class GoodGame {
     // User's app client Id
     private String clientId;
 
-    private String state = null;
+    private String state;
 
     private Authenticator authenticator;
 
-    private Map<StreamResourses, AbstractResource> resources;
+    private Map<StreamResources, AbstractResource> resources;
 
 
     public GoodGame(final String baseUrl, final int apiVersion) {
         this.authenticator = new Authenticator(baseUrl);
         // Instantiate resource connectors
         this.resources = new HashMap<>();
-        this.resources.put(StreamResourses.OAUTH, new OauthResource(baseUrl, apiVersion));
-        this.resources.put(StreamResourses.PLAYER, new PlayerResourses(baseUrl, apiVersion));
-        this.resources.put(StreamResourses.STREAMS, new StreamsResource(baseUrl, apiVersion));
-        this.resources.put(StreamResourses.CHANNELS, new ChannelsResource(baseUrl, apiVersion));
-        this.resources.put(StreamResourses.CHAT, new ChatResource(baseUrl, apiVersion));
-        this.resources.put(StreamResourses.GAMES, new GamesResource(baseUrl, apiVersion));
-        this.resources.put(StreamResourses.INFO, new InfoResource(baseUrl, apiVersion));
-        this.resources.put(StreamResourses.SMILES, new SmilesResource(baseUrl, apiVersion));
-        this.resources.put(StreamResourses.GITHUBAPI, new GithubResource(OLD_BASE_URL));
+        this.resources.put(StreamResources.OAUTH, new OauthResource(baseUrl, apiVersion));
+        this.resources.put(StreamResources.PLAYER, new PlayerResourses(baseUrl, apiVersion));
+        this.resources.put(StreamResources.STREAMS, new StreamsResource(baseUrl, apiVersion));
+        this.resources.put(StreamResources.CHANNELS, new ChannelsResource(baseUrl, apiVersion));
+        this.resources.put(StreamResources.CHAT, new ChatResource(baseUrl, apiVersion));
+        this.resources.put(StreamResources.GAMES, new GamesResource(baseUrl, apiVersion));
+        this.resources.put(StreamResources.INFO, new InfoResource(baseUrl, apiVersion));
+        this.resources.put(StreamResources.SMILES, new SmilesResource(baseUrl, apiVersion));
+        this.resources.put(StreamResources.GITHUBAPI, new GithubResource(OLD_BASE_URL));
     }
 
 
@@ -47,37 +47,37 @@ public class GoodGame {
     }
 
 
-    public Authenticator auth() {
+    public final Authenticator auth() {
         return this.authenticator;
     }
 
-    public ChannelsResource channels() {
-        return (ChannelsResource) getResource(StreamResourses.CHANNELS);
+    public final ChannelsResource channels() {
+        return (ChannelsResource) this.getResource(StreamResources.CHANNELS);
     }
 
-    public ChatResource chat() {
-        return (ChatResource) getResource(StreamResourses.CHAT);
+    public final ChatResource chat() {
+        return (ChatResource) this.getResource(StreamResources.CHAT);
     }
 
-    public GamesResource games() {
-        return (GamesResource) getResource(StreamResourses.GAMES);
+    public final GamesResource games() {
+        return (GamesResource) this.getResource(StreamResources.GAMES);
     }
 
-    public String getClientId() {
-        return clientId;
+    public final String getClientId() {
+        return this.clientId;
     }
 
     public void setClientId(String clientId) {
         this.clientId = clientId;
         // Update client id in all resources
-        for (AbstractResource r : resources.values()) {
+        for (AbstractResource r : this.resources.values()) {
             r.setClientId(clientId);
         }
     }
 
-    private AbstractResource getResource(StreamResourses key) {
-        AbstractResource r = resources.get(key);
-        AccessToken accessToken = authenticator.getToken();
+    private AbstractResource getResource(StreamResources key) {
+        AbstractResource r = this.resources.get(key);
+        AccessToken accessToken = this.authenticator.getToken();
         if (accessToken != null) {
             r.setAccessToken(accessToken.getAccessToken());
         }
@@ -93,27 +93,27 @@ public class GoodGame {
     }
 
     public final GithubResource githubapi() {
-        return (GithubResource) getResource(StreamResourses.GITHUBAPI);
+        return (GithubResource) this.getResource(StreamResources.GITHUBAPI);
     }
 
     public final InfoResource info() {
-        return (InfoResource) getResource(StreamResourses.INFO);
+        return (InfoResource) this.getResource(StreamResources.INFO);
     }
 
     public final OauthResource oauth() {
-        return (OauthResource) getResource(StreamResourses.OAUTH);
+        return (OauthResource) this.getResource(StreamResources.OAUTH);
     }
 
     public final PlayerResourses player() {
-        return (PlayerResourses) getResource(StreamResourses.PLAYER);
+        return (PlayerResourses) this.getResource(StreamResources.PLAYER);
     }
 
     public final SmilesResource smiles() {
-        return (SmilesResource) getResource(StreamResourses.SMILES);
+        return (SmilesResource) this.getResource(StreamResources.SMILES);
     }
 
     public final StreamsResource streams() {
-        return (StreamsResource) getResource(StreamResourses.STREAMS);
+        return (StreamsResource) this.getResource(StreamResources.STREAMS);
     }
 
 }
