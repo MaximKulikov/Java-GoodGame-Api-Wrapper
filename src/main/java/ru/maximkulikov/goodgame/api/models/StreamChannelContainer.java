@@ -10,18 +10,18 @@ public class StreamChannelContainer {
 
     private List<ChannelContainer> streams;
 
-    public List<ChannelContainer> getStreams() {
-        return streams;
+    public final List<ChannelContainer> getStreams() {
+        return this.streams;
     }
 
-    public void setStreams(List<ChannelContainer> streams) {
+    public final void setStreams(final List<ChannelContainer> streams) {
         this.streams = streams;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "StreamChannelContainer{" +
-                "streams=" + streams +
+                "streams=" + this.streams +
                 '}';
     }
 }

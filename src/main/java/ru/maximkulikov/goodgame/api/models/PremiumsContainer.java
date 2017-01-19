@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PremiumsContainer {
 
     @JsonProperty("_embedded")
-    private EmbededPremiums embeded;
+    private EmbededPremiums premiums;
 
     @JsonProperty("page_count")
     private Long pageCount;
@@ -24,12 +24,12 @@ public class PremiumsContainer {
 
     private Long page;
 
-    public final EmbededPremiums getEmbeded() {
-        return this.embeded;
+    public final EmbededPremiums getPremiums() {
+        return this.premiums;
     }
 
-    public final void setEmbeded(final EmbededPremiums embeded) {
-        this.embeded = embeded;
+    public final void setPremiums(final EmbededPremiums premiums) {
+        this.premiums = premiums;
     }
 
     public final Long getPage() {
@@ -67,7 +67,7 @@ public class PremiumsContainer {
     @Override
     public final String toString() {
         return "PremiumsContainer{" +
-                "embeded=" + this.embeded +
+                "premiums=" + this.premiums +
                 ", pageCount=" + this.pageCount +
                 ", pageSize=" + this.pageSize +
                 ", totalItems=" + this.totalItems +

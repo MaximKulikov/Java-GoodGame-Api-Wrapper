@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SubscrurersContainer {
     @JsonProperty("_embedded")
-    private EmbededSubscribers embeded;
+    private EmbededSubscribers subscribers;
 
     @JsonProperty("page_count")
     private Long pageCount;
@@ -23,12 +23,12 @@ public class SubscrurersContainer {
 
     private Long page;
 
-    public final EmbededSubscribers getEmbeded() {
-        return this.embeded;
+    public final EmbededSubscribers getSubscribers() {
+        return this.subscribers;
     }
 
-    public final void setEmbeded(final EmbededSubscribers embeded) {
-        this.embeded = embeded;
+    public final void setSubscribers(final EmbededSubscribers subscribers) {
+        this.subscribers = subscribers;
     }
 
     public final Long getPage() {
@@ -66,7 +66,7 @@ public class SubscrurersContainer {
     @Override
     public final String toString() {
         return "SubscrurersContainer{" +
-                "embeded=" + this.embeded +
+                "subscribers=" + this.subscribers +
                 ", pageCount=" + this.pageCount +
                 ", pageSize=" + this.pageSize +
                 ", totalItems=" + this.totalItems +

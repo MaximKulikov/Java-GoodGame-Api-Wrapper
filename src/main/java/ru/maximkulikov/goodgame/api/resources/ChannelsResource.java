@@ -31,7 +31,7 @@ public class ChannelsResource extends AbstractResource {
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     DonationsContainer value = objectMapper.readValue(content, DonationsContainer.class);
-                    handler.onSuccess(value);
+                    handler.onSuccess(value.getTotalItems(), value);
                 } catch (IOException e) {
                     handler.onFailure(e);
                 }
@@ -47,7 +47,7 @@ public class ChannelsResource extends AbstractResource {
             public void onSuccess(int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     DonationsContainer value = objectMapper.readValue(content, DonationsContainer.class);
-                    handler.onSuccess(value);
+                    handler.onSuccess(value.getTotalItems(), value);
                 } catch (IOException e) {
                     handler.onFailure(e);
                 }

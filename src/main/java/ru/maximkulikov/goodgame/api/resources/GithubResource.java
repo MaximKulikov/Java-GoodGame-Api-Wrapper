@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
+import ru.maximkulikov.goodgame.api.auth.Authenticator;
 import ru.maximkulikov.goodgame.api.handlers.GitHubChannelSubscribersResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.GitHubSharedHandler;
+import ru.maximkulikov.goodgame.api.handlers.GitHubTokenHandler;
 import ru.maximkulikov.goodgame.api.models.GitHubSubscribers;
+import ru.maximkulikov.goodgame.api.models.GitHubToken;
 
 /**
  * Java-GoodGame-Api-Wrapper
@@ -19,11 +22,11 @@ public class GithubResource extends AbstractResource {
         super(baseUrl);
     }
 
-    public final void getChannelStatus(final String id, final GitHubSharedHandler handler) {
+    public final void getChannelStatus(final String channelId, final GitHubSharedHandler handler) {
         String url = String.format("%s/getchannelstatus", getBaseUrl());
 
         RequestParams params = new RequestParams();
-        params.put("id", id);
+        params.put("id", channelId);
         params.put("fmt", "json");
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
@@ -32,23 +35,20 @@ public class GithubResource extends AbstractResource {
 
                 handler.onSuccess(content);
 
-//                try {
-//
-//                    ChannelStatus value = objectMapper.readValue(content, ChannelStatus.class);
-//                    handler.onSuccess(value);
-//                } catch (IOException e) {
-//                    handler.onFailure(e);
-//                }
             }
         });
     }
 
-    public final void getChannelSubscribers(final String oauthToken,
+    public final void getChannelSubscribers(final Authenticator authenticator,
                                             final GitHubChannelSubscribersResponseHandler handler) {
         String url = String.format("%s/getchannelsubscribers", getBaseUrl());
 
         RequestParams params = new RequestParams();
-        params.put("oauth_token ", oauthToken);
+        if (authenticator.getAccessToken() != null) {
+            params.put("oauth_token ", authenticator.getAccessToken());
+        } else {
+            params.put("oauth_token ", "");
+        }
         params.put("fmt", "json");
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
@@ -78,13 +78,6 @@ public class GithubResource extends AbstractResource {
 
                 handler.onSuccess(content);
 
-//                try {
-//
-//                    ChannelStatus value = objectMapper.readValue(content, ChannelStatus.class);
-//                    handler.onSuccess(value);
-//                } catch (IOException e) {
-//                    handler.onFailure(e);
-//                }
             }
         });
     }
@@ -102,18 +95,11 @@ public class GithubResource extends AbstractResource {
 
                 handler.onSuccess(content);
 
-//                try {
-//
-//                    ChannelStatus value = objectMapper.readValue(content, ChannelStatus.class);
-//                    handler.onSuccess(value);
-//                } catch (IOException e) {
-//                    handler.onFailure(e);
-//                }
             }
         });
     }
 
-    public final void getToken(final String username, final String password, final GitHubSharedHandler handler) {
+    public final void getToken(final String username, final String password, final Authenticator authenticator, final GitHubTokenHandler handler) {
         String url = String.format("%s/token", getBaseUrl());
 
         RequestParams params = new RequestParams();
@@ -124,22 +110,21 @@ public class GithubResource extends AbstractResource {
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
+                try {
+                    GitHubToken value = objectMapper.readValue(content, GitHubToken.class);
+                    authenticator.setAccessToken(value.getAccessToken());
+                    authenticator.setRefreshToken(value.getRefreshToken());
+                    handler.onSuccess(value);
+                } catch (IOException e) {
+                    handler.onFailure(e);
+                }
 
-                handler.onSuccess(content);
-
-//                try {
-//
-//                    ChannelStatus value = objectMapper.readValue(content, ChannelStatus.class);
-//                    handler.onSuccess(value);
-//                } catch (IOException e) {
-//                    handler.onFailure(e);
-//                }
             }
         });
     }
 
     public final void getUpcomingBroadcast(final String id, final GitHubSharedHandler handler) {
-        String url = String.format("%s/getggchannelstatus", getBaseUrl());
+        String url = String.format("%s/getupcomingbroadcast", getBaseUrl());
 
         RequestParams params = new RequestParams();
         params.put("id", id);
@@ -151,13 +136,6 @@ public class GithubResource extends AbstractResource {
 
                 handler.onSuccess(content);
 
-//                try {
-//
-//                    ChannelStatus value = objectMapper.readValue(content, ChannelStatus.class);
-//                    handler.onSuccess(value);
-//                } catch (IOException e) {
-//                    handler.onFailure(e);
-//                }
             }
         });
     }

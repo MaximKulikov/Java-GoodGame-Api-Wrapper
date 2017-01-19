@@ -7,5 +7,5 @@ import ru.maximkulikov.goodgame.api.models.DonationsContainer;
  * Created by maxim on 04.01.2017.
  */
 public interface DonationsResponseHandler extends BaseFailureHandler {
-    void onSuccess(DonationsContainer donations);
+    void onSuccess(Long totalItems, DonationsContainer donations);
 }

@@ -25,54 +25,54 @@ public class EmbededChannels {
 
     private Integer page;
 
-    public List<ChannelContainer> getStreams() {
-        return embedded.getStreams();
+    public final Integer getPage() {
+        return this.page;
     }
 
-    public void setEmbedded(StreamChannelContainer embedded) {
-        this.embedded = embedded;
-    }
-
-    public Integer getPage() {
-        return page;
-    }
-
-    public void setPage(Integer page) {
+    public final void setPage(final Integer page) {
         this.page = page;
     }
 
-    public Integer getPageCount() {
-        return pageCount;
+    public final Integer getPageCount() {
+        return this.pageCount;
     }
 
-    public void setPageCount(Integer pageCount) {
+    public final void setPageCount(final Integer pageCount) {
         this.pageCount = pageCount;
     }
 
-    public Integer getPageSize() {
-        return pageSize;
+    public final Integer getPageSize() {
+        return this.pageSize;
     }
 
-    public void setPageSize(Integer pageSize) {
+    public final void setPageSize(final Integer pageSize) {
         this.pageSize = pageSize;
     }
 
-    public Integer getTotalItems() {
-        return totalItems;
+    public final List<ChannelContainer> getStreams() {
+        return this.embedded.getStreams();
     }
 
-    public void setTotalItems(Integer totalItems) {
+    public final Integer getTotalItems() {
+        return this.totalItems;
+    }
+
+    public final void setTotalItems(final Integer totalItems) {
         this.totalItems = totalItems;
     }
 
+    public final void setEmbedded(final StreamChannelContainer embedded) {
+        this.embedded = embedded;
+    }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "EmbededChannels{" +
-                "embedded=" + embedded +
-                ", pageCount=" + pageCount +
-                ", pageSize=" + pageSize +
-                ", totalItems=" + totalItems +
-                ", page=" + page +
+                "embedded=" + this.embedded +
+                ", pageCount=" + this.pageCount +
+                ", pageSize=" + this.pageSize +
+                ", totalItems=" + this.totalItems +
+                ", page=" + this.page +
                 '}';
     }
 

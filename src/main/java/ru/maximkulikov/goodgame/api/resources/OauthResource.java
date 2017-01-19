@@ -16,14 +16,15 @@ import ru.maximkulikov.goodgame.api.models.OauthResourceCheck;
  */
 public class OauthResource extends AbstractResource {
 
+    private static final String CODE = "code";
 
     public OauthResource(final String defaultBaseUrl, final int defaultApiVersion) {
         super(defaultBaseUrl, defaultApiVersion);
     }
 
 
-    public final void getAccessToken(final Authenticator authenticator,
-                                     final String clientSecret, boolean useAutorizationCode, final OauthResponseHandler handler) {
+    public final void getAccessToken(final Authenticator authenticator, final String clientSecret,
+                                     final boolean useAutorizationCode, final OauthResponseHandler handler) {
         String url = String.format("%s/oauth", getBaseUrl());
 
         RequestParams params = new RequestParams();
@@ -31,23 +32,21 @@ public class OauthResource extends AbstractResource {
         params.put("redirect_uri", authenticator.getRedirectUri().toString());
         params.put("client_id", authenticator.getClientId());
         params.put("client_secret", clientSecret);
+
         if (useAutorizationCode) {
 
             if (authenticator.getAutorizationCode() != null) {
-                params.put("code", authenticator.getAutorizationCode());
+                params.put(this.CODE, authenticator.getAutorizationCode());
             } else {
-                useAutorizationCode = false;
+                params.put(this.CODE, authenticator.getRefreshToken());
             }
-        }
 
-        if (!useAutorizationCode) {
-            if (authenticator.getRefreshToken() != null) {
-                params.put("code", authenticator.getRefreshToken());
-            }
+        } else {
+
+            params.put(this.CODE, authenticator.getRefreshToken());
         }
 
         params.put("grant_type", "authorization_code");
-
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override

@@ -67,11 +67,11 @@ public class Authenticator {
         return true;
     }
 
-    public String getAccessToken() {
+    public final String getAccessToken() {
         return this.accessToken;
     }
 
-    public void setAccessToken(String accessToken) {
+    public final void setAccessToken(final String accessToken) {
         this.accessToken = accessToken;
     }
 
@@ -109,11 +109,11 @@ public class Authenticator {
         return this.redirectUri;
     }
 
-    public String getRefreshToken() {
+    public final String getRefreshToken() {
         return this.refreshToken;
     }
 
-    public void setRefreshToken(String refreshToken) {
+    public final void setRefreshToken(final String refreshToken) {
         this.refreshToken = refreshToken;
     }
 

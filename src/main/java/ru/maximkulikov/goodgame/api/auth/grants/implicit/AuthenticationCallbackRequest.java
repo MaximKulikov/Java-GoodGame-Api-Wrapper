@@ -94,7 +94,7 @@ public class AuthenticationCallbackRequest implements Runnable {
         // Store the request line for debugging.
         String rawRequest = "\n" + requestLine;
 
-         //Read the header lines.
+        //Read the header lines.
         String headerLine = null;
         while ((headerLine = br.readLine()).length() != 0) {
             rawRequest += headerLine + "\n";

@@ -38,9 +38,12 @@ public class SmilesResource extends AbstractResource {
 
     }
 
-    public final void getChannelSmiles(final long channelId, final RequestParams params,
+    public final void getChannelSmiles(final long channelId, final int page,
                                        final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles/%s", getBaseUrl(), channelId);
+
+        RequestParams params = new RequestParams();
+        params.put("page", page);
 
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
@@ -73,10 +76,11 @@ public class SmilesResource extends AbstractResource {
 
     }
 
-    public final void getSmiles(RequestParams params, final SmilesResponseHandler handler) {
+    public final void getSmiles(final int page, final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles", getBaseUrl());
-
-        http.get(url, new GoodGameHttpResponseHandler(handler) {
+        RequestParams params = new RequestParams();
+        params.put("page", page);
+        http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {

@@ -13,7 +13,7 @@ Please feel free to report any issues or contribute code.
 Библиотека разделена на несколько частей:  
 1. АПИ Стримингового сервиса  
   1.1. на сайте [GoodGame (v2)](http://api2.goodgame.ru/apigility/documentation/Goodgame-v2)  
-  1.2. б. на Github [GoodGame API](https://github.com/GoodGame/API)  
+  1.2. на Github [GoodGame API](https://github.com/GoodGame/API)  
 2. АПИ чата  
 
 Для запроса GoodGame (v2) `GET /channel/:channel/subscribers` используется экземпляр класса GoodGame() 
@@ -92,32 +92,37 @@ class SimpleExample {
 
 | Получение Access Token'а        |  JGAW                                   |
 |---------------------------------|-----------------------------------------|
-| +Запрос кода авторизации         |  `gg.auth().awaitAutorizationCode()`    |
-| +Запрос Access Token             |  `gg.oauth().getAccessToken()`          |
-| Refresh Token                   |  Отсутствует                            | 
+| Запрос кода авторизации         |  `gg.auth().awaitAutorizationCode()`    |
+| Запрос Access Token             |  `gg.oauth().getAccessToken()`          |
+| Refresh Token                   |  получаем вместе с  Access Token        | 
 
 | API                                 |  JGAW               |  Описание               |
 |-------------------------------------|---------------------------------------------------------------------------|-------------------------|
-| +`GET /player/:src`                  | `gg.player().getPlayer(channelId, new PlayerResponseHandler())`                                                 | Получение информации о плеере.  |
+| `GET /player/:src`                  | `gg.player().getPlayer(channelId, new PlayerResponseHandler())`                                                 | Получение информации о плеере.  |
 | `GET /streams`                      | //TODO    | Получение информации обо всех онлайн стримах на Goodgame. Можно использовать query-параметры.  |
-| `GET /streams[/:channel]`           | `gg.streams.getChannel()`                                                 | Получение информации о конкретном стриме. Query-параметры не работают.  |
+| `GET /streams[/:channel]`           | //TODO                                                 | Получение информации о конкретном стриме. Query-параметры не работают.  |
 | `GET /channel/:channel/subscribers` | `gg.channels().getSubscribers(channel, new SubscriberResponseHandler())`<br /> `gg.channels().getSubscribers(channel, requestParams, new SubscriberResponseHandler()`   | Список подписчиков указанного канала.  |
 | `GET /channel/:channel/premiums`    | `gg.channels().getPremiums(channel, new PremiumsResponseHandler())` <br /> `gg.channels().getPremiums(channel, requestParams, new PremiumsResponseHandler()`   | Список премиум подписчиков указанного канала.  |
 | `GET /channel/:channel/donations`   | `gg.channels().getDonations(channel, new DonationsResponseHandler())` <br /> `gg.channels().getDonations(channel, requestParams, new DonationsResponseHandler()`  | Список поддержки указанного канала.  |
-| +`GET /chat/token`                   | `gg.chat().getChatToken(new ChatTokenResponseHandler())`   | Получение токена чата для конкретного пользователя. Id-пользователя определяется из Access Token'a.  |
+| `GET /chat/token`                   | `gg.chat().getChatToken(new ChatTokenResponseHandler())`   | Получение токена чата для конкретного пользователя. Id-пользователя определяется из Access Token'a.  |
 | `GET /games`                        | `gg.games().getGames(new GamesResponseHandler())` <br /> `gg.games().getGames(requestParams, new GamesResponseHandler()`   | Получение коллекции игр.  |
 | `GET /games[/:game]`                | `gg.games().getGame(gameUrl, new GameResponseHandler())`   | Получение информации по игре, зная ее url.  |
 | `GET /info`                         | `gg.info().getInfo(new InfoResponseHandler())`   | Получение информации по Access Token'у.  |
-| `GET /smiles[/:channel_id]`         | `gg.smiles().getSmiles(new SmilesResponseHandler()` <br /> `gg.smiles().getChannelSmiles(channelId, new SmilesResponseHandler()`   | Получение коллекции смайлов.  |
-| `http://goodgame.ru/api/getggchannelstatus`    | `gg.githubapi().getChannelStatus()` <br /> `gg.githubapi().getGgChannelStatus`  | Получение информации о статусе плееров GoodGame.  |
-| `http://goodgame.ru/api/getupcomingbroadcast`  | `gg.githubapi().getUpcomingBroadcast()`   | Получение информации о предстоящей трансляции (анонс).  |
-| `http://goodgame.ru/api/getchannelsbygame`     | `gg.githubapi().getChannelsByGame()`   | Получение информации о трансляциях по конкретной игре.  |
-| `http://goodgame.ru/api/token`                 | `gg.githubapi().getToken()`   | Получение токена авторизации   |
-| `http://goodgame.ru/api/getchannelsubscribers` | `gg.githubapi().getChannelSubscribers()`   | Список подписчиков.  |
+| `GET /smiles/`         | `gg.smiles().getSmiles(new SmilesResponseHandler()` <br /> `gg.smiles().getSmiles(page, new SmilesResponseHandler()`   | Получение коллекции смайлов.  |
+| `GET /smiles[/:channel_id]`         | `gg.smiles().getChannelSmiles(new SmilesResponseHandler()` <br /> `gg.smiles().getChannelSmiles(channelId, page, new SmilesResponseHandler()`   | Получение коллекции смайлов канала.  |
+| `http://goodgame.ru/api/getchannelstatus`    | `gg.githubapi().getChannelStatus(channelId, new GitHubSharedHandler()`  | Получение информации о статусе плееров GoodGame.  |
+| `http://goodgame.ru/api/getggchannelstatus`    | `gg.githubapi().getGgChannelStatus(channelId, new GitHubSharedHandler()`  | Получение информации о статусе плееров GoodGame.  |
+| `http://goodgame.ru/api/getupcomingbroadcast`  | `gg.githubapi().getUpcomingBroadcast(channelId, new GitHubSharedHandler()`   | Получение информации о предстоящей трансляции (анонс).  |
+| `http://goodgame.ru/api/getchannelsbygame`     | `gg.githubapi().getChannelsByGame(gameUrl, new GitHubSharedHandler)`   | Получение информации о трансляциях по конкретной игре.  |
+| `http://goodgame.ru/api/token`                 | `gg.githubapi().getToken("username", "password", gg.auth(), new GitHubTokenHandler()`   | Получение токена авторизации. Установите значения токенов   |
+| `http://goodgame.ru/api/getchannelsubscribers` | `gg.githubapi().getChannelSubscribers(gg.auth(), new GitHubChannelSubscribersResponseHandler()`   | Список подписчиков.  |
 
+**`http://goodgame.ru/api/getupcomingbroadcast`**: возвращает 404 страницу в HTML разметке, любой запрос вылетет в блок `onFailure(Throwable throwable)` (актуально на 20 янв 2017)  
+**`http://goodgame.ru/api/getchannelsbygame`** вернет пустой массив (актуально 20 янв 2017)
+**`http://goodgame.ru/api/getchannelsubscribers`** Не понимаю какой токен он хочет, возвращает success=false.
 
 # API чата
-Для работы требуется создать экземпляр класса и унаследовать его от GoodChat, для подключения вызовите .connect
+Для работы требуется создать экземпляр класса и унаследовать его от GoodChat, для подключения вызовите .connect. Соединение принудительно прервется через 24 часа
 
 ```java
 class SimpleExample {
@@ -183,7 +188,7 @@ class SimpleExample {
 | refresh_premium        | `ReqRefreshPremiumContainer(String channelId)`                                                                                                             |
 | refresh_groups v.2     | `ReqRefreshGroupsContainer(final String channelId)`                                                                                                         |
 
-**send_private_message**: Приватное сообщение, отправленное таким способом можно отловить только с использованием API (в чатике на сайте оно не появится))
+**send_private_message**: Приватное сообщение, отправленное таким способом можно отловить только с использованием API (в чатике на сайте оно не появится)
 
 ### Соответствие ответов сервера чата классам библиотеки
 
@@ -228,12 +233,12 @@ class SimpleExample extends GoodChat {
 | payment          | ResPayment         | ?|
 | premium          | ResPremium         | ?|
 | accepted         | //TODO             |  это еще что такое?|
+| moder_rights     | //TODO             |  это еще что такое?|
 | Остальное:UNKNOWN| null               | |
 
 
 
 ## Авторизация
-
 
 
 Для получения доступа к коммандам, требующих специальные права требуется получить токен доступа ***aceesToken***. 
@@ -295,7 +300,7 @@ class Example {
 Как только ответ будет получен, система извлечен нужные параметры или ошибку и закроет сокет.
 
 
-##### Использование собственных страниц
+#### Использование собственных страниц
 
 Authentication views are HTML pages displayed to the user that will capture the application authorization callback and retrieve the access token, show an error message, or show the success message.
 
@@ -324,18 +329,17 @@ Using your own views is easy, simple pass URL objects (usually retrieved from [C
 
 *successView*
 
-This page's only purpose is to display a success message and perhaps inform the user they can go back to the application.
+Эта страница отобразится при одобрении использовать приложение. Можно сообщить пользователю, что он может вернуться к приложению.
 
 *failureView*
 
-This page will display an error message to the user if authentication failed (such as they denied the request on Twitch). The error message and description is passed to this page view via the URL query string.
+Эта страница показывает сообщение с ошибкой, если пользователь отклонил запрос на использование приложения.  
+Сообщение о ошибке и его описание  передается в переменных через URL.
 
-* `error`: error message.
-* `error_description`: description of the error.
+* `error`: Заголовок ошибки.
+* `error_description`: Подробное описание ошибки.
 
-You can view the default pages in the [resources directory](https://github.com/urgrue/Java-Twitch-Api-Wrapper/tree/master/src/main/resources).
-
-#### Пример получения Access Token
+### Пример получения Access Token
 
 ```java
 class Example {
@@ -407,8 +411,7 @@ gg.auth().setRefreshToken("my-refresh-token");
         sendMessage(new ReqGetPollContainer(SecretValue.moiChannel));          
         sendMessage(new ReqPollResultsContainer(SecretValue.moiChannel));
         если приходит одинаковый ответ
-        
-Во всех _embedded объектах возвращать что-то более полезное  
+          
 Проверить работу  
 Выложить альфа .jar релиз  
 Сделать тесты  
