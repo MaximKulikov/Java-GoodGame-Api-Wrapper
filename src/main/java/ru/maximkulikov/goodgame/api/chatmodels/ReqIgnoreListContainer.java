@@ -11,13 +11,13 @@ public class ReqIgnoreListContainer implements ReqChatObject {
 
     private String type = "get_ignore_list";
 
-    private Object data = new Object();
+    private Empty data = new Empty();
 
-    public final Object getData() {
+    public final Empty getData() {
         return this.data;
     }
 
-    public final void setData(final Object data) {
+    public final void setData(final Empty data) {
         this.data = data;
     }
 

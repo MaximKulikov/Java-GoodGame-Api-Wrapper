@@ -5,7 +5,6 @@ import java.net.URI;
 import java.net.URL;
 import ru.maximkulikov.goodgame.api.auth.grants.implicit.AuthenticationCallbackServer;
 import ru.maximkulikov.goodgame.api.auth.grants.implicit.AuthenticationError;
-import ru.maximkulikov.goodgame.api.models.AccessToken;
 
 /**
  * The authenticator object allows a user to authenticate with the Twitch.tv servers.
@@ -28,9 +27,11 @@ public class Authenticator {
 
     private String state;
 
+    private String authentificationCode;
+
     private String accessToken;
 
-    private AccessToken token;
+    private String refreshToken;
 
     private AuthenticationError authenticationError;
 
@@ -57,13 +58,21 @@ public class Authenticator {
             return false;
         }
 
-        if (server.hasAuthenticationError() || server.getAccessToken() == null) {
+        if (server.hasAuthenticationError() || server.getAuthentificationCode() == null) {
             this.authenticationError = server.getAuthenticationError();
             return false;
         }
 
-        this.accessToken = server.getAccessToken();
+        this.authentificationCode = server.getAuthentificationCode();
         return true;
+    }
+
+    public String getAccessToken() {
+        return this.accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     public final AuthenticationError getAuthenticationError() {
@@ -85,11 +94,11 @@ public class Authenticator {
 
         return String.format("%s/oauth/authorize?response_type=code" +
                         "&client_id=%s&redirect_uri=%s&state=%s&scope=%s",
-                this.goodgameBaseUrl, clientId, this.redirectUri, state, Scopes.join(scopes));
+                this.goodgameBaseUrl, this.clientId, this.redirectUri, this.state, Scopes.join(scopes));
     }
 
     public final String getAutorizationCode() {
-        return this.accessToken;
+        return this.authentificationCode;
     }
 
     public final String getClientId() {
@@ -100,24 +109,23 @@ public class Authenticator {
         return this.redirectUri;
     }
 
-    public final AccessToken getToken() {
-        return this.token;
+    public String getRefreshToken() {
+        return this.refreshToken;
     }
 
-    public final boolean hasAccessToken() {
-        return this.accessToken != null;
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
+    public final String getState() {
+        return this.state;
     }
 
     public final boolean hasAuthenticationError() {
         return this.authenticationError != null;
     }
 
-    public final void setAccessToken(final AccessToken accessToken) {
-        this.token = accessToken;
+    public final boolean hasAuthentificationCode() {
+        return this.authentificationCode != null;
     }
-
-    public final void setAccessTokenHeader(final String accessToken) {
-        this.accessToken = accessToken;
-    }
-
 }

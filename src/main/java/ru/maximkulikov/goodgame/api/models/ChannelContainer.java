@@ -17,10 +17,10 @@ public class ChannelContainer {
     private Boolean isBroadcast;
 
     @JsonProperty("broadcast_started")
-    private String broadcastStarted;
+    private Long broadcastStarted;
 
     @JsonProperty("broadcast_end")
-    private String broadcastEnd;
+    private Long broadcastEnd;
 
     private String url;
 
@@ -32,28 +32,9 @@ public class ChannelContainer {
     private String playerViewers;
 
     @JsonProperty("users_in_chat")
-
     private String usersInChat;
 
     private Channel channel;
-
-    public ChannelContainer(final String requestKey, final Long id, final String key, final Boolean isBroadcast,
-                            final String broadcastStarted, final String broadcastEnd, final String url,
-                            final String status, final String viewers, final String playerViewers,
-                            final String usersInChat, final Channel channel) {
-        this.requestKey = requestKey;
-        this.id = id;
-        this.key = key;
-        this.isBroadcast = isBroadcast;
-        this.broadcastStarted = broadcastStarted;
-        this.broadcastEnd = broadcastEnd;
-        this.url = url;
-        this.status = status;
-        this.viewers = viewers;
-        this.playerViewers = playerViewers;
-        this.usersInChat = usersInChat;
-        this.channel = channel;
-    }
 
     public final Boolean getBroadcast() {
         return this.isBroadcast;
@@ -63,19 +44,19 @@ public class ChannelContainer {
         this.isBroadcast = broadcast;
     }
 
-    public final String getBroadcastEnd() {
+    public final Long getBroadcastEnd() {
         return this.broadcastEnd;
     }
 
-    public final void setBroadcastEnd(final String broadcastEnd) {
+    public final void setBroadcastEnd(final Long broadcastEnd) {
         this.broadcastEnd = broadcastEnd;
     }
 
-    public final String getBroadcastStarted() {
+    public final Long getBroadcastStarted() {
         return this.broadcastStarted;
     }
 
-    public final void setBroadcastStarted(final String broadcastStarted) {
+    public final void setBroadcastStarted(final Long broadcastStarted) {
         this.broadcastStarted = broadcastStarted;
     }
 

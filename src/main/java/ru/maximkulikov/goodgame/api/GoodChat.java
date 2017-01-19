@@ -66,24 +66,28 @@ public abstract class GoodChat {
 
         if (this.socket == null) {
             try {
-                wait(700);
+                Thread.sleep(700);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
 
         if (this.socket != null) {
+
             ObjectMapper mapper = new ObjectMapper();
+
             try {
                 this.socket.sendMessage(mapper.writeValueAsString(chatObject));
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
         } else {
-            // Можем ли мы отправить подобную
-            // конструкцию сразу в this.onMessage???
-            this.socket.onMessage(new Response(ChatResponses.ERROR, new ResError(null, 0,
-                    "GoodGameChat not connected proper, Message did not send")));
+
+            ResError error = new ResError();
+
+            error.setErrorNum(0);
+            error.setErrorMsg("GoodGameChat not connected proper, Message did not send");
+            this.onMessage(new Response(ChatResponses.ERROR, error));
         }
     }
 

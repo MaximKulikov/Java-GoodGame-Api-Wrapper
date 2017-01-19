@@ -1,4 +1,4 @@
-Code Style: [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e363ff624c2343e8acbb08e96b61d7d6)](https://www.codacy.com/app/Trinion/Java-GoodGame-Api-Wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Trinion/Java-GoodGame-Api-Wrapper&amp;utm_campaign=Badge_Grade)  
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e363ff624c2343e8acbb08e96b61d7d6)](https://www.codacy.com/app/Trinion/Java-GoodGame-Api-Wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Trinion/Java-GoodGame-Api-Wrapper&amp;utm_campaign=Badge_Grade)  
 
 # Async GoodGame API Wrapper
 JGAW - обертка над [GoodGame API](https://github.com/GoodGame/API), позволяющая выполнять асинхронные запросы. 
@@ -12,8 +12,8 @@ Please feel free to report any issues or contribute code.
 Использование обертки позволяет отправлять запросы и получать ответы от`GoodGame` в виде объектов `Java`.
 Библиотека разделена на несколько частей:  
 1. АПИ Стримингового сервиса  
-а. на сайте [GoodGame (v2)](http://api2.goodgame.ru/apigility/documentation/Goodgame-v2)  
-б. на Github [GoodGame API](https://github.com/GoodGame/API)  
+  1.1. на сайте [GoodGame (v2)](http://api2.goodgame.ru/apigility/documentation/Goodgame-v2)  
+  1.2. б. на Github [GoodGame API](https://github.com/GoodGame/API)  
 2. АПИ чата  
 
 Для запроса GoodGame (v2) `GET /channel/:channel/subscribers` используется экземпляр класса GoodGame() 
@@ -29,9 +29,9 @@ Please feel free to report any issues or contribute code.
 ```java
 class SimpleExample {
     public void example() {
-        
+
         GoodGame gg = new GoodGame();
-        
+
         // Идентификатор приложения   (https://goodgame.ru/user/***userId***/edit)
         gg.setClientId("shjdkashjkfdl");
         
@@ -63,9 +63,9 @@ class SimpleExample {
 /* Получение подписчиков, начиная с конкретного времени */
 class SimpleExample {
     public void example() {
-        
+
         RequestParams params = new RequestParams();
-        
+
         params.put("from_timestamp", "1453592975");
 
         gg.channels().getSubscribers("channelName", params, new SubscriberResponseHandler() {
@@ -92,19 +92,19 @@ class SimpleExample {
 
 | Получение Access Token'а        |  JGAW                                   |
 |---------------------------------|-----------------------------------------|
-| Запрос кода авторизации         |  `gg.auth().awaitAutorizationCode()`    |
-| Запрос Access Token             |  `gg.oauth().getAccessToken()`          |
+| +Запрос кода авторизации         |  `gg.auth().awaitAutorizationCode()`    |
+| +Запрос Access Token             |  `gg.oauth().getAccessToken()`          |
 | Refresh Token                   |  Отсутствует                            | 
 
 | API                                 |  JGAW               |  Описание               |
 |-------------------------------------|---------------------------------------------------------------------------|-------------------------|
-| `GET /player/:src`                  | `gg.player().getPlayer()`                                                 | Получение информации о плеере.  |
+| +`GET /player/:src`                  | `gg.player().getPlayer(channelId, new PlayerResponseHandler())`                                                 | Получение информации о плеере.  |
 | `GET /streams`                      | //TODO    | Получение информации обо всех онлайн стримах на Goodgame. Можно использовать query-параметры.  |
-| `GET /streams[/:channel]`           | //TODO `gg.streams.getChannel()`                                                 | Получение информации о конкретном стриме. Query-параметры не работают.  |
+| `GET /streams[/:channel]`           | `gg.streams.getChannel()`                                                 | Получение информации о конкретном стриме. Query-параметры не работают.  |
 | `GET /channel/:channel/subscribers` | `gg.channels().getSubscribers(channel, new SubscriberResponseHandler())`<br /> `gg.channels().getSubscribers(channel, requestParams, new SubscriberResponseHandler()`   | Список подписчиков указанного канала.  |
 | `GET /channel/:channel/premiums`    | `gg.channels().getPremiums(channel, new PremiumsResponseHandler())` <br /> `gg.channels().getPremiums(channel, requestParams, new PremiumsResponseHandler()`   | Список премиум подписчиков указанного канала.  |
 | `GET /channel/:channel/donations`   | `gg.channels().getDonations(channel, new DonationsResponseHandler())` <br /> `gg.channels().getDonations(channel, requestParams, new DonationsResponseHandler()`  | Список поддержки указанного канала.  |
-| `GET /chat/token`                   | `gg.chat().getChatToken(new ChatTokenResponseHandler())`   | Получение токена чата для конкретного пользователя. Id-пользователя определяется из Access Token'a.  |
+| +`GET /chat/token`                   | `gg.chat().getChatToken(new ChatTokenResponseHandler())`   | Получение токена чата для конкретного пользователя. Id-пользователя определяется из Access Token'a.  |
 | `GET /games`                        | `gg.games().getGames(new GamesResponseHandler())` <br /> `gg.games().getGames(requestParams, new GamesResponseHandler()`   | Получение коллекции игр.  |
 | `GET /games[/:game]`                | `gg.games().getGame(gameUrl, new GameResponseHandler())`   | Получение информации по игре, зная ее url.  |
 | `GET /info`                         | `gg.info().getInfo(new InfoResponseHandler())`   | Получение информации по Access Token'у.  |
@@ -112,7 +112,7 @@ class SimpleExample {
 | `http://goodgame.ru/api/getggchannelstatus`    | `gg.githubapi().getChannelStatus()` <br /> `gg.githubapi().getGgChannelStatus`  | Получение информации о статусе плееров GoodGame.  |
 | `http://goodgame.ru/api/getupcomingbroadcast`  | `gg.githubapi().getUpcomingBroadcast()`   | Получение информации о предстоящей трансляции (анонс).  |
 | `http://goodgame.ru/api/getchannelsbygame`     | `gg.githubapi().getChannelsByGame()`   | Получение информации о трансляциях по конкретной игре.  |
-| `http://goodgame.ru/api/token`                 | `gg.githubapi().getToken()`   | Получение токена авторизации.  |
+| `http://goodgame.ru/api/token`                 | `gg.githubapi().getToken()`   | Получение токена авторизации   |
 | `http://goodgame.ru/api/getchannelsubscribers` | `gg.githubapi().getChannelSubscribers()`   | Список подписчиков.  |
 
 
@@ -122,23 +122,23 @@ class SimpleExample {
 ```java
 class SimpleExample {
     public void example() {
-        
+
         GGChat goodgameChat = new GGChat();
-        
+
         goodgameChat.connect();
     } 
 
     class GGChat extends GoodChat {  
-    
+
         @Override  
         public void onMessage(Response answer) {
-            
+
             // Возвращает значение Enum с типом пришедшего сообщения
             answer.getType(); 
-            
+
             // Возвращает базовый ResChatObject
             answer.getAnswer(); 
-            
+
             // Пример:
             switch (answer.getType()) {  
                 case CHANNEL_HISTORY:  
@@ -158,83 +158,91 @@ class SimpleExample {
 
 | Запросы                | Классы ReqChatObject                                                                                                                                       |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| auth                   | `ReqAutorizationContainer(int siteId, int userId, String token)`                                                                                           |
-| get_channels_list      | `ReqChannelsListContainer()` <br /> `ReqChannelsListContainer(int start, int count)`                                                                       |
-| join                   | `ReqJoinContainer(String channelId)` <br />`ReqJoinContainer(String channelId, boolean hidden, boolean mobile)`                                            |
-| unjoin                 | `ReqUnjoinContainer(String channelId)`                                                                                                                     |
-| get_users_list         | `ReqUsersListContainer(String channelId)`                                                                                                                  |
-| get_channel_counters   | `ReqChannelCountersContainer(String channelId)`                                                                                                            |
-| get_ignore_list        | `ReqIgnoreListContainer()`                                                                                                                                 |
-| add_to_ignore_list     | `ReqAddToIgnoreListContainer(String userId)`                                                                                                               |
-| del_from_ignore_list   | `ReqDelFromIgnoreListContainer(String userId)`                                                                                                             |
-| get_channel_history    | `ReqChannelHistoryContainer(String channelId)`                                                                                                             |
-| send_message           | `ReqSendMessageContainer(String channelId, String text)` <br /> `ReqSendMessageContainer(String channelId, String text, Boolean hideIcon, Boolean mobile)` |
-| send_private_message   | `ReqPrivateMessageContainer(String channelId, String userId, String text)`                                                                                 |
-| remove_message         | `ReqRemoveMessageContainer(String channelId, String messageId)`                                                                                            |
+| +auth                   | `ReqAutorizationContainer(int siteId, int userId, String token)`                                                                                           |
+| ?get_channels_list      | `ReqChannelsListContainer()` <br /> `ReqChannelsListContainer(int start, int count)`                                                                       |
+| +join                   | `ReqJoinContainer(String channelId)` <br />`ReqJoinContainer(String channelId, boolean hidden, boolean mobile)`                                            |
+| +unjoin                 | `ReqUnjoinContainer(String channelId)`                                                                                                                     |
+| ?get_users_list         | `ReqUsersListContainer(String channelId)`                                                                                                                  |
+| +get_channel_counters   | `ReqChannelCountersContainer(String channelId)`                                                                                                            |
+| +get_ignore_list        | `ReqIgnoreListContainer()`                                                                                                                                 |
+| +add_to_ignore_list     | `ReqAddToIgnoreListContainer(String userId)`                                                                                                               |
+| +del_from_ignore_list   | `ReqDelFromIgnoreListContainer(String userId)`                                                                                                             |
+| +get_channel_history    | `ReqChannelHistoryContainer(String channelId)`                                                                                                             |
+| +send_message           | `ReqSendMessageContainer(String channelId, String text)` <br /> `ReqSendMessageContainer(String channelId, String text, Boolean hideIcon, Boolean mobile)` |
+| :( send_private_message   | `ReqPrivateMessageContainer(String channelId, String userId, String text)`                                                                                 |
+| +remove_message         | `ReqRemoveMessageContainer(String channelId, String messageId)`                                                                                            |
 | ban                    | `ReqBanContainer(String channelId, String banChannel, String userId, Long duration, String reason, String comment, Boolean show_ban)`                      |
 | warn                   | `ReqWarnContainer(String channelId, String userId, String reason)`                                                                                         |
-| new_poll               | `ReqNewPollContainer(String channelId, String moderId, String moderName, String title, List<String> answers)`                                              |
-| get_poll               | `ReqGetPollContainer(String channelId)`                                                                                                                    |
-| vote                   | `ReqVoteContainer(String channelId, int answerId)`                                                                                                         |
-| get_poll_results       | `ReqPollResultsContainer(String channelId)`                                                                                                                |
+| +new_poll               | `ReqNewPollContainer(String channelId, String moderId, String moderName, String title, List<String> answers)`                                              |
+| +get_poll               | `ReqGetPollContainer(String channelId)`                                                                                                                    |
+| +vote                   | `ReqVoteContainer(String channelId, int answerId)`                                                                                                         |
+| +get_poll_results       | `ReqPollResultsContainer(String channelId)`                                                                                                                |
 | get_user_info          | `ReqGetUserInfoContainer(String userId)`                                                                                                                   |
-| make_moderator         | `ReqMakeModeratorContainer(String channelId, String userId)`                                                                                               |
-| clean_moderator        | `ReqCleanModeratorContainer(String channelId, String userId)`                                                                                              |
+| +make_moderator         | `ReqMakeModeratorContainer(String channelId, String userId)`                                                                                               |
+| +clean_moderator        | `ReqCleanModeratorContainer(String channelId, String userId)`                                                                                              |
 | refresh_premium        | `ReqRefreshPremiumContainer(String channelId)`                                                                                                             |
 | refresh_groups v.2     | `ReqRefreshGroupsContainer(final String channelId)`                                                                                                         |
 
+**send_private_message**: Приватное сообщение, отправленное таким способом можно отловить только с использованием API (в чатике на сайте оно не появится))
 
 ### Соответствие ответов сервера чата классам библиотеки
 
 Ответы от сервера приходят в переопределенный метод onMessage
 ```java
 class SimpleExample extends GoodChat {
-    
+
     @Override
     public void onMessage(Response answer) {
-    }
-    
+    }    
 }
 ```
 
-| Ответы API       |     Классы         |  
-|------------------|--------------------|
-| welcome          | ResWelcome         |
-| success_auth     | ResAutorization    |
-| channels_list    | ResChannelsList    |
-| success_join     | ResJoin            |
-| success_unjoin   | ResUnjoin          |
-| join_to_room     | ResJoinToRoom      |
-| users_list       | ResUsersList       |
-| channel_counters | ResChannelCounters |
-| list             | ResModeratorsList  |
-| setting v.2      | ResSettings        |
-| ignore_list      | ResIgnoreList      |
-| channel_history  | ResChannelHistory  |
-| motd             | ResMotd            |
-| slowmod          | ResSlowmod         |
-| message          | ResMessage         |
-| private_message  | ResPrivateMessage  |
-| remove_message   | ResRemoveMessage   |
-| user_ban         | ResUserBan         |
-| user_warn        | ResWarn            |
-| new_poll         | ResNewPoll         |
-| poll_results     | ResPollResults     |
-| user             | ChatUser           |
-| update_rights    | ResUpdateRights    |
-| update_groups v.2| ResUpdateGroups    |
-| update_premium   | ResUpdatePremium   |
-| error            | ResError           |
-| payment          | ResPayment         |
-| premium          | ResPremium         |
-| Остальное:UNKNOWN| null               |
+| Ответы API       |     Классы         | Проверка |
+|------------------|--------------------|-----|
+| welcome          | ResWelcome         | +|
+| success_auth     | ResAutorization    | +|
+| channels_list    | ResChannelsList    | ?|
+| success_join     | ResJoin            | ?|
+| success_unjoin   | ResUnjoin          | |
+| join_to_room     | ResJoinToRoom      | |
+| users_list       | ResUsersList       | не отвечает|
+| channel_counters | ResChannelCounters | +|
+| list             | ResModeratorsList  | хз что такое|
+| setting v.2      | ResSettings        | |
+| ignore_list      | ResIgnoreList      | +|
+| channel_history  | ResChannelHistory  | +|
+| motd             | ResMotd            | +|
+| slowmod          | ResSlowmod         | что поставит то?|
+| message          | ResMessage         | +|
+| private_message  | ResPrivateMessage  | +|
+| remove_message   | ResRemoveMessage   | +|
+| user_ban         | ResUserBan         | |
+| user_warn        | ResWarn            | |
+| new_poll         | ResNewPoll         | +|
+| poll_results     | ResPollResults     | +|
+| user             | ChatUser           | |
+| update_rights    | ResUpdateRights    | где запрос на этот ответ?|
+| update_groups v.2| ResUpdateGroups    | |
+| update_premium   | ResUpdatePremium   | |
+| error            | ResError           | +|
+| payment          | ResPayment         | ?|
+| premium          | ResPremium         | ?|
+| accepted         | //TODO             |  это еще что такое?|
+| Остальное:UNKNOWN| null               | |
 
 
 
-#Text Below this not edited yet
-## Authentication
+## Авторизация
 
-### Implicit Grant Flow
+
+
+Для получения доступа к коммандам, требующих специальные права требуется получить токен доступа ***aceesToken***. 
+accesToken можно получить, зная авторизационный код ***authentificationCode*** или ***refreshToken***.
+
+Ваше приложение должно быть зарегистрировано GoodGame как OAuth 2.0 приложение. 
+Зарегистрировать приложение можно по ссылке `https://goodgame.ru/user/*ВашID*/edit`.   
+`Redirect URI` необходимо указать `http://127.0.0.1:23523/gg-authorize.html`. Можно выбрать порт, отличный от `23523`. 
+ Вы так же можете сделать собственные ресурсные страницы, аналогичные `gg-authorize.html` и пр. с отличными от стандартных названиями. 
 
 The wrapper provides the functionality for authenticating users of your application following the [Implicit Grant Flow](https://github.com/justintv/Twitch-API/blob/master/authentication.md#implicit-grant-flow). 
 
@@ -243,69 +251,82 @@ To use authentication, your application must be registered with Twitch and the `
 
 The authentication process is explained in the following code example.
 
-```
-Twitch twitch = new Twitch();
-twitch.setClientId("shjdkashjkfdl"); // This is your registered application's client ID
+#### Пример получения авторизационного токена 
 
-/* Specify your registered callback URI */
-URI callbackUri = new URI("http://127.0.0.1:23522/authorize.html");
+```java
+class Example {
+    example() {
+        GoodGame gg = GoodGame();
 
-/* Get the authentication URL. Note: you will set the required scopes needed here. */
-String authUrl = twitch.auth().getAuthenticationUrl(twitch.getClientID(), callbackUri, Scopes.USER_READ, Scopes.CHANNEL_READ);
+        // Устанавливаем название приложения.
+        gg.setClientId("TestGoodGameApi"); 
 
-/* Send the user to the webpage somehow so that they can authorize your application */
-openWebpage(authUrl);
+        // Устанавливаем Redirect URI.
+        URI callbackUri = new URI("http://127.0.0.1:23522/authorize.html");
 
-/* Waits for the user to authorize or deny your application. Note: this function will block until a response is received! */
-boolean authSuccess = twitch.auth().awaitAccessToken();
+        // Получаем ссылку для авторизации. Установите все необходимые права приложению. 
+        // Передайте сгенерированную строку третим параметром или вызовите getState().
+        String authUrl = gg.auth().getAuthenticationUrl(gg.getClientId(), callbackUri, gg.getState(), Scopes.CHANNEL_SUBSCRIBERS, Scopes.CHAT_TOKEN);
 
-/* Check if authentication was successful */
-if (authSuccess) {
-  /* The access token is automatically set in the Twitch object and will be sent with all further API requests! */
-  String accessToken = twitch.auth().getAccessToken(); // if we want to explicitly get it for some reason
-  System.out.println("Access Token: " + accessToken);
-} else {
-  /* Authentication failed, most likely because the user denied the authorization request */
-  System.out.println(twitch.auth().getAuthenticationError());
+        // Отправьте пользователю сформированную ссылку по которой он сможет пройти и авторизовать приложение для работы от его имени
+        openWebpage(authUrl);
+
+        // Ожидайте пока пользователь одобрит или запретит использовать приложение 
+        // ВНИМАНИЕ: на этом методе приложение повиснет пока не получит ответ от пользователя
+        boolean authSuccess = twitch.auth().awaitAccessToken();
+
+        // Проверяем, что авторизация успешна
+        if (authSuccess) {
+
+            // Авторизационный код сохранился в объекте Authenticator, его можно получить
+            String authentificationCode = gg.auth().getAutorizationCode();           
+            System.out.println("Авторизационный код: " + authentificationCode);
+        } else {
+
+        // Авторизация не удалась, возможно пользователь отклонил запрос
+        System.out.println(gg.auth().getAuthenticationError());
+        }
+    }
 }
 ```
 
-_How it works:_ A simple, secure, local-only socket server will be opened. Since the `Redirect URI` for your application is set to `127.0.0.1`, it will redirect the user to their localhost after authorizing the application. As soon as a response is received, either an access token or error, the socket will be closed.
+***Как это работает:*** Будет запущен локальный веб сервер на который ссылается `Redirect URI`,  
+на которую после одобрения или запрета использовать приложение будет переброшен пользователь. 
+Как только ответ будет получен, система извлечен нужные параметры или ошибку и закроет сокет.
 
-##### Using Custom Authentication Views *(optional)*
+
+##### Использование собственных страниц
 
 Authentication views are HTML pages displayed to the user that will capture the application authorization callback and retrieve the access token, show an error message, or show the success message.
 
 There are 3 views that can be overwritten: 
-* Auth: This view is what the Twitch API will callback on. It contains javascript that will extract the access token from the URL fragment identifier.
+* Auth: This view is what the GoodGame API will callback on. It contains javascript that will extract the access token from the URL fragment identifier.
 * Failure: This view will display the error message to the user if authorization fails.
 * Success: This view will display a successful authentication message to the user.
 
 Using your own views is easy, simple pass URL objects (usually retrieved from [Class.getResource()](https://docs.oracle.com/javase/7/docs/api/java/lang/Class.html#getResource(java.lang.String)) to the `awaitAccessToken()` function.
 
 ```
-authView = getClass().getResource("/my_auth.html");
-failureView = getClass().getResource("/my_auth_failure.html");
-successView = getClass().getResource("/my_auth_success.html");
+    authView = getClass().getResource("/my_auth.html");
+    failureView = getClass().getResource("/my_auth_failure.html");
+    successView = getClass().getResource("/my_auth_success.html");
 
-/* Waits for the user to authorize or deny your application. Note: this function will block until a response is received! */
-boolean authSuccess = twitch.auth().awaitAccessToken(authView, failureView, successView);
+    // Ожидайте пока пользователь одобрит или запретит использовать приложение 
+    // ВНИМАНИЕ: на этом методе приложение повиснет пока не получит ответ от пользователя
+    boolean authSuccess = gg.auth().awaitAccessToken(authView, failureView, successView);
 ```
+*authView*
 
-###### Creating the Views
-
-*Auth*
-
-This page will only be displayed to the user for a brief second before automatically redirecting the user. If you wish to overwrite it you must include `gg-auth.js` in the `<head>` tag:
+Эта страница откроется только на несколько мгновений, после чего произойдет переадрессацияond before automatically redirecting the user. If you wish to overwrite it you must include `gg-auth.js` in the `<head>` tag:
 ```HTML
 <script type="text/javascript" src="gg-auth.js"></script>
 ```
 
-*Success*
+*successView*
 
 This page's only purpose is to display a success message and perhaps inform the user they can go back to the application.
 
-*Failure*
+*failureView*
 
 This page will display an error message to the user if authentication failed (such as they denied the request on Twitch). The error message and description is passed to this page view via the URL query string.
 
@@ -314,12 +335,47 @@ This page will display an error message to the user if authentication failed (su
 
 You can view the default pages in the [resources directory](https://github.com/urgrue/Java-Twitch-Api-Wrapper/tree/master/src/main/resources).
 
-### Explicitly Setting Access Token
+#### Пример получения Access Token
 
-If you already have an access token, you can explicitly set it. This _**should not**_ be done prior to an application being distributed as the access token is directly linked to a single Twitch account.
+```java
+class Example {
+    example() {
 
+        // Client Secret, который был указан на странице регситрации OAuth 2.0 приложения
+        String clientSecret = "ApplicationSecret";
+
+        // true - используем AutorizationCode для получения Access Token, false - используем RefreshToken
+        boolean useAutorizationCode = true;
+
+        gg.oauth().getAccessToken(gg.auth(), clientSecret, useAutorizationCode, new OauthResponseHandler() {
+
+            @Override
+            public void onSuccess(AccessToken accessToken) {       
+                // Успешно волучили Access Token, можем получить доп параметры из полученного объекта
+                // Access Token и Refresh Token сохранились в объекте Authenticator, их можно получить
+                // gg.auth().getAccessToken();
+                // gg.auth().getRefreshToken();
+            }
+
+            @Override      
+            public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                // GoodGame сообщил об ошибке в запросе
+            }
+         
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                // Ошибка взаимодействи я с сервером или обработки ответа             
+            }
+        });
+    }
+}
 ```
-twitch.auth().setAccessToken("my-access-token-289489");
+
+Если у вас уже имеется Access Token или Refresh Token, их можно установить вручную  
+```
+gg.auth().setAccessToken("my-access-token");
+gg.auth().setRefreshToken("my-refresh-token");
 ```
 
 ## Документация
@@ -340,8 +396,19 @@ twitch.auth().setAccessToken("my-access-token-289489");
 
 ## In Progress
 
-Разобраться с путаницей в авторизационном токене и токене доступа      
-Написать вменяемую инструкцию    
+Проверить обновление через рефреш токен          
+Починить ресурс gg.streams()  
+Попробовать отправить Refresh токен вместо ацесс  
+Выяснить откуда приходит чат-ответ ACCEPTED {"type":"accepted","data":{"channel_id":ХХХХХ}}  
+Выяснить откуда приходит чат-ответ MODER_RIGHTS  
+Удалить конструкторы из модеоей ответов (success_unjoin)
+  
+Отличие   
+        sendMessage(new ReqGetPollContainer(SecretValue.moiChannel));          
+        sendMessage(new ReqPollResultsContainer(SecretValue.moiChannel));
+        если приходит одинаковый ответ
+        
+Во всех _embedded объектах возвращать что-то более полезное  
 Проверить работу  
-Сделать тесты  
 Выложить альфа .jar релиз  
+Сделать тесты  

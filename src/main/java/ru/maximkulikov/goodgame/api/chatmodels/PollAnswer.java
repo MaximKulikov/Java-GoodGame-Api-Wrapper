@@ -13,12 +13,7 @@ public class PollAnswer {
 
     private String text;
 
-    public PollAnswer(final int id, final String text) {
-        this.id = id;
-        this.text = text;
-    }
-
-    public final int getId() {
+     public final int getId() {
         return this.id;
     }
 

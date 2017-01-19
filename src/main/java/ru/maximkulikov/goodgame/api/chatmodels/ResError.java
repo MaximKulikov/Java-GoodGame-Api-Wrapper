@@ -14,15 +14,9 @@ public class ResError implements ResChatObject {
     private String channelId;
 
     @JsonProperty("error_num")
-    private int errorNum;
+    private Integer errorNum;
 
     private String errorMsg;
-
-    public ResError(final String channelId, final int errorNum, final String errorMsg) {
-        this.channelId = channelId;
-        this.errorNum = errorNum;
-        this.errorMsg = errorMsg;
-    }
 
     public final String getChannelId() {
         return this.channelId;
@@ -40,11 +34,11 @@ public class ResError implements ResChatObject {
         this.errorMsg = errorMsg;
     }
 
-    public final int getErrorNum() {
+    public final Integer getErrorNum() {
         return this.errorNum;
     }
 
-    public final void setErrorNum(final int errorNum) {
+    public final void setErrorNum(final Integer errorNum) {
         this.errorNum = errorNum;
     }
 

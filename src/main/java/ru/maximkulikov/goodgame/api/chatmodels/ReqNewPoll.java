@@ -32,8 +32,12 @@ public class ReqNewPoll {
         this.moderName = moderName;
         this.title = title;
         List<PollAnswer> pollAnswers = new ArrayList<>();
+
         for (int i = 0; i < answers.size(); i++) {
-            pollAnswers.add(new PollAnswer(i + 1, answers.get(i)));
+            PollAnswer pollAnswer = new PollAnswer();
+            pollAnswer.setId(i + 1);
+            pollAnswer.setText(answers.get(i));
+            pollAnswers.add(pollAnswer);
         }
 
         this.answers = pollAnswers;

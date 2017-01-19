@@ -33,5 +33,7 @@ public enum ChatResponses {
     PAYMENT,
     PREMIUM,
     ERROR,
-    UNKNOWN
+    UNKNOWN,
+    ACCEPTED,
+    MODER_RIGHTS
 }

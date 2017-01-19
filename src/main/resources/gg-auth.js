@@ -3,15 +3,14 @@ var failurePage = location.origin + "/gg-authorization-failure.html";
 
 var hashValues = {
     access_token: null,
-    state: null
+    scope: ""
 };
-
 
 function extractAccessToken() {
     var hash = document.location.hash;
-    var params = hash.slice(1).split("&");
+    var params = hash.slice(1).split('&');
     for (var i = 0; i < params.length; i++) {
-        var param = params[i].split("=");
+        var param = params[i].split('=');
         if (param[0] === "code") {
             hashValues.access_token = param[1]; // access token found
         } else if (param[0] === "state") {
@@ -39,8 +38,5 @@ function process() {
         getAccessTokenFromHash();
     }
 }
-
-
-
 
 window.onload = process;

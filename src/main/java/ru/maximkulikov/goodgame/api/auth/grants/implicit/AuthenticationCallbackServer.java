@@ -61,7 +61,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
         this.stateRequest = stateRequest;
     }
 
-    public final String getAccessToken() {
+    public final String getAuthentificationCode() {
         return this.accessToken;
     }
 

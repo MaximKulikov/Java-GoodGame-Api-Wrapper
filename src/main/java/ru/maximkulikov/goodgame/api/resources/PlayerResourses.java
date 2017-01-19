@@ -16,8 +16,8 @@ public class PlayerResourses extends AbstractResource {
         super(defaultBaseUrl, defaultApiVersion);
     }
 
-    public final void getPlayer(final String playerSource, final PlayerResponseHandler handler) {
-        String url = String.format("%s/player/%s", getBaseUrl(), playerSource);
+    public final void getPlayer(final String channelId, final PlayerResponseHandler handler) {
+        String url = String.format("%s/player/%s", getBaseUrl(), channelId);
 
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {

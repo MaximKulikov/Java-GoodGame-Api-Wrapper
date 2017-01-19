@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import ru.maximkulikov.goodgame.api.auth.Authenticator;
-import ru.maximkulikov.goodgame.api.models.AccessToken;
 import ru.maximkulikov.goodgame.api.resources.*;
 
 
@@ -77,9 +76,11 @@ public class GoodGame {
 
     private AbstractResource getResource(final StreamResources key) {
         AbstractResource r = this.resources.get(key);
-        AccessToken accessToken = this.authenticator.getToken();
+
+        String accessToken = this.authenticator.getAccessToken();
+
         if (accessToken != null) {
-            r.setAccessToken(accessToken.getAccessToken());
+            r.setAccessToken(accessToken);
         }
 
         return r;

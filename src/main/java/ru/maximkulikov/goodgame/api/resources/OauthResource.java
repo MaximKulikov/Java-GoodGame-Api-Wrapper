@@ -23,7 +23,7 @@ public class OauthResource extends AbstractResource {
 
 
     public final void getAccessToken(final Authenticator authenticator,
-                                     final String clientSecret, final OauthResponseHandler handler) {
+                                     final String clientSecret, boolean useAutorizationCode, final OauthResponseHandler handler) {
         String url = String.format("%s/oauth", getBaseUrl());
 
         RequestParams params = new RequestParams();
@@ -31,7 +31,21 @@ public class OauthResource extends AbstractResource {
         params.put("redirect_uri", authenticator.getRedirectUri().toString());
         params.put("client_id", authenticator.getClientId());
         params.put("client_secret", clientSecret);
-        params.put("code", authenticator.getAutorizationCode());
+        if (useAutorizationCode) {
+
+            if (authenticator.getAutorizationCode() != null) {
+                params.put("code", authenticator.getAutorizationCode());
+            } else {
+                useAutorizationCode = false;
+            }
+        }
+
+        if (!useAutorizationCode) {
+            if (authenticator.getRefreshToken() != null) {
+                params.put("code", authenticator.getRefreshToken());
+            }
+        }
+
         params.put("grant_type", "authorization_code");
 
 
@@ -41,8 +55,9 @@ public class OauthResource extends AbstractResource {
                 try {
 
                     AccessToken value = objectMapper.readValue(content, AccessToken.class);
+                    authenticator.setAccessToken(value.getAccessToken());
+                    authenticator.setRefreshToken(value.getRefreshToken());
 
-                    authenticator.setAccessToken(value);
                     handler.onSuccess(value);
                 } catch (IOException e) {
                     handler.onFailure(e);
