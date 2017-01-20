@@ -4,24 +4,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Java-GoodGame-Api-Wrapper
- * Created by maxim on 14.01.2017.
+ * Created by maxim on 20.01.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ReqRefreshGroupsContainer implements ReqChatObject {
+public class ResAcceptedContainer {
 
-    private String type = "refresh_premium";
+    private String type;
 
-    private ReqGetPoll data;
+    private ResAccepted data;
 
-    public ReqRefreshGroupsContainer(final String channelId) {
-        this.data = new ReqGetPoll(channelId);
-    }
-
-    public final ReqGetPoll getData() {
+    public ResAccepted getData() {
         return this.data;
     }
 
-    public final void setData(final ReqGetPoll data) {
+    public final void setData(final ResAccepted data) {
         this.data = data;
     }
 
@@ -35,7 +31,7 @@ public class ReqRefreshGroupsContainer implements ReqChatObject {
 
     @Override
     public final String toString() {
-        return "ReqRefreshPremiumContainer{" +
+        return "ResAcceptedContainer{" +
                 "type='" + this.type + '\'' +
                 ", data=" + this.data +
                 '}';

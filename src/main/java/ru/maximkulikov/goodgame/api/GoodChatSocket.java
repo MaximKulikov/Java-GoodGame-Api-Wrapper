@@ -68,6 +68,10 @@ public class GoodChatSocket {
             ChatResponses response = ChatResponses.valueOf(type.toUpperCase());
 
             switch (response) {
+                case ACCEPTED:
+                    ResAcceptedContainer resAcceptedContainer = objectMapper.readValue(msg, ResAcceptedContainer.class);
+                    answer = new Response(response, resAcceptedContainer.getData());
+                    break;
                 case WELCOME:
                     ResWelcomeContainer resWelcomeContainer = objectMapper.readValue(msg, ResWelcomeContainer.class);
                     answer = new Response(response, resWelcomeContainer.getData());
@@ -109,6 +113,11 @@ public class GoodChatSocket {
                     ResModeratorsListContainer resModeratorsListContainer =
                             objectMapper.readValue(msg, ResModeratorsListContainer.class);
                     answer = new Response(response, resModeratorsListContainer.getData());
+                    break;
+                case MODER_RIGHTS:
+                    ResModeratorRightContainer resModeratorRightContainer =
+                            objectMapper.readValue(msg, ResModeratorRightContainer.class);
+                    answer = new Response(response, resModeratorRightContainer.getData());
                     break;
                 case SETTING:
                     ResSettingsContainer resSettingsContainer =
@@ -200,6 +209,9 @@ public class GoodChatSocket {
                     answer = new Response(ChatResponses.UNKNOWN, null);
                     System.out.println(msg);
                     break;
+            }
+            if (answer == null) {
+                System.out.println();
             }
             this.chat.onMessage(answer);
 

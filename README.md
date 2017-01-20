@@ -122,7 +122,8 @@ class SimpleExample {
 **`http://goodgame.ru/api/getchannelsubscribers`** Не понимаю какой токен он хочет, возвращает success=false.
 
 # API чата
-Для работы требуется создать экземпляр класса и унаследовать его от GoodChat, для подключения вызовите .connect. Соединение принудительно прервется через 24 часа
+Для работы требуется создать экземпляр класса и унаследовать его от GoodChat, для подключения вызовите .connect. 
+Соединение принудительно прервется через 24 часа или при вызове метода stop().
 
 ```java
 class SimpleExample {
@@ -155,6 +156,7 @@ class SimpleExample {
 }
 ```
 
+
 ### Соответствие запросам на сервер чата классам библиотеки
 
 Запросы на сервер отправляются методом sendMessage(ReqChatObject chatObject) в унаследованном от GoodChat классе, 
@@ -163,30 +165,30 @@ class SimpleExample {
 
 | Запросы                | Классы ReqChatObject                                                                                                                                       |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| +auth                   | `ReqAutorizationContainer(int siteId, int userId, String token)`                                                                                           |
-| ?get_channels_list      | `ReqChannelsListContainer()` <br /> `ReqChannelsListContainer(int start, int count)`                                                                       |
-| +join                   | `ReqJoinContainer(String channelId)` <br />`ReqJoinContainer(String channelId, boolean hidden, boolean mobile)`                                            |
-| +unjoin                 | `ReqUnjoinContainer(String channelId)`                                                                                                                     |
-| ?get_users_list         | `ReqUsersListContainer(String channelId)`                                                                                                                  |
-| +get_channel_counters   | `ReqChannelCountersContainer(String channelId)`                                                                                                            |
-| +get_ignore_list        | `ReqIgnoreListContainer()`                                                                                                                                 |
-| +add_to_ignore_list     | `ReqAddToIgnoreListContainer(String userId)`                                                                                                               |
-| +del_from_ignore_list   | `ReqDelFromIgnoreListContainer(String userId)`                                                                                                             |
-| +get_channel_history    | `ReqChannelHistoryContainer(String channelId)`                                                                                                             |
-| +send_message           | `ReqSendMessageContainer(String channelId, String text)` <br /> `ReqSendMessageContainer(String channelId, String text, Boolean hideIcon, Boolean mobile)` |
-| :( send_private_message   | `ReqPrivateMessageContainer(String channelId, String userId, String text)`                                                                                 |
-| +remove_message         | `ReqRemoveMessageContainer(String channelId, String messageId)`                                                                                            |
+| auth                   | `ReqAutorizationContainer(int siteId, int userId, String token)`                                                                                           |
+| get_channels_list      | `ReqChannelsListContainer()` <br /> `ReqChannelsListContainer(int start, int count)`                                                                       |
+| join                   | `ReqJoinContainer(String channelId)` <br />`ReqJoinContainer(String channelId, boolean hidden, boolean mobile)`                                            |
+| unjoin                 | `ReqUnjoinContainer(String channelId)`                                                                                                                     |
+| get_users_list         | `ReqUsersListContainer(String channelId)`                                                                                                                  |
+| get_channel_counters   | `ReqChannelCountersContainer(String channelId)`                                                                                                            |
+| get_ignore_list        | `ReqIgnoreListContainer()`                                                                                                                                 |
+| add_to_ignore_list     | `ReqAddToIgnoreListContainer(String userId)`                                                                                                               |
+| del_from_ignore_list   | `ReqDelFromIgnoreListContainer(String userId)`                                                                                                             |
+| get_channel_history    | `ReqChannelHistoryContainer(String channelId)`                                                                                                             |
+| send_message           | `ReqSendMessageContainer(String channelId, String text)` <br /> `ReqSendMessageContainer(String channelId, String text, Boolean hideIcon, Boolean mobile)` |
+| send_private_message   | `ReqPrivateMessageContainer(String channelId, String userId, String text)`                                                                                 |
+| remove_message         | `ReqRemoveMessageContainer(String channelId, String messageId)`                                                                                            |
 | ban                    | `ReqBanContainer(String channelId, String banChannel, String userId, Long duration, String reason, String comment, Boolean show_ban)`                      |
 | warn                   | `ReqWarnContainer(String channelId, String userId, String reason)`                                                                                         |
-| +new_poll               | `ReqNewPollContainer(String channelId, String moderId, String moderName, String title, List<String> answers)`                                              |
-| +get_poll               | `ReqGetPollContainer(String channelId)`                                                                                                                    |
-| +vote                   | `ReqVoteContainer(String channelId, int answerId)`                                                                                                         |
-| +get_poll_results       | `ReqPollResultsContainer(String channelId)`                                                                                                                |
+| new_poll               | `ReqNewPollContainer(String channelId, String moderId, String moderName, String title, List<String> answers)`                                              |
+| get_poll               | `ReqGetPollContainer(String channelId)`                                                                                                                    |
+| vote                   | `ReqVoteContainer(String channelId, int answerId)`                                                                                                         |
+| get_poll_results       | `ReqPollResultsContainer(String channelId)`                                                                                                                |
 | get_user_info          | `ReqGetUserInfoContainer(String userId)`                                                                                                                   |
-| +make_moderator         | `ReqMakeModeratorContainer(String channelId, String userId)`                                                                                               |
-| +clean_moderator        | `ReqCleanModeratorContainer(String channelId, String userId)`                                                                                              |
+| make_moderator         | `ReqMakeModeratorContainer(String channelId, String userId)`                                                                                               |
+| clean_moderator        | `ReqCleanModeratorContainer(String channelId, String userId)`                                                                                              |
 | refresh_premium        | `ReqRefreshPremiumContainer(String channelId)`                                                                                                             |
-| refresh_groups v.2     | `ReqRefreshGroupsContainer(final String channelId)`                                                                                                         |
+| refresh_groups v.2     | `ReqRefreshGroupsContainer(String channelId)`                                                                                                              |
 
 **send_private_message**: Приватное сообщение, отправленное таким способом можно отловить только с использованием API (в чатике на сайте оно не появится)
 
@@ -202,39 +204,39 @@ class SimpleExample extends GoodChat {
 }
 ```
 
-| Ответы API       |     Классы         | Проверка |
-|------------------|--------------------|-----|
-| welcome          | ResWelcome         | +|
-| success_auth     | ResAutorization    | +|
-| channels_list    | ResChannelsList    | ?|
-| success_join     | ResJoin            | ?|
-| success_unjoin   | ResUnjoin          | |
-| join_to_room     | ResJoinToRoom      | |
-| users_list       | ResUsersList       | не отвечает|
-| channel_counters | ResChannelCounters | +|
-| list             | ResModeratorsList  | хз что такое|
-| setting v.2      | ResSettings        | |
-| ignore_list      | ResIgnoreList      | +|
-| channel_history  | ResChannelHistory  | +|
-| motd             | ResMotd            | +|
-| slowmod          | ResSlowmod         | что поставит то?|
-| message          | ResMessage         | +|
-| private_message  | ResPrivateMessage  | +|
-| remove_message   | ResRemoveMessage   | +|
-| user_ban         | ResUserBan         | |
-| user_warn        | ResWarn            | |
-| new_poll         | ResNewPoll         | +|
-| poll_results     | ResPollResults     | +|
-| user             | ChatUser           | |
-| update_rights    | ResUpdateRights    | где запрос на этот ответ?|
-| update_groups v.2| ResUpdateGroups    | |
-| update_premium   | ResUpdatePremium   | |
-| error            | ResError           | +|
-| payment          | ResPayment         | ?|
-| premium          | ResPremium         | ?|
-| accepted         | //TODO             |  это еще что такое?|
-| moder_rights     | //TODO             |  это еще что такое?|
-| Остальное:UNKNOWN| null               | |
+| Ответы API       |     Классы         |
+|------------------|--------------------|
+| welcome          | ResWelcome         |
+| success_auth     | ResAutorization    |
+| channels_list    | ResChannelsList    |
+| success_join     | ResJoin            |
+| success_unjoin   | ResUnjoin          |
+| join_to_room     | ResJoinToRoom      |
+| users_list       | ResUsersList       |
+| channel_counters | ResChannelCounters |
+| list             | ResModeratorsList  |
+| setting v.2      | ResSettings        |
+| ignore_list      | ResIgnoreList      |
+| channel_history  | ResChannelHistory  |
+| motd             | ResMotd            |
+| slowmod          | ResSlowmod         |
+| message          | ResMessage         |
+| private_message  | ResPrivateMessage  |
+| remove_message   | ResRemoveMessage   |
+| user_ban         | ResUserBan         |
+| user_warn        | ResWarn            |
+| new_poll         | ResNewPoll         |
+| poll_results     | ResPollResults     |
+| user             | ChatUser           |
+| update_rights    | ResUpdateRights    |
+| update_groups v.2| ResUpdateGroups    |
+| update_premium   | ResUpdatePremium   |
+| error            | ResError           |
+| payment          | ResPayment         |
+| premium          | ResPremium         |
+| accepted         |                    |
+| moder_rights     | ResModeratorRight  |
+| Остальное:UNKNOWN| null               |
 
 
 
@@ -400,18 +402,8 @@ gg.auth().setRefreshToken("my-refresh-token");
 
 ## In Progress
 
-Проверить обновление через рефреш токен          
+Проверить обновление через рефреш токен  
+Попробовать отправить Refresh токен вместо ацесс    
 Починить ресурс gg.streams()  
-Попробовать отправить Refresh токен вместо ацесс  
-Выяснить откуда приходит чат-ответ ACCEPTED {"type":"accepted","data":{"channel_id":ХХХХХ}}  
-Выяснить откуда приходит чат-ответ MODER_RIGHTS  
-Удалить конструкторы из модеоей ответов (success_unjoin)
-  
-Отличие   
-        sendMessage(new ReqGetPollContainer(SecretValue.moiChannel));          
-        sendMessage(new ReqPollResultsContainer(SecretValue.moiChannel));
-        если приходит одинаковый ответ
-          
 Проверить работу  
 Выложить альфа .jar релиз  
-Сделать тесты  

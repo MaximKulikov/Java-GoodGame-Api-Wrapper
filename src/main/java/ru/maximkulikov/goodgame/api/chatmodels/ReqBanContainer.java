@@ -13,7 +13,7 @@ public class ReqBanContainer implements ReqChatObject {
 
     private ReqBan data;
 
-    public ReqBanContainer(final String channelId, final String banChannel, final String userId, final Long duration,
+    public ReqBanContainer(final String channelId, final String banChannel, final String userId, final int duration,
                            final String reason, final String comment, final Boolean showBan) {
         this.data = new ReqBan(channelId, banChannel, userId, duration, reason, comment, showBan);
     }

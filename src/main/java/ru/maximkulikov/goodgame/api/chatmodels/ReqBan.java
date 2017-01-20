@@ -22,7 +22,7 @@ public class ReqBan {
     private String userId;
 
     // время бана в секундах
-    private Long duration;
+    private int duration;
 
     //причина
     private String reason;
@@ -34,7 +34,7 @@ public class ReqBan {
     @JsonProperty("show_ban")
     private Boolean showBan;
 
-    public ReqBan(final String channelId, final String banChannel, final String userId, final Long duration,
+    public ReqBan(final String channelId, final String banChannel, final String userId, final int duration,
                   final String reason, final String comment, final Boolean showBan) {
         this.channelId = channelId;
         this.banChannel = banChannel;
@@ -69,11 +69,11 @@ public class ReqBan {
         this.comment = comment;
     }
 
-    public final Long getDuration() {
+    public final int getDuration() {
         return this.duration;
     }
 
-    public final void setDuration(final Long duration) {
+    public final void setDuration(final int duration) {
         this.duration = duration;
     }
 

@@ -13,6 +13,8 @@ import ru.maximkulikov.goodgame.api.models.SmilesContainer;
  */
 public class SmilesResource extends AbstractResource {
 
+    private static final String PAGE = "page";
+
     public SmilesResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);
     }
@@ -43,7 +45,7 @@ public class SmilesResource extends AbstractResource {
         String url = String.format("%s/smiles/%s", getBaseUrl(), channelId);
 
         RequestParams params = new RequestParams();
-        params.put("page", page);
+        params.put(this.PAGE, page);
 
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
@@ -79,7 +81,7 @@ public class SmilesResource extends AbstractResource {
     public final void getSmiles(final int page, final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles", getBaseUrl());
         RequestParams params = new RequestParams();
-        params.put("page", page);
+        params.put(this.PAGE, page);
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {

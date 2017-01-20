@@ -21,19 +21,21 @@ public abstract class GoodChat {
 
     private GoodChatSocket socket;
 
+    private WebSocketClient client;
+
     private boolean connected;
 
     public final void connect() {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                WebSocketClient client = new WebSocketClient();
+                GoodChat.this.client = new WebSocketClient();
                 GoodChat.this.socket = new GoodChatSocket();
                 try {
-                    client.start();
+                    GoodChat.this.client.start();
                     URI echoUri = new URI(DEFAULT_CHAT_URL);
                     ClientUpgradeRequest request = new ClientUpgradeRequest();
-                    client.connect(GoodChat.this.socket, echoUri, request);
+                    GoodChat.this.client.connect(GoodChat.this.socket, echoUri, request);
                     System.out.printf("Connecting to : %s%n", echoUri);
                     // wait for closed socket connection.
                     GoodChat.this.socket.setChat(GoodChat.this);
@@ -43,7 +45,7 @@ public abstract class GoodChat {
                     e.printStackTrace();
                 } finally {
                     try {
-                        client.stop();
+                        GoodChat.this.client.stop();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -91,4 +93,13 @@ public abstract class GoodChat {
         }
     }
 
+    public final void stop() {
+        if (connected) {
+            try {
+                GoodChat.this.client.stop();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

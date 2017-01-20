@@ -99,7 +99,8 @@ public class GithubResource extends AbstractResource {
         });
     }
 
-    public final void getToken(final String username, final String password, final Authenticator authenticator, final GitHubTokenHandler handler) {
+    public final void getToken(final String username, final String password, final Authenticator authenticator,
+                               final GitHubTokenHandler handler) {
         String url = String.format("%s/token", getBaseUrl());
 
         RequestParams params = new RequestParams();
