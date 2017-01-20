@@ -13,7 +13,7 @@ public class ResAcceptedContainer {
 
     private ResAccepted data;
 
-    public ResAccepted getData() {
+    public final ResAccepted getData() {
         return this.data;
     }
 

@@ -13,7 +13,7 @@ public class ReqChannelCountersContainer implements ReqChatObject {
 
     private ReqChannelCounters data;
 
-    public ReqChannelCountersContainer(String channelId) {
+    public ReqChannelCountersContainer(final String channelId) {
         this.data = new ReqChannelCounters(channelId);
     }
 

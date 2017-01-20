@@ -13,7 +13,7 @@ public class ReqMakeModeratorContainer implements ReqChatObject {
 
     private ReqMakeModerator data;
 
-    public ReqMakeModeratorContainer(String channelId, String userId) {
+    public ReqMakeModeratorContainer(final String channelId, final String userId) {
         this.data = new ReqMakeModerator(channelId, userId);
     }
 

@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class EmbededChannels {
 
     @JsonProperty("_embedded")
-    private StreamChannelContainer embedded;
+    private StreamChannelContainer streams;
 
     @JsonProperty("page_count")
     private Integer pageCount;
@@ -50,7 +50,11 @@ public class EmbededChannels {
     }
 
     public final List<ChannelContainer> getStreams() {
-        return this.embedded.getStreams();
+        return this.streams.getStreams();
+    }
+
+    public final void setStreams(final StreamChannelContainer streams) {
+        this.streams = streams;
     }
 
     public final Integer getTotalItems() {
@@ -61,20 +65,14 @@ public class EmbededChannels {
         this.totalItems = totalItems;
     }
 
-    public final void setEmbedded(final StreamChannelContainer embedded) {
-        this.embedded = embedded;
-    }
-
     @Override
     public final String toString() {
         return "EmbededChannels{" +
-                "embedded=" + this.embedded +
+                "streams=" + this.streams +
                 ", pageCount=" + this.pageCount +
                 ", pageSize=" + this.pageSize +
                 ", totalItems=" + this.totalItems +
                 ", page=" + this.page +
                 '}';
     }
-
-
 }

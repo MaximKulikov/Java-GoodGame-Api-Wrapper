@@ -16,7 +16,7 @@ public class InfoResource extends AbstractResource {
         super(baseUrl, apiVersion);
     }
 
-    protected InfoResource(String baseUrl) {
+    protected InfoResource(final String baseUrl) {
         super(baseUrl);
     }
 

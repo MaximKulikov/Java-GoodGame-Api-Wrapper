@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.handlers.StreamChannelResponseHandler;
-import ru.maximkulikov.goodgame.api.handlers.StreamResponseHandler;
-import ru.maximkulikov.goodgame.api.handlers.StreamssResponseHandler;
+import ru.maximkulikov.goodgame.api.handlers.StreamsResponseHandler;
 import ru.maximkulikov.goodgame.api.models.ChannelContainer;
 import ru.maximkulikov.goodgame.api.models.EmbededChannels;
 
@@ -43,12 +42,12 @@ public class StreamsResource extends AbstractResource {
      */
 
     //TODO ПЕреименовать и разобраться
-    public final void getStreams(final StreamssResponseHandler handler) {
+    public final void getStreams(final StreamsResponseHandler handler) {
         String url = String.format("%s/streams", getBaseUrl());
 
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, final Map<String, List<String>> headers, final String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     EmbededChannels value = objectMapper.readValue(content, EmbededChannels.class);
                     handler.onSuccess(value);
@@ -59,15 +58,15 @@ public class StreamsResource extends AbstractResource {
         });
     }
 
-    public final void getStreams(final RequestParams params, final StreamResponseHandler handler) {
+    public final void getStreams(final RequestParams params, final StreamsResponseHandler handler) {
 
         String url = String.format("%s/streams", getBaseUrl());
 
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, final Map<String, List<String>> headers, final String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
-                    ChannelContainer value = objectMapper.readValue(content, ChannelContainer.class);
+                    EmbededChannels value = objectMapper.readValue(content, EmbededChannels.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
                     handler.onFailure(e);

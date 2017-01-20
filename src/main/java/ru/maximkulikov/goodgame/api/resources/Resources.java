@@ -4,7 +4,7 @@ package ru.maximkulikov.goodgame.api.resources;
  * Java-GoodGame-Api-Wrapper
  * Created by maxim on 15.01.2017.
  */
-public enum StreamResources {
+public enum Resources {
 
     OAUTH("oauth"),
     PLAYER("player"),
@@ -16,7 +16,7 @@ public enum StreamResources {
     SMILES("smiles"),
     GITHUBAPI("githubapi");
 
-    StreamResources(final String key) {
+    Resources(final String key) {
 
     }
 }

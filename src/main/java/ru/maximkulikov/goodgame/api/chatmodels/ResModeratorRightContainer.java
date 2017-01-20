@@ -13,7 +13,7 @@ public class ResModeratorRightContainer {
 
     private ResModeratorRight data;
 
-    public ResModeratorRight getData() {
+    public final ResModeratorRight getData() {
         return this.data;
     }
 

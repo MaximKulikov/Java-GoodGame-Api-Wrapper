@@ -49,7 +49,7 @@ public class SmilesResource extends AbstractResource {
 
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
-            public void onSuccess(int statusCode, final Map<String, List<String>> headers, final String content) {
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     SmilesContainer value = objectMapper.readValue(content, SmilesContainer.class);
                     handler.onSuccess(value);

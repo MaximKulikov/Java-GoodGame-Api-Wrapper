@@ -94,7 +94,7 @@ public abstract class GoodChat {
     }
 
     public final void stop() {
-        if (connected) {
+        if (this.connected) {
             try {
                 GoodChat.this.client.stop();
             } catch (Exception e) {

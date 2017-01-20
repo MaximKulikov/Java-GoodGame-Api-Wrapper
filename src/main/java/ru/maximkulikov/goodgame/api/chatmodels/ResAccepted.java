@@ -11,7 +11,7 @@ public class ResAccepted implements ResChatObject {
     @JsonProperty("channel_id")
     private String channelId;
 
-    public String getChannelId() {
+    public final String getChannelId() {
         return this.channelId;
     }
 

@@ -99,9 +99,9 @@ class SimpleExample {
 | API                                 |  JGAW               |  Описание               |
 |-------------------------------------|---------------------------------------------------------------------------|-------------------------|
 | `GET /player/:src`                  | `gg.player().getPlayer(channelId, new PlayerResponseHandler())`                                                 | Получение информации о плеере.  |
-| `GET /streams`                      | //TODO    | Получение информации обо всех онлайн стримах на Goodgame. Можно использовать query-параметры.  |
-| `GET /streams[/:channel]`           | //TODO                                                 | Получение информации о конкретном стриме. Query-параметры не работают.  |
-| `GET /channel/:channel/subscribers` | `gg.channels().getSubscribers(channel, new SubscriberResponseHandler())`<br /> `gg.channels().getSubscribers(channel, requestParams, new SubscriberResponseHandler()`   | Список подписчиков указанного канала.  |
+| `GET /streams`                      | `gg.streams().getStreams(new StreamsResponseHandler()` <br /> `gg.streams().getStreams(params, new StreamsResponseHandler()`    | Получение информации обо всех онлайн стримах на Goodgame. Можно использовать query-параметры.  |
+| `GET /streams[/:channel]`           | `gg.streams().getChannel(channelName, new StreamChannelResponseHandler()`                                                 | Получение информации о конкретном стриме. Query-параметры не работают.  |
+| `GET /channel/:channel/subscribers` | `gg.channels().getSubscribers(channelName, new SubscriberResponseHandler())`<br /> `gg.channels().getSubscribers(channel, requestParams, new SubscriberResponseHandler()`   | Список подписчиков указанного канала.  |
 | `GET /channel/:channel/premiums`    | `gg.channels().getPremiums(channel, new PremiumsResponseHandler())` <br /> `gg.channels().getPremiums(channel, requestParams, new PremiumsResponseHandler()`   | Список премиум подписчиков указанного канала.  |
 | `GET /channel/:channel/donations`   | `gg.channels().getDonations(channel, new DonationsResponseHandler())` <br /> `gg.channels().getDonations(channel, requestParams, new DonationsResponseHandler()`  | Список поддержки указанного канала.  |
 | `GET /chat/token`                   | `gg.chat().getChatToken(new ChatTokenResponseHandler())`   | Получение токена чата для конкретного пользователя. Id-пользователя определяется из Access Token'a.  |
@@ -250,13 +250,7 @@ accesToken можно получить, зная авторизационный 
 Зарегистрировать приложение можно по ссылке `https://goodgame.ru/user/*ВашID*/edit`.   
 `Redirect URI` необходимо указать `http://127.0.0.1:23523/gg-authorize.html`. Можно выбрать порт, отличный от `23523`. 
  Вы так же можете сделать собственные ресурсные страницы, аналогичные `gg-authorize.html` и пр. с отличными от стандартных названиями. 
-
-The wrapper provides the functionality for authenticating users of your application following the [Implicit Grant Flow](https://github.com/justintv/Twitch-API/blob/master/authentication.md#implicit-grant-flow). 
-
-To use authentication, your application must be registered with Twitch and the `Redirect URI` should be set like the following:
-`http://127.0.0.1:23522`. You may choose a different port other than `23522` if you wish, but the rest of the URI must remain exactly as specified above.
-
-The authentication process is explained in the following code example.
+ 
 
 #### Пример получения авторизационного токена 
 

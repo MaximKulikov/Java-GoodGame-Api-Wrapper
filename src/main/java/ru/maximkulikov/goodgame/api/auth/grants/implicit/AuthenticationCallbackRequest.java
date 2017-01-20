@@ -81,9 +81,8 @@ public class AuthenticationCallbackRequest implements Runnable {
 
     private void processRequest() throws IOException {
 //         Get a reference to the socket's input and output streams.
-         InputStream is = socket.getInputStream();
-
-        DataOutputStream os = new DataOutputStream(this.socket.getOutputStream());
+        InputStream is = this.socket.getInputStream();
+        DataOutputStream os;
 
         // Set up input stream filters.
         BufferedReader br = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
@@ -151,6 +150,8 @@ public class AuthenticationCallbackRequest implements Runnable {
             statusLine = "HTTP/1.1 404 Not Found" + EOL;
             entityBody = "404 Not Found";
         }
+
+        os = new DataOutputStream(this.socket.getOutputStream());
 
         // Send the status line.
         os.writeBytes(statusLine);

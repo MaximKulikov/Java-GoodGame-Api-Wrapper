@@ -1,8 +1,12 @@
 package ru.maximkulikov.goodgame.api.handlers;
 
-import java.util.List;
-import ru.maximkulikov.goodgame.api.models.Stream;
+import ru.maximkulikov.goodgame.api.models.EmbededChannels;
 
+/**
+ * Java-GoodGame-Api-Wrapper
+ * Created by maxim on 18.01.2017.
+ */
 public interface StreamsResponseHandler extends BaseFailureHandler {
-    void onSuccess(int total, List<Stream> streams);
+
+    void onSuccess(EmbededChannels channels);
 }

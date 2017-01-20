@@ -18,13 +18,13 @@ class ReqAutorization {
 
     private String token;
 
-    public ReqAutorization(final int siteId, final int userId, final String token) {
+    ReqAutorization(final int siteId, final int userId, final String token) {
         this.siteId = siteId;
         this.userId = userId;
         this.token = token;
     }
 
-    public ReqAutorization(final int siteId, final int userId) {
+    ReqAutorization(final int siteId, final int userId) {
         this.siteId = siteId;
         this.userId = userId;
     }

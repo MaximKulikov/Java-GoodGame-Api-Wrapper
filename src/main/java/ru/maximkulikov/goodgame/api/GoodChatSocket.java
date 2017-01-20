@@ -44,7 +44,7 @@ public class GoodChatSocket {
     }
 
     @OnWebSocketClose
-    public final void onClose(final int statusCode, String reason) {
+    public final void onClose(final int statusCode, final String reason) {
         System.out.printf("Connection closed: %d - %s%n", statusCode, reason);
         this.session = null;
         // trigger latch
