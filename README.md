@@ -298,14 +298,14 @@ class Example {
 
 #### Использование собственных страниц
 
-Authentication views are HTML pages displayed to the user that will capture the application authorization callback and retrieve the access token, show an error message, or show the success message.
+Авторизационные страницы оторажаются пользователю, когда GoodGame переадрессует его. Из ответа будут извлечены Access Tonen, показана ошибка или успешное выполнение. 
 
-There are 3 views that can be overwritten: 
-* Auth: This view is what the GoodGame API will callback on. It contains javascript that will extract the access token from the URL fragment identifier.
-* Failure: This view will display the error message to the user if authorization fails.
-* Success: This view will display a successful authentication message to the user.
+Существует 3 страницы, которые возможно переписать: 
+* Auth: На эту страницу произойдет переадресация GoodGame. Она содержит javascript, который извлекает Access Token из URL.
+* Failure: Отображает ошибку, что бы пользователь понял что пошло не так.
+* Success: Отображает успешную авторизацию.
 
-Using your own views is easy, simple pass URL objects (usually retrieved from [Class.getResource()](https://docs.oracle.com/javase/7/docs/api/java/lang/Class.html#getResource(java.lang.String)) to the `awaitAccessToken()` function.
+Для изпользование собственных страниц просто передайте URL объекты (обычно получаются из [Class.getResource()](https://docs.oracle.com/javase/7/docs/api/java/lang/Class.html#getResource(java.lang.String)) и передайте в метод `awaitAccessToken()`.
 
 ```
     authView = getClass().getResource("/my_auth.html");
@@ -318,7 +318,8 @@ Using your own views is easy, simple pass URL objects (usually retrieved from [C
 ```
 *authView*
 
-Эта страница откроется только на несколько мгновений, после чего произойдет переадрессацияond before automatically redirecting the user. If you wish to overwrite it you must include `gg-auth.js` in the `<head>` tag:
+Эта страница откроется только на несколько мгновений, после чего произойдет переадрессацияo.
+На этой странице необходимо включить `gg-auth.js` в нутри тега `<head>`:
 ```HTML
 <script type="text/javascript" src="gg-auth.js"></script>
 ```
