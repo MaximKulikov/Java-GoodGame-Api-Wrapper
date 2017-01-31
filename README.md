@@ -274,7 +274,7 @@ class Example {
 
         // Ожидайте пока пользователь одобрит или запретит использовать приложение 
         // ВНИМАНИЕ: на этом методе приложение повиснет пока не получит ответ от пользователя
-        boolean authSuccess = twitch.auth().awaitAccessToken();
+        boolean authSuccess = gg.auth().awaitAutorizationCode();
 
         // Проверяем, что авторизация успешна
         if (authSuccess) {
