@@ -264,7 +264,7 @@ class Example {
         gg.setClientId("TestGoodGameApi"); 
 
         // Устанавливаем Redirect URI.
-        URI callbackUri = new URI("http://127.0.0.1:23522/authorize.html");
+        URI callbackUri = new URI("http://127.0.0.1:23523/authorize.html");
 
         // Получаем ссылку для авторизации. Установите все необходимые права приложению. 
         // Передайте сгенерированную строку третим параметром или вызовите getState().
