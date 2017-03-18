@@ -407,13 +407,7 @@ gg.auth().setRefreshToken("my-refresh-token");
             <artifactId>goodgame-api-wrapper</artifactId>
             <version>0.1.1</version>
         </dependency>
-    
-        <dependency>
-            <groupId>com.mb3364.http</groupId>
-            <artifactId>async-http-client</artifactId>
-            <version>2.1.2</version>
-        </dependency>
-        
+           
     </dependencies>
     <repositories>
     
