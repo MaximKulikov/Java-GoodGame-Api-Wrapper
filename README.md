@@ -244,7 +244,7 @@ class SimpleExample extends GoodChat {
 ## Авторизация
 
 
-Для получения доступа к коммандам, требующих специальные права требуется получить токен доступа ***accessToken***. 
+Для получения доступа к командам, требующих специальные права требуется получить токен доступа ***accessToken***. 
 accesToken можно получить, зная авторизационный код ***authentificationCode*** или ***refreshToken***.
 
 Ваше приложение должно быть зарегистрировано GoodGame как OAuth 2.0 приложение. 
@@ -264,7 +264,7 @@ class Example {
         gg.setClientId("TestGoodGameApi"); 
 
         // Устанавливаем Redirect URI.
-        URI callbackUri = new URI("http://127.0.0.1:23523/authorize.html");
+        URI callbackUri = new URI("http://127.0.0.1:23523/gg-authorize.html");
 
         // Получаем ссылку для авторизации. Установите все необходимые права приложению. 
         // Передайте сгенерированную строку третим параметром или вызовите getState().
@@ -338,6 +338,7 @@ class Example {
 * `error_description`: Подробное описание ошибки.
 
 ### Пример получения Access Token
+
 
 ```java
 class Example {
