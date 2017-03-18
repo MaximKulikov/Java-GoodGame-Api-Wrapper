@@ -9,7 +9,7 @@ import ru.maximkulikov.goodgame.api.resources.*;
 
 public class GoodGame {
 
-    private static final String DEFAULT_BASE_URL = "http://api2.goodgame.ru";
+    private static final String DEFAULT_BASE_URL = "https://api2.goodgame.ru";
 
     private static final String OLD_BASE_URL = "http://goodgame.ru/api";
 
@@ -117,4 +117,20 @@ public class GoodGame {
         return (StreamsResource) this.getResource(Resources.STREAMS);
     }
 
+    public enum Resources {
+
+        OAUTH("oauth"),
+        PLAYER("player"),
+        STREAMS("streams"),
+        CHANNELS("channels"),
+        CHAT("chat"),
+        GAMES("games"),
+        INFO("info"),
+        SMILES("smiles"),
+        GITHUBAPI("githubapi");
+
+        Resources(final String key) {
+
+        }
+    }
 }
