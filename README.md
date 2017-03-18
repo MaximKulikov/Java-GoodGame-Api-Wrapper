@@ -274,7 +274,7 @@ class Example {
 
         // Ожидайте пока пользователь одобрит или запретит использовать приложение 
         // ВНИМАНИЕ: на этом методе приложение повиснет пока не получит ответ от пользователя
-        boolean authSuccess = twitch.auth().awaitAccessToken();
+        boolean authSuccess = gg.auth().awaitAutorizationCode();
 
         // Проверяем, что авторизация успешна
         if (authSuccess) {
@@ -393,12 +393,41 @@ gg.auth().setRefreshToken("my-refresh-token");
 
 ## Install
 
-* Скоро
+[Java-GoodGame-Api-Wrapper 0.1.1](https://github.com/Trinion/Java-GoodGame-Api-Wrapper/releases/tag/0.1.1)
+
+Установка через приватный maven репозиторий
+
+```xml
+<project>
+    <dependencies>
+    
+        <dependency>
+            <groupId>ru.maximkulikov</groupId>
+            <artifactId>goodgame-api-wrapper</artifactId>
+            <version>0.1.1</version>
+        </dependency>
+    
+        <dependency>
+            <groupId>com.mb3364.http</groupId>
+            <artifactId>async-http-client</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+        
+    </dependencies>
+    <repositories>
+    
+        <repository>
+            <id>http://maximkulikov.ru/maven2</id>
+            <url>http://maximkulikov.ru/maven2</url>
+        </repository>
+        
+    </repositories>
+</project>
+```
 
 ## In Progress
 
 Проверить обновление через рефреш токен  
-Попробовать отправить Refresh токен вместо ацесс    
-Починить ресурс gg.streams()  
-Проверить работу  
-Выложить альфа .jar релиз  
+Попробовать отправить Refresh токен вместо ацесс     
+Выложить альфа .jar релиз    
+JavaDoc  

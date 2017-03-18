@@ -49,6 +49,6 @@ crashlytics-build.properties
 src/test/
 target/
 test.json
-src/main/java/ru/maximkulikov/goodgame/api/Example.java
-src/main/java/ru/maximkulikov/goodgame/api/ExampleChat.java
+src/testdata/Example.java
+src/testdata/ExampleChat.java
 

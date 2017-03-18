@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.maximkulikov.goodgame</groupId>
-    <artifactId>java-goodgame-api-wrapper</artifactId>
-    <version>0.0.1</version>
+    <groupId>ru.maximkulikov</groupId>
+    <artifactId>goodgame-api-wrapper</artifactId>
+    <version>0.1.1</version>
     <packaging>jar</packaging>
 
-    <name>java-goodgame-api-wrapper</name>
+    <name>goodgame-api-wrapper</name>
     <url>https://github.com/Trinion/Java-GoodGame-Api-Wrapper</url>
 
     <properties>
@@ -36,6 +36,12 @@
             <version>9.2.19.v20160908</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.mb3364.http</groupId>
+            <artifactId>async-http-client</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+
         <!--&lt;!&ndash; Http client &ndash;&gt;-->
         <!--<dependency>-->
         <!--<groupId>com.mb3364.http</groupId>-->
@@ -51,7 +57,12 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    <repositories>
+        <repository>
+            <id>http://maximkulikov.ru/maven2</id>
+            <url>http://maximkulikov.ru/maven2</url>
+        </repository>
+    </repositories>
     <build>
         <plugins>
             <plugin>
@@ -72,6 +83,17 @@
                     </descriptorRefs>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <attach>false</attach>
+                    <includePom>true</includePom>
+                </configuration>
+            </plugin>
+
+
         </plugins>
     </build>
 </project>
