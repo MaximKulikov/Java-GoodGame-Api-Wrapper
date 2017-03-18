@@ -1,4 +1,5 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e363ff624c2343e8acbb08e96b61d7d6)](https://www.codacy.com/app/Trinion/Java-GoodGame-Api-Wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Trinion/Java-GoodGame-Api-Wrapper&amp;utm_campaign=Badge_Grade)  
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e363ff624c2343e8acbb08e96b61d7d6)](https://www.codacy.com/app/Trinion/Java-GoodGame-Api-Wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Trinion/Java-GoodGame-Api-Wrapper&amp;utm_campaign=Badge_Grade)
+ [![CircleCI](https://circleci.com/gh/Trinion/Java-GoodGame-Api-Wrapper/tree/master.svg?style=svg)](https://circleci.com/gh/Trinion/Java-GoodGame-Api-Wrapper/tree/master)
 
 # Async GoodGame API Wrapper
 JGAW - обертка над [GoodGame API](https://github.com/GoodGame/API), позволяющая выполнять асинхронные запросы. 
@@ -293,7 +294,7 @@ class Example {
 
 ***Как это работает:*** Будет запущен локальный веб сервер на который ссылается `Redirect URI`,  
 на которую после одобрения или запрета использовать приложение будет переброшен пользователь. 
-Как только ответ будет получен, система извлечен нужные параметры или ошибку и закроет сокет.
+Как только ответ будет получен, система извлечет нужные параметры или выведет ошибку и закроет сокет.
 
 
 #### Использование собственных страниц
@@ -429,5 +430,4 @@ gg.auth().setRefreshToken("my-refresh-token");
 
 Проверить обновление через рефреш токен  
 Попробовать отправить Refresh токен вместо ацесс     
-Выложить альфа .jar релиз    
 JavaDoc  
