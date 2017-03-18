@@ -258,7 +258,7 @@ accesToken можно получить, зная авторизационный 
 ```java
 class Example {
     example() {
-        GoodGame gg = GoodGame();
+        GoodGame gg = new GoodGame();
 
         // Устанавливаем название приложения.
         gg.setClientId("TestGoodGameApi"); 
