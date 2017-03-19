@@ -21,6 +21,7 @@ public class Authenticator {
     // The port to listen for the authentication callback on
     private int listenPort;
 
+    //TODO Убрать эту переменную, заменить на gg.getCliendID
     private String clientId;
 
     private URI redirectUri;
@@ -101,6 +102,7 @@ public class Authenticator {
         return this.authentificationCode;
     }
 
+    @Deprecated
     public final String getClientId() {
         return this.clientId;
     }

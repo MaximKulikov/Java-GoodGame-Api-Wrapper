@@ -1,5 +1,6 @@
 package ru.maximkulikov.goodgame.api;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -9,7 +10,7 @@ import ru.maximkulikov.goodgame.api.resources.*;
 
 public class GoodGame {
 
-    private static final String DEFAULT_BASE_URL = "https://api2.goodgame.ru";
+    private static final String DEFAULT_BASE_URL = "http://api2.goodgame.ru";
 
     private static final String OLD_BASE_URL = "http://goodgame.ru/api";
 
@@ -17,6 +18,8 @@ public class GoodGame {
 
     // User's app client Id
     private String clientId;
+
+    private String clientSecret;
 
     private String state;
 
@@ -29,7 +32,7 @@ public class GoodGame {
         this.authenticator = new Authenticator(baseUrl);
         // Instantiate resource connectors
         this.resources = new HashMap<>();
-        this.resources.put(Resources.OAUTH, new OauthResource(baseUrl, apiVersion));
+        this.resources.put(Resources.OAUTH, new OauthResource(baseUrl, apiVersion, this));
         this.resources.put(Resources.PLAYER, new PlayerResourses(baseUrl, apiVersion));
         this.resources.put(Resources.STREAMS, new StreamsResource(baseUrl, apiVersion));
         this.resources.put(Resources.CHANNELS, new ChannelsResource(baseUrl, apiVersion));
@@ -66,12 +69,20 @@ public class GoodGame {
         return this.clientId;
     }
 
+    public final String getClientSecret() {return this.clientSecret;}
+
+    public final URI getRedirectUri() {return this.authenticator.getRedirectUri();}
+
     public final void setClientId(final String clientId) {
         this.clientId = clientId;
         // Update client id in all resources
         for (AbstractResource r : this.resources.values()) {
             r.setClientId(clientId);
         }
+    }
+
+    public final void setClientSecret(final String clientSecret) {
+        this.clientSecret = clientSecret;
     }
 
     private AbstractResource getResource(final Resources key) {

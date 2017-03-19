@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
+import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.auth.Authenticator;
 import ru.maximkulikov.goodgame.api.handlers.OauthResourceResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.OauthResponseHandler;
@@ -18,35 +19,84 @@ public class OauthResource extends AbstractResource {
 
     private static final String CODE = "code";
 
-    public OauthResource(final String defaultBaseUrl, final int defaultApiVersion) {
+    private GoodGame gg;
+
+    public OauthResource(final String defaultBaseUrl, final int defaultApiVersion, GoodGame gg) {
         super(defaultBaseUrl, defaultApiVersion);
+        this.gg = gg;
     }
 
 
+    public final void getAccessToken(final boolean useAutorizationCode, final OauthResponseHandler handler) {
+
+        String url = String.format("%s/oauth", getBaseUrl());
+
+        RequestParams params = new RequestParams();
+
+        params.put("client_id", gg.getClientId());
+        params.put("client_secret", gg.getClientSecret());
+
+        if (useAutorizationCode) {
+            params.put("redirect_uri", gg.getRedirectUri().toString());
+            params.put("client_id", gg.getClientId());
+
+            params.put("code", gg.auth().getAutorizationCode());
+            params.put("grant_type", "authorization_code");
+
+        } else {
+
+            params.put("grant_type", "refresh_token");
+            params.put("refresh_token", gg.auth().getRefreshToken());
+
+        }
+
+        http.post(url, params, new GoodGameHttpResponseHandler(handler) {
+            @Override
+            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
+                try {
+
+                    AccessToken value = objectMapper.readValue(content, AccessToken.class);
+                    gg.auth().setAccessToken(value.getAccessToken());
+                    gg.auth().setRefreshToken(value.getRefreshToken());
+
+                    handler.onSuccess(value);
+                } catch (IOException e) {
+                    handler.onFailure(e);
+                }
+            }
+        });
+
+
+    }
+
+    /**
+     * @Deprecated
+     * Используйте метод getAccessToken с двумя параметрами
+     */
+
+    @Deprecated
     public final void getAccessToken(final Authenticator authenticator, final String clientSecret,
                                      final boolean useAutorizationCode, final OauthResponseHandler handler) {
         String url = String.format("%s/oauth", getBaseUrl());
 
         RequestParams params = new RequestParams();
 
-        params.put("redirect_uri", authenticator.getRedirectUri().toString());
-        params.put("client_id", authenticator.getClientId());
+        params.put("client_id", gg.getClientId());
         params.put("client_secret", clientSecret);
 
         if (useAutorizationCode) {
+            params.put("redirect_uri", authenticator.getRedirectUri().toString());
+            params.put("client_id", gg.getClientId());
 
-            if (authenticator.getAutorizationCode() != null) {
-                params.put(this.CODE, authenticator.getAutorizationCode());
-            } else {
-                params.put(this.CODE, authenticator.getRefreshToken());
-            }
+            params.put("code", authenticator.getAutorizationCode());
+            params.put("grant_type", "authorization_code");
 
         } else {
 
-            params.put(this.CODE, authenticator.getRefreshToken());
-        }
+            params.put("grant_type", "refresh_token");
+            params.put("refresh_token", authenticator.getRefreshToken());
 
-        params.put("grant_type", "authorization_code");
+        }
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
