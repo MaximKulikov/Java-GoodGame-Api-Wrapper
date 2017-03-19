@@ -69,10 +69,6 @@ public class GoodGame {
         return this.clientId;
     }
 
-    public final String getClientSecret() {return this.clientSecret;}
-
-    public final URI getRedirectUri() {return this.authenticator.getRedirectUri();}
-
     public final void setClientId(final String clientId) {
         this.clientId = clientId;
         // Update client id in all resources
@@ -81,8 +77,16 @@ public class GoodGame {
         }
     }
 
+    public final String getClientSecret() {
+        return this.clientSecret;
+    }
+
     public final void setClientSecret(final String clientSecret) {
         this.clientSecret = clientSecret;
+    }
+
+    public final URI getRedirectUri() {
+        return this.authenticator.getRedirectUri();
     }
 
     private AbstractResource getResource(final Resources key) {

@@ -382,8 +382,8 @@ gg.auth().setRefreshToken("my-refresh-token");
 ```
 
 ## Документация
-* Документация Github [GoogGame API](https://github.com/GoodGame/API)
-* Еще документация [GoogGame API](http://api2.goodgame.ru/apigility/documentation/Goodgame-v2)
+* Документация Github [GoodGame API](https://github.com/GoodGame/API)
+* Еще документация [GoodGame API](http://api2.goodgame.ru/apigility/documentation/Goodgame-v2)
 * [Топик на форуме](https://goodgame.ru/topic/67865/)
 * [JavaDoc](https://trinion.github.io/Java-GoodGame-Api-Wrapper/)
 
@@ -406,7 +406,7 @@ gg.auth().setRefreshToken("my-refresh-token");
         <dependency>
             <groupId>ru.maximkulikov</groupId>
             <artifactId>goodgame-api-wrapper</artifactId>
-            <version>0.1.1</version>
+            <version>RELEASE</version>
         </dependency>
            
     </dependencies>
