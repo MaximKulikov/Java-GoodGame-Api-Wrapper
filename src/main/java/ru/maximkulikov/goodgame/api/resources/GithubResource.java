@@ -17,6 +17,11 @@ import ru.maximkulikov.goodgame.api.models.GitHubToken;
  */
 public class GithubResource extends AbstractResource {
 
+    private static final String ID = "id";
+
+    private static final String FMT = "fmt";
+
+    private static final String JSON = "json";
 
     public GithubResource(final String baseUrl) {
         super(baseUrl);
@@ -26,8 +31,8 @@ public class GithubResource extends AbstractResource {
         String url = String.format("%s/getchannelstatus", getBaseUrl());
 
         RequestParams params = new RequestParams();
-        params.put("id", channelId);
-        params.put("fmt", "json");
+        params.put(ID, channelId);
+        params.put(FMT, JSON);
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
@@ -49,7 +54,7 @@ public class GithubResource extends AbstractResource {
         } else {
             params.put("oauth_token ", "");
         }
-        params.put("fmt", "json");
+        params.put(FMT, JSON);
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
@@ -70,7 +75,7 @@ public class GithubResource extends AbstractResource {
 
         RequestParams params = new RequestParams();
         params.put("game", gameUrl);
-        params.put("fmt", "json");
+        params.put(FMT, JSON);
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
@@ -86,8 +91,8 @@ public class GithubResource extends AbstractResource {
         String url = String.format("%s/getggchannelstatus", getBaseUrl());
 
         RequestParams params = new RequestParams();
-        params.put("id", id);
-        params.put("fmt", "json");
+        params.put(ID, id);
+        params.put(FMT, JSON);
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
@@ -106,7 +111,7 @@ public class GithubResource extends AbstractResource {
         RequestParams params = new RequestParams();
         params.put("username", username);
         params.put("password", password);
-        params.put("fmt", "json");
+        params.put(FMT, JSON);
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
@@ -128,8 +133,8 @@ public class GithubResource extends AbstractResource {
         String url = String.format("%s/getupcomingbroadcast", getBaseUrl());
 
         RequestParams params = new RequestParams();
-        params.put("id", id);
-        params.put("fmt", "json");
+        params.put(ID, id);
+        params.put(FMT, JSON);
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override

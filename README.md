@@ -13,9 +13,10 @@ Please feel free to report any issues or contribute code.
 Использование обертки позволяет отправлять запросы и получать ответы от`GoodGame` в виде объектов `Java`.
 Библиотека разделена на несколько частей:  
 1. АПИ Стримингового сервиса  
-  1.1. на сайте [GoodGame (v2)](http://api2.goodgame.ru/apigility/documentation/Goodgame-v2)  
-  1.2. на Github [GoodGame API](https://github.com/GoodGame/API)  
+  1.1. Реализованы методы из [GoodGame (v2)](http://api2.goodgame.ru/apigility/documentation/Goodgame-v2)  
+  1.2. Реализованы методы из Github [GoodGame API](https://github.com/GoodGame/API)  
 2. АПИ чата  
+  2.1.  Реализованы методы из Github [GoodGame Chat API](https://github.com/GoodGame/API/blob/master/Chat/protocol.md)
 
 Для запроса GoodGame (v2) `GET /channel/:channel/subscribers` используется экземпляр класса GoodGame() 
 в котором вызывается `gg.channels().getSubscribers(channelName, new SubscriberResponseHandler()`  
@@ -121,124 +122,6 @@ class SimpleExample {
 **`http://goodgame.ru/api/getupcomingbroadcast`**: возвращает 404 страницу в HTML разметке, любой запрос вылетет в блок `onFailure(Throwable throwable)` (актуально на 20 янв 2017)  
 **`http://goodgame.ru/api/getchannelsbygame`** вернет пустой массив (актуально 20 янв 2017)
 **`http://goodgame.ru/api/getchannelsubscribers`** Не понимаю какой токен он хочет, возвращает success=false.
-
-# API чата
-Для работы требуется создать экземпляр класса и унаследовать его от GoodChat, для подключения вызовите .connect. 
-Соединение принудительно прервется через 24 часа или при вызове метода stop().
-
-```java
-class SimpleExample {
-    public void example() {
-
-        GGChat goodgameChat = new GGChat();
-
-        goodgameChat.connect();
-    } 
-
-    class GGChat extends GoodChat {  
-
-        @Override  
-        public void onMessage(Response answer) {
-
-            // Возвращает значение Enum с типом пришедшего сообщения
-            answer.getType(); 
-
-            // Возвращает базовый ResChatObject
-            answer.getAnswer(); 
-
-            // Пример:
-            switch (answer.getType()) {  
-                case CHANNEL_HISTORY:  
-                    ResChannelHistory resChannelHistory = (ResChannelHistory) answer.getAnswer();  
-                    System.out.println(answer.getAnswer());  
-            }  
-        }  
-    }
-}
-```
-
-
-### Соответствие запросам на сервер чата классам библиотеки
-
-Запросы на сервер отправляются методом sendMessage(ReqChatObject chatObject) в унаследованном от GoodChat классе, 
-после соединения с сервером
-
-
-| Запросы                | Классы ReqChatObject                                                                                                                                       |
-|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| auth                   | `ReqAutorizationContainer(int siteId, int userId, String token)`                                                                                           |
-| get_channels_list      | `ReqChannelsListContainer()` <br /> `ReqChannelsListContainer(int start, int count)`                                                                       |
-| join                   | `ReqJoinContainer(String channelId)` <br />`ReqJoinContainer(String channelId, boolean hidden, boolean mobile)`                                            |
-| unjoin                 | `ReqUnjoinContainer(String channelId)`                                                                                                                     |
-| get_users_list         | `ReqUsersListContainer(String channelId)`                                                                                                                  |
-| get_channel_counters   | `ReqChannelCountersContainer(String channelId)`                                                                                                            |
-| get_ignore_list        | `ReqIgnoreListContainer()`                                                                                                                                 |
-| add_to_ignore_list     | `ReqAddToIgnoreListContainer(String userId)`                                                                                                               |
-| del_from_ignore_list   | `ReqDelFromIgnoreListContainer(String userId)`                                                                                                             |
-| get_channel_history    | `ReqChannelHistoryContainer(String channelId)`                                                                                                             |
-| send_message           | `ReqSendMessageContainer(String channelId, String text)` <br /> `ReqSendMessageContainer(String channelId, String text, Boolean hideIcon, Boolean mobile)` |
-| send_private_message   | `ReqPrivateMessageContainer(String channelId, String userId, String text)`                                                                                 |
-| remove_message         | `ReqRemoveMessageContainer(String channelId, String messageId)`                                                                                            |
-| ban                    | `ReqBanContainer(String channelId, String banChannel, String userId, Long duration, String reason, String comment, Boolean show_ban)`                      |
-| warn                   | `ReqWarnContainer(String channelId, String userId, String reason)`                                                                                         |
-| new_poll               | `ReqNewPollContainer(String channelId, String moderId, String moderName, String title, List<String> answers)`                                              |
-| get_poll               | `ReqGetPollContainer(String channelId)`                                                                                                                    |
-| vote                   | `ReqVoteContainer(String channelId, int answerId)`                                                                                                         |
-| get_poll_results       | `ReqPollResultsContainer(String channelId)`                                                                                                                |
-| get_user_info          | `ReqGetUserInfoContainer(String userId)`                                                                                                                   |
-| make_moderator         | `ReqMakeModeratorContainer(String channelId, String userId)`                                                                                               |
-| clean_moderator        | `ReqCleanModeratorContainer(String channelId, String userId)`                                                                                              |
-| refresh_premium        | `ReqRefreshPremiumContainer(String channelId)`                                                                                                             |
-| refresh_groups v.2     | `ReqRefreshGroupsContainer(String channelId)`                                                                                                              |
-
-**send_private_message**: Приватное сообщение, отправленное таким способом можно отловить только с использованием API (в чатике на сайте оно не появится)
-
-### Соответствие ответов сервера чата классам библиотеки
-
-Ответы от сервера приходят в переопределенный метод onMessage
-```java
-class SimpleExample extends GoodChat {
-
-    @Override
-    public void onMessage(Response answer) {
-    }    
-}
-```
-
-| Ответы API       |     Классы         |
-|------------------|--------------------|
-| welcome          | ResWelcome         |
-| success_auth     | ResAutorization    |
-| channels_list    | ResChannelsList    |
-| success_join     | ResJoin            |
-| success_unjoin   | ResUnjoin          |
-| join_to_room     | ResJoinToRoom      |
-| users_list       | ResUsersList       |
-| channel_counters | ResChannelCounters |
-| list             | ResModeratorsList  |
-| setting v.2      | ResSettings        |
-| ignore_list      | ResIgnoreList      |
-| channel_history  | ResChannelHistory  |
-| motd             | ResMotd            |
-| slowmod          | ResSlowmod         |
-| message          | ResMessage         |
-| private_message  | ResPrivateMessage  |
-| remove_message   | ResRemoveMessage   |
-| user_ban         | ResUserBan         |
-| user_warn        | ResWarn            |
-| new_poll         | ResNewPoll         |
-| poll_results     | ResPollResults     |
-| user             | ChatUser           |
-| update_rights    | ResUpdateRights    |
-| update_groups v.2| ResUpdateGroups    |
-| update_premium   | ResUpdatePremium   |
-| error            | ResError           |
-| payment          | ResPayment         |
-| premium          | ResPremium         |
-| accepted         |                    |
-| moder_rights     | ResModeratorRight  |
-| Остальное:UNKNOWN| null               |
-
 
 
 ## Авторизация
@@ -381,6 +264,136 @@ gg.auth().setAccessToken("my-access-token");
 gg.auth().setRefreshToken("my-refresh-token");
 ```
 
+# API чата
+Для работы требуется создать экземпляр класса и унаследовать его от GoodChat, для подключения вызовите .connect. 
+Соединение принудительно прервется через 24 часа или при вызове метода stop().
+
+```java
+class SimpleExample {
+    public void example() {
+
+        GGChat goodgameChat = new GGChat();
+
+        goodgameChat.connect();
+    } 
+
+    class GGChat extends GoodChat {  
+
+        @Override  
+        public void onMessage(Response answer) {
+
+            // Возвращает значение Enum с типом пришедшего сообщения
+            answer.getType(); 
+
+            // Возвращает базовый ResChatObject
+            answer.getAnswer(); 
+
+            // Пример:
+            switch (answer.getType()) {  
+                case CHANNEL_HISTORY:  
+                    ResChannelHistory resChannelHistory = (ResChannelHistory) answer.getAnswer();  
+                    System.out.println(answer.getAnswer());  
+            }  
+        }  
+    }
+}
+```
+
+
+### Соответствие запросам на сервер чата классам библиотеки
+
+Запросы на сервер отправляются методом sendMessage(ReqChatObject chatObject) в унаследованном от GoodChat классе, 
+после соединения с сервером
+
+Пример авторизации в чате:
+```java
+class ChatSendMessageExample extends GoodChat {
+    private void example() {
+     
+        sendMessage(new ReqAutorizationContainer(1, myUserId, myChatToken)); 
+    } 
+}
+```
+
+
+| Запросы                | Классы ReqChatObject                                                                                                                                       |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| auth                   | `ReqAutorizationContainer(int siteId, int userId, String token)`                                                                                           |
+| get_channels_list      | `ReqChannelsListContainer()` <br /> `ReqChannelsListContainer(int start, int count)`                                                                       |
+| join                   | `ReqJoinContainer(String channelId)` <br />`ReqJoinContainer(String channelId, boolean hidden, boolean mobile)`                                            |
+| unjoin                 | `ReqUnjoinContainer(String channelId)`                                                                                                                     |
+| get_users_list         | `ReqUsersListContainer(String channelId)`                                                                                                                  |
+| get_channel_counters   | `ReqChannelCountersContainer(String channelId)`                                                                                                            |
+| get_ignore_list        | `ReqIgnoreListContainer()`                                                                                                                                 |
+| add_to_ignore_list     | `ReqAddToIgnoreListContainer(String userId)`                                                                                                               |
+| del_from_ignore_list   | `ReqDelFromIgnoreListContainer(String userId)`                                                                                                             |
+| get_channel_history    | `ReqChannelHistoryContainer(String channelId)`                                                                                                             |
+| send_message           | `ReqSendMessageContainer(String channelId, String text)` <br /> `ReqSendMessageContainer(String channelId, String text, Boolean hideIcon, Boolean mobile)` |
+| send_private_message   | `ReqPrivateMessageContainer(String channelId, String userId, String text)`                                                                                 |
+| remove_message         | `ReqRemoveMessageContainer(String channelId, String messageId)`                                                                                            |
+| ban                    | `ReqBanContainer(String channelId, String banChannel, String userId, Long duration, String reason, String comment, Boolean show_ban)`                      |
+| warn                   | `ReqWarnContainer(String channelId, String userId, String reason)`                                                                                         |
+| new_poll               | `ReqNewPollContainer(String channelId, String moderId, String moderName, String title, List<String> answers)`                                              |
+| get_poll               | `ReqGetPollContainer(String channelId)`                                                                                                                    |
+| vote                   | `ReqVoteContainer(String channelId, int answerId)`                                                                                                         |
+| get_poll_results       | `ReqPollResultsContainer(String channelId)`                                                                                                                |
+| get_user_info          | `ReqGetUserInfoContainer(String userId)`                                                                                                                   |
+| make_moderator         | `ReqMakeModeratorContainer(String channelId, String userId)`                                                                                               |
+| clean_moderator        | `ReqCleanModeratorContainer(String channelId, String userId)`                                                                                              |
+| refresh_premium        | `ReqRefreshPremiumContainer(String channelId)`                                                                                                             |
+| refresh_groups v.2     | `ReqRefreshGroupsContainer(String channelId)`                                                                                                              |
+
+**send_private_message**: Приватное сообщение, отправленное таким способом можно отловить только с использованием API (в чатике на сайте оно не появится)
+
+### Соответствие ответов сервера чата классам библиотеки
+
+Ответы от сервера приходят в переопределенный метод onMessage
+```java
+class ChatAnswerExample extends GoodChat {
+
+    @Override
+    public void onMessage(Response answer) {
+    }    
+}
+```
+
+| Ответы API       |     Классы         |
+|------------------|--------------------|
+| welcome          | ResWelcome         |
+| success_auth     | ResAutorization    |
+| channels_list    | ResChannelsList    |
+| success_join     | ResJoin            |
+| success_unjoin   | ResUnjoin          |
+| join_to_room     | ResJoinToRoom      |
+| users_list       | ResUsersList       |
+| channel_counters | ResChannelCounters |
+| list             | ResModeratorsList  |
+| setting v.2      | ResSettings        |
+| ignore_list      | ResIgnoreList      |
+| channel_history  | ResChannelHistory  |
+| motd             | ResMotd            |
+| slowmod          | ResSlowmod         |
+| message          | ResMessage         |
+| private_message  | ResPrivateMessage  |
+| remove_message   | ResRemoveMessage   |
+| user_ban         | ResUserBan         |
+| user_warn        | ResWarn            |
+| new_poll         | ResNewPoll         |
+| poll_results     | ResPollResults     |
+| user             | ChatUser           |
+| update_rights    | ResUpdateRights    |
+| update_groups v.2| ResUpdateGroups    |
+| update_premium   | ResUpdatePremium   |
+| error            | ResError           |
+| payment          | ResPayment         |
+| premium          | ResPremium         |
+| accepted         |                    |
+| moder_rights     | ResModeratorRight  |
+| Остальное:UNKNOWN| null               |
+
+
+
+
 ## Документация
 * Документация Github [GoodGame API](https://github.com/GoodGame/API)
 * Еще документация [GoodGame API](http://api2.goodgame.ru/apigility/documentation/Goodgame-v2)
@@ -413,7 +426,7 @@ gg.auth().setRefreshToken("my-refresh-token");
     <repositories>
     
         <repository>
-            <id>http://maximkulikov.ru/maven2</id>
+            <id>maximkulikov.ru</id>
             <url>http://maximkulikov.ru/maven2</url>
         </repository>
         

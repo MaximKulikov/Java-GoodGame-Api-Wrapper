@@ -161,140 +161,153 @@ public abstract class GoodChat {
 
                 switch (response) {
                     case ACCEPTED:
-                        ResAcceptedContainer resAcceptedContainer = objectMapper.readValue(msg, ResAcceptedContainer.class);
+                        ResAcceptedContainer resAcceptedContainer =
+                                this.objectMapper.readValue(msg, ResAcceptedContainer.class);
                         answer = new Response(response, resAcceptedContainer.getData());
                         break;
                     case WELCOME:
-                        ResWelcomeContainer resWelcomeContainer = objectMapper.readValue(msg, ResWelcomeContainer.class);
+                        ResWelcomeContainer resWelcomeContainer =
+                                this.objectMapper.readValue(msg, ResWelcomeContainer.class);
                         answer = new Response(response, resWelcomeContainer.getData());
                         break;
                     case SUCCESS_AUTH:
                         ResAutorizationContainer resAutorizationContainer =
-                                objectMapper.readValue(msg, ResAutorizationContainer.class);
+                                this.objectMapper.readValue(msg, ResAutorizationContainer.class);
                         answer = new Response(response, resAutorizationContainer.getData());
                         break;
                     case CHANNELS_LIST:
                         ResChannelsListContainer resChannelsListContainer =
-                                objectMapper.readValue(msg, ResChannelsListContainer.class);
+                                this.objectMapper.readValue(msg, ResChannelsListContainer.class);
                         answer = new Response(response, resChannelsListContainer.getData());
                         break;
                     case SUCCESS_JOIN:
-                        ResJoinContainer resJoinContainer = objectMapper.readValue(msg, ResJoinContainer.class);
+                        ResJoinContainer resJoinContainer =
+                                this.objectMapper.readValue(msg, ResJoinContainer.class);
                         answer = new Response(response, resJoinContainer.getData());
                         break;
                     case SUCCESS_UNJOIN:
-                        ResUnjoinContainer resUnjoinContainer = objectMapper.readValue(msg, ResUnjoinContainer.class);
+                        ResUnjoinContainer resUnjoinContainer =
+                                this.objectMapper.readValue(msg, ResUnjoinContainer.class);
                         answer = new Response(response, resUnjoinContainer.getData());
                         break;
                     case JOIN_TO_ROOM:
                         ResJoinToRoomContainer resJoinToRoomContainer =
-                                objectMapper.readValue(msg, ResJoinToRoomContainer.class);
+                                this.objectMapper.readValue(msg, ResJoinToRoomContainer.class);
                         answer = new Response(response, resJoinToRoomContainer.getData());
                         break;
                     case USERS_LIST:
                         ResUsersListContainer resUsersListContainer =
-                                objectMapper.readValue(msg, ResUsersListContainer.class);
+                                this.objectMapper.readValue(msg, ResUsersListContainer.class);
                         answer = new Response(response, resUsersListContainer.getData());
                         break;
                     case CHANNEL_COUNTERS:
                         ResChannelCountersContainer resChannelCountersContainer =
-                                objectMapper.readValue(msg, ResChannelCountersContainer.class);
+                                this.objectMapper.readValue(msg, ResChannelCountersContainer.class);
                         answer = new Response(response, resChannelCountersContainer.getData());
                         break;
                     case LIST:
                         ResModeratorsListContainer resModeratorsListContainer =
-                                objectMapper.readValue(msg, ResModeratorsListContainer.class);
+                                this.objectMapper.readValue(msg, ResModeratorsListContainer.class);
                         answer = new Response(response, resModeratorsListContainer.getData());
                         break;
                     case MODER_RIGHTS:
                         ResModeratorRightContainer resModeratorRightContainer =
-                                objectMapper.readValue(msg, ResModeratorRightContainer.class);
+                                this.objectMapper.readValue(msg, ResModeratorRightContainer.class);
                         answer = new Response(response, resModeratorRightContainer.getData());
                         break;
                     case SETTING:
                         ResSettingsContainer resSettingsContainer =
-                                objectMapper.readValue(msg, ResSettingsContainer.class);
+                                this.objectMapper.readValue(msg, ResSettingsContainer.class);
                         answer = new Response(response, resSettingsContainer.getData());
                         break;
                     case IGNORE_LIST:
                         ResIgnoreListContainer resIgnoreListContainer =
-                                objectMapper.readValue(msg, ResIgnoreListContainer.class);
+                                this.objectMapper.readValue(msg, ResIgnoreListContainer.class);
                         answer = new Response(response, resIgnoreListContainer.getData());
                         break;
                     case CHANNEL_HISTORY:
                         ResChannelHistoryContainer resChannelHistoryContainer =
-                                objectMapper.readValue(msg, ResChannelHistoryContainer.class);
+                                this.objectMapper.readValue(msg, ResChannelHistoryContainer.class);
                         answer = new Response(response, resChannelHistoryContainer.getData());
                         break;
                     case MOTD:
-                        ResMotdContainer resMotdContainer = objectMapper.readValue(msg, ResMotdContainer.class);
+                        ResMotdContainer resMotdContainer =
+                                this.objectMapper.readValue(msg, ResMotdContainer.class);
                         answer = new Response(response, resMotdContainer.getData());
                         break;
                     case SLOWMOD:
-                        ResSlowmodContainer resSlowmodContainer = objectMapper.readValue(msg, ResSlowmodContainer.class);
+                        ResSlowmodContainer resSlowmodContainer =
+                                this.objectMapper.readValue(msg, ResSlowmodContainer.class);
                         answer = new Response(response, resSlowmodContainer.getData());
                         break;
                     case MESSAGE:
-                        ResMessageContainer resMessageContainer = objectMapper.readValue(msg, ResMessageContainer.class);
+                        ResMessageContainer resMessageContainer =
+                                this.objectMapper.readValue(msg, ResMessageContainer.class);
                         answer = new Response(response, resMessageContainer.getData());
                         break;
                     case PRIVATE_MESSAGE:
                         ResPrivateMessageContainer resPrivateMessageContainer =
-                                objectMapper.readValue(msg, ResPrivateMessageContainer.class);
+                                this.objectMapper.readValue(msg, ResPrivateMessageContainer.class);
                         answer = new Response(response, resPrivateMessageContainer.getData());
                         break;
                     case REMOVE_MESSAGE:
                         ResRemoveMessageContainer resRemoveMessageContainer =
-                                objectMapper.readValue(msg, ResRemoveMessageContainer.class);
+                                this.objectMapper.readValue(msg, ResRemoveMessageContainer.class);
                         answer = new Response(response, resRemoveMessageContainer.getData());
                         break;
                     case USER_BAN:
-                        ResUserBanContainer resUserBanContainer = objectMapper.readValue(msg, ResUserBanContainer.class);
+                        ResUserBanContainer resUserBanContainer =
+                                this.objectMapper.readValue(msg, ResUserBanContainer.class);
                         answer = new Response(response, resUserBanContainer.getData());
                         break;
                     case USER_WARN:
-                        ResWarnContainer resWarnContainer = objectMapper.readValue(msg, ResWarnContainer.class);
+                        ResWarnContainer resWarnContainer =
+                                this.objectMapper.readValue(msg, ResWarnContainer.class);
                         answer = new Response(response, resWarnContainer.getData());
                         break;
                     case NEW_POLL:
-                        ResNewPollContainer resNewPollContainer = objectMapper.readValue(msg, ResNewPollContainer.class);
+                        ResNewPollContainer resNewPollContainer =
+                                this.objectMapper.readValue(msg, ResNewPollContainer.class);
                         answer = new Response(response, resNewPollContainer.getData());
                         break;
                     case POLL_RESULTS:
                         ResPollResultsContainer resPollResultsContainer =
-                                objectMapper.readValue(msg, ResPollResultsContainer.class);
+                                this.objectMapper.readValue(msg, ResPollResultsContainer.class);
                         answer = new Response(response, resPollResultsContainer.getData());
                         break;
                     case USER:
                         ResGetUserInfoContainer resGetUserInfoContainer =
-                                objectMapper.readValue(msg, ResGetUserInfoContainer.class);
+                                this.objectMapper.readValue(msg, ResGetUserInfoContainer.class);
                         answer = new Response(response, resGetUserInfoContainer.getData());
                         break;
                     case UPDATE_RIGHTS:
                         ResUpdateRightsContainer resUpdateRightsContainer =
-                                objectMapper.readValue(msg, ResUpdateRightsContainer.class);
+                                this.objectMapper.readValue(msg, ResUpdateRightsContainer.class);
                         answer = new Response(response, resUpdateRightsContainer.getData());
                         break;
                     case UPDATE_GROUPS:
                         ResUpdateGroupsContainer resUpdateGroupsContainer =
-                                objectMapper.readValue(msg, ResUpdateGroupsContainer.class);
+                                this.objectMapper.readValue(msg, ResUpdateGroupsContainer.class);
                         answer = new Response(response, resUpdateGroupsContainer.getData());
                         break;
                     case UPDATE_PREMIUM:
                         ResUpdatePremiumContainer resUpdatePremiumContainer =
-                                objectMapper.readValue(msg, ResUpdatePremiumContainer.class);
+                                this.objectMapper.readValue(msg, ResUpdatePremiumContainer.class);
                         answer = new Response(response, resUpdatePremiumContainer.getData());
                         break;
                     case PAYMENT:
-                        ResPaymentContainer resPaymentContainer = objectMapper.readValue(msg, ResPaymentContainer.class);
+                        ResPaymentContainer resPaymentContainer =
+                                this.objectMapper.readValue(msg, ResPaymentContainer.class);
                         answer = new Response(response, resPaymentContainer.getData());
                         break;
                     case PREMIUM:
-                        ResPremiumContainer resPremiumContainer = objectMapper.readValue(msg, ResPremiumContainer.class);
+                        ResPremiumContainer resPremiumContainer =
+                                this.objectMapper.readValue(msg, ResPremiumContainer.class);
                         answer = new Response(response, resPremiumContainer.getData());
                         break;
                     case ERROR:
-                        ResErrorContainer resErrorContainer = objectMapper.readValue(msg, ResErrorContainer.class);
+                        ResErrorContainer resErrorContainer =
+                                this.objectMapper.readValue(msg, ResErrorContainer.class);
                         answer = new Response(response, resErrorContainer.getData());
                         break;
                     default:
@@ -303,7 +316,7 @@ public abstract class GoodChat {
                         break;
                 }
                 if (answer == null) {
-                    System.out.println();
+                    System.out.println("answer == null");
                 }
                 this.chat.onMessage(answer);
 

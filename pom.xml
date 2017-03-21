@@ -4,7 +4,7 @@
 
     <groupId>ru.maximkulikov</groupId>
     <artifactId>goodgame-api-wrapper</artifactId>
-    <version>0.1.3-alpha-1</version>
+    <version>0.1.3-beta-1</version>
     <packaging>jar</packaging>
 
     <name>goodgame-api-wrapper</name>
@@ -59,7 +59,7 @@
     </dependencies>
     <repositories>
         <repository>
-            <id>http://maximkulikov.ru/maven2</id>
+            <id>maximkulikov.ru</id>
             <url>http://maximkulikov.ru/maven2</url>
         </repository>
     </repositories>

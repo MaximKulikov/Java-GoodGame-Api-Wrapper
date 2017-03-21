@@ -25,6 +25,14 @@ public class OauthResource extends AbstractResource {
 
     private static final String REFRESH_TOKEN = "refresh_token";
 
+    private static final String CLIENT_ID = "client_id";
+
+    private static final String CLIENT_SECRET = "client_secret";
+
+    private static final String REDIRECT_URI = "redirect_uri";
+
+    private static final String AUTHORIZATION_CODE = "authorization_code";
+
     private GoodGame gg;
 
     public OauthResource(final String defaultBaseUrl, final int defaultApiVersion, final GoodGame gg) {
@@ -39,15 +47,15 @@ public class OauthResource extends AbstractResource {
 
         RequestParams params = new RequestParams();
 
-        params.put("client_id", this.gg.getClientId());
-        params.put("client_secret", this.gg.getClientSecret());
+        params.put(CLIENT_ID, this.gg.getClientId());
+        params.put(CLIENT_SECRET, this.gg.getClientSecret());
 
         if (useAutorizationCode) {
-            params.put("redirect_uri", this.gg.getRedirectUri().toString());
-            params.put("client_id", this.gg.getClientId());
+            params.put(REDIRECT_URI, this.gg.getRedirectUri().toString());
+            params.put(CLIENT_ID, this.gg.getClientId());
 
             params.put(CODE, this.gg.auth().getAutorizationCode());
-            params.put(GRANT_TYPE, "authorization_code");
+            params.put(GRANT_TYPE, AUTHORIZATION_CODE);
 
         } else {
 
@@ -86,15 +94,15 @@ public class OauthResource extends AbstractResource {
 
         RequestParams params = new RequestParams();
 
-        params.put("client_id", gg.getClientId());
-        params.put("client_secret", clientSecret);
+        params.put(CLIENT_ID, this.gg.getClientId());
+        params.put(CLIENT_SECRET, clientSecret);
 
         if (useAutorizationCode) {
-            params.put("redirect_uri", authenticator.getRedirectUri().toString());
-            params.put("client_id", gg.getClientId());
+            params.put(REDIRECT_URI, authenticator.getRedirectUri().toString());
+            params.put(CLIENT_ID, gg.getClientId());
 
             params.put(CODE, authenticator.getAutorizationCode());
-            params.put(GRANT_TYPE, "authorization_code");
+            params.put(GRANT_TYPE, AUTHORIZATION_CODE);
 
         } else {
 

@@ -81,7 +81,8 @@ public class AuthenticationCallbackRequest implements Runnable {
 
     private void processRequest() throws IOException {
 //         Get a reference to the socket's input and output streams.
-        InputStream is = this.socket.getInputStream();
+        //InputStream is = this.socket.getInputStream();
+        this.socket.getInputStream();
         DataOutputStream os;
 
         // Set up input stream filters.
@@ -106,7 +107,8 @@ public class AuthenticationCallbackRequest implements Runnable {
         StringTokenizer tokens = new StringTokenizer(requestLine);
 
         // Request method, which should be "GET"
-          String requestMethod = tokens.nextToken();
+        //String requestMethod = tokens.nextToken();
+        tokens.nextToken();
 
         String requestFilename = tokens.nextToken();
         Map<String, String> queryParams = extractQueryParams(requestFilename);
