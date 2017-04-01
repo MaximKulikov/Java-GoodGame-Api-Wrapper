@@ -1,0 +1,87 @@
+
+        }, {
+            key: "disconnect",
+            value: function() {
+                this.sock.connected() && this.sock.disconnect()
+            }
+        }
+
+            key: "getStreamModers",
+            value: function(roomId) {
+                return this._sendWithCallback("get_stream_moders_list", {
+                    channel_id: roomId
+                }, "stream_moders_list")
+            }
+
+
+        return this.sock.send("setting", {
+            channel_id: roomId,
+            settings: settings
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| Ответы API       
+|------------------
+| welcome            ("welcome"
+| success_auth  ("success_auth",
+| channels_list
+| success_join  ("success_join",
+| success_unjoin
+| join_to_room
+| users_list        ("users_list",
+| channel_counters  ("channel_counters",
+| list
+| setting v.2       ("setting",
+| ignore_list       ("ignore_list",
+| channel_history   ("channel_history",
+| motd
+| slowmod
+| message           ("message",
+| private_message   ("private_message",
+| remove_message   ("remove_message",
+| user_ban          ("user_ban",
+| user_warn        ("user_warn",
+| new_poll         ("new_poll",
+| poll_results     ("poll_results",
+| user             
+| update_rights    
+| update_groups v.2
+| update_premium   
+| error            ("error",
+| payment          ("payment",
+| premium          ("premium",
+| accepted         
+| moder_rights     ("moder_rights",
+| Остальное:UNKNOWN| null               |
+
+("reconnecting",
+("reconnected",
+("stream_moders_list",
+("random_result",
+ ("update_user_info",
