@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqUsersListContainer implements ReqChatObject {
 
-    private String type = "get_users_list";
+    private String type = "get_users_list2";
 
     private ReqUsersList data;
 

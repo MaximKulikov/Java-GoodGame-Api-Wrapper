@@ -26,6 +26,7 @@ public class ChannelsResource extends AbstractResource {
 
     public final void getDonations(final String channel, final DonationsResponseHandler handler) {
         String url = String.format("%s/channel/%s/donations", getBaseUrl(), channel);
+        this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -42,6 +43,7 @@ public class ChannelsResource extends AbstractResource {
     public final void getDonations(final String channel, final RequestParams params,
                                    final DonationsResponseHandler handler) {
         String url = String.format("%s/channel/%s/donations", getBaseUrl(), channel);
+        this.configureHeaders();
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -58,6 +60,7 @@ public class ChannelsResource extends AbstractResource {
     public final void getPremiums(final String channel, final PremiumsResponseHandler handler) {
         String url = String.format("%s/channel/%s/premiums", getBaseUrl(), channel);
 
+        this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -75,6 +78,7 @@ public class ChannelsResource extends AbstractResource {
                                   final PremiumsResponseHandler handler) {
         String url = String.format("%s/channel/%s/premiums", getBaseUrl(), channel);
 
+        this.configureHeaders();
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -91,7 +95,7 @@ public class ChannelsResource extends AbstractResource {
     public final void getSubscribers(final String channel, final SubscriberResponseHandler handler) {
         String url = String.format("%s/channel/%s/subscribers", getBaseUrl(), channel);
 
-
+        this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -109,7 +113,7 @@ public class ChannelsResource extends AbstractResource {
                                      final SubscriberResponseHandler handler) {
         String url = String.format("%s/channel/%s/subscribers", getBaseUrl(), channel);
 
-
+        this.configureHeaders();
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {

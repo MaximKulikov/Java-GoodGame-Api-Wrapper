@@ -20,6 +20,7 @@ public class PlayerResourses extends AbstractResource {
         String url = String.format("%s/player/%s", getBaseUrl(), channelId);
 
 
+        this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {

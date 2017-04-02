@@ -21,6 +21,7 @@ public class ChatResource extends AbstractResource {
     public final void getChatToken(final ChatTokenResponseHandler handler) {
         String url = String.format("%s/chat/token", getBaseUrl());
 
+        this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {

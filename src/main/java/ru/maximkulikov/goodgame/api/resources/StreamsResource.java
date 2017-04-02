@@ -20,6 +20,7 @@ public class StreamsResource extends AbstractResource {
     public final void getChannel(final String channel, final StreamChannelResponseHandler handler) {
         String url = String.format("%s/streams/%s", getBaseUrl(), channel);
 
+        this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -45,6 +46,7 @@ public class StreamsResource extends AbstractResource {
     public final void getStreams(final StreamsResponseHandler handler) {
         String url = String.format("%s/streams", getBaseUrl());
 
+        this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -62,6 +64,7 @@ public class StreamsResource extends AbstractResource {
 
         String url = String.format("%s/streams", getBaseUrl());
 
+        this.configureHeaders();
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {

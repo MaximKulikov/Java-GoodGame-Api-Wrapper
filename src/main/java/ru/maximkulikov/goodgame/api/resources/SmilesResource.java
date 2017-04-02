@@ -26,6 +26,7 @@ public class SmilesResource extends AbstractResource {
     public final void getChannelSmiles(final long channelID, final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles/%s", getBaseUrl(), channelID);
 
+        this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -47,6 +48,7 @@ public class SmilesResource extends AbstractResource {
         RequestParams params = new RequestParams();
         params.put(this.PAGE, page);
 
+        this.configureHeaders();
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -64,6 +66,7 @@ public class SmilesResource extends AbstractResource {
     public final void getSmiles(final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles", getBaseUrl());
 
+        this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -82,6 +85,8 @@ public class SmilesResource extends AbstractResource {
         String url = String.format("%s/smiles", getBaseUrl());
         RequestParams params = new RequestParams();
         params.put(this.PAGE, page);
+
+        this.configureHeaders();
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {

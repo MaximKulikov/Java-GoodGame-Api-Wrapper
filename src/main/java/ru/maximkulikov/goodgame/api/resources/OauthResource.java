@@ -111,6 +111,7 @@ public class OauthResource extends AbstractResource {
 
         }
 
+        this.configureHeaders();
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -131,6 +132,7 @@ public class OauthResource extends AbstractResource {
     public final void getResource(final OauthResourceResponseHandler handler) {
         String url = String.format("%s/oauth/resource", getBaseUrl());
 
+        this.configureHeaders();
         http.post(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {

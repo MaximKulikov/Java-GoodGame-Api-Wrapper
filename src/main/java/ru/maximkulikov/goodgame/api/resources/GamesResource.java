@@ -24,6 +24,7 @@ public class GamesResource extends AbstractResource {
     public final void getGame(final String gameUrl, final GameResponseHandler handler) {
         String url = String.format("%s/games/%s", getBaseUrl(), gameUrl);
 
+        this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -40,6 +41,7 @@ public class GamesResource extends AbstractResource {
     public final void getGames(final RequestParams params, final GamesResponseHandler handler) {
         String url = String.format("%s/games", getBaseUrl());
 
+        this.configureHeaders();
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -56,6 +58,7 @@ public class GamesResource extends AbstractResource {
     public final void getGames(final GamesResponseHandler handler) {
         String url = String.format("%s/games", getBaseUrl());
 
+        this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {

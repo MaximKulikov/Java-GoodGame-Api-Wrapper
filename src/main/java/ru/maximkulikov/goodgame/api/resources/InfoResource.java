@@ -23,6 +23,7 @@ public class InfoResource extends AbstractResource {
     public final void getInfo(final InfoResponseHandler handler) {
         String url = String.format("%s/info", getBaseUrl());
 
+        this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {

@@ -14,6 +14,8 @@ public class GoodGame {
 
     private static final String OLD_BASE_URL = "http://goodgame.ru/api";
 
+    private static final String AJAX_BASE_URL = "http://goodgame.ru/ajax";
+
     private static final int DEFAULT_API_VERSION = 2;
 
     // User's app client Id
@@ -27,6 +29,11 @@ public class GoodGame {
 
     private Map<Resources, AbstractResource> resources;
 
+    private String phpSessId;
+
+    public final String getPhpSessId() {
+        return this.phpSessId;
+    }
 
     public GoodGame(final String baseUrl, final int apiVersion) {
         this.authenticator = new Authenticator(baseUrl);
@@ -41,6 +48,7 @@ public class GoodGame {
         this.resources.put(Resources.INFO, new InfoResource(baseUrl, apiVersion));
         this.resources.put(Resources.SMILES, new SmilesResource(baseUrl, apiVersion));
         this.resources.put(Resources.GITHUBAPI, new GithubResource(OLD_BASE_URL));
+        this.resources.put(Resources.AJAX, new AjaxResource(AJAX_BASE_URL, this));
     }
 
 
@@ -48,6 +56,9 @@ public class GoodGame {
         this(DEFAULT_BASE_URL, DEFAULT_API_VERSION);
     }
 
+    public final AjaxResource ajax() {
+        return (AjaxResource) this.getResource(Resources.AJAX);
+    }
 
     public final Authenticator auth() {
         return this.authenticator;
@@ -124,6 +135,10 @@ public class GoodGame {
         return (PlayerResourses) this.getResource(Resources.PLAYER);
     }
 
+    public final void setPhpSessId(final String phpSessId) {
+        this.phpSessId = phpSessId;
+    }
+
     public final SmilesResource smiles() {
         return (SmilesResource) this.getResource(Resources.SMILES);
     }
@@ -134,6 +149,7 @@ public class GoodGame {
 
     public enum Resources {
 
+        AJAX("ajax"),
         OAUTH("oauth"),
         PLAYER("player"),
         STREAMS("streams"),
@@ -143,6 +159,7 @@ public class GoodGame {
         INFO("info"),
         SMILES("smiles"),
         GITHUBAPI("githubapi");
+
 
         Resources(final String key) {
 

@@ -18,6 +18,8 @@ import ru.maximkulikov.goodgame.api.models.Error;
  */
 public abstract class AbstractResource {
 
+    private final static String APPLICATIONJSON = "application/json";
+
     protected static final ObjectMapper objectMapper = new ObjectMapper();
 
     protected static final AsyncHttpClient http = new AsyncHttpClient();
@@ -25,22 +27,41 @@ public abstract class AbstractResource {
     // Base url for twitch rest api
     private final String baseUrl;
 
+    private Integer apiVersion = null;
+
 
     protected AbstractResource(final String baseUrl, final int apiVersion) {
         this.baseUrl = baseUrl;
-        // Specify API version
-        http.setHeader("ACCEPT", "application/vnd.goodgame.v" + Integer.toString(apiVersion) + "+json");
+        this.apiVersion = apiVersion;
 
         this.configureObjectMapper();
+
+        this.configureHeaders();
     }
+
+    protected void configureHeaders() {
+
+        http.removeHeader("ACCEPT");
+        http.removeHeader("Content-Type");
+        http.removeHeader("Cookie");
+
+        http.setHeader("Content-Type", APPLICATIONJSON);
+
+        if (this.apiVersion == null ) {
+            http.setHeader("ACCEPT", APPLICATIONJSON);
+        } else  {
+            http.setHeader("ACCEPT", "application/vnd.goodgame.v" + Integer.toString(this.apiVersion) + "+json");
+        }
+
+
+
+    };
 
     protected AbstractResource(final String baseUrl) {
         this.baseUrl = baseUrl;
-        String applicationJson = "application/json";
-        http.setHeader("Accept", applicationJson);
-        http.setHeader("Content-Type", applicationJson);
-    }
+        this.configureHeaders();
 
+    }
 
     private void configureObjectMapper() {
         objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);

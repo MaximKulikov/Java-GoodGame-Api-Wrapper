@@ -34,6 +34,7 @@ public class GithubResource extends AbstractResource {
         params.put(ID, channelId);
         params.put(FMT, JSON);
 
+        this.configureHeaders();
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -56,6 +57,7 @@ public class GithubResource extends AbstractResource {
         }
         params.put(FMT, JSON);
 
+        this.configureHeaders();
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -77,6 +79,7 @@ public class GithubResource extends AbstractResource {
         params.put("game", gameUrl);
         params.put(FMT, JSON);
 
+        this.configureHeaders();
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -94,6 +97,7 @@ public class GithubResource extends AbstractResource {
         params.put(ID, id);
         params.put(FMT, JSON);
 
+        this.configureHeaders();
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -113,6 +117,7 @@ public class GithubResource extends AbstractResource {
         params.put("password", password);
         params.put(FMT, JSON);
 
+        this.configureHeaders();
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
@@ -136,6 +141,7 @@ public class GithubResource extends AbstractResource {
         params.put(ID, id);
         params.put(FMT, JSON);
 
+        this.configureHeaders();
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
