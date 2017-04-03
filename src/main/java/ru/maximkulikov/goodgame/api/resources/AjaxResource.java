@@ -1,12 +1,15 @@
 package ru.maximkulikov.goodgame.api.resources;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.GoodGame;
+import ru.maximkulikov.goodgame.api.handlers.AjaxGamesHandler;
 import ru.maximkulikov.goodgame.api.handlers.AjaxLoginResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.UpdateTitleResponseHandler;
+import ru.maximkulikov.goodgame.api.models.AjaxGame;
 import ru.maximkulikov.goodgame.api.models.AjaxLoginContainer;
 import ru.maximkulikov.goodgame.api.models.UpdateTitle;
 
@@ -98,5 +101,69 @@ public class AjaxResource extends AbstractResource {
     }
 
 
+    public final void games(final String searchGame, final AjaxGamesHandler handler) {
+        String url = String.format("%s/games/all/", getBaseUrl());
 
+        RequestParams params = new RequestParams();
+        params.put("q", searchGame);
+
+
+        http.removeHeader("Content-Type");
+        http.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        http.get(url, params, new GoodGameHttpResponseHandler (handler) {
+            @Override
+            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+                //                    content.substring(2,content.length()-2);
+                content = content.replace("[[", "").replace("]]", "");
+
+                String[] gameObject = content.split("],\\[");
+
+                List<AjaxGame> ajaxGames = new ArrayList<>();
+
+                for( String s : gameObject) {
+                    s= s.replace("\",null,\"", "\",\"null\",\"");
+                    s = s.substring(1, s.length()-1);
+                    String[] gameArray = s.split("\",\"");
+                    ajaxGames.add(new AjaxGame(gameArray[0], gameArray[1], gameArray[gameArray.length-1]));
+
+                }
+
+                handler.onSuccess(ajaxGames);
+            }
+        });
+    }
+
+    /**
+     * Поиск игр
+     * Параметр жанр: <code>genres=5</code>
+     * <br/>
+     * Параметр лимит <code>limit=20</code>
+     */
+    public final void games(final String searchGame, final RequestParams params, final AjaxGamesHandler handler) {
+        String url = String.format("%s/games/all/", getBaseUrl());
+
+        params.put("q", searchGame);
+
+        http.get(url, params, new GoodGameHttpResponseHandler (handler) {
+            @Override
+            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+
+                content = content.replace("[[", "").replace("]]", "");
+
+                String[] gameObject = content.split("],\\[");
+
+                List<AjaxGame> ajaxGames = new ArrayList<>();
+
+                for( String s : gameObject) {
+                    s = s.substring(1, s.length()-1);
+                    String[] gameArray = s.split("\",\"");
+                    ajaxGames.add(new AjaxGame(gameArray[0], gameArray[1], gameArray[gameArray.length-1]));
+
+                }
+
+
+                handler.onSuccess(ajaxGames);
+            }
+        });
+    }
 }

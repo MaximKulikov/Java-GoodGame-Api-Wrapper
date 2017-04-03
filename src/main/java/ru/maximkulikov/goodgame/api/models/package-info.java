@@ -1,5 +1,5 @@
 /**
- * Модели API Стримингового червиса
+ * Модели API Стримингового сервиса
  */
 
 package ru.maximkulikov.goodgame.api.models;

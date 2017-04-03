@@ -1,14 +1,32 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e363ff624c2343e8acbb08e96b61d7d6)](https://www.codacy.com/app/Trinion/Java-GoodGame-Api-Wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Trinion/Java-GoodGame-Api-Wrapper&amp;utm_campaign=Badge_Grade)
  [![CircleCI](https://circleci.com/gh/Trinion/Java-GoodGame-Api-Wrapper/tree/master.svg?style=svg)](https://circleci.com/gh/Trinion/Java-GoodGame-Api-Wrapper/tree/master)
 
-# Async GoodGame API Wrapper
+# Меню
+    
+**[Описание](#Описание)**  
+.  *[Простой пример](#Простой-пример)*    
+.  *[Простой пример с параметром](#Простой-пример-с-параметром)*  
+**[Соответствия JGAW и Goodgame API](#Соответствия-jgaw-и-goodgame-api)**  
+**[Авторизация ](#Авторизация)**  
+.  *[Пример получения авторизационного токена](#Пример-получения-авторизационного-токена)*  
+.  *[Пример получения Access Token](#Пример-получения-access-token)*  
+**[Еще одна Авторизация](#Еще-одна-авторизация)**  
+**[API чата](#api-чата)**  
+.  *[Соответствие запросам на сервер чата классам библиотеки](#Соответствие-запросам-на-сервер-чата-классам-библиотеки)*    
+.  *[Соответствие ответов сервера чата классам библиотеки](#Соответствие-ответов-сервера-чата-классам-библиотеки)*      
+**[Документация](#Документация)**  
+**[Зависимости](#Зависимости)**  
+**[Установка](#Установка)**  
+**[In Progress](#in-progress)**  
+
+
+# Описание
+
 JGAW - обертка над [GoodGame API](https://github.com/GoodGame/API), позволяющая выполнять асинхронные запросы. 
 
 Please feel free to report any issues or contribute code.
 
 За основу проекта взята разработка `Matthew J. Bell @urgrue` [Java-Twitch-Api-Wrapper](https://github.com/urgrue/Java-Twitch-Api-Wrapper)
-
-# Основная идея
 
 Использование обертки позволяет отправлять запросы и получать ответы от`GoodGame` в виде объектов `Java`.
 Библиотека разделена на несколько частей:  
@@ -264,6 +282,12 @@ gg.auth().setAccessToken("my-access-token");
 gg.auth().setRefreshToken("my-refresh-token");
 ```
 
+# Еще одна Авторизация
+
+*В процессе доработки.*  
+Получить какой-то токен можно методом `gg.ajax().login(String login, String password, new AjaxLoginResponseHandler handler {});`  
+Полученный токен не заносится автоматически никуда.
+
 # API чата
 Для работы требуется создать экземпляр класса и унаследовать его от GoodChat, для подключения вызовите .connect. 
 Соединение принудительно прервется через 24 часа или при вызове метода stop().
@@ -322,7 +346,7 @@ class ChatSendMessageExample extends GoodChat {
 | get_channels_list      | `ReqChannelsListContainer()` <br /> `ReqChannelsListContainer(int start, int count)`                                                                       |
 | join                   | `ReqJoinContainer(String channelId)` <br />`ReqJoinContainer(String channelId, boolean hidden, boolean mobile)`                                            |
 | unjoin                 | `ReqUnjoinContainer(String channelId)`                                                                                                                     |
-| get_users_list         | `ReqUsersListContainer(String channelId)`                                                                                                                  |
+| get_users_list2        | `ReqUsersListContainer(String channelId)`                                                                                                                  |
 | get_channel_counters   | `ReqChannelCountersContainer(String channelId)`                                                                                                            |
 | get_ignore_list        | `ReqIgnoreListContainer()`                                                                                                                                 |
 | add_to_ignore_list     | `ReqAddToIgnoreListContainer(String userId)`                                                                                                               |
@@ -344,6 +368,7 @@ class ChatSendMessageExample extends GoodChat {
 | refresh_groups v.2     | `ReqRefreshGroupsContainer(String channelId)`                                                                                                              |
 
 **send_private_message**: Приватное сообщение, отправленное таким способом можно отловить только с использованием API (в чатике на сайте оно не появится)
+**get_user_info** Не возвращает ответа, похоже было изменено на get_user_info2,  
 
 ### Соответствие ответов сервера чата классам библиотеки
 
@@ -390,6 +415,7 @@ class ChatAnswerExample extends GoodChat {
 | accepted         |                    |
 | moder_rights     | ResModeratorRight  |
 | Остальное:UNKNOWN| null               |
+| "reconnecting", "reconnected", "stream_moders_list", "random_result", "update_user_info" | Не реализовано |
 
 
 
@@ -406,7 +432,7 @@ class ChatAnswerExample extends GoodChat {
 * [Jackson JSON Databind](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind/2.4.5) ver. 2.4.5 
 * [Eclipse Websocket Client](https://mvnrepository.com/artifact/org.eclipse.jetty.websocket/websocket-client) ver. 9.2.19.v20160908
 
-## Install
+## Установка
 
 [Java-GoodGame-Api-Wrapper 0.1.1](https://github.com/Trinion/Java-GoodGame-Api-Wrapper/releases/tag/0.1.1)
 
@@ -440,9 +466,8 @@ class ChatAnswerExample extends GoodChat {
 Попробовать отправить Refresh токен вместо ацесс     
 JavaDoc  
 
+Добавить в чат запрос get_user_info2 
 
-## Сноски мелким шрифтом
 
-Для версии `0.1.1` используйте создание экземпляра GoodGame с параметрами   
- `gg = new GoodGame("http://api2.goodgame.ru", 2);`  
- иначе он будет использовать ссылку `https://api2.goodgame.ru` и вывалится на ошибку SSL.
+ 
+ 

@@ -84,9 +84,8 @@ public class OauthResource extends AbstractResource {
     }
 
     /**
-     * @Deprecated Используйте метод getAccessToken с двумя параметрами
+     * Используйте метод {@link #getAccessToken(boolean useAutorizationCode, OauthResponseHandler handler)}
      */
-
     @Deprecated
     public final void getAccessToken(final Authenticator authenticator, final String clientSecret,
                                      final boolean useAutorizationCode, final OauthResponseHandler handler) {
