@@ -11,7 +11,27 @@ public class GitHubSubscriber {
 
     private String id;
 
+    private String sign;
+
     private String username;
+
+    private String created_at;
+
+    public final String getSign() {
+        return this.sign;
+    }
+
+    public final void setSign(final String sign) {
+        this.sign = sign;
+    }
+
+    public final String getCreated_at() {
+        return this.created_at;
+    }
+
+    public final void setCreated_at(final String created_at) {
+        this.created_at = created_at;
+    }
 
     public final String getId() {
         return this.id;
@@ -30,10 +50,12 @@ public class GitHubSubscriber {
     }
 
     @Override
-    public final String toString() {
+    public String toString() {
         return "GitHubSubscriber{" +
                 "id='" + this.id + '\'' +
+                ", sign='" + this.sign + '\'' +
                 ", username='" + this.username + '\'' +
+                ", created_at='" + this.created_at + '\'' +
                 '}';
     }
 }

@@ -47,7 +47,7 @@ public class GoodGame {
         this.resources.put(Resources.GAMES, new GamesResource(baseUrl, apiVersion));
         this.resources.put(Resources.INFO, new InfoResource(baseUrl, apiVersion));
         this.resources.put(Resources.SMILES, new SmilesResource(baseUrl, apiVersion));
-        this.resources.put(Resources.GITHUBAPI, new GithubResource(OLD_BASE_URL));
+        this.resources.put(Resources.GITHUBAPI, new GithubResource(OLD_BASE_URL, this));
         this.resources.put(Resources.AJAX, new AjaxResource(AJAX_BASE_URL, this));
     }
 

@@ -24,10 +24,40 @@
 
 
 
+public void PostGgTitle()
+    {
+      try
+      {
+        HttpWebRequest httpWebRequest = (HttpWebRequest) WebRequest.Create("https://goodgame.ru/ajax/channel/update-title/");
+        httpWebRequest.Method = "POST";
+        httpWebRequest.KeepAlive = true;
+        CookieContainer cookieContainer = new CookieContainer();
+        cookieContainer.Add(new Cookie("PHPSESSID", this.GGPHPSESSID, "/", "goodgame.ru"));
+        httpWebRequest.CookieContainer = cookieContainer;
+        httpWebRequest.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
+        byte[] bytes = Encoding.UTF8.GetBytes("objType=7&objId=" + Main.GlobalVars.ChannelIdGG + "&title=" + this.TitleGG.Text + "&gameId=" + this.idgamegg);
+        httpWebRequest.ContentLength = (long) bytes.Length;
+        Stream requestStream = httpWebRequest.GetRequestStream();
+        byte[] buffer = bytes;
+        int offset = 0;
+        int length = bytes.Length;
+        requestStream.Write(buffer, offset, length);
+        requestStream.Close();
+        HttpWebResponse response = (HttpWebResponse) httpWebRequest.GetResponse();
+        new StreamReader(response.GetResponseStream(), Encoding.UTF8).ReadToEnd();
+        response.Close();
+        // ISSUE: method pointer
+        this.statusGG.Invoke((Delegate) new Action((object) this, __methodptr(\u003CPostGgTitle\u003Eb__68_0)));
+      }
+      catch
+      {
+        // ISSUE: method pointer
+        this.statusGG.Invoke((Delegate) new Action((object) this, __methodptr(\u003CPostGgTitle\u003Eb__68_1)));
+      }
+    }
 
 
-
-
+https://goodgame.ru/ajax/channel/update-title/objType=7&objId=36229&title=thisTitle&gameId=Heroes
 
 
 
