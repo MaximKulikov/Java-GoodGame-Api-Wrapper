@@ -55,15 +55,15 @@ public class GithubResource extends AbstractResource {
         RequestParams params = new RequestParams();
 
         if (gg.auth().getAccessToken() != null) {
-            params.put("oauth_token ", gg.auth().getAccessToken());
+            params.put("oauth_token", gg.auth().getAccessToken());
         } else {
-            params.put("oauth_token ", "");
+            params.put("oauth_token", "");
         }
         params.put(FMT, JSON);
 
         this.configureHeaders();
-        http.removeHeader("Content-Type");
-        http.setHeader("Content-Type","application/x-www-form-urlencoded");
+
+     //   http.setHeader("Content-Type","application/x-www-form-urlencoded");
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
