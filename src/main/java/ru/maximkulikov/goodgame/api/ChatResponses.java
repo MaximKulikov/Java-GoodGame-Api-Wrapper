@@ -1,8 +1,10 @@
 package ru.maximkulikov.goodgame.api;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 12.01.2017.
+ * Перечисление вариантов ответов сервера websocket чата Goodgame
+ *
+ * @author Maxim Kulikov
+ * @since 12.01.2017
  */
 public enum ChatResponses {
     WELCOME,

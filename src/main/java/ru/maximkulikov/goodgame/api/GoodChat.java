@@ -1,10 +1,5 @@
 package ru.maximkulikov.goodgame.api;
 
-import java.io.IOException;
-import java.net.URI;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.jetty.websocket.api.Session;
@@ -17,8 +12,16 @@ import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 import ru.maximkulikov.goodgame.api.chatmodels.*;
 
+import java.io.IOException;
+import java.net.URI;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+
 /**
- * Java-GoodGame-Api-Wrapper
+ * Ключевой класс библиотеки для работы с чатом GoodGame
+ *
+ * @author Maxim Kulikov
  */
 public abstract class GoodChat {
 
@@ -32,6 +35,13 @@ public abstract class GoodChat {
 
     private boolean connected;
 
+    /**
+     * Подключается к websocket серверу чата GoodGame и держит подключение в течение 24 часов. Необходима остановка
+     * потока вручную
+     *
+     * @throws Exception Исключение возможно в отдельном потоке при подключении или попутки закрыть соедиение
+     * @see #stop()
+     */
     public final void connect() {
         new Thread(new Runnable() {
             @Override
@@ -61,16 +71,43 @@ public abstract class GoodChat {
         }).start();
     }
 
+    /**
+     * @return Возвражает статус подключения к серверу чату.
+     */
     public final boolean isConnected() {
         return this.connected;
     }
 
+    /**
+     * @param connected Устанавливает статус подключения к серверу чата.
+     */
     public final void setConnected(final boolean connected) {
         this.connected = connected;
     }
 
+    /**
+     * Этот метод вызывается пришедшим от сервера чата ответом в любое время. В ответе приходит тип сообщения из
+     * перечисления ChatResponses и сам объект ответа или null, если пришел ответ неизвестного типа. <br><br> Пример обработки ответа<br>
+     * <p>
+     * public void onMessage(Response answer) {<br> <br> // Возвращает значение Enum с типом пришедшего сообщения<br>
+     * answer.getType();<br> <br> // Возвращает базовый ResChatObject<br> answer.getAnswer();<br> <br> switch
+     * (answer.getType()) {<br> case CHANNEL_HISTORY:<br> ResChannelHistory resChannelHistory = (ResChannelHistory)
+     * answer.getAnswer();<br> System.out.println(answer.getAnswer());<br> }<br>
+     *
+     * @param answer Ответ от сервера чата
+     * @see ChatResponses
+     * @see Response
+     */
     public abstract void onMessage(final Response answer);
 
+    /**
+     * Отправка сообщения в чат. Если сокет не подключен, то ждем 700ms, потом пробуем снова. Если сокет все еще не
+     * подключен, то передаем ошибку в метод onMessage
+     *
+     * @param chatObject
+     * @throws InterruptedException
+     * @throws JsonProcessingException
+     */
     public final void sendMessage(final ReqChatObject chatObject) {
 
         if (this.socket == null) {
@@ -101,6 +138,12 @@ public abstract class GoodChat {
         }
     }
 
+    /**
+     * Попытка остановить запущенное подключение к серверу чата
+     *
+     * @throws Exception
+     */
+
     public final void stop() {
         if (this.connected) {
             try {
@@ -111,6 +154,10 @@ public abstract class GoodChat {
         }
     }
 
+    /**
+     * Класс, в котором происходит непосредственное общение с websocket сервером чата GoodGame. Вызывать методы к даном
+     * классе категорически не рекомендуется
+     */
     @WebSocket(maxTextMessageSize = 64 * 1024)
     public class GoodChatSocket {
 
