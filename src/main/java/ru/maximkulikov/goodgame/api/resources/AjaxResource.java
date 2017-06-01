@@ -1,5 +1,9 @@
 package ru.maximkulikov.goodgame.api.resources;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.AjaxGamesHandler;
@@ -8,11 +12,6 @@ import ru.maximkulikov.goodgame.api.handlers.UpdateTitleResponseHandler;
 import ru.maximkulikov.goodgame.api.models.AjaxGame;
 import ru.maximkulikov.goodgame.api.models.AjaxLoginContainer;
 import ru.maximkulikov.goodgame.api.models.UpdateTitle;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Класс для доступа к вызовам ajax ресурса
@@ -115,6 +114,7 @@ public class AjaxResource extends AbstractResource {
 
                         }
                     }
+
 
                     handler.onSuccess(value, session);
                 } catch (IOException e) {
