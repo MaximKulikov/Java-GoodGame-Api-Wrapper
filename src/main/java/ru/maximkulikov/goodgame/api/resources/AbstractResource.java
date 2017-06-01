@@ -1,15 +1,14 @@
 package ru.maximkulikov.goodgame.api.resources;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.mb3364.http.AsyncHttpClient;
 import com.mb3364.http.StringHttpResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.BaseFailureHandler;
 import ru.maximkulikov.goodgame.api.models.Error;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * AbstractResource абстрактный базовый класс ресурсов GoodGame.
@@ -79,11 +78,11 @@ public abstract class AbstractResource {
      * @see ru.maximkulikov.goodgame.api.auth.Authenticator#setAccessToken(String)
      */
     public final void setAccessToken(final String accessToken) {
-        String authorization = "Authorization";
+        final String AUTHORIZATION = "Authorization";
         if (accessToken != null && accessToken.length() > 0) {
-            http.setHeader(authorization, String.format("Bearer %s", accessToken));
+            http.setHeader(AUTHORIZATION, String.format("Bearer %s", accessToken));
         } else {
-            http.removeHeader(authorization);
+            http.removeHeader(AUTHORIZATION);
         }
     }
 

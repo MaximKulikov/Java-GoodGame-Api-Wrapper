@@ -462,11 +462,10 @@ class ChatAnswerExample extends GoodChat {
 
 ## In Progress
 
-Проверить обновление через рефреш токен  
-Попробовать отправить Refresh токен вместо ацесс     
-JavaDoc  
+Проверить обновление через рефреш токен       
+JavaDoc
+Тесты
 
-Добавить в чат запрос get_user_info2 
 
 
  

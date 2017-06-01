@@ -71,6 +71,7 @@ public class OauthResource extends AbstractResource {
 
                     AccessToken value = objectMapper.readValue(content, AccessToken.class);
                     gg.auth().setAccessToken(value.getAccessToken());
+                    gg.setAccessTokenToHeaders(value.getAccessToken());
                     gg.auth().setRefreshToken(value.getRefreshToken());
 
                     handler.onSuccess(value);

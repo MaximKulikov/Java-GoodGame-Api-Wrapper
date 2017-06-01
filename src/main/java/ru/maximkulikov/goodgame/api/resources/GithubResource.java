@@ -166,6 +166,7 @@ public class GithubResource extends AbstractResource {
                 try {
                     GitHubToken value = objectMapper.readValue(content, GitHubToken.class);
                     gg.auth().setAccessToken(value.getAccessToken());
+                    gg.setAccessTokenToHeaders(value.getAccessToken());
                     gg.auth().setRefreshToken(value.getRefreshToken());
                     handler.onSuccess(value);
                 } catch (IOException e) {

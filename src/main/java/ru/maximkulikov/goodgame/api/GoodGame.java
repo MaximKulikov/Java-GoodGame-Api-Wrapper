@@ -1,18 +1,19 @@
 package ru.maximkulikov.goodgame.api;
 
-import ru.maximkulikov.goodgame.api.auth.Authenticator;
-import ru.maximkulikov.goodgame.api.handlers.AjaxLoginResponseHandler;
-import ru.maximkulikov.goodgame.api.resources.*;
-
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import ru.maximkulikov.goodgame.api.auth.Authenticator;
+import ru.maximkulikov.goodgame.api.handlers.AjaxLoginResponseHandler;
+import ru.maximkulikov.goodgame.api.handlers.GitHubTokenHandler;
+import ru.maximkulikov.goodgame.api.resources.*;
 
 /**
  * Ключевой класс библиотеки для работы со стриминговым сервисов, содержит часть авторизационных данных и ресурсы.
  * Создайте экземпляр объекта для работы. <br><br> P.S.: Возможна путаница с классом Authenticator, т.к. он тоже
  * содержит в себе некоторые параметры для подключения.
+ *
  * @author Maxim Kulikov
  * @since С самого начала
  */
@@ -37,10 +38,6 @@ public class GoodGame {
     private Map<Resources, AbstractResource> resources;
 
     private String phpSessId;
-
-    public final String getPhpSessId() {
-        return this.phpSessId;
-    }
 
     /**
      * Конструктор с параметрами
@@ -144,6 +141,18 @@ public class GoodGame {
         this.clientSecret = clientSecret;
     }
 
+    public final String getPhpSessId() {
+        return this.phpSessId;
+    }
+
+    /**
+     * @param phpSessId Установка значения Сессии из Cookies ответа. Используется в некоторых запросах ajax
+     * @see AjaxResource#login(String, String, AjaxLoginResponseHandler)
+     */
+    public final void setPhpSessId(final String phpSessId) {
+        this.phpSessId = phpSessId;
+    }
+
     /**
      * @return Возвращает ссылку для перенаправления пользователя на страницу авторизации. Используется при oauth
      * авторизации, не требующей пароля пользователя.
@@ -209,11 +218,17 @@ public class GoodGame {
     }
 
     /**
-     * @param phpSessId Установка значения Сессии из Cookies ответа. Используется в некоторых запросах ajax
-     * @see AjaxResource#login(String, String, AjaxLoginResponseHandler)
+     * Устанавливает HTTP заголовок Bearer для всех ресурсов. Вызываетя ватоматически при получении  токена из ресурса GitHub
+     *
+     * @param accessToken Токен Доступа
+     * @see GithubResource#getToken(String, String, GitHubTokenHandler)
      */
-    public final void setPhpSessId(final String phpSessId) {
-        this.phpSessId = phpSessId;
+    public void setAccessTokenToHeaders(String accessToken) {
+        for (AbstractResource ar : resources.values()
+                ) {
+            ar.setAccessToken(accessToken);
+
+        }
     }
 
     /**

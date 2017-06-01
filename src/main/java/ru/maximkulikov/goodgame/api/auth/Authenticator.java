@@ -74,6 +74,8 @@ public class Authenticator {
 
     public final void setAccessToken(final String accessToken) {
         this.accessToken = accessToken;
+
+
     }
 
     public final AuthenticationError getAuthenticationError() {
