@@ -1,37 +1,30 @@
 package ru.maximkulikov.goodgame.api;
 
 import org.junit.Test;
-import ru.maximkulikov.goodgame.api.handlers.PlayerResponseHandler;
-import ru.maximkulikov.goodgame.api.models.Player;
+import ru.maximkulikov.goodgame.api.handlers.AjaxLoginResponseHandler;
+import ru.maximkulikov.goodgame.api.models.AjaxLoginContainer;
 
 
 import static org.junit.Assert.assertEquals;
 
 /**
  * Java-GoodGame-Api-Wrapper
- * Created by maxim on 02.06.2017.
+ * Created by maxim on 06.06.2017.
  */
-public class PlayerResourseTesting {
-
+public class AjaxRosourceTesting {
     private static final GoodGame gg = GoodGameTest.gg;
 
-    private static final String CHANNELID = "36229";
-
     @Test
-    public void getPlayerTest() {
-
+    public void loginTest() {
 
         final Object o = new Object();
-
         final boolean[] lock = new boolean[1];
         lock[0] = false;
+        final AjaxLoginContainer[] container = new AjaxLoginContainer[1];
 
-        final Player[] p = new Player[1];
-
-        gg.player().getPlayer(CHANNELID, new PlayerResponseHandler() {
+        gg.ajax().login(VariablesForTest.LOGIN, VariablesForTest.PASSWORD, new AjaxLoginResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-
                 lock[0] = true;
                 synchronized (o) {
                     o.notifyAll();
@@ -47,18 +40,14 @@ public class PlayerResourseTesting {
             }
 
             @Override
-            public void onSuccess(Player player) {
-
-                p[0] = player;
-
+            public void onSuccess(AjaxLoginContainer ajaxLoginContainer, String session) {
+                container[0] = ajaxLoginContainer;
                 lock[0] = true;
                 synchronized (o) {
                     o.notifyAll();
                 }
-
             }
         });
-
         synchronized (o) {
             while (!lock[0]) {
                 try {
@@ -69,9 +58,18 @@ public class PlayerResourseTesting {
             }
         }
 
-        assertEquals("36229", p[0].getChannelId());
-        assertEquals("Trinion", p[0].getChannelKey());
-        assertEquals("1494338668", p[0].getChannelStart());
+
+
+        assertEquals(true, container[0].getResult());
+        assertEquals("Вы успешно вошли на сайт", container[0].getResponse());
+        assertEquals(4, container[0].getCode().intValue());
+        assertEquals("366601", container[0].getAjaxReturn().getId());
+        assertEquals("Trinion", container[0].getAjaxReturn().getUsername());
+        assertEquals("36229", container[0].getAjaxReturn().getChannel().getId());
+        assertEquals("https://goodgame.ru/channel/Trinion/", container[0].getAjaxReturn().getChannel().getLink());
+
+
+
 
     }
 }
