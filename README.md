@@ -1,3 +1,7 @@
+# Java GoodGame.Ru API Wrapper 
+
+![Gource visualization](https://github.com/Trinion/Java-GoodGame-Api-Wrapper/blob/master/gource.png?raw=true)  
+
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e363ff624c2343e8acbb08e96b61d7d6)](https://www.codacy.com/app/Trinion/Java-GoodGame-Api-Wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Trinion/Java-GoodGame-Api-Wrapper&amp;utm_campaign=Badge_Grade)
  [![CircleCI](https://circleci.com/gh/Trinion/Java-GoodGame-Api-Wrapper/tree/master.svg?style=svg)](https://circleci.com/gh/Trinion/Java-GoodGame-Api-Wrapper/tree/master)
 
@@ -461,9 +465,8 @@ class ChatAnswerExample extends GoodChat {
 ```
 
 ## In Progress
-
-Проверить обновление через рефреш токен       
-JavaDoc
+       
+JavaDoc  
 Тесты
 
 
