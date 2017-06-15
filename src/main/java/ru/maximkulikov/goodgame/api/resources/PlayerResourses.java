@@ -1,14 +1,17 @@
 package ru.maximkulikov.goodgame.api.resources;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 import ru.maximkulikov.goodgame.api.handlers.PlayerResponseHandler;
 import ru.maximkulikov.goodgame.api.models.Player;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 29.12.2016.
+ * {@link PlayerResourses} предоставляет фукциональность к ресурсам информации о плеере
+ *
+ * @author Maxim Kulikov
+ * @since 29.12.2016
  */
 public class PlayerResourses extends AbstractResource {
 
@@ -16,9 +19,14 @@ public class PlayerResourses extends AbstractResource {
         super(defaultBaseUrl, defaultApiVersion);
     }
 
+    /**
+     * Получение информации о плеере
+     *
+     * @param channelId Идентификатор канала
+     * @param handler
+     */
     public final void getPlayer(final String channelId, final PlayerResponseHandler handler) {
         String url = String.format("%s/player/%s", getBaseUrl(), channelId);
-
 
         this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
@@ -33,5 +41,4 @@ public class PlayerResourses extends AbstractResource {
             }
         });
     }
-
 }

@@ -1,9 +1,5 @@
 package ru.maximkulikov.goodgame.api.resources;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.AjaxGamesHandler;
@@ -13,8 +9,13 @@ import ru.maximkulikov.goodgame.api.models.AjaxGame;
 import ru.maximkulikov.goodgame.api.models.AjaxLoginContainer;
 import ru.maximkulikov.goodgame.api.models.UpdateTitle;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 /**
- * Класс для доступа к вызовам ajax ресурса
+ * {@link AjaxResource} предоставляет функциональность к ajax ресурсам.
  *
  * @author Maxim Kulikov
  * @since 02.04.2017
@@ -84,16 +85,15 @@ public class AjaxResource extends AbstractResource {
         String url = String.format("%s/login/", getBaseUrl());
 
         RequestParams params = new RequestParams();
+
         params.put("login", login);
         params.put("password", password);
         params.put("remember", "1");
         params.put("return", "user");
 
-
         http.removeHeader("Content-Type");
         http.removeHeader("Cookie");
         http.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
@@ -110,19 +110,14 @@ public class AjaxResource extends AbstractResource {
                                 session = s;
                                 gg.setPhpSessId(session);
                             }
-
-
                         }
                     }
-
-
                     handler.onSuccess(value, session);
                 } catch (IOException e) {
                     handler.onFailure(e);
                 }
             }
         });
-
     }
 
     /**
@@ -137,13 +132,12 @@ public class AjaxResource extends AbstractResource {
         RequestParams params = new RequestParams();
         params.put("q", searchGame);
 
-
         http.removeHeader("Content-Type");
         http.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
-                //                    content.substring(2,content.length()-2);
+                //content.substring(2,content.length()-2);
                 content = content.replace("[[", "").replace("]]", "");
 
                 String[] gameObject = content.split("],\\[");
@@ -157,7 +151,6 @@ public class AjaxResource extends AbstractResource {
                     ajaxGames.add(new AjaxGame(gameArray[0], gameArray[1], gameArray[gameArray.length - 1]));
 
                 }
-
                 handler.onSuccess(ajaxGames);
             }
         });
@@ -191,8 +184,6 @@ public class AjaxResource extends AbstractResource {
                     ajaxGames.add(new AjaxGame(gameArray[0], gameArray[1], gameArray[gameArray.length - 1]));
 
                 }
-
-
                 handler.onSuccess(ajaxGames);
             }
         });

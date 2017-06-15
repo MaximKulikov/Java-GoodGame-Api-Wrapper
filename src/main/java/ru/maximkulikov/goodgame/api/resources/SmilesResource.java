@@ -1,15 +1,18 @@
 package ru.maximkulikov.goodgame.api.resources;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.handlers.SmilesResponseHandler;
 import ru.maximkulikov.goodgame.api.models.SmilesContainer;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * {@link SmilesResource} предоставляет функциональность к ресурсам smiles
+ *
+ * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 public class SmilesResource extends AbstractResource {
 
@@ -23,6 +26,13 @@ public class SmilesResource extends AbstractResource {
         super(baseUrl);
     }
 
+    /**
+     * Получение коллекции смайлов
+     * Постраничный вывод по 50 объектов на страницу
+     *
+     * @param channelID Идентификатор канала
+     * @param handler
+     */
     public final void getChannelSmiles(final long channelID, final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles/%s", getBaseUrl(), channelID);
 
@@ -38,9 +48,16 @@ public class SmilesResource extends AbstractResource {
                 }
             }
         });
-
     }
 
+    /**
+     * Получение коллекции смайлов
+     * Постраничный вывод по 50 объектов на страницу
+     *
+     * @param channelId Идентификатор канала
+     * @param page      номер страницы
+     * @param handler
+     */
     public final void getChannelSmiles(final long channelId, final int page,
                                        final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles/%s", getBaseUrl(), channelId);
@@ -60,9 +77,14 @@ public class SmilesResource extends AbstractResource {
                 }
             }
         });
-
     }
 
+    /**
+     * Получение коллекции смайлов
+     * Постраничный вывод по 50 объектов на страницу
+     *
+     * @param handler
+     */
     public final void getSmiles(final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles", getBaseUrl());
 
@@ -78,9 +100,15 @@ public class SmilesResource extends AbstractResource {
                 }
             }
         });
-
     }
 
+    /**
+     * Получение коллекции смайлов
+     * Постраничный вывод по 50 объектов на страницу
+     *
+     * @param page    номер страницы
+     * @param handler
+     */
     public final void getSmiles(final int page, final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles", getBaseUrl());
         RequestParams params = new RequestParams();

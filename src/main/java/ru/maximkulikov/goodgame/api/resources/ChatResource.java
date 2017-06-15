@@ -1,16 +1,16 @@
 package ru.maximkulikov.goodgame.api.resources;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 import ru.maximkulikov.goodgame.api.handlers.ChatTokenResponseHandler;
 import ru.maximkulikov.goodgame.api.models.ChatToken;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 /**
- * The {@link ChatResource} provides the functionality
- * to access the <code>/chat</code> endpoints of the Twitch API.
+ * {@link ChatResource} предоставляет функциональность к ресурсам чата, доступным по запросам <code>/chat/</code>.
  *
- * @author Matthew Bell
+ * @author Maxim Kulikov
  */
 public class ChatResource extends AbstractResource {
 
@@ -18,6 +18,13 @@ public class ChatResource extends AbstractResource {
         super(baseUrl, apiVersion);
     }
 
+    /**
+     * Получение токена чата для конкретного пользователя. Id-пользователя определяется из Access Token'a.<br>
+     * Требуется OAuth 2.0 аутентификация. <br>
+     * Scope: chat.token
+     *
+     * @param handler
+     */
     public final void getChatToken(final ChatTokenResponseHandler handler) {
         String url = String.format("%s/chat/token", getBaseUrl());
 

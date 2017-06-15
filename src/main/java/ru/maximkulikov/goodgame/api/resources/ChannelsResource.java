@@ -1,8 +1,5 @@
 package ru.maximkulikov.goodgame.api.resources;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.handlers.DonationsResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.PremiumsResponseHandler;
@@ -11,19 +8,34 @@ import ru.maximkulikov.goodgame.api.models.DonationsContainer;
 import ru.maximkulikov.goodgame.api.models.PremiumsContainer;
 import ru.maximkulikov.goodgame.api.models.SubscrurersContainer;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 /**
- * The {@link ChannelsResource} provides the functionality
- * to access the <code>/channels</code> endpoints of the Twitch API.
+ * {@link ChannelsResource} предоставляет функциональность к ресурсам канала,
+ * доступным по запросам к <code>/channel/</code>.
  *
- * @author Matthew Bell
+ * @author Maxim Kulikov
  */
 public class ChannelsResource extends AbstractResource {
 
-
+    /**
+     * @param baseUrl    Базовая ссылка для доступа к ресурсу
+     * @param apiVersion Версия АПИ.
+     */
     public ChannelsResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);
     }
 
+    /**
+     * Список поддержки указанного канала.<br>
+     * Требуется OAuth 2.0 аутентификация.<br>
+     * Scope: channel.donations
+     *
+     * @param channel Channel ID or Channel Key
+     * @param handler
+     */
     public final void getDonations(final String channel, final DonationsResponseHandler handler) {
         String url = String.format("%s/channel/%s/donations", getBaseUrl(), channel);
         this.configureHeaders();
@@ -40,6 +52,16 @@ public class ChannelsResource extends AbstractResource {
         });
     }
 
+    /**
+     * Список поддержки указанного канала.<br>
+     * Требуется OAuth 2.0 аутентификация.<br>
+     * Scope: channel.donations
+     *
+     * @param channel Channel ID or Channel Key
+     * @param params  Дополнительные параметры: page (номер страницы при постраничном выводе) и from_timestamp
+     *                (timestamp, начиная с которого следует вернуть историю поддержки)
+     * @param handler
+     */
     public final void getDonations(final String channel, final RequestParams params,
                                    final DonationsResponseHandler handler) {
         String url = String.format("%s/channel/%s/donations", getBaseUrl(), channel);
@@ -57,6 +79,14 @@ public class ChannelsResource extends AbstractResource {
         });
     }
 
+    /**
+     * Список премиум подписчиков указанного канала<br>
+     * Требуется OAuth 2.0 аутентификация.<br>
+     * Scope: channel.premiums
+     *
+     * @param channel Channel ID or Channel Key
+     * @param handler
+     */
     public final void getPremiums(final String channel, final PremiumsResponseHandler handler) {
         String url = String.format("%s/channel/%s/premiums", getBaseUrl(), channel);
 
@@ -74,6 +104,16 @@ public class ChannelsResource extends AbstractResource {
         });
     }
 
+    /**
+     * Список премиум подписчиков указанного канала<br>
+     * Требуется OAuth 2.0 аутентификация.<br>
+     * Scope: channel.premiums
+     *
+     * @param channel Channel ID or Channel Key
+     * @param params  Дополнительные параметры: page (номер страницы) и from_timestamp (timestamp, начиная с которого
+     *                выводить премиум подписчиков)
+     * @param handler
+     */
     public final void getPremiums(final String channel, final RequestParams params,
                                   final PremiumsResponseHandler handler) {
         String url = String.format("%s/channel/%s/premiums", getBaseUrl(), channel);
@@ -92,6 +132,14 @@ public class ChannelsResource extends AbstractResource {
         });
     }
 
+    /**
+     * Список подписчиков указанного канала<br>
+     * Требуется OAuth 2.0 аутентификация. <br>
+     * Scope: channel.subscriber
+     *
+     * @param channel Channel ID or Channel Key
+     * @param handler
+     */
     public final void getSubscribers(final String channel, final SubscriberResponseHandler handler) {
         String url = String.format("%s/channel/%s/subscribers", getBaseUrl(), channel);
 
@@ -109,6 +157,16 @@ public class ChannelsResource extends AbstractResource {
         });
     }
 
+    /**
+     * Список подписчиков указанного канала<br>
+     * Требуется OAuth 2.0 аутентификация. <br>
+     * Scope: channel.subscriber
+     *
+     * @param channel Channel ID or Channel Key
+     * @param params  Дополнительные параметры: page (номер страницы при постраничном выводе) и from_timestamp
+     *                (timestamp, начиная с которого следует вернуть подписчиков канала)
+     * @param handler
+     */
     public final void getSubscribers(final String channel, final RequestParams params,
                                      final SubscriberResponseHandler handler) {
         String url = String.format("%s/channel/%s/subscribers", getBaseUrl(), channel);

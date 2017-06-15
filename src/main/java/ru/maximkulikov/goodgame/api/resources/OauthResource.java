@@ -1,8 +1,5 @@
 package ru.maximkulikov.goodgame.api.resources;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.auth.Authenticator;
@@ -11,9 +8,15 @@ import ru.maximkulikov.goodgame.api.handlers.OauthResponseHandler;
 import ru.maximkulikov.goodgame.api.models.AccessToken;
 import ru.maximkulikov.goodgame.api.models.OauthResourceCheck;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 29.12.2016.
+ * {@link OauthResource} предоствляет функциональность...
+ *
+ * @author Maxim Kulikov
+ * @since 29.12.2016
  */
 public class OauthResource extends AbstractResource {
 
@@ -58,7 +61,6 @@ public class OauthResource extends AbstractResource {
             params.put(GRANT_TYPE, AUTHORIZATION_CODE);
 
         } else {
-
             params.put(GRANT_TYPE, REFRESH_TOKEN);
             params.put(REFRESH_TOKEN, this.gg.auth().getRefreshToken());
 
@@ -68,20 +70,17 @@ public class OauthResource extends AbstractResource {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
-
                     AccessToken value = objectMapper.readValue(content, AccessToken.class);
                     gg.auth().setAccessToken(value.getAccessToken());
                     gg.setAccessTokenToHeaders(value.getAccessToken());
                     gg.auth().setRefreshToken(value.getRefreshToken());
-
                     handler.onSuccess(value);
+
                 } catch (IOException e) {
                     handler.onFailure(e);
                 }
             }
         });
-
-
     }
 
     /**
@@ -105,7 +104,6 @@ public class OauthResource extends AbstractResource {
             params.put(GRANT_TYPE, AUTHORIZATION_CODE);
 
         } else {
-
             params.put(GRANT_TYPE, REFRESH_TOKEN);
             params.put(REFRESH_TOKEN, authenticator.getRefreshToken());
 
@@ -120,8 +118,8 @@ public class OauthResource extends AbstractResource {
                     AccessToken value = objectMapper.readValue(content, AccessToken.class);
                     authenticator.setAccessToken(value.getAccessToken());
                     authenticator.setRefreshToken(value.getRefreshToken());
-
                     handler.onSuccess(value);
+
                 } catch (IOException e) {
                     handler.onFailure(e);
                 }
@@ -137,9 +135,9 @@ public class OauthResource extends AbstractResource {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
-
                     OauthResourceCheck value = objectMapper.readValue(content, OauthResourceCheck.class);
                     handler.onSuccess(value);
+
                 } catch (IOException e) {
                     handler.onFailure(e);
                 }

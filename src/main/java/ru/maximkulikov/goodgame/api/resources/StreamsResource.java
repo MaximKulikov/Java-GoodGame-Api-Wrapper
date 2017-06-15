@@ -1,22 +1,34 @@
 package ru.maximkulikov.goodgame.api.resources;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.handlers.StreamChannelResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.StreamsResponseHandler;
 import ru.maximkulikov.goodgame.api.models.ChannelContainer;
 import ru.maximkulikov.goodgame.api.models.EmbededChannels;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * {@link StreamsResource} предоставляет функциональность к ресурсам стрима
+ *
+ * @author Maxim Kulikov
+ */
 public class StreamsResource extends AbstractResource {
-
 
     public StreamsResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);
     }
 
+    /**
+     * Получение информации о конкретном стриме
+     *
+     * @param channel Идентификатор стрима, может быть как символьным ключем канала (Пример:
+     *                http://api2.goodgame.ru/streams/Miker), так и числовым id (Пример:
+     *                http://api2.goodgame.ru/streams/5).
+     * @param handler
+     */
     public final void getChannel(final String channel, final StreamChannelResponseHandler handler) {
         String url = String.format("%s/streams/%s", getBaseUrl(), channel);
 
@@ -34,15 +46,12 @@ public class StreamsResource extends AbstractResource {
         });
     }
 
-
     /**
      * Получение информации обо всех онлайн стримах
-     * на Goodgame. Можно использовать query-параметры.
-     * <p>The stream object in the onSuccess() response
-     * will be <code>null</code> if the stream is offline.</p>
+     * на Goodgame.
+     *
+     * @param handler
      */
-
-    //TODO ПЕреименовать и разобраться
     public final void getStreams(final StreamsResponseHandler handler) {
         String url = String.format("%s/streams", getBaseUrl());
 
@@ -60,6 +69,13 @@ public class StreamsResource extends AbstractResource {
         });
     }
 
+    /**
+     * Получение информации обо всех онлайн стримах
+     * на Goodgame. Можно использовать query-параметры.
+     *
+     * @param params
+     * @param handler
+     */
     public final void getStreams(final RequestParams params, final StreamsResponseHandler handler) {
 
         String url = String.format("%s/streams", getBaseUrl());

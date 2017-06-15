@@ -7,8 +7,10 @@ import ru.maximkulikov.goodgame.api.handlers.InfoResponseHandler;
 import ru.maximkulikov.goodgame.api.models.Info;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * {@link InfoResource} предоставляет функциональность к информационным ресурсам
+ *
+ * @since 04.01.2017
+ * @author Maxim Kulikov
  */
 public class InfoResource extends AbstractResource {
 
@@ -16,10 +18,11 @@ public class InfoResource extends AbstractResource {
         super(baseUrl, apiVersion);
     }
 
-    protected InfoResource(final String baseUrl) {
-        super(baseUrl);
-    }
-
+    /**
+     * Получение информации по Access Token'у
+     * 
+     * @param handler
+     */
     public final void getInfo(final InfoResponseHandler handler) {
         String url = String.format("%s/info", getBaseUrl());
 
