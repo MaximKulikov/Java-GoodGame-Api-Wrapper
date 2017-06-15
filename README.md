@@ -14,7 +14,8 @@
 **[Авторизация ](#Авторизация)**  
 .  *[Пример получения авторизационного токена](#Пример-получения-авторизационного-токена)*  
 .  *[Пример получения Access Token](#Пример-получения-access-token)*  
-**[Еще одна Авторизация](#Еще-одна-Авторизация)**  
+**[Еще одна авторизация](#Еще-одна-авторизация)**
+**[И еще одна авторизация](#И-еще-одна-авторизация)**
 **[API чата](#api-чата)**  
 .  *[Соответствие запросам на сервер чата классам библиотеки](#Соответствие-запросам-на-сервер-чата-классам-библиотеки)*    
 .  *[Соответствие ответов сервера чата классам библиотеки](#Соответствие-ответов-сервера-чата-классам-библиотеки)*      
@@ -26,13 +27,11 @@
 
 # Описание
 
-JGAW - обертка над [GoodGame API](https://github.com/GoodGame/API), позволяющая выполнять асинхронные запросы. 
+**JGAW** - обертка над [GoodGame API](https://github.com/GoodGame/API), позволяющая выполнять асинхронные запросы. 
 
-Please feel free to report any issues or contribute code.
+За основу взята разработка `Matthew J. Bell @urgrue` [Java-Twitch-Api-Wrapper](https://github.com/urgrue/Java-Twitch-Api-Wrapper)
 
-За основу проекта взята разработка `Matthew J. Bell @urgrue` [Java-Twitch-Api-Wrapper](https://github.com/urgrue/Java-Twitch-Api-Wrapper)
-
-Использование обертки позволяет отправлять запросы и получать ответы от`GoodGame` в виде объектов `Java`.
+**JGAW** позволяет отправлять запросы и получать ответы от`GoodGame.Ru` в виде объектов `Java`.
 Библиотека разделена на несколько частей:  
 1. АПИ Стримингового сервиса  
   1.1. Реализованы методы из [GoodGame (v2)](http://api2.goodgame.ru/apigility/documentation/Goodgame-v2)  
@@ -40,10 +39,10 @@ Please feel free to report any issues or contribute code.
 2. АПИ чата  
   2.1.  Реализованы методы из Github [GoodGame Chat API](https://github.com/GoodGame/API/blob/master/Chat/protocol.md)
 
-Для запроса GoodGame (v2) `GET /channel/:channel/subscribers` используется экземпляр класса GoodGame() 
-в котором вызывается `gg.channels().getSubscribers(channelName, new SubscriberResponseHandler()`  
+Для запроса GoodGame (v2) `GET /channel/:channel/subscribers` используется экземпляр класса GoodGame(), 
+в котором вызывается метод `gg.channels().getSubscribers(channelName, new SubscriberResponseHandler()`  
 
-Вызовы апи Github объединены в `gg.githubapi().methods()` и почти все возвращают строку json
+Вызовы апи Github объединены в `gg.githubapi().methods()` и почти все возвращают необработанный json объект
  
 Работа с АПИ чата происходит в унаследованном от `GoodChat` классе
 
@@ -95,7 +94,7 @@ class SimpleExample {
         gg.channels().getSubscribers("channelName", params, new SubscriberResponseHandler() {
 
             @Override
-            public void onSuccess(SubscrurersContainer subscribers) {
+            public void onSuccess(SubscribersContainer subscribers) {
                 //Успешно
             }
 
@@ -286,11 +285,13 @@ gg.auth().setAccessToken("my-access-token");
 gg.auth().setRefreshToken("my-refresh-token");
 ```
 
-# Еще одна Авторизация
+# Еще одна авторизация
 
-*В процессе доработки.*  
-Получить какой-то токен можно методом `gg.ajax().login(String login, String password, new AjaxLoginResponseHandler handler {});`  
-Полученный токен не заносится автоматически никуда.
+Получить токен для работы с чатом можно методом `gg.ajax().login(String login, String password, new AjaxLoginResponseHandler handler {});`  
+  
+# И еще одна авторизация
+
+В блоке githubapi так же есть авторизация, путем передачи логина и пароля. 
 
 # API чата
 Для работы требуется создать экземпляр класса и унаследовать его от GoodChat, для подключения вызовите .connect. 
