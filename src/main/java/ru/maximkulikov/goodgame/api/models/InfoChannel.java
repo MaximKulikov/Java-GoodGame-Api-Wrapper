@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoChannel {
@@ -17,6 +17,9 @@ public class InfoChannel {
 
     private String src;
 
+    /**
+     * @return channel
+     */
     public final String getChannel() {
         return this.channel;
     }
@@ -25,6 +28,9 @@ public class InfoChannel {
         this.channel = channel;
     }
 
+    /**
+     * @return channel_id
+     */
     public final String getChannelId() {
         return this.channelId;
     }
@@ -33,6 +39,9 @@ public class InfoChannel {
         this.channelId = channelId;
     }
 
+    /**
+     * @return src
+     */
     public final String getSrc() {
         return this.src;
     }

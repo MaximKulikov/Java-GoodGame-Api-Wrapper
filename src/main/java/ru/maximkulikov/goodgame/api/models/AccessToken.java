@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 29.12.2016.
+ * Объект с данными Access Token
+ *
+ * @author Maxim Kulikov
+ * @since 29.12.2016
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AccessToken {
@@ -24,7 +26,9 @@ public class AccessToken {
     @JsonProperty("refresh_token")
     private String refreshToken;
 
-
+    /**
+     * @return access_token
+     */
     public final String getAccessToken() {
         return this.accessToken;
     }
@@ -33,6 +37,9 @@ public class AccessToken {
         this.accessToken = accessToken;
     }
 
+    /**
+     * @return expires_in
+     */
     public final long getExpiresIn() {
         return this.expiresIn;
     }
@@ -41,6 +48,9 @@ public class AccessToken {
         this.expiresIn = expiresIn;
     }
 
+    /**
+     * @return refresh_token
+     */
     public final String getRefreshToken() {
         return this.refreshToken;
     }
@@ -49,6 +59,9 @@ public class AccessToken {
         this.refreshToken = refreshToken;
     }
 
+    /**
+     * @return scope
+     */
     public final String getScope() {
         return this.scope;
     }
@@ -57,6 +70,9 @@ public class AccessToken {
         this.scope = scope;
     }
 
+    /**
+     * @return token_type
+     */
     public final String getTokenType() {
         return this.tokenType;
     }

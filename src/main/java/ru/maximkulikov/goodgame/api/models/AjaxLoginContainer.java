@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 03.04.2017.
+ * @author Maxim Kulikov
+ * @since 03.04.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AjaxLoginContainer {
@@ -22,6 +22,9 @@ public class AjaxLoginContainer {
     @JsonProperty("return")
     private AjaxLoginReturn ajaxReturn;
 
+    /**
+     * @return result
+     */
     public final Boolean getResult() {
         return this.result;
     }
@@ -30,6 +33,9 @@ public class AjaxLoginContainer {
         this.result = result;
     }
 
+    /**
+     * @return response
+     */
     public final String getResponse() {
         return this.response;
     }
@@ -38,6 +44,9 @@ public class AjaxLoginContainer {
         this.response = response;
     }
 
+    /**
+     * @return code
+     */
     public final Integer getCode() {
         return this.code;
     }
@@ -46,6 +55,9 @@ public class AjaxLoginContainer {
         this.code = code;
     }
 
+    /**
+     * @return login_page
+     */
     public final String getLoginPage() {
         return this.loginPage;
     }
@@ -54,6 +66,9 @@ public class AjaxLoginContainer {
         this.loginPage = loginPage;
     }
 
+    /**
+     * @return return
+     */
     public final AjaxLoginReturn getAjaxReturn() {
         return this.ajaxReturn;
     }

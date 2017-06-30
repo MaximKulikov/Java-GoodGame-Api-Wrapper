@@ -1,8 +1,8 @@
 package ru.maximkulikov.goodgame.api.models;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 03.04.2017.
+ * @author Maxim Kulikov
+ * @since 03.04.2017
  */
 
 
@@ -21,14 +21,23 @@ public class AjaxGame {
         this.gameId = gameId;
     }
 
+    /**
+     * @return gameHtml
+     */
     public final String getGameHtml() {
         return this.gameHtml;
     }
 
+    /**
+     * @return gameId
+     */
     public final String getGameId() {
         return this.gameId;
     }
 
+    /**
+     * @return gameName
+     */
     public final String getGameName() {
         return this.gameName;
     }

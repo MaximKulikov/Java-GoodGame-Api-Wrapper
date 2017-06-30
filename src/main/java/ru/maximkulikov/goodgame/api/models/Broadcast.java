@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 29.12.2016.
+ * @since 29.12.2016
+ * @author MaximKulikov
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Broadcast {

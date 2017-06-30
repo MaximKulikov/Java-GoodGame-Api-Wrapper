@@ -1,12 +1,13 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 29.12.2016.
+ * @author Maxim Kulikov
+ * @since 29.12.2016
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Player {
@@ -48,10 +49,14 @@ public class Player {
 
     private List<Broadcast> broadcasts;
 
+    @JsonProperty("premium_prices")
     private PremiumPrices premiumPrices;
 
     private List<User> users;
 
+    /**
+     * @return adult
+     */
     public final String getAdult() {
         return this.adult;
     }
@@ -60,6 +65,9 @@ public class Player {
         this.adult = adult;
     }
 
+    /**
+     * @return broadcast_title
+     */
     public final String getBroadcastTitle() {
         return this.broadcastTitle;
     }
@@ -68,6 +76,9 @@ public class Player {
         this.broadcastTitle = broadcastTitle;
     }
 
+    /**
+     * @return broadcasts
+     */
     public final List<Broadcast> getBroadcasts() {
         return this.broadcasts;
     }
@@ -76,6 +87,9 @@ public class Player {
         this.broadcasts = broadcasts;
     }
 
+    /**
+     * @return channel_id
+     */
     public final String getChannelId() {
         return this.channelId;
     }
@@ -84,6 +98,9 @@ public class Player {
         this.channelId = channelId;
     }
 
+    /**
+     * @return channel_key
+     */
     public final String getChannelKey() {
         return this.channelKey;
     }
@@ -92,6 +109,9 @@ public class Player {
         this.channelKey = channelKey;
     }
 
+    /**
+     * @return channel_poster
+     */
     public final String getChannelPoster() {
         return this.channelPoster;
     }
@@ -100,6 +120,9 @@ public class Player {
         this.channelPoster = channelPoster;
     }
 
+    /**
+     * @return channel_premium
+     */
     public final String getChannelPremium() {
         return this.channelPremium;
     }
@@ -108,6 +131,9 @@ public class Player {
         this.channelPremium = channelPremium;
     }
 
+    /**
+     * @return channel_start
+     */
     public final String getChannelStart() {
         return this.channelStart;
     }
@@ -116,6 +142,9 @@ public class Player {
         this.channelStart = channelStart;
     }
 
+    /**
+     * @return channel_status
+     */
     public final String getChannelStatus() {
         return this.channelStatus;
     }
@@ -124,6 +153,9 @@ public class Player {
         this.channelStatus = channelStatus;
     }
 
+    /**
+     * @return channel_title
+     */
     public final String getChannelTitle() {
         return this.channelTitle;
     }
@@ -132,6 +164,9 @@ public class Player {
         this.channelTitle = channelTitle;
     }
 
+    /**
+     * @return ga_code
+     */
     public final String getGaCode() {
         return this.gaCode;
     }
@@ -140,6 +175,9 @@ public class Player {
         this.gaCode = gaCode;
     }
 
+    /**
+     * @return premium_only
+     */
     public final String getPremiumOnly() {
         return this.premiumOnly;
     }
@@ -148,6 +186,9 @@ public class Player {
         this.premiumOnly = premiumOnly;
     }
 
+    /**
+     * @return premium_prices
+     */
     public final PremiumPrices getPremiumPrices() {
         return this.premiumPrices;
     }
@@ -156,6 +197,9 @@ public class Player {
         this.premiumPrices = premiumPrices;
     }
 
+    /**
+     * @return streamer_avatar
+     */
     public final String getStreamerAvatar() {
         return this.streamerAvatar;
     }
@@ -164,6 +208,9 @@ public class Player {
         this.streamerAvatar = streamerAvatar;
     }
 
+    /**
+     * @return users
+     */
     public final List<User> getUsers() {
         return this.users;
     }

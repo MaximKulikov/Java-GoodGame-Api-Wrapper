@@ -3,6 +3,9 @@ package ru.maximkulikov.goodgame.api.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * @author Matthew Bell
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Error {
 
@@ -15,6 +18,9 @@ public class Error {
     @JsonProperty("detail")
     private String message;
 
+    /**
+     * @return detail
+     */
     public final String getMessage() {
         return this.message;
     }
@@ -23,6 +29,9 @@ public class Error {
         this.message = message;
     }
 
+    /**
+     * @return status
+     */
     public final int getStatusCode() {
         return this.statusCode;
     }
@@ -31,6 +40,9 @@ public class Error {
         this.statusCode = statusCode;
     }
 
+    /**
+     * @return title
+     */
     public final String getStatusText() {
 
         return this.statusText;

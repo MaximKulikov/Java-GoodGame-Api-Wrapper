@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Smile {
@@ -16,16 +16,19 @@ public class Smile {
     private Long donateLvl;
 
     @JsonProperty("is_premium")
-    private Boolean premium;
+    private Boolean isPremium;
 
     @JsonProperty("is_paid")
-    private Boolean paid;
+    private Boolean isPaid;
 
     @JsonProperty("channel_id")
     private String channelId;
 
     private SmileUrls urls;
 
+    /**
+     * @return channel_id
+     */
     public final String getChannelId() {
         return this.channelId;
     }
@@ -34,6 +37,9 @@ public class Smile {
         this.channelId = channelId;
     }
 
+    /**
+     * @return donate_lvl
+     */
     public final Long getDonateLvl() {
         return this.donateLvl;
     }
@@ -42,6 +48,9 @@ public class Smile {
         this.donateLvl = donateLvl;
     }
 
+    /**
+     * @return key
+     */
     public final String getKey() {
         return this.key;
     }
@@ -50,22 +59,31 @@ public class Smile {
         this.key = key;
     }
 
-    public final Boolean getPaid() {
-        return this.paid;
+    /**
+     * @return is_paid
+     */
+    public final Boolean isPaid() {
+        return this.isPaid;
     }
 
-    public final void setPaid(final Boolean paid) {
-        this.paid = paid;
+    public final void setPaid(final Boolean isPaid) {
+        this.isPaid = isPaid;
     }
 
-    public final Boolean getPremium() {
-        return this.premium;
+    /**
+     * @return is_premium
+     */
+    public final Boolean isPremium() {
+        return this.isPremium;
     }
 
-    public final void setPremium(final Boolean premium) {
-        this.premium = premium;
+    public final void setPremium(final Boolean isPremium) {
+        this.isPremium = isPremium;
     }
 
+    /**
+     * @return urls
+     */
     public final SmileUrls getUrls() {
         return this.urls;
     }
@@ -79,8 +97,8 @@ public class Smile {
         return "Smile{" +
                 "key='" + this.key + '\'' +
                 ", donateLvl=" + this.donateLvl +
-                ", premium=" + this.premium +
-                ", paid=" + this.paid +
+                ", isPremium=" + this.isPremium +
+                ", isPaid=" + this.isPaid +
                 ", channelId='" + this.channelId + '\'' +
                 ", urls=" + this.urls +
                 '}';

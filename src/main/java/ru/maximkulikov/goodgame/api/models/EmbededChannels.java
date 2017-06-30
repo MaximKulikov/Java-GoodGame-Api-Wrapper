@@ -1,12 +1,13 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 18.01.2017.
+ * @author Maxim Kulikov
+ * @since 18.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmbededChannels {
@@ -25,6 +26,9 @@ public class EmbededChannels {
 
     private Integer page;
 
+    /**
+     * @return page
+     */
     public final Integer getPage() {
         return this.page;
     }
@@ -33,6 +37,9 @@ public class EmbededChannels {
         this.page = page;
     }
 
+    /**
+     * @return page_count
+     */
     public final Integer getPageCount() {
         return this.pageCount;
     }
@@ -41,6 +48,9 @@ public class EmbededChannels {
         this.pageCount = pageCount;
     }
 
+    /**
+     * @return page_size
+     */
     public final Integer getPageSize() {
         return this.pageSize;
     }
@@ -49,6 +59,9 @@ public class EmbededChannels {
         this.pageSize = pageSize;
     }
 
+    /**
+     * @return _embedded
+     */
     public final List<ChannelContainer> getStreams() {
         return this.streams.getStreams();
     }
@@ -57,6 +70,9 @@ public class EmbededChannels {
         this.streams = streams;
     }
 
+    /**
+     * @return total_items
+     */
     public final Integer getTotalItems() {
         return this.totalItems;
     }

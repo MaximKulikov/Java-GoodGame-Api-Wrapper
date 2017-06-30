@@ -1,17 +1,21 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmbededGames {
 
     private List<Game> games;
 
+    /**
+     * @return games
+     */
     public final List<Game> getGames() {
         return this.games;
     }

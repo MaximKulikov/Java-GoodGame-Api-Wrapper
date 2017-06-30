@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SmileUrls {
@@ -15,6 +15,9 @@ public class SmileUrls {
 
     private String gif;
 
+    /**
+     * @return big
+     */
     public final String getBig() {
         return this.big;
     }
@@ -23,6 +26,9 @@ public class SmileUrls {
         this.big = big;
     }
 
+    /**
+     * @return gif
+     */
     public final String getGif() {
         return this.gif;
     }
@@ -31,6 +37,9 @@ public class SmileUrls {
         this.gif = gif;
     }
 
+    /**
+     * @return img
+     */
     public final String getImg() {
         return this.img;
     }

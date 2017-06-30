@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 03.01.2017.
+ * @author Maxim Kulikov
+ * @since 03.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PremiumsContainer {
@@ -24,6 +24,9 @@ public class PremiumsContainer {
 
     private Long page;
 
+    /**
+     * @return _embedded
+     */
     public final EmbededPremiums getPremiums() {
         return this.premiums;
     }
@@ -32,6 +35,9 @@ public class PremiumsContainer {
         this.premiums = premiums;
     }
 
+    /**
+     * @return page
+     */
     public final Long getPage() {
         return this.page;
     }
@@ -40,6 +46,9 @@ public class PremiumsContainer {
         this.page = page;
     }
 
+    /**
+     * @return page_count
+     */
     public final Long getPageCount() {
         return this.pageCount;
     }
@@ -48,6 +57,9 @@ public class PremiumsContainer {
         this.pageCount = pageCount;
     }
 
+    /**
+     * @return page_size
+     */
     public final Long getPageSize() {
         return this.pageSize;
     }
@@ -56,6 +68,9 @@ public class PremiumsContainer {
         this.pageSize = pageSize;
     }
 
+    /**
+     * @return total_items
+     */
     public final Long getTotalItems() {
         return this.totalItems;
     }

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * {@link OauthResource} предоствляет функциональность...
+ * {@link OauthResource} предоствляет мкханизмы авторизации с помощью токена
  *
  * @author Maxim Kulikov
  * @since 29.12.2016
@@ -38,12 +38,22 @@ public class OauthResource extends AbstractResource {
 
     private GoodGame gg;
 
+    /**
+     * @param defaultBaseUrl    Базовая ссылка на ресурс
+     * @param defaultApiVersion Версия API
+     * @param gg                Ссылка на объект {@link GoodGame}
+     */
     public OauthResource(final String defaultBaseUrl, final int defaultApiVersion, final GoodGame gg) {
         super(defaultBaseUrl, defaultApiVersion);
         this.gg = gg;
     }
 
-
+    /**
+     * Получение токена доступа. При удачном выполнении токен запоминается в системе и в последующих запросах используется автоматически
+     *
+     * @param useAutorizationCode Если требуется использовать Authorisation Code - <i>true</i>, если Refresh Token - <i>false</i>
+     * @param handler
+     */
     public final void getAccessToken(final boolean useAutorizationCode, final OauthResponseHandler handler) {
 
         String url = String.format(OAUTH, getBaseUrl());
@@ -127,6 +137,11 @@ public class OauthResource extends AbstractResource {
         });
     }
 
+    /**
+     * Метод можно использовать для проверки возможности отправки запросов от имени пользователя с использованием токена
+     *
+     * @param handler
+     */
     public final void getResource(final OauthResourceResponseHandler handler) {
         String url = String.format("%s/oauth/resource", getBaseUrl());
 

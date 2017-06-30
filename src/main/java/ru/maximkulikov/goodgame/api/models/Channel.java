@@ -1,12 +1,13 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 03.01.2017.
+ * @author Maxim Kulikov
+ * @since 03.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Channel {
@@ -42,6 +43,9 @@ public class Channel {
 
     private String url;
 
+    /**
+     * @return adult
+     */
     public final Boolean getAdult() {
         return this.adult;
     }
@@ -50,6 +54,9 @@ public class Channel {
         this.adult = adult;
     }
 
+    /**
+     * @return description
+     */
     public final String getDescription() {
         return this.description;
     }
@@ -58,6 +65,9 @@ public class Channel {
         this.description = description;
     }
 
+    /**
+     * @return embed
+     */
     public final String getEmbed() {
         return this.embed;
     }
@@ -66,6 +76,9 @@ public class Channel {
         this.embed = embed;
     }
 
+    /**
+     * @return games
+     */
     public final List<Game> getGames() {
         return this.games;
     }
@@ -74,6 +87,9 @@ public class Channel {
         this.games = games;
     }
 
+    /**
+     * @return gg_player_src
+     */
     public final String getGgPlayerSrc() {
         return this.ggPlayerSrc;
     }
@@ -82,6 +98,9 @@ public class Channel {
         this.ggPlayerSrc = ggPlayerSrc;
     }
 
+    /**
+     * @return id
+     */
     public final Long getId() {
         return this.id;
     }
@@ -90,6 +109,9 @@ public class Channel {
         this.id = id;
     }
 
+    /**
+     * @return img
+     */
     public final String getImg() {
         return this.img;
     }
@@ -98,6 +120,9 @@ public class Channel {
         this.img = img;
     }
 
+    /**
+     * @return key
+     */
     public final String getKey() {
         return this.key;
     }
@@ -106,6 +131,9 @@ public class Channel {
         this.key = key;
     }
 
+    /**
+     * @return max_viewers
+     */
     public final String getMaxViewers() {
         return this.maxViewers;
     }
@@ -114,6 +142,9 @@ public class Channel {
         this.maxViewers = maxViewers;
     }
 
+    /**
+     * @return player_type
+     */
     public final String getPlayerType() {
         return this.playerType;
     }
@@ -122,6 +153,9 @@ public class Channel {
         this.playerType = playerType;
     }
 
+    /**
+     * @return premium
+     */
     public final String getPremium() {
         return this.premium;
     }
@@ -130,6 +164,9 @@ public class Channel {
         this.premium = premium;
     }
 
+    /**
+     * @return thumb
+     */
     public final String getThumb() {
         return this.thumb;
     }
@@ -138,6 +175,9 @@ public class Channel {
         this.thumb = thumb;
     }
 
+    /**
+     * @return title
+     */
     public final String getTitle() {
         return this.title;
     }
@@ -146,6 +186,9 @@ public class Channel {
         this.title = title;
     }
 
+    /**
+     * @return url
+     */
     public final String getUrl() {
         return this.url;
     }

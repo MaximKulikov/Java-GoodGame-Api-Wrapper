@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 02.04.2017.
+ * @author Maxim Kulikov
+ * @since 02.04.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UpdateTitle {
@@ -15,6 +15,9 @@ public class UpdateTitle {
 
     private String gameUrl;
 
+    /**
+     * @return game
+     */
     public final String getGame() {
         return this.game;
     }
@@ -23,6 +26,9 @@ public class UpdateTitle {
         this.game = game;
     }
 
+    /**
+     * @return gameUrl
+     */
     public final String getGameUrl() {
         return this.gameUrl;
     }
@@ -31,6 +37,9 @@ public class UpdateTitle {
         this.gameUrl = gameUrl;
     }
 
+    /**
+     * @return title
+     */
     public final String getTitle() {
         return this.title;
     }

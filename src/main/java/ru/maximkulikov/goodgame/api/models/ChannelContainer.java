@@ -3,6 +3,10 @@ package ru.maximkulikov.goodgame.api.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * @author Maxim Kulikov
+ * @since 0.1
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChannelContainer {
 
@@ -36,6 +40,9 @@ public class ChannelContainer {
 
     private Channel channel;
 
+    /**
+     * @return is_broadcast
+     */
     public final Boolean getBroadcast() {
         return this.isBroadcast;
     }
@@ -44,6 +51,9 @@ public class ChannelContainer {
         this.isBroadcast = broadcast;
     }
 
+    /**
+     * @return broadcast_end
+     */
     public final Long getBroadcastEnd() {
         return this.broadcastEnd;
     }
@@ -52,6 +62,9 @@ public class ChannelContainer {
         this.broadcastEnd = broadcastEnd;
     }
 
+    /**
+     * @return broadcast_started
+     */
     public final Long getBroadcastStarted() {
         return this.broadcastStarted;
     }
@@ -60,6 +73,9 @@ public class ChannelContainer {
         this.broadcastStarted = broadcastStarted;
     }
 
+    /**
+     * @return channel
+     */
     public final Channel getChannel() {
         return this.channel;
     }
@@ -68,6 +84,9 @@ public class ChannelContainer {
         this.channel = channel;
     }
 
+    /**
+     * @return id
+     */
     public final Long getId() {
         return this.id;
     }
@@ -76,6 +95,9 @@ public class ChannelContainer {
         this.id = id;
     }
 
+    /**
+     * @return key
+     */
     public final String getKey() {
         return this.key;
     }
@@ -84,6 +106,9 @@ public class ChannelContainer {
         this.key = key;
     }
 
+    /**
+     * @return player_viewers
+     */
     public final String getPlayerViewers() {
         return this.playerViewers;
     }
@@ -92,6 +117,9 @@ public class ChannelContainer {
         this.playerViewers = playerViewers;
     }
 
+    /**
+     * @return request_key
+     */
     public final String getRequestKey() {
         return this.requestKey;
     }
@@ -100,6 +128,9 @@ public class ChannelContainer {
         this.requestKey = requestKey;
     }
 
+    /**
+     * @return status
+     */
     public final String getStatus() {
         return this.status;
     }
@@ -108,6 +139,9 @@ public class ChannelContainer {
         this.status = status;
     }
 
+    /**
+     * @return url
+     */
     public final String getUrl() {
         return this.url;
     }
@@ -116,6 +150,9 @@ public class ChannelContainer {
         this.url = url;
     }
 
+    /**
+     * @return users_in_chat
+     */
     public final String getUsersInChat() {
         return this.usersInChat;
     }
@@ -124,6 +161,9 @@ public class ChannelContainer {
         this.usersInChat = usersInChat;
     }
 
+    /**
+     * @return viewers
+     */
     public final String getViewers() {
         return this.viewers;
     }

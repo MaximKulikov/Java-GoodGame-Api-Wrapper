@@ -416,7 +416,7 @@ class ChatAnswerExample extends GoodChat {
 | update_premium   | ResUpdatePremium   |
 | error            | ResError           |
 | payment          | ResPayment         |
-| premium          | ResPremium         |
+| isPremium          | ResPremium         |
 | accepted         |                    |
 | moder_rights     | ResModeratorRight  |
 | Остальное:UNKNOWN| null               |

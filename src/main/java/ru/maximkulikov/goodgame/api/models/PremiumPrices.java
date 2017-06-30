@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 29.12.2016.
+ * @author Maxim Kulikov
+ * @since 29.12.2016
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PremiumPrices {
@@ -25,6 +25,9 @@ public class PremiumPrices {
     @JsonProperty("5")
     private String id5;
 
+    /**
+     * @return 1
+     */
     public final String getId1() {
         return this.id1;
     }
@@ -33,6 +36,9 @@ public class PremiumPrices {
         this.id1 = id1;
     }
 
+    /**
+     * @return 2
+     */
     public final String getId2() {
         return this.id2;
     }
@@ -41,6 +47,9 @@ public class PremiumPrices {
         this.id2 = id2;
     }
 
+    /**
+     * @return 3
+     */
     public final String getId3() {
         return this.id3;
     }
@@ -49,6 +58,9 @@ public class PremiumPrices {
         this.id3 = id3;
     }
 
+    /**
+     * @return 4
+     */
     public final String getId4() {
         return this.id4;
     }
@@ -57,6 +69,9 @@ public class PremiumPrices {
         this.id4 = id4;
     }
 
+    /**
+     * @return 5
+     */
     public final String getId5() {
         return this.id5;
     }

@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoUser {
@@ -16,6 +16,9 @@ public class InfoUser {
     @JsonProperty("username")
     private String userName;
 
+    /**
+     * @returnuser_id
+     */
     public final String getUserId() {
         return this.userId;
     }
@@ -24,6 +27,9 @@ public class InfoUser {
         this.userId = userId;
     }
 
+    /**
+     * @return username
+     */
     public final String getUserName() {
         return this.userName;
     }

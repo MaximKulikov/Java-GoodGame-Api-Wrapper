@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 29.12.2016.
+ * @author Maxim Kulikov
+ * @since 29.12.2016
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
@@ -29,6 +29,9 @@ public class User {
 
     private String wallet;
 
+    /**
+     * @return email
+     */
     public final String getEmail() {
         return this.email;
     }
@@ -37,6 +40,9 @@ public class User {
         this.email = email;
     }
 
+    /**
+     * @return payments
+     */
     public final String getPayments() {
         return this.payments;
     }
@@ -45,6 +51,9 @@ public class User {
         this.payments = payments;
     }
 
+    /**
+     * @return secure
+     */
     public final String getSecure() {
         return this.secure;
     }
@@ -53,6 +62,9 @@ public class User {
         this.secure = secure;
     }
 
+    /**
+     * @return subscribed
+     */
     public final String getSubscribed() {
         return this.subscribed;
     }
@@ -61,6 +73,9 @@ public class User {
         this.subscribed = subscribed;
     }
 
+    /**
+     * @return subscribed_anons
+     */
     public final String getSubscribedAnons() {
         return this.subscribedAnons;
     }
@@ -69,6 +84,9 @@ public class User {
         this.subscribedAnons = subscribedAnons;
     }
 
+    /**
+     * @return subscribed_stream
+     */
     public final String getSubscribedStream() {
         return this.subscribedStream;
     }
@@ -77,6 +95,9 @@ public class User {
         this.subscribedStream = subscribedStream;
     }
 
+    /**
+     * @return user_id
+     */
     public final String getUserId() {
         return this.userId;
     }
@@ -85,6 +106,9 @@ public class User {
         this.userId = userId;
     }
 
+    /**
+     * @return wallet
+     */
     public final String getWallet() {
         return this.wallet;
     }

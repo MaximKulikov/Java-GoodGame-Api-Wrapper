@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 03.04.2017.
+ * @author Maxim Kulikov
+ * @since 03.04.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AjaxLoginReturn {
@@ -29,6 +29,9 @@ public class AjaxLoginReturn {
 
     private Boolean premium;
 
+    /**
+     * @return avatar
+     */
     public final String getAvatar() {
         return this.avatar;
     }
@@ -37,6 +40,9 @@ public class AjaxLoginReturn {
         this.avatar = avatar;
     }
 
+    /**
+     * @return bl
+     */
     public final Boolean getBl() {
         return this.bl;
     }
@@ -45,6 +51,9 @@ public class AjaxLoginReturn {
         this.bl = bl;
     }
 
+    /**
+     * @return channel
+     */
     public final AjaxChannel getChannel() {
         return this.channel;
     }
@@ -53,6 +62,9 @@ public class AjaxLoginReturn {
         this.channel = channel;
     }
 
+    /**
+     * @return dialogs
+     */
     public final Integer getDialogs() {
         return this.dialogs;
     }
@@ -61,6 +73,9 @@ public class AjaxLoginReturn {
         this.dialogs = dialogs;
     }
 
+    /**
+     * @return id
+     */
     public final String getId() {
         return this.id;
     }
@@ -69,6 +84,9 @@ public class AjaxLoginReturn {
         this.id = id;
     }
 
+    /**
+     * @return premium
+     */
     public final Boolean getPremium() {
         return this.premium;
     }
@@ -77,6 +95,9 @@ public class AjaxLoginReturn {
         this.premium = premium;
     }
 
+    /**
+     * @return rights
+     */
     public final String getRights() {
         return this.rights;
     }
@@ -85,6 +106,9 @@ public class AjaxLoginReturn {
         this.rights = rights;
     }
 
+    /**
+     * @return settings
+     */
     public final AjaxSettings getSettings() {
         return this.settings;
     }
@@ -93,6 +117,9 @@ public class AjaxLoginReturn {
         this.settings = settings;
     }
 
+    /**
+     * @return token
+     */
     public final String getToken() {
         return this.token;
     }
@@ -101,6 +128,9 @@ public class AjaxLoginReturn {
         this.token = token;
     }
 
+    /**
+     * @return username
+     */
     public final String getUsername() {
         return this.username;
     }

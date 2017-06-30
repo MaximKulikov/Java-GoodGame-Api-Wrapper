@@ -1,10 +1,11 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GitHubSubscriber {
@@ -15,8 +16,12 @@ public class GitHubSubscriber {
 
     private String username;
 
-    private String created_at;
+    @JsonProperty("created_at")
+    private String createdAt;
 
+    /**
+     * @return sign
+     */
     public final String getSign() {
         return this.sign;
     }
@@ -25,14 +30,20 @@ public class GitHubSubscriber {
         this.sign = sign;
     }
 
-    public final String getCreated_at() {
-        return this.created_at;
+    /**
+     * @return created_at
+     */
+    public final String getCreatedAt() {
+        return this.createdAt;
     }
 
-    public final void setCreated_at(final String created_at) {
-        this.created_at = created_at;
+    public final void setCreatedAt(final String createdAt) {
+        this.createdAt = createdAt;
     }
 
+    /**
+     * @return id
+     */
     public final String getId() {
         return this.id;
     }
@@ -41,6 +52,9 @@ public class GitHubSubscriber {
         this.id = id;
     }
 
+    /**
+     * @return username
+     */
     public final String getUsername() {
         return this.username;
     }
@@ -55,7 +69,7 @@ public class GitHubSubscriber {
                 "id='" + this.id + '\'' +
                 ", sign='" + this.sign + '\'' +
                 ", username='" + this.username + '\'' +
-                ", created_at='" + this.created_at + '\'' +
+                ", createdAt='" + this.createdAt + '\'' +
                 '}';
     }
 }

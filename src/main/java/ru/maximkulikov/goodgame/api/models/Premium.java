@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 03.01.2017.
+ * @author Maxim Kulikov
+ * @since 03.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Premium {
@@ -17,6 +17,9 @@ public class Premium {
     @JsonProperty("created_at")
     private String createdAt;
 
+    /**
+     * @return created_at
+     */
     public final String getCreatedAt() {
         return this.createdAt;
     }
@@ -25,6 +28,9 @@ public class Premium {
         this.createdAt = createdAt;
     }
 
+    /**
+     * @return id
+     */
     public final String getId() {
         return this.id;
     }
@@ -33,6 +39,9 @@ public class Premium {
         this.id = id;
     }
 
+    /**
+     * @return username
+     */
     public final String getUsername() {
         return this.username;
     }

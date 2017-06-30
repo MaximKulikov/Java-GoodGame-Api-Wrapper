@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatToken {
@@ -16,6 +16,9 @@ public class ChatToken {
     @JsonProperty("chat_token")
     private String chatToken;
 
+    /**
+     * @return chat_token
+     */
     public final String getChatToken() {
         return this.chatToken;
     }
@@ -24,6 +27,9 @@ public class ChatToken {
         this.chatToken = chatToken;
     }
 
+    /**
+     * @return user_id
+     */
     public final String getUserId() {
         return this.userId;
     }

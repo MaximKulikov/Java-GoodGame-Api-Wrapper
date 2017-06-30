@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Info {
@@ -15,6 +15,9 @@ public class Info {
 
     private InfoChannel channel;
 
+    /**
+     * @return channel
+     */
     public final InfoChannel getChannel() {
         return this.channel;
     }
@@ -23,6 +26,9 @@ public class Info {
         this.channel = channel;
     }
 
+    /**
+     * @return token
+     */
     public final InfoToken getToken() {
         return this.token;
     }
@@ -31,6 +37,9 @@ public class Info {
         this.token = token;
     }
 
+    /**
+     * @return user
+     */
     public final InfoUser getUser() {
         return this.user;
     }

@@ -3,22 +3,22 @@ package ru.maximkulikov.goodgame.api.auth;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
+
 import ru.maximkulikov.goodgame.api.auth.grants.implicit.AuthenticationCallbackServer;
 import ru.maximkulikov.goodgame.api.auth.grants.implicit.AuthenticationError;
 
 /**
- * The authenticator object allows a user to authenticate with the Twitch.tv servers.
+ * Объект {@link Authenticator} позволяет получить авторизационный каод для последующей авторизации на сервера Goodgame.ru.
  *
  * @author Matthew Bell
+ * @author Maxim Kulikov
  */
 public class Authenticator {
 
     private static final int DEFAULT_HTTP_PORT = 80;
 
-    // Base twitch api url
     private String goodgameBaseUrl;
 
-    // The port to listen for the authentication callback on
     private int listenPort;
 
     //TODO Убрать эту переменную, заменить на gg.getCliendID
@@ -40,11 +40,24 @@ public class Authenticator {
         this.goodgameBaseUrl = goodgameBaseUrl;
     }
 
+    /**
+     * Использование стандартные страниц ответа
+     *
+     * @return Возвращает <i>true</i> при успешном прохождении всех шагов получения авторизационного кода
+     */
     public final boolean awaitAutorizationCode() {
-        // Use default pages
+
         return this.awaitAutorizationCode(null, null, null);
     }
 
+    /**
+     * Использование собственных страниц на ответ авторизации
+     *
+     * @param authUrl    Страница первоначальное переадрессации
+     * @param successUrl Страница об успешном получение авторизационного кода
+     * @param failUrl    Страница о неудачном получении авторизациннного кода
+     * @return Возвращает <i>true</i> при успешном прохождении всех шагов получения авторизационного кода
+     */
     public final boolean awaitAutorizationCode(final URL authUrl, final URL successUrl, final URL failUrl) {
         if (this.clientId == null || this.redirectUri == null) {
             return false;
@@ -68,38 +81,31 @@ public class Authenticator {
         return true;
     }
 
+    /**
+     * @return Access Token
+     */
     public final String getAccessToken() {
         return this.accessToken;
     }
 
+    /**
+     * @param accessToken Access Token
+     */
     public final void setAccessToken(final String accessToken) {
         this.accessToken = accessToken;
 
-
     }
 
+    /**
+     * @return
+     */
     public final AuthenticationError getAuthenticationError() {
         return this.authenticationError;
     }
 
-    public final String getAuthenticationUrl(final String clientId, final URI redirectURI,
-                                             final String state, final Scopes... scopes) {
-        this.clientId = clientId;
-        this.redirectUri = redirectURI;
-        this.state = state;
-
-        // Set the listening port for the callback, default to 80 if not specified
-        this.listenPort = this.redirectUri.getPort();
-        if (this.listenPort == -1) {
-            // HTTP default
-            this.listenPort = DEFAULT_HTTP_PORT;
-        }
-
-        return String.format("%s/oauth/authorize?response_type=code" +
-                        "&client_id=%s&redirect_uri=%s&state=%s&scope=%s",
-                this.goodgameBaseUrl, this.clientId, this.redirectUri, this.state, Scopes.join(scopes));
-    }
-
+    /**
+     * @return Авторизационный код
+     */
     public final String getAutorizationCode() {
         return this.authentificationCode;
     }
@@ -109,27 +115,26 @@ public class Authenticator {
         return this.clientId;
     }
 
+    /**
+     * @return Ссылка для перехода на страницу авторизации (возможно)
+     */
     public final URI getRedirectUri() {
         return this.redirectUri;
     }
 
+    /**
+     * @return Refresh Token
+     */
     public final String getRefreshToken() {
         return this.refreshToken;
     }
 
+    /**
+     * Метод выполняется автоматически, при авторизации.
+     *
+     * @param refreshToken Refresh Token
+     */
     public final void setRefreshToken(final String refreshToken) {
         this.refreshToken = refreshToken;
-    }
-
-    public final String getState() {
-        return this.state;
-    }
-
-    public final boolean hasAuthenticationError() {
-        return this.authenticationError != null;
-    }
-
-    public final boolean hasAuthentificationCode() {
-        return this.authentificationCode != null;
     }
 }

@@ -1,11 +1,12 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GitHubSubscribers {
@@ -14,6 +15,9 @@ public class GitHubSubscribers {
 
     private List<GitHubSubscriber> response;
 
+    /**
+     * @return response
+     */
     public final List<GitHubSubscriber> getResponse() {
         return this.response;
     }
@@ -22,6 +26,9 @@ public class GitHubSubscribers {
         this.response = response;
     }
 
+    /**
+     * @return success
+     */
     public final Boolean getSuccess() {
         return this.success;
     }

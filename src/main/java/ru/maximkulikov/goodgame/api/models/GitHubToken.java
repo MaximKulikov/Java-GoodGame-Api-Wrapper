@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 20.01.2017.
+ * @author Maxim Kulikov
+ * @since 20.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GitHubToken {
@@ -20,6 +20,9 @@ public class GitHubToken {
     @JsonProperty("refresh_token")
     private String refreshToken;
 
+    /**
+     * @return access_token
+     */
     public final String getAccessToken() {
         return this.accessToken;
     }
@@ -28,6 +31,9 @@ public class GitHubToken {
         this.accessToken = accessToken;
     }
 
+    /**
+     * @return refresh_token
+     */
     public final String getRefreshToken() {
         return this.refreshToken;
     }
@@ -36,6 +42,9 @@ public class GitHubToken {
         this.refreshToken = refreshToken;
     }
 
+    /**
+     * @return scope
+     */
     public final String getScope() {
         return this.scope;
     }
@@ -44,6 +53,9 @@ public class GitHubToken {
         this.scope = scope;
     }
 
+    /**
+     * @return success
+     */
     public final Boolean getSuccess() {
         return this.success;
     }

@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OauthResourceCheck {
@@ -13,6 +13,9 @@ public class OauthResourceCheck {
 
     private String message;
 
+    /**
+     * @return message
+     */
     public final String getMessage() {
         return this.message;
     }
@@ -21,6 +24,9 @@ public class OauthResourceCheck {
         this.message = message;
     }
 
+    /**
+     * @return success
+     */
     public final Boolean getSuccess() {
         return this.success;
     }

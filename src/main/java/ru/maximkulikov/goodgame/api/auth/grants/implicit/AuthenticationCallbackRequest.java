@@ -14,9 +14,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+/**
+ * @author Matthew Bell
+ */
 public class AuthenticationCallbackRequest implements Runnable {
 
-    // as specified by HTTP/1.1 spec
+    /**
+     * as specified by HTTP/1.1 spec
+     */
     private static final String EOL = "\r\n";
 
     private static final String UTF8 = "UTF-8";
@@ -29,7 +34,9 @@ public class AuthenticationCallbackRequest implements Runnable {
 
     private URL successPage;
 
-    // Will receive auth callbacks
+    /**
+     * Will receive auth callbacks
+     */
     private AuthenticationListener authenticationListener;
 
     public AuthenticationCallbackRequest(final Socket socket, final URL authPage,
@@ -79,13 +86,20 @@ public class AuthenticationCallbackRequest implements Runnable {
         return params;
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     private void processRequest() throws IOException {
 //         Get a reference to the socket's input and output streams.
         //InputStream is = this.socket.getInputStream();
         this.socket.getInputStream();
         DataOutputStream os;
 
-        // Set up input stream filters.
+        /**
+         * Set up input stream filters.
+         */
+
         BufferedReader br = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
 
         // Get the request line of the HTTP request message.

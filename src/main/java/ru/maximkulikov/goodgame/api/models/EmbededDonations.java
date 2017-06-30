@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmbededDonations {
@@ -21,6 +21,9 @@ public class EmbededDonations {
 
     private String comment;
 
+    /**
+     * @return amount
+     */
     public final String getAmount() {
         return this.amount;
     }
@@ -29,6 +32,9 @@ public class EmbededDonations {
         this.amount = amount;
     }
 
+    /**
+     * @return comment
+     */
     public final String getComment() {
         return this.comment;
     }
@@ -37,6 +43,9 @@ public class EmbededDonations {
         this.comment = comment;
     }
 
+    /**
+     * @return id
+     */
     public final String getId() {
         return this.id;
     }
@@ -45,6 +54,9 @@ public class EmbededDonations {
         this.id = id;
     }
 
+    /**
+     * @return paid_date
+     */
     public final String getPaidDate() {
         return this.paidDate;
     }
@@ -53,6 +65,9 @@ public class EmbededDonations {
         this.paidDate = paidDate;
     }
 
+    /**
+     * @return username
+     */
     public final String getUsername() {
         return this.username;
     }

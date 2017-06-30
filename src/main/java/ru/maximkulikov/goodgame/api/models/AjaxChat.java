@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 03.04.2017.
+ * @author Maxim Kulikov
+ * @since 03.04.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AjaxChat {
@@ -21,6 +21,9 @@ public class AjaxChat {
 
     private Boolean noBan;
 
+    /**
+     * @return alignType
+     */
     public final Integer getAlignType() {
         return this.alignType;
     }
@@ -29,6 +32,9 @@ public class AjaxChat {
         this.alignType = alignType;
     }
 
+    /**
+     * @return pekaMod
+     */
     public final Integer getPekaMod() {
         return this.pekaMod;
     }
@@ -37,6 +43,9 @@ public class AjaxChat {
         this.pekaMod = pekaMod;
     }
 
+    /**
+     * @return sound
+     */
     public final Boolean getSound() {
         return this.sound;
     }
@@ -45,6 +54,9 @@ public class AjaxChat {
         this.sound = sound;
     }
 
+    /**
+     * @return smilesType
+     */
     public final Integer getSmilesType() {
         return this.smilesType;
     }
@@ -53,6 +65,9 @@ public class AjaxChat {
         this.smilesType = smilesType;
     }
 
+    /**
+     * @return hide
+     */
     public final Integer getHide() {
         return this.hide;
     }
@@ -61,6 +76,9 @@ public class AjaxChat {
         this.hide = hide;
     }
 
+    /**
+     * @return noBan
+     */
     public Boolean getNoBan() {
         return this.noBan;
     }

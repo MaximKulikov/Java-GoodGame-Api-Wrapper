@@ -3,6 +3,10 @@ package ru.maximkulikov.goodgame.api.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * @author Maxim Kulikov
+ * @since 0.1
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Game {
 
@@ -17,6 +21,9 @@ public class Game {
 
     private String poster;
 
+    /**
+     * @return id
+     */
     public final String getId() {
         return this.id;
     }
@@ -25,6 +32,9 @@ public class Game {
         this.id = id;
     }
 
+    /**
+     * @return poster
+     */
     public final String getPoster() {
         return this.poster;
     }
@@ -33,6 +43,9 @@ public class Game {
         this.poster = poster;
     }
 
+    /**
+     * @return short
+     */
     public final String getShortTitle() {
         return this.shortTitle;
     }
@@ -41,6 +54,9 @@ public class Game {
         this.shortTitle = shortTitle;
     }
 
+    /**
+     * @return title
+     */
     public final String getTitle() {
         return this.title;
     }
@@ -49,6 +65,9 @@ public class Game {
         this.title = title;
     }
 
+    /**
+     * @return url
+     */
     public final String getUrl() {
         return this.url;
     }

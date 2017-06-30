@@ -1,11 +1,12 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GG-Api-Wrapper
- * Created by maxim on 04.01.2017.
+ * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InfoToken {
@@ -14,6 +15,9 @@ public class InfoToken {
 
     private String expires;
 
+    /**
+     * @return expires
+     */
     public final String getExpires() {
         return this.expires;
     }
@@ -22,6 +26,9 @@ public class InfoToken {
         this.expires = expires;
     }
 
+    /**
+     * @return scopes
+     */
     public final List<String> getScopes() {
         return this.scopes;
     }
