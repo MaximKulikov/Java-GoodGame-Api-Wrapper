@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 11.01.2017.
+ * @author Maxim Kulikov
+ * @since 11.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqPollResultsContainer implements ReqChatObject {
@@ -13,6 +13,9 @@ public class ReqPollResultsContainer implements ReqChatObject {
 
     private ReqGetPoll data;
 
+    /**
+     * @param channelId channel_id
+     */
     public ReqPollResultsContainer(final String channelId) {
         this.data = new ReqGetPoll(channelId);
     }

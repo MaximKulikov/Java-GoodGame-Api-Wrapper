@@ -4,8 +4,6 @@ package ru.maximkulikov.goodgame.api.models;
  * @author Maxim Kulikov
  * @since 03.04.2017
  */
-
-
 public class AjaxGame {
 
     private String gameName;

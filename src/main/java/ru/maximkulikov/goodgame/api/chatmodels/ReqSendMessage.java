@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 10.01.2017.
+ * @author Maxim Kulikov
+ * @since 10.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqSendMessage {
@@ -19,6 +19,12 @@ public class ReqSendMessage {
 
     private boolean mobile;
 
+    /**
+     * @param channelId channel_id
+     * @param text      text
+     * @param hideIcon  hideIcon
+     * @param mobile    mobile
+     */
     public ReqSendMessage(final String channelId, final String text, final boolean hideIcon, final boolean mobile) {
         this.channelId = channelId;
         this.text = text;
@@ -26,6 +32,10 @@ public class ReqSendMessage {
         this.mobile = mobile;
     }
 
+    /**
+     * @param channelId channel_id
+     * @param text      text
+     */
     public ReqSendMessage(final String channelId, final String text) {
         this.channelId = channelId;
         this.text = text;

@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 11.01.2017.
+ * @author Maxim Kulikov
+ * @since 11.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqMakeModerator {
@@ -16,6 +16,10 @@ public class ReqMakeModerator {
     @JsonProperty("user_id")
     private String userId;
 
+    /**
+     * @param channelId channel_id
+     * @param userId    user_id
+     */
     public ReqMakeModerator(final String channelId, final String userId) {
         this.channelId = channelId;
         this.userId = userId;

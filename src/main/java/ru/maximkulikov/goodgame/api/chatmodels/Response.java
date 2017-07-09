@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 import ru.maximkulikov.goodgame.api.ChatResponses;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 12.01.2017.
+ * @author Maxim Kulikov
+ * @since 12.01.2017
  */
 public class Response {
 

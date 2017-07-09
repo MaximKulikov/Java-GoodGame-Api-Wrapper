@@ -1,11 +1,12 @@
 package ru.maximkulikov.goodgame.api.chatmodels;
 
 import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 09.01.2017.
+ * @author Maxim Kulikov
+ * @since 09.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResChannelStreamer implements ResChatObject {

@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 10.01.2017.
+ * @author Maxim Kulikov
+ * @since 10.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatMessage {
@@ -26,6 +26,9 @@ public class ChatMessage {
 
     private String text;
 
+    /**
+     * @return message_id
+     */
     public final String getMessageId() {
         return this.messageId;
     }
@@ -34,6 +37,9 @@ public class ChatMessage {
         this.messageId = messageId;
     }
 
+    /**
+     * @return text
+     */
     public final String getText() {
         return this.text;
     }
@@ -42,6 +48,9 @@ public class ChatMessage {
         this.text = text;
     }
 
+    /**
+     * @return timestamp
+     */
     public final String getTimestamp() {
         return this.timestamp;
     }
@@ -50,6 +59,9 @@ public class ChatMessage {
         this.timestamp = timestamp;
     }
 
+    /**
+     * @return user_group
+     */
     public final Long getUserGroup() {
         return this.userGroup;
     }
@@ -58,6 +70,9 @@ public class ChatMessage {
         this.userGroup = userGroup;
     }
 
+    /**
+     * @return user_id
+     */
     public final String getUserId() {
         return this.userId;
     }
@@ -66,6 +81,9 @@ public class ChatMessage {
         this.userId = userId;
     }
 
+    /**
+     * @return user_name
+     */
     public final String getUserName() {
         return this.userName;
     }

@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 11.01.2017.
+ * @author Maxim Kulikov
+ * @since 11.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PollResult {
@@ -15,6 +15,9 @@ public class PollResult {
 
     private Long voters;
 
+    /**
+     * @return id
+     */
     public final int getId() {
         return this.id;
     }
@@ -23,6 +26,9 @@ public class PollResult {
         this.id = id;
     }
 
+    /**
+     * @return text
+     */
     public final String getText() {
         return this.text;
     }
@@ -31,6 +37,9 @@ public class PollResult {
         this.text = text;
     }
 
+    /**
+     * @return voters
+     */
     public final Long getVoters() {
         return this.voters;
     }

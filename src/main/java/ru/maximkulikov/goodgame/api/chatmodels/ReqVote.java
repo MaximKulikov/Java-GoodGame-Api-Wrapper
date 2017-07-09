@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 11.01.2017.
+ * @author Maxim Kulikov
+ * @since 11.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqVote {
@@ -16,6 +16,10 @@ public class ReqVote {
     @JsonProperty("answer_id")
     private int answerId;
 
+    /**
+     * @param channelId channel_id
+     * @param answerId  answer_id
+     */
     public ReqVote(final String channelId, final int answerId) {
         this.channelId = channelId;
         this.answerId = answerId;

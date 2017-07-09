@@ -11,21 +11,21 @@ public class ReqAutorizationContainer implements ReqChatObject {
 
     private String type = "auth";
 
-    private ReqAutorization data;
+    private ReaAuthorization data;
 
     public ReqAutorizationContainer(final int siteId, final int userId, final String token) {
-        this.data = new ReqAutorization(siteId, userId, token);
+        this.data = new ReaAuthorization(siteId, userId, token);
     }
 
     public ReqAutorizationContainer(final int siteId, final int userId) {
-        this.data = new ReqAutorization(siteId, userId);
+        this.data = new ReaAuthorization(siteId, userId);
     }
 
-    public final ReqAutorization getData() {
+    public final ReaAuthorization getData() {
         return this.data;
     }
 
-    public final void setData(final ReqAutorization data) {
+    public final void setData(final ReaAuthorization data) {
         this.data = data;
     }
 

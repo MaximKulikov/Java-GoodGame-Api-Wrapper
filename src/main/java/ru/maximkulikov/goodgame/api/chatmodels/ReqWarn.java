@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 10.01.2017.
+ * @author Maxim Kulikov
+ * @since 10.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqWarn {
@@ -18,6 +18,11 @@ public class ReqWarn {
 
     private String reason;
 
+    /**
+     * @param channelId channel_id
+     * @param userId    user_id
+     * @param reason    reason
+     */
     public ReqWarn(final String channelId, final String userId, final String reason) {
         this.channelId = channelId;
         this.userId = userId;

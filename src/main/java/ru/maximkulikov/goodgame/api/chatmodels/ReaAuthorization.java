@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 08.01.2017.
+ * @author Maxim Kulikov
+ * @since 08.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-class ReqAutorization {
+class ReaAuthorization {
 
     @JsonProperty("site_id")
     private int siteId;
@@ -18,17 +18,29 @@ class ReqAutorization {
 
     private String token;
 
-    ReqAutorization(final int siteId, final int userId, final String token) {
+    /**
+     * @param siteId site_id
+     * @param userId user_id
+     * @param token  token
+     */
+    ReaAuthorization(final int siteId, final int userId, final String token) {
         this.siteId = siteId;
         this.userId = userId;
         this.token = token;
     }
 
-    ReqAutorization(final int siteId, final int userId) {
+    /**
+     * @param siteId site_id
+     * @param userId user_id
+     */
+    ReaAuthorization(final int siteId, final int userId) {
         this.siteId = siteId;
         this.userId = userId;
     }
 
+    /**
+     * @return site_id
+     */
     public final int getSiteId() {
         return this.siteId;
     }
@@ -37,6 +49,9 @@ class ReqAutorization {
         this.siteId = siteId;
     }
 
+    /**
+     * @return token
+     */
     public final String getToken() {
         return this.token;
     }
@@ -45,6 +60,9 @@ class ReqAutorization {
         this.token = token;
     }
 
+    /**
+     * @return user_id
+     */
     public final int getUserId() {
         return this.userId;
     }

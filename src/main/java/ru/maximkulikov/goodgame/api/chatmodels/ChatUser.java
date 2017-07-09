@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 09.01.2017.
+ * @author Maxim Kulikov
+ * @since 09.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatUser implements ResChatObject {
@@ -23,6 +23,9 @@ public class ChatUser implements ResChatObject {
 
     private Boolean hidden;
 
+    /**
+     * @return hidden
+     */
     public final Boolean getHidden() {
         return this.hidden;
     }
@@ -31,6 +34,9 @@ public class ChatUser implements ResChatObject {
         this.hidden = hidden;
     }
 
+    /**
+     * @return id
+     */
     public final String getId() {
         return this.id;
     }
@@ -39,6 +45,9 @@ public class ChatUser implements ResChatObject {
         this.id = id;
     }
 
+    /**
+     * @return mobile
+     */
     public final Boolean getMobile() {
         return this.mobile;
     }
@@ -47,6 +56,9 @@ public class ChatUser implements ResChatObject {
         this.mobile = mobile;
     }
 
+    /**
+     * @return name
+     */
     public final String getName() {
         return this.name;
     }
@@ -55,6 +67,9 @@ public class ChatUser implements ResChatObject {
         this.name = name;
     }
 
+    /**
+     * @return payments
+     */
     public final String getPayments() {
         return this.payments;
     }
@@ -63,6 +78,9 @@ public class ChatUser implements ResChatObject {
         this.payments = payments;
     }
 
+    /**
+     * @return premium
+     */
     public final Boolean getPremium() {
         return this.premium;
     }
@@ -71,6 +89,9 @@ public class ChatUser implements ResChatObject {
         this.premium = premium;
     }
 
+    /**
+     * @return right
+     */
     public final Long getRight() {
         return this.right;
     }

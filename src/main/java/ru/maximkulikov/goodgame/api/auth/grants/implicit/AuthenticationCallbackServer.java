@@ -7,6 +7,9 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.URL;
 
+/**
+ * @author Matthew Bell
+ */
 public class AuthenticationCallbackServer implements AuthenticationListener {
 
     /**

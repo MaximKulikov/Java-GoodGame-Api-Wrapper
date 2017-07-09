@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 09.01.2017.
+ * @author Maxim Kulikov
+ * @since 09.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatChannel {
@@ -22,6 +22,9 @@ public class ChatChannel {
     @JsonProperty("users_in_channel")
     private Long usersInChannel;
 
+    /**
+     * @return channel_id
+     */
     public final String getChannelId() {
         return this.channelId;
     }
@@ -30,6 +33,9 @@ public class ChatChannel {
         this.channelId = channelId;
     }
 
+    /**
+     * @return channel_name
+     */
     public final String getChannelName() {
         return this.channelName;
     }
@@ -38,6 +44,9 @@ public class ChatChannel {
         this.channelName = channelName;
     }
 
+    /**
+     * @return clients_in_channel
+     */
     public final Long getClientsInChannel() {
         return this.clientsInChannel;
     }
@@ -46,6 +55,9 @@ public class ChatChannel {
         this.clientsInChannel = clientsInChannel;
     }
 
+    /**
+     * @return users_in_channel
+     */
     public final Long getUsersInChannel() {
         return this.usersInChannel;
     }

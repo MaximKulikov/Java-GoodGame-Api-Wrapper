@@ -4,36 +4,39 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 10.01.2017.
+ * @author Maxim Kulikov
+ * @since 10.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqBan {
 
-    // канал в котором вынесен бан
     @JsonProperty("channel_id")
     private String channelId;
 
-    // канал в котором необходимо забанить, если 0 - то на все каналы
     @JsonProperty("ban_channel")
     private String banChannel;
 
     @JsonProperty("user_id")
     private String userId;
 
-    // время бана в секундах
     private int duration;
 
-    //причина
     private String reason;
 
-    // текст сообщения, за который вынесен бан
     private String comment;
 
-    // показывать ли бан
     @JsonProperty("show_ban")
     private Boolean showBan;
 
+    /**
+     * @param channelId  channel_id канал в котором вынесен бан
+     * @param banChannel ban_channel канал в котором необходимо забанить, если 0 - то на все каналы
+     * @param userId     user_id
+     * @param duration   duration время бана в секундах
+     * @param reason     reason причина бана
+     * @param comment    comment текст сообщения, за который вынесен бан
+     * @param showBan    show_ban показывать бан
+     */
     public ReqBan(final String channelId, final String banChannel, final String userId, final int duration,
                   final String reason, final String comment, final Boolean showBan) {
         this.channelId = channelId;

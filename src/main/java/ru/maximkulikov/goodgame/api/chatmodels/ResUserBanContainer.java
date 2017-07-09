@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 13.01.2017.
+ * @author Maxim Kulikov
+ * @since 13.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResUserBanContainer {

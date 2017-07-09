@@ -4,14 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 10.01.2017.
+ * @author Maxim Kulikov
+ * @since 10.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqChannelHistory {
     @JsonProperty("channel_id")
     private String channelId;
 
+    /**
+     * @param channelId channel_id
+     */
     public ReqChannelHistory(final String channelId) {
         this.channelId = channelId;
     }

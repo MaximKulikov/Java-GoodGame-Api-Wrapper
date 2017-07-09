@@ -4,31 +4,42 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 10.01.2017.
+ * @author Maxim Kulikov
+ * @since 10.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResWarn implements ResChatObject {
+
     @JsonProperty("channel_id")
     private String channelId;
 
-    // id пользователя, кому вынесено предупреждение
+    /**
+     * id пользователя, кому вынесено предупреждение
+     */
     @JsonProperty("user_id")
     private String userId;
 
-    // ник забаненого пользователя
+    /**
+     * ник забаненого пользователя
+     */
     @JsonProperty("user_name")
     private String userName;
 
-    // id пользователя, вынесшего предупреждение
+    /**
+     * id пользователя, вынесшего предупреждение
+     */
     @JsonProperty("moder_id")
     private String moderId;
 
-    // ник пользователя, вынесшего бан
+    /**
+     * ник пользователя, вынесшего бан
+     */
     @JsonProperty("moder_name")
     private String moderName;
 
-    // определяет каким цветом выводить сообщения
+    /**
+     * определяет каким цветом выводить сообщения
+     */
     @JsonProperty("moder_group")
     private Long moderGroup;
 

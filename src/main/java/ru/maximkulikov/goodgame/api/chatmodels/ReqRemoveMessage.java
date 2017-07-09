@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 10.01.2017.
+ * @author Maxim Kulikov
+ * @since 10.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqRemoveMessage {
@@ -16,6 +16,10 @@ public class ReqRemoveMessage {
     @JsonProperty("message_id")
     private String messageId;
 
+    /**
+     * @param channelId channel_id
+     * @param messageId message_id
+     */
     public ReqRemoveMessage(final String channelId, final String messageId) {
         this.channelId = channelId;
         this.messageId = messageId;

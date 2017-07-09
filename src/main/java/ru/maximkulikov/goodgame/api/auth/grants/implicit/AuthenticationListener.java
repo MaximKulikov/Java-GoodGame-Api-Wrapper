@@ -1,14 +1,16 @@
 package ru.maximkulikov.goodgame.api.auth.grants.implicit;
 
 /**
- * Interface for listening to twitch.tv authentication
+ * Interface for listening  authentication
  * access tokens
+ *
+ * @author Matthew Bell
  */
 public interface AuthenticationListener {
     /**
-     * Called when a twitch.tv authentication access token has been received.
+     * Called when a authentication access token has been received.
      *
-     * @param token twitch.tv authentication access token
+     * @param token authentication access token
      */
     void onAccessTokenReceived(String token, String state);
 

@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 09.01.2017.
+ * @author Maxim Kulikov
+ * @since 09.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqAddToIgnoreListContainer implements ReqChatObject {
@@ -13,10 +13,16 @@ public class ReqAddToIgnoreListContainer implements ReqChatObject {
 
     private ReqChangeIgnoreList data;
 
+    /**
+     * @param userId User Id
+     */
     public ReqAddToIgnoreListContainer(final String userId) {
         this.data = new ReqChangeIgnoreList(userId);
     }
 
+    /**
+     * @return data
+     */
     public final ReqChangeIgnoreList getData() {
         return this.data;
     }
@@ -25,6 +31,9 @@ public class ReqAddToIgnoreListContainer implements ReqChatObject {
         this.data = data;
     }
 
+    /**
+     * @return add_to_ignore_list
+     */
     public final String getType() {
         return this.type;
     }

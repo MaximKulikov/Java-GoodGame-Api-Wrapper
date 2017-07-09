@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 08.01.2017.
+ * @author Maxim Kulikov
+ * @since 08.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqChannelsListContainer implements ReqChatObject {
@@ -13,10 +13,18 @@ public class ReqChannelsListContainer implements ReqChatObject {
 
     private ReqChannelsList data;
 
+    /**
+     *
+     * @param start начальная позиция
+     * @param count количество
+     */
     public ReqChannelsListContainer(final int start, final int count) {
         this.data = new ReqChannelsList(start, count);
     }
 
+    /**
+     *  Отображение первых 50 элементов
+     */
     public ReqChannelsListContainer() {
         this.data = new ReqChannelsList(0, 50);
     }

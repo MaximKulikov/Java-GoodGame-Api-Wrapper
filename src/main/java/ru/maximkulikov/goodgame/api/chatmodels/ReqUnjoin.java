@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 09.01.2017.
+ * @author Maxim Kulikov
+ * @since 09.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqUnjoin {
@@ -13,6 +13,9 @@ public class ReqUnjoin {
     @JsonProperty("channel_id")
     private String channelId;
 
+    /**
+     * @param channelId channel_id
+     */
     public ReqUnjoin(final String channelId) {
         this.channelId = channelId;
     }

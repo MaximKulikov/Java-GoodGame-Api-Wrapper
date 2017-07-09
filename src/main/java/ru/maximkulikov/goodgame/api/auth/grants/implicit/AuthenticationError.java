@@ -2,14 +2,20 @@ package ru.maximkulikov.goodgame.api.auth.grants.implicit;
 
 /**
  * The <code>AuthenticationError</code> class represents an error during
- * authentication with <a href="http://twitch.tv">http://www.twitch.tv</a>.
+ * authentication with.
+ *
+ * @author Matthew Bell
  */
 public class AuthenticationError {
 
-    // the name of the error
+    /**
+     * the name of the error
+     */
     private final String name;
 
-    // the description of the error
+    /**
+     * the description of the error
+     */
     private final String description;
 
     public AuthenticationError(final String name, final String description) {

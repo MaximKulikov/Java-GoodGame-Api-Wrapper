@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 08.01.2017.
+ * @author Maxim Kulkov
+ * @since 08.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqJoin {
@@ -17,6 +17,11 @@ public class ReqJoin {
 
     private boolean mobile;
 
+    /**
+     * @param channelId channel_id
+     * @param hidden    hidden
+     * @param mobile    mobile
+     */
     public ReqJoin(final String channelId, final boolean hidden, final boolean mobile) {
         this.channelId = channelId;
         this.hidden = hidden;

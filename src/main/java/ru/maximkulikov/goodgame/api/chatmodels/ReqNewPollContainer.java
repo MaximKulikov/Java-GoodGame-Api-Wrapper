@@ -1,11 +1,12 @@
 package ru.maximkulikov.goodgame.api.chatmodels;
 
 import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 11.01.2017.
+ * @author Maxim Kulikov
+ * @since 11.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqNewPollContainer implements ReqChatObject {
@@ -14,6 +15,13 @@ public class ReqNewPollContainer implements ReqChatObject {
 
     private ReqNewPoll data;
 
+    /**
+     * @param channelId channel_id
+     * @param moderId   moder_id
+     * @param moderName moder_name
+     * @param title     title
+     * @param answers   answers
+     */
     public ReqNewPollContainer(final String channelId, final String moderId, final String moderName,
                                final String title, final List<String> answers) {
         this.data = new ReqNewPoll(channelId, moderId, moderName, title, answers);

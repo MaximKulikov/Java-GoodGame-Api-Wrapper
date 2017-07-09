@@ -3,8 +3,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Java-GoodGame-Api-Wrapper
- * Created by maxim on 14.01.2017.
+ * @author Maxim Kulikov
+ * @since 14.01.2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqRefreshPremiumContainer implements ReqChatObject {
@@ -13,6 +13,9 @@ public class ReqRefreshPremiumContainer implements ReqChatObject {
 
     private ReqGetPoll data;
 
+    /**
+     * @param channelId channel_id
+     */
     public ReqRefreshPremiumContainer(final String channelId) {
         this.data = new ReqGetPoll(channelId);
     }
@@ -21,7 +24,7 @@ public class ReqRefreshPremiumContainer implements ReqChatObject {
         return this.data;
     }
 
-    public  final void setData(final ReqGetPoll data) {
+    public final void setData(final ReqGetPoll data) {
         this.data = data;
     }
 
@@ -29,12 +32,12 @@ public class ReqRefreshPremiumContainer implements ReqChatObject {
         return this.type;
     }
 
-    public  final void setType(final String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
     @Override
-    public  final String toString() {
+    public final String toString() {
         return "ReqRefreshPremiumContainer{" +
                 "type='" + this.type + '\'' +
                 ", data=" + this.data +
