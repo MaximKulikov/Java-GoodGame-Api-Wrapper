@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -17,6 +19,36 @@ public class Smile {
 
     @JsonProperty("is_premium")
     private Boolean isPremium;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Smile smile = (Smile) o;
+
+        return new EqualsBuilder()
+                .append(key, smile.key)
+                .append(donateLvl, smile.donateLvl)
+                .append(isPremium, smile.isPremium)
+                .append(isPaid, smile.isPaid)
+                .append(channelId, smile.channelId)
+                .append(urls, smile.urls)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(key)
+                .append(donateLvl)
+                .append(isPremium)
+                .append(isPaid)
+                .append(channelId)
+                .append(urls)
+                .toHashCode();
+    }
 
     @JsonProperty("is_paid")
     private Boolean isPaid;

@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -21,6 +23,34 @@ public class PremiumPrices {
 
     @JsonProperty("4")
     private String id4;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PremiumPrices that = (PremiumPrices) o;
+
+        return new EqualsBuilder()
+                .append(id1, that.id1)
+                .append(id2, that.id2)
+                .append(id3, that.id3)
+                .append(id4, that.id4)
+                .append(id5, that.id5)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id1)
+                .append(id2)
+                .append(id3)
+                .append(id4)
+                .append(id5)
+                .toHashCode();
+    }
 
     @JsonProperty("5")
     private String id5;

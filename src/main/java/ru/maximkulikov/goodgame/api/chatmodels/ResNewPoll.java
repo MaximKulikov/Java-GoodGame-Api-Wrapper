@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 
 /**
@@ -31,6 +33,38 @@ public class ResNewPoll implements ResChatObject {
     private String title;
 
     private List<PollAnswer> answers;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ResNewPoll that = (ResNewPoll) o;
+
+        return new EqualsBuilder()
+                .append(channelId, that.channelId)
+                .append(moderId, that.moderId)
+                .append(moderName, that.moderName)
+                .append(moderRights, that.moderRights)
+                .append(moderGroups, that.moderGroups)
+                .append(title, that.title)
+                .append(answers, that.answers)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channelId)
+                .append(moderId)
+                .append(moderName)
+                .append(moderRights)
+                .append(moderGroups)
+                .append(title)
+                .append(answers)
+                .toHashCode();
+    }
 
     public final List<PollAnswer> getAnswers() {
         return this.answers;

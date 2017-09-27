@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -17,6 +19,62 @@ public class ResJoin implements ResChatObject {
 
     @JsonProperty("channel_name")
     private String channelName;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ResJoin resJoin = (ResJoin) o;
+
+        return new EqualsBuilder()
+                .append(slowmod, resJoin.slowmod)
+                .append(smiles, resJoin.smiles)
+                .append(smilePeka, resJoin.smilePeka)
+                .append(roomPrivacy, resJoin.roomPrivacy)
+                .append(roomRole, resJoin.roomRole)
+                .append(channelId, resJoin.channelId)
+                .append(channelName, resJoin.channelName)
+                .append(channelStreamer, resJoin.channelStreamer)
+                .append(motd, resJoin.motd)
+                .append(clientsInChannel, resJoin.clientsInChannel)
+                .append(usersInChannel, resJoin.usersInChannel)
+                .append(userId, resJoin.userId)
+                .append(name, resJoin.name)
+                .append(accessRights, resJoin.accessRights)
+                .append(userGroups, resJoin.userGroups)
+                .append(isBanned, resJoin.isBanned)
+                .append(bannedTime, resJoin.bannedTime)
+                .append(reason, resJoin.reason)
+                .append(paidsmiles, resJoin.paidsmiles)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channelId)
+                .append(channelName)
+                .append(channelStreamer)
+                .append(motd)
+                .append(slowmod)
+                .append(smiles)
+                .append(smilePeka)
+                .append(clientsInChannel)
+                .append(usersInChannel)
+                .append(userId)
+                .append(name)
+                .append(accessRights)
+                .append(roomPrivacy)
+                .append(roomRole)
+                .append(userGroups)
+                .append(isBanned)
+                .append(bannedTime)
+                .append(reason)
+                .append(paidsmiles)
+                .toHashCode();
+    }
 
     @JsonProperty("channel_streamer")
     private ResChannelStreamer channelStreamer;

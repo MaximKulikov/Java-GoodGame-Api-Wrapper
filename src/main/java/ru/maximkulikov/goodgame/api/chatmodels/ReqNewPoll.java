@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -18,6 +20,34 @@ public class ReqNewPoll {
 
     @JsonProperty("moder_id")
     private String moderId;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ReqNewPoll that = (ReqNewPoll) o;
+
+        return new EqualsBuilder()
+                .append(channelId, that.channelId)
+                .append(moderId, that.moderId)
+                .append(moderName, that.moderName)
+                .append(title, that.title)
+                .append(answers, that.answers)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channelId)
+                .append(moderId)
+                .append(moderName)
+                .append(title)
+                .append(answers)
+                .toHashCode();
+    }
 
     @JsonProperty("moder_name")
     private String moderName;

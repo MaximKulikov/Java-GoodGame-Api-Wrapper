@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -17,7 +19,32 @@ public class InfoChannel {
 
     private String src;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        InfoChannel that = (InfoChannel) o;
+
+        return new EqualsBuilder()
+                .append(channel, that.channel)
+                .append(channelId, that.channelId)
+                .append(src, that.src)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channel)
+                .append(channelId)
+                .append(src)
+                .toHashCode();
+    }
+
     /**
+
      * @return channel
      */
     public final String getChannel() {

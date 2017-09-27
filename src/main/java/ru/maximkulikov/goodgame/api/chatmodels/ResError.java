@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -15,6 +17,30 @@ public class ResError implements ResChatObject {
 
     @JsonProperty("error_num")
     private Integer errorNum;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ResError resError = (ResError) o;
+
+        return new EqualsBuilder()
+                .append(channelId, resError.channelId)
+                .append(errorNum, resError.errorNum)
+                .append(errorMsg, resError.errorMsg)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channelId)
+                .append(errorNum)
+                .append(errorMsg)
+                .toHashCode();
+    }
 
     private String errorMsg;
 

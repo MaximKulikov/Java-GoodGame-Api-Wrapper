@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -17,6 +19,54 @@ public class Player {
 
     @JsonProperty("channel_key")
     private String channelKey;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Player player = (Player) o;
+
+        return new EqualsBuilder()
+                .append(channelId, player.channelId)
+                .append(channelKey, player.channelKey)
+                .append(channelTitle, player.channelTitle)
+                .append(broadcastTitle, player.broadcastTitle)
+                .append(channelStatus, player.channelStatus)
+                .append(channelPoster, player.channelPoster)
+                .append(channelPremium, player.channelPremium)
+                .append(streamerAvatar, player.streamerAvatar)
+                .append(premiumOnly, player.premiumOnly)
+                .append(adult, player.adult)
+                .append(channelStart, player.channelStart)
+                .append(gaCode, player.gaCode)
+                .append(broadcasts, player.broadcasts)
+                .append(premiumPrices, player.premiumPrices)
+                .append(users, player.users)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channelId)
+                .append(channelKey)
+                .append(channelTitle)
+                .append(broadcastTitle)
+                .append(channelStatus)
+                .append(channelPoster)
+                .append(channelPremium)
+                .append(streamerAvatar)
+                .append(premiumOnly)
+                .append(adult)
+                .append(channelStart)
+                .append(gaCode)
+                .append(broadcasts)
+                .append(premiumPrices)
+                .append(users)
+                .toHashCode();
+    }
 
     @JsonProperty("channel_title")
     private String channelTitle;

@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @since 29.12.2016
@@ -18,6 +20,34 @@ public class Broadcast {
 
     @JsonProperty("broadcast_games")
     private String broadcastGames;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Broadcast broadcast = (Broadcast) o;
+
+        return new EqualsBuilder()
+                .append(broadcastTitle, broadcast.broadcastTitle)
+                .append(broadcastStart, broadcast.broadcastStart)
+                .append(broadcastGames, broadcast.broadcastGames)
+                .append(broadcastDescription, broadcast.broadcastDescription)
+                .append(broadcastLogo, broadcast.broadcastLogo)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(broadcastTitle)
+                .append(broadcastStart)
+                .append(broadcastGames)
+                .append(broadcastDescription)
+                .append(broadcastLogo)
+                .toHashCode();
+    }
 
     @JsonProperty("broadcast_description")
     private String broadcastDescription;

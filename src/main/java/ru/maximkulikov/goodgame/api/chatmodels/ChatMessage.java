@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -12,6 +14,36 @@ public class ChatMessage {
 
     @JsonProperty("user_id")
     private String userId;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ChatMessage that = (ChatMessage) o;
+
+        return new EqualsBuilder()
+                .append(userId, that.userId)
+                .append(userName, that.userName)
+                .append(userGroup, that.userGroup)
+                .append(messageId, that.messageId)
+                .append(timestamp, that.timestamp)
+                .append(text, that.text)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(userId)
+                .append(userName)
+                .append(userGroup)
+                .append(messageId)
+                .append(timestamp)
+                .append(text)
+                .toHashCode();
+    }
 
     @JsonProperty("user_name")
     private String userName;

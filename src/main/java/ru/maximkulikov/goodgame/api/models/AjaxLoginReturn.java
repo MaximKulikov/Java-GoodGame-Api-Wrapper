@@ -1,6 +1,8 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -16,6 +18,44 @@ public class AjaxLoginReturn {
     private String avatar;
 
     private String token;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AjaxLoginReturn that = (AjaxLoginReturn) o;
+
+        return new EqualsBuilder()
+                .append(id, that.id)
+                .append(username, that.username)
+                .append(avatar, that.avatar)
+                .append(token, that.token)
+                .append(channel, that.channel)
+                .append(settings, that.settings)
+                .append(dialogs, that.dialogs)
+                .append(bl, that.bl)
+                .append(rights, that.rights)
+                .append(premium, that.premium)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(username)
+                .append(avatar)
+                .append(token)
+                .append(channel)
+                .append(settings)
+                .append(dialogs)
+                .append(bl)
+                .append(rights)
+                .append(premium)
+                .toHashCode();
+    }
 
     private AjaxChannel channel;
 

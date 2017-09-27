@@ -1,6 +1,8 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -15,8 +17,33 @@ public class SmileUrls {
 
     private String gif;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SmileUrls smileUrls = (SmileUrls) o;
+
+        return new EqualsBuilder()
+                .append(img, smileUrls.img)
+                .append(big, smileUrls.big)
+                .append(gif, smileUrls.gif)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(img)
+                .append(big)
+                .append(gif)
+                .toHashCode();
+    }
+
     /**
      * @return big
+
      */
     public final String getBig() {
         return this.big;

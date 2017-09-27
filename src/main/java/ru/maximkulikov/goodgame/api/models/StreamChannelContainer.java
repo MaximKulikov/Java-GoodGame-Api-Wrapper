@@ -1,6 +1,8 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import java.util.List;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -19,6 +21,26 @@ public class StreamChannelContainer {
 
     public final void setStreams(final List<ChannelContainer> streams) {
         this.streams = streams;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        StreamChannelContainer that = (StreamChannelContainer) o;
+
+        return new EqualsBuilder()
+                .append(streams, that.streams)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(streams)
+                .toHashCode();
     }
 
     @Override

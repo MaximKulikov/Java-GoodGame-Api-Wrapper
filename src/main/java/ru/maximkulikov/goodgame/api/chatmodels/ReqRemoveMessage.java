@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -16,9 +18,32 @@ public class ReqRemoveMessage {
     @JsonProperty("message_id")
     private String messageId;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ReqRemoveMessage that = (ReqRemoveMessage) o;
+
+        return new EqualsBuilder()
+                .append(channelId, that.channelId)
+                .append(messageId, that.messageId)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channelId)
+                .append(messageId)
+                .toHashCode();
+    }
+
     /**
      * @param channelId channel_id
      * @param messageId message_id
+
      */
     public ReqRemoveMessage(final String channelId, final String messageId) {
         this.channelId = channelId;

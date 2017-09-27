@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Matthew Bell
@@ -17,6 +19,30 @@ public class Error {
 
     @JsonProperty("detail")
     private String message;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Error error = (Error) o;
+
+        return new EqualsBuilder()
+                .append(statusCode, error.statusCode)
+                .append(statusText, error.statusText)
+                .append(message, error.message)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(statusText)
+                .append(statusCode)
+                .append(message)
+                .toHashCode();
+    }
 
     /**
      * @return detail
@@ -50,35 +76,6 @@ public class Error {
 
     public final void setStatusText(final String statusText) {
         this.statusText = statusText;
-    }
-
-    @Override
-    public final int hashCode() {
-        int result = this.statusText != null ? this.statusText.hashCode() : 0;
-        result = 31 * result + this.statusCode;
-        result = 31 * result + (this.message != null ? this.message.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public final boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Error that = (Error) o;
-
-        if (this.statusCode != that.statusCode) {
-            return false;
-        }
-        if (this.statusText != null ? !this.statusText.equals(that.statusText) : that.statusText != null) {
-            return false;
-        }
-        return !(this.message != null ? !this.message.equals(that.message) : that.message != null);
-
     }
 
     @Override

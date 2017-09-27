@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -22,6 +24,32 @@ public class ResUsersList implements ResChatObject {
     private Long usersInChannel;
 
     private List<ChatUser> users;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ResUsersList that = (ResUsersList) o;
+
+        return new EqualsBuilder()
+                .append(channelId, that.channelId)
+                .append(clientsInChannel, that.clientsInChannel)
+                .append(usersInChannel, that.usersInChannel)
+                .append(users, that.users)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channelId)
+                .append(clientsInChannel)
+                .append(usersInChannel)
+                .append(users)
+                .toHashCode();
+    }
 
     public final String getChannelId() {
         return this.channelId;

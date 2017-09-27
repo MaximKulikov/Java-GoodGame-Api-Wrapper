@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -19,6 +21,52 @@ public class Channel {
     private String premium;
 
     private String title;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Channel channel = (Channel) o;
+
+        return new EqualsBuilder()
+                .append(id, channel.id)
+                .append(key, channel.key)
+                .append(premium, channel.premium)
+                .append(title, channel.title)
+                .append(maxViewers, channel.maxViewers)
+                .append(playerType, channel.playerType)
+                .append(ggPlayerSrc, channel.ggPlayerSrc)
+                .append(embed, channel.embed)
+                .append(img, channel.img)
+                .append(thumb, channel.thumb)
+                .append(description, channel.description)
+                .append(adult, channel.adult)
+                .append(games, channel.games)
+                .append(url, channel.url)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(key)
+                .append(premium)
+                .append(title)
+                .append(maxViewers)
+                .append(playerType)
+                .append(ggPlayerSrc)
+                .append(embed)
+                .append(img)
+                .append(thumb)
+                .append(description)
+                .append(adult)
+                .append(games)
+                .append(url)
+                .toHashCode();
+    }
 
     @JsonProperty("max_viewers")
     private String maxViewers;

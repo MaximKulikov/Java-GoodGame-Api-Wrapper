@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -16,6 +18,40 @@ public class User {
     private String secure;
 
     private String email;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return new EqualsBuilder()
+                .append(userId, user.userId)
+                .append(secure, user.secure)
+                .append(email, user.email)
+                .append(payments, user.payments)
+                .append(subscribed, user.subscribed)
+                .append(subscribedStream, user.subscribedStream)
+                .append(subscribedAnons, user.subscribedAnons)
+                .append(wallet, user.wallet)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(userId)
+                .append(secure)
+                .append(email)
+                .append(payments)
+                .append(subscribed)
+                .append(subscribedStream)
+                .append(subscribedAnons)
+                .append(wallet)
+                .toHashCode();
+    }
 
     private String payments;
 

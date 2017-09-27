@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -17,8 +19,33 @@ public class Subscrurer {
     @JsonProperty("created_at")
     private String createdAt;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Subscrurer that = (Subscrurer) o;
+
+        return new EqualsBuilder()
+                .append(id, that.id)
+                .append(username, that.username)
+                .append(createdAt, that.createdAt)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(username)
+                .append(createdAt)
+                .toHashCode();
+    }
+
     /**
      * @return created_at
+
      */
     public final String getCreatedAt() {
         return this.createdAt;

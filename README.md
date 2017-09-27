@@ -436,12 +436,13 @@ class ChatAnswerExample extends GoodChat {
 * [Java Async HTTP Client](https://github.com/urgrue/java-async-http/releases/tag/2.1.2) ver. 2.1.2
 * [Jackson JSON Databind](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind/2.4.5) ver. 2.4.5 
 * [Eclipse Websocket Client](https://mvnrepository.com/artifact/org.eclipse.jetty.websocket/websocket-client) ver. 9.2.19.v20160908
+* [Apache Commons Lang](https://mvnrepository.com/artifact/org.apache.commons/commons-lang3/3.4) ver 3.4
 
 ## Установка
 
 [Java-GoodGame-Api-Wrapper 0.1.1](https://github.com/Trinion/Java-GoodGame-Api-Wrapper/releases/tag/0.1.1)
 
-Установка через приватный maven репозиторий
+Установка через приватный maven репозиторий. Не всегда работает.
 
 ```xml
 <project>
@@ -458,7 +459,7 @@ class ChatAnswerExample extends GoodChat {
     
         <repository>
             <id>maximkulikov.ru</id>
-            <url>http://maximkulikov.ru/maven2</url>
+            <url>https://maximkulikov.ru/maven2</url>
         </repository>
         
     </repositories>
@@ -467,8 +468,7 @@ class ChatAnswerExample extends GoodChat {
 
 ## In Progress
        
-JavaDoc  
-Тесты
+Юнит тесты
 
 
 

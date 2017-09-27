@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -20,6 +22,34 @@ public class EmbededDonations {
     private String paidDate;
 
     private String comment;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        EmbededDonations that = (EmbededDonations) o;
+
+        return new EqualsBuilder()
+                .append(id, that.id)
+                .append(username, that.username)
+                .append(amount, that.amount)
+                .append(paidDate, that.paidDate)
+                .append(comment, that.comment)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(username)
+                .append(amount)
+                .append(paidDate)
+                .append(comment)
+                .toHashCode();
+    }
 
     /**
      * @return amount

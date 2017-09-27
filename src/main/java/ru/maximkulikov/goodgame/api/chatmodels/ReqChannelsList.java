@@ -1,6 +1,8 @@
 package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -13,11 +15,34 @@ public class ReqChannelsList {
 
     private int count;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ReqChannelsList that = (ReqChannelsList) o;
+
+        return new EqualsBuilder()
+                .append(start, that.start)
+                .append(count, that.count)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(start)
+                .append(count)
+                .toHashCode();
+    }
+
     /**
      *
      * @param start
      * @param count
      */
+
     public ReqChannelsList(final int start, final int count) {
         this.start = start;
         this.count = count;

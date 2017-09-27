@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulkov
@@ -16,6 +18,30 @@ public class ReqJoin {
     private boolean hidden;
 
     private boolean mobile;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ReqJoin reqJoin = (ReqJoin) o;
+
+        return new EqualsBuilder()
+                .append(hidden, reqJoin.hidden)
+                .append(mobile, reqJoin.mobile)
+                .append(channelId, reqJoin.channelId)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channelId)
+                .append(hidden)
+                .append(mobile)
+                .toHashCode();
+    }
 
     /**
      * @param channelId channel_id

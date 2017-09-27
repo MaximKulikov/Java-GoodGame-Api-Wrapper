@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -18,6 +20,34 @@ public class AjaxLoginContainer {
 
     @JsonProperty("login_page")
     private String loginPage;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AjaxLoginContainer container = (AjaxLoginContainer) o;
+
+        return new EqualsBuilder()
+                .append(result, container.result)
+                .append(response, container.response)
+                .append(code, container.code)
+                .append(loginPage, container.loginPage)
+                .append(ajaxReturn, container.ajaxReturn)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(result)
+                .append(response)
+                .append(code)
+                .append(loginPage)
+                .append(ajaxReturn)
+                .toHashCode();
+    }
 
     @JsonProperty("return")
     private AjaxLoginReturn ajaxReturn;

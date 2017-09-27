@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -32,6 +34,40 @@ public class ResSettings implements ResChatObject {
     private List<String> moderGroups;
 
     private Long silent;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ResSettings that = (ResSettings) o;
+
+        return new EqualsBuilder()
+                .append(channelId, that.channelId)
+                .append(name, that.name)
+                .append(value, that.value)
+                .append(moderId, that.moderId)
+                .append(moderName, that.moderName)
+                .append(moderRights, that.moderRights)
+                .append(moderGroups, that.moderGroups)
+                .append(silent, that.silent)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channelId)
+                .append(name)
+                .append(value)
+                .append(moderId)
+                .append(moderName)
+                .append(moderRights)
+                .append(moderGroups)
+                .append(silent)
+                .toHashCode();
+    }
 
     public final String getChannelId() {
         return this.channelId;

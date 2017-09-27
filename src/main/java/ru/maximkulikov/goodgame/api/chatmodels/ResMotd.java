@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -23,6 +25,34 @@ public class ResMotd implements ResChatObject {
     private Long moderGroup;
 
     private String text;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ResMotd resMotd = (ResMotd) o;
+
+        return new EqualsBuilder()
+                .append(channelId, resMotd.channelId)
+                .append(moderId, resMotd.moderId)
+                .append(moderName, resMotd.moderName)
+                .append(moderGroup, resMotd.moderGroup)
+                .append(text, resMotd.text)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channelId)
+                .append(moderId)
+                .append(moderName)
+                .append(moderGroup)
+                .append(text)
+                .toHashCode();
+    }
 
     public final String getChannelId() {
         return this.channelId;

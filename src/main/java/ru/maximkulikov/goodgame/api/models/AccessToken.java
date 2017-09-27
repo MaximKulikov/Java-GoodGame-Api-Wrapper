@@ -21,6 +21,7 @@ public class AccessToken {
     @JsonProperty("token_type")
     private String tokenType;
 
+    @JsonProperty("scope")
     private String scope;
 
     @JsonProperty("refresh_token")
@@ -29,10 +30,12 @@ public class AccessToken {
     /**
      * @return access_token
      */
+    @JsonProperty("access_token")
     public final String getAccessToken() {
         return this.accessToken;
     }
 
+    @JsonProperty("access_token")
     public final void setAccessToken(final String accessToken) {
         this.accessToken = accessToken;
     }
@@ -40,10 +43,12 @@ public class AccessToken {
     /**
      * @return expires_in
      */
+    @JsonProperty("expires_in")
     public final long getExpiresIn() {
         return this.expiresIn;
     }
 
+    @JsonProperty("expires_in")
     public final void setExpiresIn(final long expiresIn) {
         this.expiresIn = expiresIn;
     }
@@ -51,10 +56,12 @@ public class AccessToken {
     /**
      * @return refresh_token
      */
+    @JsonProperty("refresh_token")
     public final String getRefreshToken() {
         return this.refreshToken;
     }
 
+    @JsonProperty("refresh_token")
     public final void setRefreshToken(final String refreshToken) {
         this.refreshToken = refreshToken;
     }
@@ -62,10 +69,12 @@ public class AccessToken {
     /**
      * @return scope
      */
+    @JsonProperty("scope")
     public final String getScope() {
         return this.scope;
     }
 
+    @JsonProperty("scope")
     public final void setScope(final String scope) {
         this.scope = scope;
     }
@@ -73,12 +82,42 @@ public class AccessToken {
     /**
      * @return token_type
      */
+    @JsonProperty("token_type")
     public final String getTokenType() {
         return this.tokenType;
     }
 
+    @JsonProperty("token_type")
     public final void setTokenType(final String tokenType) {
         this.tokenType = tokenType;
+    }
+
+    @Override
+    public int hashCode() {
+        return new org.apache.commons.lang3.builder.HashCodeBuilder(17, 37)
+                .append(accessToken)
+                .append(expiresIn)
+                .append(tokenType)
+                .append(scope)
+                .append(refreshToken)
+                .toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AccessToken that = (AccessToken) o;
+
+        return new org.apache.commons.lang3.builder.EqualsBuilder()
+                .append(expiresIn, that.expiresIn)
+                .append(accessToken, that.accessToken)
+                .append(tokenType, that.tokenType)
+                .append(scope, that.scope)
+                .append(refreshToken, that.refreshToken)
+                .isEquals();
     }
 
     @Override

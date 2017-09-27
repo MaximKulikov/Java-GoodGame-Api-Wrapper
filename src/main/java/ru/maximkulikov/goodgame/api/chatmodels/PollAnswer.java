@@ -1,6 +1,8 @@
 package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -18,6 +20,28 @@ public class PollAnswer {
      */
     public final int getId() {
         return this.id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PollAnswer that = (PollAnswer) o;
+
+        return new EqualsBuilder()
+                .append(id, that.id)
+                .append(text, that.text)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(text)
+                .toHashCode();
     }
 
     public final void setId(final int id) {

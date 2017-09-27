@@ -1,6 +1,8 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -14,6 +16,30 @@ public class UpdateTitle {
     private String game;
 
     private String gameUrl;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UpdateTitle that = (UpdateTitle) o;
+
+        return new EqualsBuilder()
+                .append(title, that.title)
+                .append(game, that.game)
+                .append(gameUrl, that.gameUrl)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(title)
+                .append(game)
+                .append(gameUrl)
+                .toHashCode();
+    }
 
     /**
      * @return game

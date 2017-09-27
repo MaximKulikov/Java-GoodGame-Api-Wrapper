@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -22,6 +24,36 @@ public class ResPayment implements ResChatObject {
     private Long total;
 
     private String title;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ResPayment that = (ResPayment) o;
+
+        return new EqualsBuilder()
+                .append(channelId, that.channelId)
+                .append(userName, that.userName)
+                .append(amount, that.amount)
+                .append(message, that.message)
+                .append(total, that.total)
+                .append(title, that.title)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channelId)
+                .append(userName)
+                .append(amount)
+                .append(message)
+                .append(total)
+                .append(title)
+                .toHashCode();
+    }
 
     public final Long getAmount() {
         return this.amount;

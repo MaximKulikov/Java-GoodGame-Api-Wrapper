@@ -3,6 +3,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -19,6 +21,26 @@ public class ResChannelsList implements ResChatObject {
 
     public final void setChannels(final List<ChatChannel> channels) {
         this.channels = channels;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ResChannelsList that = (ResChannelsList) o;
+
+        return new EqualsBuilder()
+                .append(channels, that.channels)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channels)
+                .toHashCode();
     }
 
     @Override

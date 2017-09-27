@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -17,6 +19,34 @@ public class SubscrurersContainer {
 
     @JsonProperty("page_size")
     private Long pageSize;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SubscrurersContainer that = (SubscrurersContainer) o;
+
+        return new EqualsBuilder()
+                .append(subscribers, that.subscribers)
+                .append(pageCount, that.pageCount)
+                .append(pageSize, that.pageSize)
+                .append(totalItems, that.totalItems)
+                .append(page, that.page)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(subscribers)
+                .append(pageCount)
+                .append(pageSize)
+                .append(totalItems)
+                .append(page)
+                .toHashCode();
+    }
 
     @JsonProperty("total_items")
     private Long totalItems;

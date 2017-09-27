@@ -3,6 +3,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -18,6 +20,32 @@ public class ResChannelStreamer implements ResChatObject {
     private Long right;
 
     private List<String> groups;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ResChannelStreamer that = (ResChannelStreamer) o;
+
+        return new EqualsBuilder()
+                .append(id, that.id)
+                .append(name, that.name)
+                .append(right, that.right)
+                .append(groups, that.groups)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(name)
+                .append(right)
+                .append(groups)
+                .toHashCode();
+    }
 
     public final List<String> getGroups() {
         return this.groups;

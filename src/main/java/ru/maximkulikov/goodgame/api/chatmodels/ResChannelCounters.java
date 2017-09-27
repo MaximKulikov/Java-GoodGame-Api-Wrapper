@@ -2,6 +2,8 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -15,6 +17,30 @@ public class ResChannelCounters implements ResChatObject {
 
     @JsonProperty("clients_in_channel")
     private Long clientsInChannel;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ResChannelCounters that = (ResChannelCounters) o;
+
+        return new EqualsBuilder()
+                .append(channelId, that.channelId)
+                .append(clientsInChannel, that.clientsInChannel)
+                .append(usersInChannel, that.usersInChannel)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(channelId)
+                .append(clientsInChannel)
+                .append(usersInChannel)
+                .toHashCode();
+    }
 
     @JsonProperty("users_in_channel")
     private Long usersInChannel;

@@ -1,6 +1,8 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -20,6 +22,36 @@ public class AjaxChat {
     private Integer hide;
 
     private Boolean noBan;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AjaxChat ajaxChat = (AjaxChat) o;
+
+        return new EqualsBuilder()
+                .append(alignType, ajaxChat.alignType)
+                .append(pekaMod, ajaxChat.pekaMod)
+                .append(sound, ajaxChat.sound)
+                .append(smilesType, ajaxChat.smilesType)
+                .append(hide, ajaxChat.hide)
+                .append(noBan, ajaxChat.noBan)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(alignType)
+                .append(pekaMod)
+                .append(sound)
+                .append(smilesType)
+                .append(hide)
+                .append(noBan)
+                .toHashCode();
+    }
 
     /**
      * @return alignType
