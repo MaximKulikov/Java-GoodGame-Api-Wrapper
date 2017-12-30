@@ -3,6 +3,8 @@ package ru.maximkulikov.goodgame.api.realization;
 import java.util.ArrayList;
 import java.util.List;
 import com.mb3364.http.RequestParams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.AjaxGamesHandler;
 import ru.maximkulikov.goodgame.api.handlers.AjaxLoginResponseHandler;
@@ -18,6 +20,7 @@ import ru.maximkulikov.goodgame.api.models.UpdateTitle;
  * @since 29.12.2017
  */
 public class AjaxRealization {
+    private static final Logger logger = LoggerFactory.getLogger(AjaxRealization.class);
     private GoodGame gg;
 
     public AjaxRealization(GoodGame gg) {
@@ -25,6 +28,9 @@ public class AjaxRealization {
         this.gg = gg;
     }
 
+    /**
+     * @see ru.maximkulikov.goodgame.api.resources.AjaxResource#games(String, AjaxGamesHandler)
+     */
     public List<AjaxGame> games(final String searchGame) throws GoodGameError, GoodGameException {
         final Object o = new Object();
         /**
@@ -41,6 +47,7 @@ public class AjaxRealization {
         boolean result = gg.ajax().games(searchGame, new AjaxGamesHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Search game error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -50,6 +57,7 @@ public class AjaxRealization {
 
             @Override
             public void onSuccess(List<AjaxGame> ajaxGames) {
+                logger.info("Games found: {}", ajaxGames.size());
                 containerSuccess[0] = ajaxGames;
                 status[0] = 1;
                 synchronized (o) {
@@ -59,6 +67,7 @@ public class AjaxRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Search game exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -76,7 +85,7 @@ public class AjaxRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Search game thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -85,16 +94,14 @@ public class AjaxRealization {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
-
             case 2:
                 throw new GoodGameError(containerFail[0]);
-
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
             default:
+                logger.error("Something went wrong. Return null");
                 return null;
         }
-
     }
 
     public List<AjaxGame> games(final String searchGame, final RequestParams params) throws GoodGameError, GoodGameException {
@@ -113,6 +120,7 @@ public class AjaxRealization {
         boolean result = gg.ajax().games(searchGame, params, new AjaxGamesHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Search game error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -122,6 +130,7 @@ public class AjaxRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Search game exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -131,6 +140,7 @@ public class AjaxRealization {
 
             @Override
             public void onSuccess(List<AjaxGame> ajaxGames) {
+                logger.info("Games found: {}", ajaxGames.size());
                 containerSuccess[0] = ajaxGames;
                 status[0] = 1;
                 synchronized (o) {
@@ -148,7 +158,7 @@ public class AjaxRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Search game thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -157,16 +167,14 @@ public class AjaxRealization {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
-
             case 2:
                 throw new GoodGameError(containerFail[0]);
-
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
             default:
+                logger.error("Something went wrong. Return null");
                 return null;
         }
-
     }
 
     public AjaxLoginContainer login(final String login, final String password) throws GoodGameError, GoodGameException {
@@ -185,6 +193,7 @@ public class AjaxRealization {
         boolean result = gg.ajax().login(login, password, new AjaxLoginResponseHandler() {
             @Override
             public void onSuccess(AjaxLoginContainer ajaxLoginContainer) {
+                logger.info("Login successful {}", ajaxLoginContainer.getResult());
                 containerSuccess[0] = ajaxLoginContainer;
                 status[0] = 1;
                 synchronized (o) {
@@ -194,6 +203,7 @@ public class AjaxRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Login error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -201,9 +211,9 @@ public class AjaxRealization {
                 }
             }
 
-
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Login exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -222,27 +232,23 @@ public class AjaxRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Search game thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
         }
 
-
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
-
             case 2:
                 throw new GoodGameError(containerFail[0]);
-
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
             default:
+                logger.error("Something went wrong. Return null");
                 return null;
         }
-
-
     }
 
     public UpdateTitle updateTitle(final String channelId, final String title, final String gameId) throws GoodGameError, GoodGameException {
@@ -261,6 +267,7 @@ public class AjaxRealization {
         boolean result = gg.ajax().updateTitle(channelId, title, gameId, new UpdateTitleResponseHandler() {
             @Override
             public void onSuccess(UpdateTitle updateTitle) {
+                logger.info("Update title to {}", updateTitle.getTitle());
                 containerSuccess[0] = updateTitle;
                 status[0] = 1;
                 synchronized (o) {
@@ -270,6 +277,7 @@ public class AjaxRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Update title error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -277,9 +285,9 @@ public class AjaxRealization {
                 }
             }
 
-
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Update title exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -298,26 +306,22 @@ public class AjaxRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Search game thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
         }
 
-
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
-
             case 2:
                 throw new GoodGameError(containerFail[0]);
-
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
             default:
+                logger.error("Something went wrong. Return null");
                 return null;
         }
-
     }
-
 }

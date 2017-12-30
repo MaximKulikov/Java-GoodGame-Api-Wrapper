@@ -3,6 +3,8 @@ package ru.maximkulikov.goodgame.api.resources;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.handlers.ChatTokenResponseHandler;
 import ru.maximkulikov.goodgame.api.models.ChatToken;
 
@@ -12,6 +14,7 @@ import ru.maximkulikov.goodgame.api.models.ChatToken;
  * @author Maxim Kulikov
  */
 public class ChatResource extends AbstractResource {
+    private static final Logger logger = LoggerFactory.getLogger(ChatResource.class);
 
     public ChatResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);

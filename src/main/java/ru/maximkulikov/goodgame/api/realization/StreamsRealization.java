@@ -1,6 +1,8 @@
 package ru.maximkulikov.goodgame.api.realization;
 
 import com.mb3364.http.RequestParams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.StreamChannelResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.StreamsResponseHandler;
@@ -14,6 +16,7 @@ import ru.maximkulikov.goodgame.api.models.EmbededChannels;
  * @since 30.12.2017
  */
 public class StreamsRealization {
+    private static final Logger logger = LoggerFactory.getLogger(StreamsRealization.class);
     private GoodGame gg;
 
     public StreamsRealization(GoodGame gg) {

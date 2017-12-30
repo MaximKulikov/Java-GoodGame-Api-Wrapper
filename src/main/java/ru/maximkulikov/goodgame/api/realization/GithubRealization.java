@@ -1,5 +1,7 @@
 package ru.maximkulikov.goodgame.api.realization;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.GitHubChannelSubscribersResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.GitHubSharedHandler;
@@ -14,6 +16,7 @@ import ru.maximkulikov.goodgame.api.models.GitHubToken;
  * @since 30.12.2017
  */
 public class GithubRealization {
+    private static final Logger logger = LoggerFactory.getLogger(GamesRealization.class);
     private GoodGame gg;
 
     public GithubRealization(GoodGame gg) {

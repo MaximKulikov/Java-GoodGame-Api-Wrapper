@@ -3,16 +3,19 @@ package ru.maximkulikov.goodgame.api.resources;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.handlers.InfoResponseHandler;
 import ru.maximkulikov.goodgame.api.models.Info;
 
 /**
  * {@link InfoResource} предоставляет функциональность к информационным ресурсам
  *
- * @since 04.01.2017
  * @author Maxim Kulikov
+ * @since 04.01.2017
  */
 public class InfoResource extends AbstractResource {
+    private static final Logger logger = LoggerFactory.getLogger(InfoResource.class);
 
     public InfoResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);

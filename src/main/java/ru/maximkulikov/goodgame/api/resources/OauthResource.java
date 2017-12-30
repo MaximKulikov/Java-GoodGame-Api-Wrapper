@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.OauthResourceResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.OauthResponseHandler;
@@ -17,7 +19,7 @@ import ru.maximkulikov.goodgame.api.models.OauthResourceCheck;
  * @since 29.12.2016
  */
 public class OauthResource extends AbstractResource {
-
+    private static final Logger logger = LoggerFactory.getLogger(OauthResource.class);
     private static final String CODE = "code";
 
     private static final String OAUTH = "%s/oauth";
@@ -54,7 +56,7 @@ public class OauthResource extends AbstractResource {
      */
     public final boolean getAccessToken(final boolean useAutorizationCode, final OauthResponseHandler handler) {
 
-        if (this.gg.auth().getRedirectURI() == null ||this.gg.getClientId() == null ) {
+        if (this.gg.auth().getRedirectURI() == null || this.gg.getClientId() == null) {
             return false;
         }
 
@@ -67,7 +69,7 @@ public class OauthResource extends AbstractResource {
 
         if (useAutorizationCode) {
 
-            if (this.gg.auth().getAutorizationCode()==null ) {
+            if (this.gg.auth().getAutorizationCode() == null) {
                 return false;
             }
             params.put(REDIRECT_URI, this.gg.auth().getRedirectURI().toString());

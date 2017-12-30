@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.handlers.StreamChannelResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.StreamsResponseHandler;
 import ru.maximkulikov.goodgame.api.models.ChannelContainer;
@@ -15,6 +17,7 @@ import ru.maximkulikov.goodgame.api.models.EmbededChannels;
  * @author Maxim Kulikov
  */
 public class StreamsResource extends AbstractResource {
+    private static final Logger logger = LoggerFactory.getLogger(StreamsResource.class);
 
     public StreamsResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);
@@ -22,7 +25,8 @@ public class StreamsResource extends AbstractResource {
 
     /**
      * Получение информации о конкретном стриме
-     *  @param channel Идентификатор стрима, может быть как символьным ключем канала (Пример:
+     *
+     * @param channel Идентификатор стрима, может быть как символьным ключем канала (Пример:
      *                http://api2.goodgame.ru/streams/Miker), так и числовым id (Пример:
      *                http://api2.goodgame.ru/streams/5).
      * @param handler
@@ -72,7 +76,8 @@ public class StreamsResource extends AbstractResource {
     /**
      * Получение информации обо всех онлайн стримах
      * на Goodgame. Можно использовать query-параметры.
-     *  @param params
+     *
+     * @param params
      * @param handler
      */
     public final boolean getStreams(final RequestParams params, final StreamsResponseHandler handler) {

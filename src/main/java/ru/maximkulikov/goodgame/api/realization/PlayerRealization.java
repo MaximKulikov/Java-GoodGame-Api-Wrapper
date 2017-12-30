@@ -1,5 +1,7 @@
 package ru.maximkulikov.goodgame.api.realization;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.PlayerResponseHandler;
 import ru.maximkulikov.goodgame.api.models.Player;
@@ -11,6 +13,7 @@ import ru.maximkulikov.goodgame.api.models.Player;
  * @since 30.12.2017
  */
 public class PlayerRealization {
+    private static final Logger logger = LoggerFactory.getLogger(PlayerRealization.class);
     private GoodGame gg;
 
     public PlayerRealization(GoodGame gg) {

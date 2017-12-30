@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.handlers.SmilesResponseHandler;
 import ru.maximkulikov.goodgame.api.models.SmilesContainer;
 
@@ -14,7 +16,7 @@ import ru.maximkulikov.goodgame.api.models.SmilesContainer;
  * @since 04.01.2017
  */
 public class SmilesResource extends AbstractResource {
-
+    private static final Logger logger = LoggerFactory.getLogger(SmilesResource.class);
     private static final String PAGE = "page";
 
     public SmilesResource(final String baseUrl, final int apiVersion) {
@@ -28,7 +30,8 @@ public class SmilesResource extends AbstractResource {
     /**
      * Получение коллекции смайлов
      * Постраничный вывод по 50 объектов на страницу
-     *  @param channelID Идентификатор канала
+     *
+     * @param channelID Идентификатор канала
      * @param handler
      */
     public final boolean getChannelSmiles(final long channelID, final SmilesResponseHandler handler) {
@@ -52,7 +55,8 @@ public class SmilesResource extends AbstractResource {
     /**
      * Получение коллекции смайлов
      * Постраничный вывод по 50 объектов на страницу
-     *  @param channelId Идентификатор канала
+     *
+     * @param channelId Идентификатор канала
      * @param page      номер страницы
      * @param handler
      */
@@ -105,7 +109,8 @@ public class SmilesResource extends AbstractResource {
     /**
      * Получение коллекции смайлов
      * Постраничный вывод по 50 объектов на страницу
-     *  @param page    номер страницы
+     *
+     * @param page    номер страницы
      * @param handler
      */
     public final boolean getSmiles(final int page, final SmilesResponseHandler handler) {

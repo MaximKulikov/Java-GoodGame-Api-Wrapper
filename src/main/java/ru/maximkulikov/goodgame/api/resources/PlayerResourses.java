@@ -3,6 +3,8 @@ package ru.maximkulikov.goodgame.api.resources;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.handlers.PlayerResponseHandler;
 import ru.maximkulikov.goodgame.api.models.Player;
 
@@ -13,6 +15,7 @@ import ru.maximkulikov.goodgame.api.models.Player;
  * @since 29.12.2016
  */
 public class PlayerResourses extends AbstractResource {
+    private static final Logger logger = LoggerFactory.getLogger(PlayerResourses.class);
 
     public PlayerResourses(final String defaultBaseUrl, final int defaultApiVersion) {
         super(defaultBaseUrl, defaultApiVersion);
@@ -20,7 +23,8 @@ public class PlayerResourses extends AbstractResource {
 
     /**
      * Получение информации о плеере
-     *  @param channelId Идентификатор канала
+     *
+     * @param channelId Идентификатор канала
      * @param handler
      */
     public final boolean getPlayer(final String channelId, final PlayerResponseHandler handler) {

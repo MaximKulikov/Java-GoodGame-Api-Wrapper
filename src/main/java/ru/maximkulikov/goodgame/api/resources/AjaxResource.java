@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.AjaxGamesHandler;
 import ru.maximkulikov.goodgame.api.handlers.AjaxLoginResponseHandler;
@@ -20,11 +22,11 @@ import ru.maximkulikov.goodgame.api.models.UpdateTitle;
  * @since 02.04.2017
  */
 public class AjaxResource extends AbstractResource {
-
-    private GoodGame gg;
+    private static final Logger logger = LoggerFactory.getLogger(AjaxResource.class);
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String FORM_URL_ENCODED = "application/x-www-form-urlencoded; charset=UTF-8";
-    private static  final String COOKIE = "Cookie";
+    private static final String COOKIE = "Cookie";
+    private GoodGame gg;
 
     /**
      * Стандартный конструктор

@@ -1,5 +1,7 @@
 package ru.maximkulikov.goodgame.api.realization;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.SmilesResponseHandler;
 import ru.maximkulikov.goodgame.api.models.SmilesContainer;
@@ -11,6 +13,7 @@ import ru.maximkulikov.goodgame.api.models.SmilesContainer;
  * @since 30.12.2017
  */
 public class SmilesRealization {
+    private static final Logger logger = LoggerFactory.getLogger(SmilesRealization.class);
     private GoodGame gg;
 
     public SmilesRealization(GoodGame gg) {

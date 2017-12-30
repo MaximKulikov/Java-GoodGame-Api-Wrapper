@@ -1,5 +1,7 @@
 package ru.maximkulikov.goodgame.api.realization;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.OauthResourceResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.OauthResponseHandler;
@@ -14,6 +16,7 @@ import ru.maximkulikov.goodgame.api.models.OauthResourceCheck;
  */
 public class OauthRealization {
 
+    private static final Logger logger = LoggerFactory.getLogger(OauthRealization.class);
     private GoodGame gg;
 
     public OauthRealization(GoodGame gg) {

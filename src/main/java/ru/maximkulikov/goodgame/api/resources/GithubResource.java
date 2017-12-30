@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.GitHubChannelSubscribersResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.GitHubSharedHandler;
@@ -16,7 +18,7 @@ import ru.maximkulikov.goodgame.api.models.GitHubToken;
  * Created by maxim on 04.01.2017.
  */
 public class GithubResource extends AbstractResource {
-
+    private static final Logger logger = LoggerFactory.getLogger(GithubResource.class);
     private static final String ID = "id";
 
     private static final String FMT = "fmt";

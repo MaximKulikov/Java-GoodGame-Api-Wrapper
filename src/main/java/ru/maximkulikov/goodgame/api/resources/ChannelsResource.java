@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.handlers.DonationsResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.PremiumsResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.SubscriberResponseHandler;
@@ -18,6 +20,7 @@ import ru.maximkulikov.goodgame.api.models.SubscrurersContainer;
  * @author Maxim Kulikov
  */
 public class ChannelsResource extends AbstractResource {
+    private static final Logger logger = LoggerFactory.getLogger(ChannelsResource.class);
 
     /**
      * @param baseUrl    Базовая ссылка для доступа к ресурсу
@@ -31,7 +34,8 @@ public class ChannelsResource extends AbstractResource {
      * Список поддержки указанного канала.<br>
      * Требуется OAuth 2.0 аутентификация.<br>
      * Scope: channel.donations
-     *  @param channel Channel ID or Channel Key
+     *
+     * @param channel Channel ID or Channel Key
      * @param handler
      */
     public final boolean getDonations(final String channel, final DonationsResponseHandler handler) {
@@ -55,7 +59,8 @@ public class ChannelsResource extends AbstractResource {
      * Список поддержки указанного канала.<br>
      * Требуется OAuth 2.0 аутентификация.<br>
      * Scope: channel.donations
-     *  @param channel Channel ID or Channel Key
+     *
+     * @param channel Channel ID or Channel Key
      * @param params  Дополнительные параметры: page (номер страницы при постраничном выводе) и from_timestamp
      *                (timestamp, начиная с которого следует вернуть историю поддержки)
      * @param handler
@@ -82,7 +87,8 @@ public class ChannelsResource extends AbstractResource {
      * Список премиум подписчиков указанного канала<br>
      * Требуется OAuth 2.0 аутентификация.<br>
      * Scope: channel.premiums
-     *  @param channel Channel ID or Channel Key
+     *
+     * @param channel Channel ID or Channel Key
      * @param handler
      */
     public final boolean getPremiums(final String channel, final PremiumsResponseHandler handler) {
@@ -107,7 +113,8 @@ public class ChannelsResource extends AbstractResource {
      * Список премиум подписчиков указанного канала<br>
      * Требуется OAuth 2.0 аутентификация.<br>
      * Scope: channel.premiums
-     *  @param channel Channel ID or Channel Key
+     *
+     * @param channel Channel ID or Channel Key
      * @param params  Дополнительные параметры: page (номер страницы) и from_timestamp (timestamp, начиная с которого
      *                выводить премиум подписчиков)
      * @param handler
@@ -135,7 +142,8 @@ public class ChannelsResource extends AbstractResource {
      * Список подписчиков указанного канала<br>
      * Требуется OAuth 2.0 аутентификация. <br>
      * Scope: channel.subscriber
-     *  @param channel Channel ID or Channel Key
+     *
+     * @param channel Channel ID or Channel Key
      * @param handler
      */
     public final boolean getSubscribers(final String channel, final SubscriberResponseHandler handler) {
@@ -160,7 +168,8 @@ public class ChannelsResource extends AbstractResource {
      * Список подписчиков указанного канала<br>
      * Требуется OAuth 2.0 аутентификация. <br>
      * Scope: channel.subscriber
-     *  @param channel Channel ID or Channel Key
+     *
+     * @param channel Channel ID or Channel Key
      * @param params  Дополнительные параметры: page (номер страницы при постраничном выводе) и from_timestamp
      *                (timestamp, начиная с которого следует вернуть подписчиков канала)
      * @param handler

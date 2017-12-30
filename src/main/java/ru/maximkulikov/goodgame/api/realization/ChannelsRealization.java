@@ -1,6 +1,8 @@
 package ru.maximkulikov.goodgame.api.realization;
 
 import com.mb3364.http.RequestParams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.DonationsResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.PremiumsResponseHandler;
@@ -16,6 +18,7 @@ import ru.maximkulikov.goodgame.api.models.SubscrurersContainer;
  * @since 30.12.2017
  */
 public class ChannelsRealization {
+    private static final Logger logger = LoggerFactory.getLogger(ChannelsRealization.class);
     private GoodGame gg;
 
     public ChannelsRealization(GoodGame gg) {
@@ -219,21 +222,6 @@ public class ChannelsRealization {
 
     }
 
-    private PremiumsContainer getPremiumsContainer(short[] status, PremiumsContainer[] containerSuccess, String[] containerFail, Throwable[] containerThrowable) throws GoodGameError, GoodGameException {
-        switch (status[0]) {
-            case 1:
-                return containerSuccess[0];
-
-            case 2:
-                throw new GoodGameError(containerFail[0]);
-
-            case 3:
-                throw new GoodGameException(containerThrowable[0]);
-            default:
-                return null;
-        }
-    }
-
     public PremiumsContainer getPremiums(final String channel, final RequestParams params) throws GoodGameError, GoodGameException {
         final Object o = new Object();
         /**
@@ -292,6 +280,21 @@ public class ChannelsRealization {
 
         return getPremiumsContainer(status, containerSuccess, containerFail, containerThrowable);
 
+    }
+
+    private PremiumsContainer getPremiumsContainer(short[] status, PremiumsContainer[] containerSuccess, String[] containerFail, Throwable[] containerThrowable) throws GoodGameError, GoodGameException {
+        switch (status[0]) {
+            case 1:
+                return containerSuccess[0];
+
+            case 2:
+                throw new GoodGameError(containerFail[0]);
+
+            case 3:
+                throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
+        }
     }
 
     public SubscrurersContainer getSubscribers(final String channel) throws GoodGameError, GoodGameException {
@@ -354,21 +357,6 @@ public class ChannelsRealization {
 
     }
 
-    private SubscrurersContainer getSubscrurersContainer(short[] status, SubscrurersContainer[] containerSuccess, String[] containerFail, Throwable[] containerThrowable) throws GoodGameError, GoodGameException {
-        switch (status[0]) {
-            case 1:
-                return containerSuccess[0];
-
-            case 2:
-                throw new GoodGameError(containerFail[0]);
-
-            case 3:
-                throw new GoodGameException(containerThrowable[0]);
-            default:
-                return null;
-        }
-    }
-
     public SubscrurersContainer getSubscribers(final String channel, final RequestParams params) throws GoodGameError, GoodGameException {
         final Object o = new Object();
         /**
@@ -428,6 +416,21 @@ public class ChannelsRealization {
         return getSubscrurersContainer(status, containerSuccess, containerFail, containerThrowable);
 
 
+    }
+
+    private SubscrurersContainer getSubscrurersContainer(short[] status, SubscrurersContainer[] containerSuccess, String[] containerFail, Throwable[] containerThrowable) throws GoodGameError, GoodGameException {
+        switch (status[0]) {
+            case 1:
+                return containerSuccess[0];
+
+            case 2:
+                throw new GoodGameError(containerFail[0]);
+
+            case 3:
+                throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
+        }
     }
 
 }
