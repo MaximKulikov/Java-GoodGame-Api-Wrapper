@@ -22,6 +22,9 @@ import ru.maximkulikov.goodgame.api.models.UpdateTitle;
 public class AjaxResource extends AbstractResource {
 
     private GoodGame gg;
+    private static final String CONTENT_TYPE = "Content-Type";
+    private static final String FORM_URL_ENCODED = "application/x-www-form-urlencoded; charset=UTF-8";
+    private static  final String COOKIE = "Cookie";
 
     /**
      * Стандартный конструктор
@@ -46,14 +49,13 @@ public class AjaxResource extends AbstractResource {
         RequestParams params = new RequestParams();
         params.put("q", searchGame);
 
-        http.removeHeader("Content-Type");
-        http.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        http.removeHeader(CONTENT_TYPE);
+        http.setHeader(CONTENT_TYPE, FORM_URL_ENCODED);
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
-                //content.substring(2,content.length()-2);
-                content = content.replace("[[", "").replace("]]", "");
 
+                content = content.replace("[[", "").replace("]]", "");
                 String[] gameObject = content.split("],\\[");
 
                 List<AjaxGame> ajaxGames = new ArrayList<>();
@@ -124,9 +126,9 @@ public class AjaxResource extends AbstractResource {
         params.put("remember", "1");
         params.put("return", "user");
 
-        http.removeHeader("Content-Type");
-        http.removeHeader("Cookie");
-        http.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        http.removeHeader(CONTENT_TYPE);
+        http.removeHeader(COOKIE);
+        http.setHeader(CONTENT_TYPE, FORM_URL_ENCODED);
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
@@ -174,10 +176,10 @@ public class AjaxResource extends AbstractResource {
         params.put("gameId", gameId);
 
 
-        http.removeHeader("Content-Type");
-        http.removeHeader("Cookie");
-        http.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-        http.setHeader("Cookie", this.gg.getPhpSessId());
+        http.removeHeader(CONTENT_TYPE);
+        http.removeHeader(COOKIE);
+        http.setHeader(CONTENT_TYPE, FORM_URL_ENCODED);
+        http.setHeader(COOKIE, this.gg.getPhpSessId());
 
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override

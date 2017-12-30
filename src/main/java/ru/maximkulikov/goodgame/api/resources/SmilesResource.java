@@ -61,7 +61,7 @@ public class SmilesResource extends AbstractResource {
         String url = String.format("%s/smiles/%s", getBaseUrl(), channelId);
 
         RequestParams params = new RequestParams();
-        params.put(this.PAGE, page);
+        params.put(PAGE, page);
 
         this.configureHeaders();
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
@@ -111,7 +111,7 @@ public class SmilesResource extends AbstractResource {
     public final boolean getSmiles(final int page, final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles", getBaseUrl());
         RequestParams params = new RequestParams();
-        params.put(this.PAGE, page);
+        params.put(PAGE, page);
 
         this.configureHeaders();
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {

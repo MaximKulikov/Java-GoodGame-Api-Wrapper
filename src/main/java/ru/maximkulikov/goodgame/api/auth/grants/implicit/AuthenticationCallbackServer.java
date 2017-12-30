@@ -6,6 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.URL;
+import java.util.Date;
 
 /**
  * @author Matthew Bell
@@ -35,6 +36,8 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
 
     private int port;
 
+    private String host = "127.0.0.1";
+
     private ServerSocket serverSocket;
 
     private String accessToken;
@@ -49,27 +52,28 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
     public AuthenticationCallbackServer(final int port) {
         this.port = port;
         // Load default pages
-        this.authPage = getClass().getResource(this.DEFAULT_AUTH_PAGE);
-        this.failurePage = getClass().getResource(this.DEFAULT_FAILURE_PAGE);
-        this.successPage = getClass().getResource(this.DEFAULT_SUCCESS_PAGE);
+        this.authPage = getClass().getResource(DEFAULT_AUTH_PAGE);
+        this.failurePage = getClass().getResource(DEFAULT_FAILURE_PAGE);
+        this.successPage = getClass().getResource(DEFAULT_SUCCESS_PAGE);
     }
 
 
-    public AuthenticationCallbackServer(final int port, final URL authPage, final URL failurePage,
+    public AuthenticationCallbackServer(final int port, final String host, final URL authPage, final URL failurePage,
                                         final URL successPage, final String stateRequest) {
         this.port = port;
-        this.authPage = authPage == null ? getClass().getResource(this.DEFAULT_AUTH_PAGE) : authPage;
-        this.failurePage = failurePage == null ? getClass().getResource(this.DEFAULT_FAILURE_PAGE) : failurePage;
-        this.successPage = successPage == null ? getClass().getResource(this.DEFAULT_SUCCESS_PAGE) : successPage;
+        this.host = host;
+        this.authPage = authPage == null ? getClass().getResource(DEFAULT_AUTH_PAGE) : authPage;
+        this.failurePage = failurePage == null ? getClass().getResource(DEFAULT_FAILURE_PAGE) : failurePage;
+        this.successPage = successPage == null ? getClass().getResource(DEFAULT_SUCCESS_PAGE) : successPage;
         this.stateRequest = stateRequest;
-    }
-
-    public final String getAuthentificationCode() {
-        return this.accessToken;
     }
 
     public final AuthenticationError getAuthenticationError() {
         return this.authenticationError;
+    }
+
+    public final String getAuthentificationCode() {
+        return this.accessToken;
     }
 
     public final String getStateAnswer() {
@@ -103,10 +107,16 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
 
     private void run() throws IOException {
         // Process HTTP service requests
-        while (true) {
+        // 5 min
+        int timeout = 5 * 60 * 1000;
+        long end = new Date().getTime() + timeout;
+        //executing while for timeout time
+        while (new Date().getTime() < end) {
             try {
+
                 // Listen for a TCP connection request
                 Socket connectionSocket = this.serverSocket.accept();
+
                 // Handle request
                 AuthenticationCallbackRequest request = new AuthenticationCallbackRequest(connectionSocket,
                         this.authPage, this.failurePage, this.successPage);
@@ -124,7 +134,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
     public final void start() throws IOException {
         // Establish the listen socket
         // For security reasons, the third parameter is set to not accept connections from outside the localhost
-        this.serverSocket = new ServerSocket(this.port, 0, InetAddress.getByName("127.0.0.1"));
+        this.serverSocket = new ServerSocket(this.port, 0, InetAddress.getByName(this.host));
         this.run();
     }
 
@@ -136,6 +146,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
             try {
                 this.serverSocket.close();
             } catch (IOException ignored) {
+                ignored.printStackTrace();
             } finally {
                 this.serverSocket = null;
             }

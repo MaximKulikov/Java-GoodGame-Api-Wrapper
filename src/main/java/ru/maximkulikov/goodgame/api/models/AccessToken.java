@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class AccessToken {
 
     @JsonProperty("access_token")
-    private String accessToken;
+    private String aToken;
 
     @JsonProperty("expires_in")
     private long expiresIn;
@@ -32,12 +32,12 @@ public class AccessToken {
      */
     @JsonProperty("access_token")
     public final String getAccessToken() {
-        return this.accessToken;
+        return this.aToken;
     }
 
     @JsonProperty("access_token")
     public final void setAccessToken(final String accessToken) {
-        this.accessToken = accessToken;
+        this.aToken = accessToken;
     }
 
     /**
@@ -95,7 +95,7 @@ public class AccessToken {
     @Override
     public int hashCode() {
         return new org.apache.commons.lang3.builder.HashCodeBuilder(17, 37)
-                .append(accessToken)
+                .append(aToken)
                 .append(expiresIn)
                 .append(tokenType)
                 .append(scope)
@@ -113,7 +113,7 @@ public class AccessToken {
 
         return new org.apache.commons.lang3.builder.EqualsBuilder()
                 .append(expiresIn, that.expiresIn)
-                .append(accessToken, that.accessToken)
+                .append(aToken, that.aToken)
                 .append(tokenType, that.tokenType)
                 .append(scope, that.scope)
                 .append(refreshToken, that.refreshToken)
@@ -123,7 +123,7 @@ public class AccessToken {
     @Override
     public final String toString() {
         return "AccessToken{" +
-                "accessToken='" + this.accessToken + '\'' +
+                "accessToken='" + this.aToken + '\'' +
                 ", expiresIn=" + this.expiresIn +
                 ", tokenType='" + this.tokenType + '\'' +
                 ", scope='" + this.scope + '\'' +

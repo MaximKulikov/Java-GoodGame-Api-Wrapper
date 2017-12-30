@@ -1,9 +1,9 @@
 # Java GoodGame.Ru API Wrapper 
 
-![Gource visualization](https://github.com/Trinion/Java-GoodGame-Api-Wrapper/blob/master/gource.png?raw=true)  
+![Gource visualization](https://github.com/MaximKulikov/Java-GoodGame-Api-Wrapper/blob/master/gource.png?raw=true)  
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e363ff624c2343e8acbb08e96b61d7d6)](https://www.codacy.com/app/Trinion/Java-GoodGame-Api-Wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Trinion/Java-GoodGame-Api-Wrapper&amp;utm_campaign=Badge_Grade)
- [![CircleCI](https://circleci.com/gh/Trinion/Java-GoodGame-Api-Wrapper/tree/master.svg?style=svg)](https://circleci.com/gh/Trinion/Java-GoodGame-Api-Wrapper/tree/master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e363ff624c2343e8acbb08e96b61d7d6)](https://www.codacy.com/app/MaximKulikov/Java-GoodGame-Api-Wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Trinion/Java-GoodGame-Api-Wrapper&amp;utm_campaign=Badge_Grade)
+ [![CircleCI](https://circleci.com/gh/MaximKulikov/Java-GoodGame-Api-Wrapper/tree/master.svg?style=svg)](https://circleci.com/gh/MaximKulikov/Java-GoodGame-Api-Wrapper/tree/master)
 
 # Меню
     
@@ -440,10 +440,10 @@ class ChatAnswerExample extends GoodChat {
 
 ## Установка
 
-[Java-GoodGame-Api-Wrapper 0.1.1](https://github.com/Trinion/Java-GoodGame-Api-Wrapper/releases/tag/0.1.1)
+[Java-GoodGame-Api-Wrapper 0.1.1](https://github.com/MaximKulikov/Java-GoodGame-Api-Wrapper/releases/tag/0.1.1)
 
-Установка через приватный maven репозиторий. Не всегда работает.
 
+pom.xml
 ```xml
 <project>
     <dependencies>
@@ -451,18 +451,12 @@ class ChatAnswerExample extends GoodChat {
         <dependency>
             <groupId>ru.maximkulikov</groupId>
             <artifactId>goodgame-api-wrapper</artifactId>
-            <version>RELEASE</version>
+            <version>1.0.2</version>
+            <systemPath>${project.basedir}/lib/goodgame-api-wrapper.jar</systemPath>
         </dependency>
            
     </dependencies>
-    <repositories>
-    
-        <repository>
-            <id>maximkulikov.ru</id>
-            <url>https://maximkulikov.ru/maven2</url>
-        </repository>
-        
-    </repositories>
+   
 </project>
 ```
 

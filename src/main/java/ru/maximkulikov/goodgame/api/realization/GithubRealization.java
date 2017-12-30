@@ -72,23 +72,12 @@ public class GithubRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
 
-
-        switch (status[0]) {
-            case 1:
-                return containerSuccess[0];
-
-            case 2:
-                throw new GoodGameError(containerFail[0]);
-
-            case 3:
-                throw new GoodGameException(containerThrowable[0]);
-        }
-
-        return null;
+        return getString(status, containerSuccess, containerFail, containerThrowable);
 
     }
 
@@ -144,6 +133,7 @@ public class GithubRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
@@ -158,9 +148,11 @@ public class GithubRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
 
-        return null;
+
     }
 
     public String getChannelsByGame(final String gameUrl) throws GoodGameError, GoodGameException {
@@ -215,23 +207,13 @@ public class GithubRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
 
+        return getString(status, containerSuccess, containerFail, containerThrowable);
 
-        switch (status[0]) {
-            case 1:
-                return containerSuccess[0];
-
-            case 2:
-                throw new GoodGameError(containerFail[0]);
-
-            case 3:
-                throw new GoodGameException(containerThrowable[0]);
-        }
-
-        return null;
     }
 
     public String getGgChannelStatus(final String id) throws GoodGameError, GoodGameException {
@@ -285,11 +267,14 @@ public class GithubRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
+        return getString(status, containerSuccess, containerFail, containerThrowable);
+    }
 
-
+    private String getString(short[] status, String[] containerSuccess, String[] containerFail, Throwable[] containerThrowable) throws GoodGameError, GoodGameException {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
@@ -299,9 +284,9 @@ public class GithubRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
-
-        return null;
     }
 
     public GitHubToken getToken(final String username, final String password) throws GoodGameError, GoodGameException {
@@ -355,10 +340,10 @@ public class GithubRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
-
 
         switch (status[0]) {
             case 1:
@@ -369,9 +354,9 @@ public class GithubRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
-
-        return null;
 
     }
 
@@ -426,23 +411,13 @@ public class GithubRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
 
+        return getString(status, containerSuccess, containerFail, containerThrowable);
 
-        switch (status[0]) {
-            case 1:
-                return containerSuccess[0];
-
-            case 2:
-                throw new GoodGameError(containerFail[0]);
-
-            case 3:
-                throw new GoodGameException(containerThrowable[0]);
-        }
-
-        return null;
     }
 
 }

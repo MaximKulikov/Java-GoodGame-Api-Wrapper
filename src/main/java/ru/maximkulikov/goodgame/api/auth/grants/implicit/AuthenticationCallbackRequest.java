@@ -80,129 +80,110 @@ public class AuthenticationCallbackRequest implements Runnable {
                 }
                 params.put(key, value);
             } catch (UnsupportedEncodingException ignored) {
+                ignored.printStackTrace();
             }
         }
 
         return params;
     }
 
-    /**
-     *
-     * @throws IOException
-     */
-    private void processRequest() throws IOException {
-//         Get a reference to the socket's input and output streams.
-        //InputStream is = this.socket.getInputStream();
-        this.socket.getInputStream();
-        DataOutputStream os;
+    private void processRequest() {
 
-        /**
-         * Set up input stream filters.
-         */
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+             DataOutputStream os = new DataOutputStream(this.socket.getOutputStream());
 
-        // Get the request line of the HTTP request message.
-        String requestLine = br.readLine();
+        ) {
 
-        // Store the request line for debugging.
-        String rawRequest = "\n" + requestLine;
+            String requestLine = br.readLine();
+            String rawRequest = "\n" + requestLine;
 
-        //Read the header lines.
-        String headerLine = null;
-        while ((headerLine = br.readLine()).length() != 0) {
-            rawRequest += headerLine + "\n";
-        }
+            String headerLine = null;
+            while ((headerLine = br.readLine()).length() != 0) {
+                rawRequest += headerLine + "\n";
+            }
 
-        // DEBUG: Print request
-        //System.out.println(rawRequest);
+            StringTokenizer tokens = new StringTokenizer(requestLine);
 
-        // Parse the request line.
-        StringTokenizer tokens = new StringTokenizer(requestLine);
+            tokens.nextToken();
 
-        // Request method, which should be "GET"
-        //String requestMethod = tokens.nextToken();
-        tokens.nextToken();
+            String requestFilename = tokens.nextToken();
+            Map<String, String> queryParams = extractQueryParams(requestFilename);
 
-        String requestFilename = tokens.nextToken();
-        Map<String, String> queryParams = extractQueryParams(requestFilename);
+            String accessToken = queryParams.get("code");
+            String state = queryParams.get("state");
 
-        // If we have the token, send the success page
-        String accessToken = queryParams.get("code");
-        String state = queryParams.get("state");
-        String[] scopes = new String[0];
+            String error = queryParams.get("error");
+            String errorDescription = queryParams.get("error_description");
 
-        // See if there is an error message, send the failure page
-        String error = queryParams.get("error");
-        String errorDescription = queryParams.get("error_description");
+            InputStream fis;
+            String contentTypeLine;
 
-        /*System.out.println("file: " + requestFilename);*/
-
-        // Open the requested file.
-        InputStream fis;
-        String contentTypeLine;
-        if (requestFilename.startsWith("/gg-auth.js") || requestFilename.startsWith("/gg-auth-success.js")) {
-            fis = getClass().getResourceAsStream(requestFilename);
-            contentTypeLine = "Content-type: text/javascript" + EOL;
-        } else {
-            if (accessToken != null) {
-                fis = this.successPage.openStream();
-            } else if (error != null) {
-                fis = this.failurePage.openStream();
+            if (requestFilename.startsWith("/gg-auth.js") || requestFilename.startsWith("/gg-auth-success.js")) {
+                fis = getClass().getResourceAsStream(requestFilename);
+                contentTypeLine = "Content-type: text/javascript" + EOL;
             } else {
-                fis = this.authPage.openStream();
+                if (accessToken != null) {
+                    fis = this.successPage.openStream();
+                } else if (error != null) {
+                    fis = this.failurePage.openStream();
+                } else {
+                    fis = this.authPage.openStream();
+                }
+                contentTypeLine = "Content-type: text/html" + EOL;
             }
-            contentTypeLine = "Content-type: text/html" + EOL;
-        }
 
-        boolean fileExists = fis != null;
+            boolean fileExists = fis != null;
 
-        // Construct the response message.
-        String statusLine = null;
-        String entityBody = null;
-        if (fileExists) {
-            statusLine = "HTTP/1.1 200 OK" + EOL;
-        } else {
-            statusLine = "HTTP/1.1 404 Not Found" + EOL;
-            entityBody = "404 Not Found";
-        }
+            // Construct the response message.
+            String statusLine = null;
+            String entityBody = null;
 
-        os = new DataOutputStream(this.socket.getOutputStream());
-
-        // Send the status line.
-        os.writeBytes(statusLine);
-
-        // Send the content type line.
-        os.writeBytes(contentTypeLine);
-
-        // Send a blank line to indicate the end of the header lines.
-        os.writeBytes(EOL);
-
-        // Send the entity body.
-        if (fileExists) {
-            sendFileBytes(fis, os);
-            fis.close();
-        } else {
-            os.writeBytes(entityBody);
-        }
-
-        // Close streams and socket.
-        os.close();
-        br.close();
-        this.socket.close();
-
-        // Send callbacks
-        if (this.authenticationListener != null) {
-            // Send callback if access token received
-            if (accessToken != null) {
-
-                this.authenticationListener.onAccessTokenReceived(accessToken, state);
+            if (fileExists) {
+                statusLine = "HTTP/1.1 200 OK" + EOL;
+            } else {
+                statusLine = "HTTP/1.1 404 Not Found" + EOL;
+                entityBody = "404 Not Found";
             }
-            // Send callback if authorization error
-            if (error != null) {
-                this.authenticationListener.onAuthenticationError(error, errorDescription);
+
+            // Send the status line.
+            os.writeBytes(statusLine);
+
+            // Send the content type line.
+            os.writeBytes(contentTypeLine);
+
+            // Send a blank line to indicate the end of the header lines.
+            os.writeBytes(EOL);
+
+            // Send the entity body.
+            if (fileExists) {
+                sendFileBytes(fis, os);
+                fis.close();
+            } else {
+                os.writeBytes(entityBody);
             }
+
+            os.close();
+            br.close();
+
+            this.socket.close();
+
+            if (this.authenticationListener != null) {
+                // Send callback if access token received
+                if (accessToken != null) {
+
+                    this.authenticationListener.onAccessTokenReceived(accessToken, state);
+                }
+                // Send callback if authorization error
+                if (error != null) {
+                    this.authenticationListener.onAuthenticationError(error, errorDescription);
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
 
     @Override
@@ -210,6 +191,7 @@ public class AuthenticationCallbackRequest implements Runnable {
         try {
             this.processRequest();
         } catch (Exception ignored) {
+            ignored.printStackTrace();
         }
     }
 

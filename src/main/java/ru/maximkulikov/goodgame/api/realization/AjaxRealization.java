@@ -77,10 +77,10 @@ public class AjaxRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
-
 
         switch (status[0]) {
             case 1:
@@ -91,9 +91,9 @@ public class AjaxRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
-
-        return null;
 
     }
 
@@ -149,10 +149,10 @@ public class AjaxRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
-
 
         switch (status[0]) {
             case 1:
@@ -163,9 +163,10 @@ public class AjaxRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
 
-        return null;
     }
 
     public AjaxLoginContainer login(final String login, final String password) throws GoodGameError, GoodGameException {
@@ -189,7 +190,9 @@ public class AjaxRealization {
                 synchronized (o) {
                     o.notifyAll();
                 }
-            }            @Override
+            }
+
+            @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
@@ -197,7 +200,6 @@ public class AjaxRealization {
                     o.notifyAll();
                 }
             }
-
 
 
             @Override
@@ -221,6 +223,7 @@ public class AjaxRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
@@ -235,9 +238,11 @@ public class AjaxRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
 
-        return null;
+
     }
 
     public UpdateTitle updateTitle(final String channelId, final String title, final String gameId) throws GoodGameError, GoodGameException {
@@ -294,6 +299,7 @@ public class AjaxRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
@@ -308,9 +314,9 @@ public class AjaxRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
-
-        return null;
 
     }
 

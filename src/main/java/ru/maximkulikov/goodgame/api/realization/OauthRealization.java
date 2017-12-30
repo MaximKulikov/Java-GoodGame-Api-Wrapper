@@ -88,10 +88,10 @@ public class OauthRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
-
 
         switch (status[0]) {
             case 1:
@@ -102,9 +102,10 @@ public class OauthRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
 
-        return null;
     }
 
     /**
@@ -164,10 +165,10 @@ public class OauthRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
-
 
         switch (status[0]) {
             case 1:
@@ -178,9 +179,10 @@ public class OauthRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
 
-        return null;
     }
 
 }

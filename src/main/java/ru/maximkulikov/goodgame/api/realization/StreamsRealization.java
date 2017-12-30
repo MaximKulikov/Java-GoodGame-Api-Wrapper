@@ -50,7 +50,9 @@ public class StreamsRealization {
                 synchronized (o) {
                     o.notifyAll();
                 }
-            }            @Override
+            }
+
+            @Override
             public void onFailure(Throwable throwable) {
                 containerThrowable[0] = throwable;
                 status[0] = 3;
@@ -72,6 +74,7 @@ public class StreamsRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
@@ -85,11 +88,27 @@ public class StreamsRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
 
-        return null;
+
     }
 
+    private EmbededChannels getEmbededChannels(short[] status, EmbededChannels[] containerSuccess, String[] containerFail, Throwable[] containerThrowable) throws GoodGameError, GoodGameException {
+        switch (status[0]) {
+            case 1:
+                return containerSuccess[0];
+
+            case 2:
+                throw new GoodGameError(containerFail[0]);
+
+            case 3:
+                throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
+        }
+    }
 
     public EmbededChannels getStreams() throws GoodGameError, GoodGameException {
         final Object o = new Object();
@@ -143,22 +162,11 @@ public class StreamsRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
-
-        switch (status[0]) {
-            case 1:
-                return containerSuccess[0];
-
-            case 2:
-                throw new GoodGameError(containerFail[0]);
-
-            case 3:
-                throw new GoodGameException(containerThrowable[0]);
-        }
-
-        return null;
+        return getEmbededChannels(status, containerSuccess, containerFail, containerThrowable);
     }
 
     public EmbededChannels getStreams(final RequestParams param) throws GoodGameError, GoodGameException {
@@ -213,21 +221,12 @@ public class StreamsRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
 
-        switch (status[0]) {
-            case 1:
-                return containerSuccess[0];
+        return getEmbededChannels(status, containerSuccess, containerFail, containerThrowable);
 
-            case 2:
-                throw new GoodGameError(containerFail[0]);
-
-            case 3:
-                throw new GoodGameException(containerThrowable[0]);
-        }
-
-        return null;
     }
 }

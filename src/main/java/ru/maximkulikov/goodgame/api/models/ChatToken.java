@@ -16,7 +16,7 @@ public class ChatToken {
     private String userId;
 
     @JsonProperty("chat_token")
-    private String chatToken;
+    private String cToken;
 
     @Override
     public boolean equals(Object o) {
@@ -28,7 +28,7 @@ public class ChatToken {
 
         return new EqualsBuilder()
                 .append(userId, chatToken1.userId)
-                .append(chatToken, chatToken1.chatToken)
+                .append(cToken, chatToken1.cToken)
                 .isEquals();
     }
 
@@ -36,7 +36,7 @@ public class ChatToken {
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .append(userId)
-                .append(chatToken)
+                .append(cToken)
                 .toHashCode();
     }
 
@@ -45,11 +45,11 @@ public class ChatToken {
 
      */
     public final String getChatToken() {
-        return this.chatToken;
+        return this.cToken;
     }
 
     public final void setChatToken(final String chatToken) {
-        this.chatToken = chatToken;
+        this.cToken = chatToken;
     }
 
     /**
@@ -67,7 +67,7 @@ public class ChatToken {
     public final String toString() {
         return "ChatToken{" +
                 "userId='" + this.userId + '\'' +
-                ", chatToken='" + this.chatToken + '\'' +
+                ", chatToken='" + this.cToken + '\'' +
                 '}';
     }
 }

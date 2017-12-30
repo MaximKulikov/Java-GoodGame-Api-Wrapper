@@ -1,6 +1,6 @@
 package ru.maximkulikov.goodgame.api;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.UUID;
 import ru.maximkulikov.goodgame.api.auth.Authenticator;
@@ -47,7 +47,7 @@ public class GoodGame {
     public GoodGame(final String baseUrl, final int apiVersion) {
         getState();
         this.authenticator = new Authenticator(baseUrl, this);
-        this.resources = new HashMap<>();
+        this.resources = new EnumMap<>(Resources.class);
         this.resources.put(Resources.OAUTH, new OauthResource(baseUrl, apiVersion, this));
         this.resources.put(Resources.PLAYER, new PlayerResourses(baseUrl, apiVersion));
         this.resources.put(Resources.STREAMS, new StreamsResource(baseUrl, apiVersion));

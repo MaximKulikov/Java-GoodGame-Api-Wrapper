@@ -76,23 +76,12 @@ public class ChannelsRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
 
-
-        switch (status[0]) {
-            case 1:
-                return containerSuccess[0];
-
-            case 2:
-                throw new GoodGameError(containerFail[0]);
-
-            case 3:
-                throw new GoodGameException(containerThrowable[0]);
-        }
-
-        return null;
+        return getDonationsContainer(status, containerSuccess, containerFail, containerThrowable);
     }
 
     public DonationsContainer getDonations(final String channel, final RequestParams params) throws GoodGameError, GoodGameException {
@@ -146,10 +135,16 @@ public class ChannelsRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
 
+        return getDonationsContainer(status, containerSuccess, containerFail, containerThrowable);
+
+    }
+
+    private DonationsContainer getDonationsContainer(short[] status, DonationsContainer[] containerSuccess, String[] containerFail, Throwable[] containerThrowable) throws GoodGameError, GoodGameException {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
@@ -159,9 +154,9 @@ public class ChannelsRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
-
-        return null;
     }
 
     public PremiumsContainer getPremiums(final String channel) throws GoodGameError, GoodGameException {
@@ -215,10 +210,16 @@ public class ChannelsRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
 
+        return getPremiumsContainer(status, containerSuccess, containerFail, containerThrowable);
+
+    }
+
+    private PremiumsContainer getPremiumsContainer(short[] status, PremiumsContainer[] containerSuccess, String[] containerFail, Throwable[] containerThrowable) throws GoodGameError, GoodGameException {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
@@ -228,9 +229,9 @@ public class ChannelsRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
-
-        return null;
     }
 
     public PremiumsContainer getPremiums(final String channel, final RequestParams params) throws GoodGameError, GoodGameException {
@@ -284,22 +285,13 @@ public class ChannelsRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
 
-        switch (status[0]) {
-            case 1:
-                return containerSuccess[0];
+        return getPremiumsContainer(status, containerSuccess, containerFail, containerThrowable);
 
-            case 2:
-                throw new GoodGameError(containerFail[0]);
-
-            case 3:
-                throw new GoodGameException(containerThrowable[0]);
-        }
-
-        return null;
     }
 
     public SubscrurersContainer getSubscribers(final String channel) throws GoodGameError, GoodGameException {
@@ -353,10 +345,16 @@ public class ChannelsRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
 
+        return getSubscrurersContainer(status, containerSuccess, containerFail, containerThrowable);
+
+    }
+
+    private SubscrurersContainer getSubscrurersContainer(short[] status, SubscrurersContainer[] containerSuccess, String[] containerFail, Throwable[] containerThrowable) throws GoodGameError, GoodGameException {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
@@ -366,9 +364,9 @@ public class ChannelsRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
-
-        return null;
     }
 
     public SubscrurersContainer getSubscribers(final String channel, final RequestParams params) throws GoodGameError, GoodGameException {
@@ -422,22 +420,14 @@ public class ChannelsRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
 
-        switch (status[0]) {
-            case 1:
-                return containerSuccess[0];
+        return getSubscrurersContainer(status, containerSuccess, containerFail, containerThrowable);
 
-            case 2:
-                throw new GoodGameError(containerFail[0]);
 
-            case 3:
-                throw new GoodGameException(containerThrowable[0]);
-        }
-
-        return null;
     }
 
 }

@@ -1,5 +1,10 @@
 package ru.maximkulikov.goodgame.api;
 
+import java.io.IOException;
+import java.net.URI;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.jetty.websocket.api.Session;
@@ -11,12 +16,6 @@ import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 import ru.maximkulikov.goodgame.api.chatmodels.*;
-
-import java.io.IOException;
-import java.net.URI;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Ключевой класс библиотеки для работы с чатом GoodGame
@@ -116,6 +115,7 @@ public abstract class GoodChat {
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
 
@@ -362,9 +362,7 @@ public abstract class GoodChat {
                         System.out.println(msg);
                         break;
                 }
-                if (answer == null) {
-                    System.out.println("answer == null");
-                }
+
                 this.chat.onMessage(answer);
 
 

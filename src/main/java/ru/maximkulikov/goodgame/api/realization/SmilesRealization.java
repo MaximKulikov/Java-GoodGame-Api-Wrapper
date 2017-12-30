@@ -70,22 +70,11 @@ public class SmilesRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
-
-        switch (status[0]) {
-            case 1:
-                return containerSuccess[0];
-
-            case 2:
-                throw new GoodGameError(containerFail[0]);
-
-            case 3:
-                throw new GoodGameException(containerThrowable[0]);
-        }
-
-        return null;
+        return getSmilesContainer(status, containerSuccess, containerFail, containerThrowable);
     }
 
     public SmilesContainer getChannelSmiles(final long channelId, final int page) throws GoodGameError, GoodGameException {
@@ -139,22 +128,13 @@ public class SmilesRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
 
-        switch (status[0]) {
-            case 1:
-                return containerSuccess[0];
+        return getSmilesContainer(status, containerSuccess, containerFail, containerThrowable);
 
-            case 2:
-                throw new GoodGameError(containerFail[0]);
-
-            case 3:
-                throw new GoodGameException(containerThrowable[0]);
-        }
-
-        return null;
     }
 
     public SmilesContainer getSmiles() throws GoodGameError, GoodGameException {
@@ -208,22 +188,13 @@ public class SmilesRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
 
-        switch (status[0]) {
-            case 1:
-                return containerSuccess[0];
+        return getSmilesContainer(status, containerSuccess, containerFail, containerThrowable);
 
-            case 2:
-                throw new GoodGameError(containerFail[0]);
-
-            case 3:
-                throw new GoodGameException(containerThrowable[0]);
-        }
-
-        return null;
     }
 
     public SmilesContainer getSmiles(final int page) throws GoodGameError, GoodGameException {
@@ -277,10 +248,14 @@ public class SmilesRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
+        return getSmilesContainer(status, containerSuccess, containerFail, containerThrowable);
+    }
 
+    private SmilesContainer getSmilesContainer(short[] status, SmilesContainer[] containerSuccess, String[] containerFail, Throwable[] containerThrowable) throws GoodGameError, GoodGameException {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
@@ -290,8 +265,8 @@ public class SmilesRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
-
-        return null;
     }
 }

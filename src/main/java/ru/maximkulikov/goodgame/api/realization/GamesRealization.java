@@ -34,18 +34,18 @@ public class GamesRealization {
         final Throwable[] containerThrowable = new Throwable[1];
         boolean result = gg.games().getGame(gameUrl, new GameResponseHandler() {
             @Override
-            public void onSuccess(Game game) {
-                containerSuccess[0] = game;
-                status[0] = 1;
+            public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
+                status[0] = 2;
                 synchronized (o) {
                     o.notifyAll();
                 }
             }
 
             @Override
-            public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
-                status[0] = 2;
+            public void onSuccess(Game game) {
+                containerSuccess[0] = game;
+                status[0] = 1;
                 synchronized (o) {
                     o.notifyAll();
                 }
@@ -71,6 +71,7 @@ public class GamesRealization {
                     o.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
@@ -84,9 +85,11 @@ public class GamesRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
 
-        return null;
+
     }
 
     public GamesContainer getGames(final RequestParams params) throws GoodGameError, GoodGameException {
@@ -143,7 +146,6 @@ public class GamesRealization {
                 }
             }
         }
-
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
@@ -153,9 +155,9 @@ public class GamesRealization {
 
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
+            default:
+                return null;
         }
-
-        return null;
     }
 
     public GamesContainer getGames() throws GoodGameError, GoodGameException {
@@ -228,5 +230,4 @@ public class GamesRealization {
 
         return null;
     }
-
 }

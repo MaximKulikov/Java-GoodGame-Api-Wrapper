@@ -21,6 +21,8 @@ public class Authenticator {
 
     private int listenPort;
 
+    private String host;
+
     private GoodGame gg;
 
     private String authentificationCode;
@@ -60,7 +62,7 @@ public class Authenticator {
 
 
         AuthenticationCallbackServer server =
-                new AuthenticationCallbackServer(this.listenPort, authUrl, successUrl, failUrl, this.gg.getState());
+                new AuthenticationCallbackServer(this.listenPort, this.host, authUrl, successUrl, failUrl, this.gg.getState());
         try {
             server.start();
         } catch (IOException e) {
@@ -126,15 +128,15 @@ public class Authenticator {
                 this.goodgameBaseUrl, clientId, redirectURI, state, Scopes.join(scopes));
     }
 
-    public URI getRedirectURI() {
-        return redirectURI;
-    }
-
     /**
      * @return Авторизационный код
      */
     public final String getAutorizationCode() {
         return this.authentificationCode;
+    }
+
+    public URI getRedirectURI() {
+        return redirectURI;
     }
 
     /**
@@ -151,5 +153,15 @@ public class Authenticator {
      */
     public final void setRefreshToken(final String refreshToken) {
         this.refreshToken = refreshToken;
+    }
+
+    /**
+     *
+     * @param host Изменяет стантартный адрес 127.0.0.1 на который придет ответ от GoodGame.
+     * @return
+     */
+    public String setHost(final String host) {
+        return this.host = host;
+
     }
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.GoodGame;
-import ru.maximkulikov.goodgame.api.auth.Authenticator;
 import ru.maximkulikov.goodgame.api.handlers.OauthResourceResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.OauthResponseHandler;
 import ru.maximkulikov.goodgame.api.models.AccessToken;
@@ -102,50 +101,6 @@ public class OauthResource extends AbstractResource {
             }
         });
         return true;
-    }
-
-    /**
-     * Используйте метод {@link #getAccessToken(boolean useAutorizationCode, OauthResponseHandler handler)}
-     */
-    @Deprecated
-    public final void getAccessToken(final Authenticator authenticator, final String clientSecret,
-                                     final boolean useAutorizationCode, final OauthResponseHandler handler) {
-        String url = String.format(OAUTH, getBaseUrl());
-
-        RequestParams params = new RequestParams();
-
-        params.put(CLIENT_ID, this.gg.getClientId());
-        params.put(CLIENT_SECRET, clientSecret);
-
-        if (useAutorizationCode) {
-            params.put(REDIRECT_URI, this.gg.auth().getRedirectURI().toString());
-            params.put(CLIENT_ID, gg.getClientId());
-
-            params.put(CODE, authenticator.getAutorizationCode());
-            params.put(GRANT_TYPE, AUTHORIZATION_CODE);
-
-        } else {
-            params.put(GRANT_TYPE, REFRESH_TOKEN);
-            params.put(REFRESH_TOKEN, authenticator.getRefreshToken());
-
-        }
-
-        this.configureHeaders();
-        http.post(url, params, new GoodGameHttpResponseHandler(handler) {
-            @Override
-            public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
-                try {
-
-                    AccessToken value = objectMapper.readValue(content, AccessToken.class);
-                    authenticator.setAccessToken(value.getAccessToken());
-                    authenticator.setRefreshToken(value.getRefreshToken());
-                    handler.onSuccess(value);
-
-                } catch (IOException e) {
-                    handler.onFailure(e);
-                }
-            }
-        });
     }
 
     /**

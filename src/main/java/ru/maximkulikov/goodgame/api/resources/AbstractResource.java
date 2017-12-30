@@ -19,12 +19,10 @@ import ru.maximkulikov.goodgame.api.models.Error;
  */
 public abstract class AbstractResource {
 
-    private final static String APPLICATIONJSON = "application/json";
-
     protected static final ObjectMapper objectMapper = new ObjectMapper();
-
     protected static final AsyncHttpClient http = new AsyncHttpClient();
-
+    private static final String APPLICATIONJSON = "application/json";
+    private static final String ACCEPT = "ACCEPT";
     // Base url for twitch rest api
     private final String baseUrl;
 
@@ -40,29 +38,27 @@ public abstract class AbstractResource {
         this.configureHeaders();
     }
 
+    protected AbstractResource(final String baseUrl) {
+        this.baseUrl = baseUrl;
+        this.configureHeaders();
+
+    }
+
+    ;
+
     protected void configureHeaders() {
 
-        http.removeHeader("ACCEPT");
+        http.removeHeader(ACCEPT);
         http.removeHeader("Content-Type");
         http.removeHeader("Cookie");
 
         http.setHeader("Content-Type", APPLICATIONJSON);
 
         if (this.apiVersion == null) {
-            http.setHeader("ACCEPT", APPLICATIONJSON);
+            http.setHeader(ACCEPT, APPLICATIONJSON);
         } else {
-            http.setHeader("ACCEPT", "application/vnd.goodgame.v" + Integer.toString(this.apiVersion) + "+json");
+            http.setHeader(ACCEPT, "application/vnd.goodgame.v" + Integer.toString(this.apiVersion) + "+json");
         }
-
-
-    }
-
-    ;
-
-    protected AbstractResource(final String baseUrl) {
-        this.baseUrl = baseUrl;
-        this.configureHeaders();
-
     }
 
     private void configureObjectMapper() {

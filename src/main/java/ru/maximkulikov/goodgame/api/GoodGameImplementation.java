@@ -1,6 +1,6 @@
 package ru.maximkulikov.goodgame.api;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import ru.maximkulikov.goodgame.api.realization.*;
 
@@ -19,7 +19,7 @@ public class GoodGameImplementation {
     public GoodGameImplementation(GoodGame gg) {
         this.gg = gg;
 
-        this.realization = new HashMap<>();
+        this.realization = new EnumMap<>(GoodGame.Resources.class);
         this.realization.put(GoodGame.Resources.OAUTH, new OauthRealization(gg));
         this.realization.put(GoodGame.Resources.PLAYER, new PlayerRealization(gg));
         this.realization.put(GoodGame.Resources.STREAMS, new StreamsRealization(gg));
