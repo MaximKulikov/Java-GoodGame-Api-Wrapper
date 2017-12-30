@@ -1,11 +1,10 @@
 package ru.maximkulikov.goodgame.api.resources;
 
-import ru.maximkulikov.goodgame.api.handlers.ChatTokenResponseHandler;
-import ru.maximkulikov.goodgame.api.models.ChatToken;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import ru.maximkulikov.goodgame.api.handlers.ChatTokenResponseHandler;
+import ru.maximkulikov.goodgame.api.models.ChatToken;
 
 /**
  * {@link ChatResource} предоставляет функциональность к ресурсам чата, доступным по запросам <code>/chat/</code>.
@@ -25,7 +24,7 @@ public class ChatResource extends AbstractResource {
      *
      * @param handler
      */
-    public final void getChatToken(final ChatTokenResponseHandler handler) {
+    public final boolean getChatToken(final ChatTokenResponseHandler handler) {
         String url = String.format("%s/chat/token", getBaseUrl());
 
         this.configureHeaders();
@@ -40,5 +39,6 @@ public class ChatResource extends AbstractResource {
                 }
             }
         });
+        return true;
     }
 }

@@ -3,7 +3,7 @@ package ru.maximkulikov.goodgame.api.auth;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
-
+import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.auth.grants.implicit.AuthenticationCallbackServer;
 import ru.maximkulikov.goodgame.api.auth.grants.implicit.AuthenticationError;
 
@@ -21,12 +21,7 @@ public class Authenticator {
 
     private int listenPort;
 
-    //TODO Убрать эту переменную, заменить на gg.getCliendID
-    private String clientId;
-
-    private URI redirectUri;
-
-    private String state;
+    private GoodGame gg;
 
     private String authentificationCode;
 
@@ -36,8 +31,11 @@ public class Authenticator {
 
     private AuthenticationError authenticationError;
 
-    public Authenticator(final String goodgameBaseUrl) {
+    private URI redirectURI;
+
+    public Authenticator(final String goodgameBaseUrl, final GoodGame gg) {
         this.goodgameBaseUrl = goodgameBaseUrl;
+        this.gg = gg;
     }
 
     /**
@@ -59,12 +57,10 @@ public class Authenticator {
      * @return Возвращает <i>true</i> при успешном прохождении всех шагов получения авторизационного кода
      */
     public final boolean awaitAutorizationCode(final URL authUrl, final URL successUrl, final URL failUrl) {
-        if (this.clientId == null || this.redirectUri == null) {
-            return false;
-        }
+
 
         AuthenticationCallbackServer server =
-                new AuthenticationCallbackServer(this.listenPort, authUrl, successUrl, failUrl, this.state);
+                new AuthenticationCallbackServer(this.listenPort, authUrl, successUrl, failUrl, this.gg.getState());
         try {
             server.start();
         } catch (IOException e) {
@@ -104,22 +100,41 @@ public class Authenticator {
     }
 
     /**
+     * @param redirectURI
+     * @param scopes
+     * @return Ссылка для отправки пользователей на авторизацию
+     */
+    public final String getAuthenticationUrl(final URI redirectURI, final Scopes... scopes) {
+
+        String state = this.gg.getState();
+        String clientId = this.gg.getClientId();
+        this.redirectURI = redirectURI;
+
+        if (state == null || clientId == null || redirectURI == null) {
+            return null;
+        }
+
+        // Set the listening port for the callback, default to 80 if not specified
+        this.listenPort = redirectURI.getPort();
+        if (this.listenPort == -1) {
+            // HTTP default
+            this.listenPort = DEFAULT_HTTP_PORT;
+        }
+
+        return String.format("%s/oauth/authorize?response_type=code" +
+                        "&client_id=%s&redirect_uri=%s&state=%s&scope=%s",
+                this.goodgameBaseUrl, clientId, redirectURI, state, Scopes.join(scopes));
+    }
+
+    public URI getRedirectURI() {
+        return redirectURI;
+    }
+
+    /**
      * @return Авторизационный код
      */
     public final String getAutorizationCode() {
         return this.authentificationCode;
-    }
-
-    @Deprecated
-    public final String getClientId() {
-        return this.clientId;
-    }
-
-    /**
-     * @return Ссылка для перехода на страницу авторизации (возможно)
-     */
-    public final URI getRedirectUri() {
-        return this.redirectUri;
     }
 
     /**

@@ -16,5 +16,5 @@ public interface GamesResponseHandler extends BaseFailureHandler {
      * @param gamesContainer экземпляр {@link GamesContainer}
      * @param games          Список {@link Game} из контейнера {@link GamesContainer}.
      */
-    void onSuccess(GamesContainer gamesContainer, List<Game> games);
+    void onSuccess(GamesContainer gamesContainer);
 }

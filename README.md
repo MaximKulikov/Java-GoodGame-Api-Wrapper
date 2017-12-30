@@ -172,7 +172,7 @@ class Example {
 
         // Получаем ссылку для авторизации. Установите все необходимые права приложению. 
         // Передайте сгенерированную строку третим параметром или вызовите getState().
-        String authUrl = gg.auth().getAuthenticationUrl(gg.getClientId(), callbackUri, gg.getState(), Scopes.CHANNEL_SUBSCRIBERS, Scopes.CHAT_TOKEN);
+        String authUrl = gg.auth().getAuthenticationUrl(callbackUri, Scopes.CHANNEL_SUBSCRIBERS, Scopes.CHAT_TOKEN);
 
         // Отправьте пользователю сформированную ссылку по которой он сможет пройти и авторизовать приложение для работы от его имени
         openWebpage(authUrl);
@@ -466,9 +466,10 @@ class ChatAnswerExample extends GoodChat {
 </project>
 ```
 
-## In Progress
+## Типовая реализация
+
+В библиотеке есть класс `GoodGameImplementation` в котором есть типовая реализация библиотеки.
        
-Юнит тесты
 
 
 

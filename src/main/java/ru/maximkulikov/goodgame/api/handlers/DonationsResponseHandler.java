@@ -10,8 +10,7 @@ import ru.maximkulikov.goodgame.api.models.DonationsContainer;
  */
 public interface DonationsResponseHandler extends BaseFailureHandler {
     /**
-     * @param totalItems Всего объектов
-     * @param donations  экземпляр {@link DonationsContainer}
+     * @param donations экземпляр {@link DonationsContainer}
      */
-    void onSuccess(Long totalItems, DonationsContainer donations);
+    void onSuccess(DonationsContainer donations);
 }

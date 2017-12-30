@@ -1,11 +1,10 @@
 package ru.maximkulikov.goodgame.api.resources;
 
-import ru.maximkulikov.goodgame.api.handlers.PlayerResponseHandler;
-import ru.maximkulikov.goodgame.api.models.Player;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import ru.maximkulikov.goodgame.api.handlers.PlayerResponseHandler;
+import ru.maximkulikov.goodgame.api.models.Player;
 
 /**
  * {@link PlayerResourses} предоставляет фукциональность к ресурсам информации о плеере
@@ -21,11 +20,10 @@ public class PlayerResourses extends AbstractResource {
 
     /**
      * Получение информации о плеере
-     *
-     * @param channelId Идентификатор канала
+     *  @param channelId Идентификатор канала
      * @param handler
      */
-    public final void getPlayer(final String channelId, final PlayerResponseHandler handler) {
+    public final boolean getPlayer(final String channelId, final PlayerResponseHandler handler) {
         String url = String.format("%s/player/%s", getBaseUrl(), channelId);
 
         this.configureHeaders();
@@ -40,5 +38,6 @@ public class PlayerResourses extends AbstractResource {
                 }
             }
         });
+        return true;
     }
 }

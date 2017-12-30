@@ -1,5 +1,8 @@
 package ru.maximkulikov.goodgame.api.resources;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.auth.Authenticator;
@@ -7,10 +10,6 @@ import ru.maximkulikov.goodgame.api.handlers.OauthResourceResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.OauthResponseHandler;
 import ru.maximkulikov.goodgame.api.models.AccessToken;
 import ru.maximkulikov.goodgame.api.models.OauthResourceCheck;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * {@link OauthResource} предоствляет мкханизмы авторизации с помощью токена
@@ -54,7 +53,11 @@ public class OauthResource extends AbstractResource {
      * @param useAutorizationCode Если требуется использовать Authorisation Code - <i>true</i>, если Refresh Token - <i>false</i>
      * @param handler
      */
-    public final void getAccessToken(final boolean useAutorizationCode, final OauthResponseHandler handler) {
+    public final boolean getAccessToken(final boolean useAutorizationCode, final OauthResponseHandler handler) {
+
+        if (this.gg.auth().getRedirectURI() == null ||this.gg.getClientId() == null ) {
+            return false;
+        }
 
         String url = String.format(OAUTH, getBaseUrl());
 
@@ -64,13 +67,20 @@ public class OauthResource extends AbstractResource {
         params.put(CLIENT_SECRET, this.gg.getClientSecret());
 
         if (useAutorizationCode) {
-            params.put(REDIRECT_URI, this.gg.getRedirectUri().toString());
-            params.put(CLIENT_ID, this.gg.getClientId());
+
+            if (this.gg.auth().getAutorizationCode()==null ) {
+                return false;
+            }
+            params.put(REDIRECT_URI, this.gg.auth().getRedirectURI().toString());
 
             params.put(CODE, this.gg.auth().getAutorizationCode());
             params.put(GRANT_TYPE, AUTHORIZATION_CODE);
 
         } else {
+
+            if (this.gg.auth().getRefreshToken() == null) {
+                return false;
+            }
             params.put(GRANT_TYPE, REFRESH_TOKEN);
             params.put(REFRESH_TOKEN, this.gg.auth().getRefreshToken());
 
@@ -91,6 +101,7 @@ public class OauthResource extends AbstractResource {
                 }
             }
         });
+        return true;
     }
 
     /**
@@ -107,7 +118,7 @@ public class OauthResource extends AbstractResource {
         params.put(CLIENT_SECRET, clientSecret);
 
         if (useAutorizationCode) {
-            params.put(REDIRECT_URI, authenticator.getRedirectUri().toString());
+            params.put(REDIRECT_URI, this.gg.auth().getRedirectURI().toString());
             params.put(CLIENT_ID, gg.getClientId());
 
             params.put(CODE, authenticator.getAutorizationCode());

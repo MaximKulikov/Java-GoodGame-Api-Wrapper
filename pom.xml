@@ -4,7 +4,7 @@
 
     <groupId>ru.maximkulikov</groupId>
     <artifactId>goodgame-api-wrapper</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>goodgame-api-wrapper</name>
@@ -38,6 +38,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -54,6 +55,7 @@
     </repositories>
 
     <build>
+
         <plugins>
 
             <plugin>
@@ -64,6 +66,11 @@
                     <attach>false</attach>
                     <includePom>true</includePom>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

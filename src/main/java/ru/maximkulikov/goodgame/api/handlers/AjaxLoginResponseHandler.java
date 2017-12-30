@@ -11,8 +11,8 @@ import ru.maximkulikov.goodgame.api.models.AjaxLoginContainer;
  */
 public interface AjaxLoginResponseHandler extends BaseFailureHandler {
     /**
+     * Дополнительно включена PHP сессия, при получении сессия также прописывается в объект GoodGame
      * @param ajaxLoginContainer экземпляр {@link AjaxLoginContainer}
-     * @param session Идентификатор сессии
      */
-    void onSuccess(AjaxLoginContainer ajaxLoginContainer, String session);
+    void onSuccess(AjaxLoginContainer ajaxLoginContainer);
 }

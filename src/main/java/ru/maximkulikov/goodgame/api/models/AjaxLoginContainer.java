@@ -21,6 +21,8 @@ public class AjaxLoginContainer {
     @JsonProperty("login_page")
     private String loginPage;
 
+    private String session;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -105,6 +107,14 @@ public class AjaxLoginContainer {
 
     public final void setAjaxReturn(final AjaxLoginReturn ajaxReturn) {
         this.ajaxReturn = ajaxReturn;
+    }
+
+    public String getSession() {
+        return session;
+    }
+
+    public void setSession(String session) {
+        this.session = session;
     }
 
     @Override

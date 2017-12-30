@@ -20,10 +20,10 @@ public class InfoResource extends AbstractResource {
 
     /**
      * Получение информации по Access Token'у
-     * 
+     *
      * @param handler
      */
-    public final void getInfo(final InfoResponseHandler handler) {
+    public final boolean getInfo(final InfoResponseHandler handler) {
         String url = String.format("%s/info", getBaseUrl());
 
         this.configureHeaders();
@@ -38,5 +38,6 @@ public class InfoResource extends AbstractResource {
                 }
             }
         });
+        return true;
     }
 }

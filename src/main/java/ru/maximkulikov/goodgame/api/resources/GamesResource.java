@@ -1,14 +1,13 @@
 package ru.maximkulikov.goodgame.api.resources;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.handlers.GameResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.GamesResponseHandler;
 import ru.maximkulikov.goodgame.api.models.Game;
 import ru.maximkulikov.goodgame.api.models.GamesContainer;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * {@link GamesResource} предоствяляет функциональность к ресурсам зарегистрированных на GoodGame игр,
@@ -27,7 +26,7 @@ public class GamesResource extends AbstractResource {
      *
      * @param handler
      */
-    public final void getGames(final GamesResponseHandler handler) {
+    public final boolean getGames(final GamesResponseHandler handler) {
         String url = String.format("%s/games", getBaseUrl());
 
         this.configureHeaders();
@@ -36,22 +35,22 @@ public class GamesResource extends AbstractResource {
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
-                    handler.onSuccess(value, value.getGames().getGames());
+                    handler.onSuccess(value);
                 } catch (IOException e) {
                     handler.onFailure(e);
                 }
             }
         });
+        return true;
     }
 
     /**
      * Получение коллекции игр
-     *
-     * @param params  Дополнительные параметры: page (номер страницы при постраничном выводе) и filter (фильтр по
+     *  @param params  Дополнительные параметры: page (номер страницы при постраничном выводе) и filter (фильтр по
      *                названию игры)
      * @param handler
      */
-    public final void getGames(final RequestParams params, final GamesResponseHandler handler) {
+    public final boolean getGames(final RequestParams params, final GamesResponseHandler handler) {
         String url = String.format("%s/games", getBaseUrl());
 
         this.configureHeaders();
@@ -60,21 +59,21 @@ public class GamesResource extends AbstractResource {
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
                 try {
                     GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
-                    handler.onSuccess(value, value.getGames().getGames());
+                    handler.onSuccess(value);
                 } catch (IOException e) {
                     handler.onFailure(e);
                 }
             }
         });
+        return true;
     }
 
     /**
      * Получение информации по игре, зная ее url
-     *
-     * @param gameUrl URL игры
+     *  @param gameUrl URL игры
      * @param handler
      */
-    public final void getGame(final String gameUrl, final GameResponseHandler handler) {
+    public final boolean getGame(final String gameUrl, final GameResponseHandler handler) {
         String url = String.format("%s/games/%s", getBaseUrl(), gameUrl);
 
         this.configureHeaders();
@@ -89,5 +88,6 @@ public class GamesResource extends AbstractResource {
                 }
             }
         });
+        return true;
     }
 }

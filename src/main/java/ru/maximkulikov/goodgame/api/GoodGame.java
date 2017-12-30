@@ -1,6 +1,5 @@
 package ru.maximkulikov.goodgame.api;
 
-import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -46,7 +45,8 @@ public class GoodGame {
      * @param apiVersion Версия API. Работает для всех ресурсов, кроме github и ajax.
      */
     public GoodGame(final String baseUrl, final int apiVersion) {
-        this.authenticator = new Authenticator(baseUrl);
+        getState();
+        this.authenticator = new Authenticator(baseUrl, this);
         this.resources = new HashMap<>();
         this.resources.put(Resources.OAUTH, new OauthResource(baseUrl, apiVersion, this));
         this.resources.put(Resources.PLAYER, new PlayerResourses(baseUrl, apiVersion));
@@ -151,15 +151,6 @@ public class GoodGame {
      */
     public final void setPhpSessId(final String phpSessId) {
         this.phpSessId = phpSessId;
-    }
-
-    /**
-     * @return Возвращает ссылку для перенаправления пользователя на страницу авторизации. Используется при oauth
-     * авторизации, не требующей пароля пользователя.
-     * @see Authenticator#getRedirectUri()
-     */
-    public final URI getRedirectUri() {
-        return this.authenticator.getRedirectUri();
     }
 
     private AbstractResource getResource(final Resources key) {

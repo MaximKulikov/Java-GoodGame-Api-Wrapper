@@ -1,12 +1,11 @@
 package ru.maximkulikov.goodgame.api.resources;
 
-import com.mb3364.http.RequestParams;
-import ru.maximkulikov.goodgame.api.handlers.SmilesResponseHandler;
-import ru.maximkulikov.goodgame.api.models.SmilesContainer;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import com.mb3364.http.RequestParams;
+import ru.maximkulikov.goodgame.api.handlers.SmilesResponseHandler;
+import ru.maximkulikov.goodgame.api.models.SmilesContainer;
 
 /**
  * {@link SmilesResource} предоставляет функциональность к ресурсам smiles
@@ -29,11 +28,10 @@ public class SmilesResource extends AbstractResource {
     /**
      * Получение коллекции смайлов
      * Постраничный вывод по 50 объектов на страницу
-     *
-     * @param channelID Идентификатор канала
+     *  @param channelID Идентификатор канала
      * @param handler
      */
-    public final void getChannelSmiles(final long channelID, final SmilesResponseHandler handler) {
+    public final boolean getChannelSmiles(final long channelID, final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles/%s", getBaseUrl(), channelID);
 
         this.configureHeaders();
@@ -48,18 +46,18 @@ public class SmilesResource extends AbstractResource {
                 }
             }
         });
+        return true;
     }
 
     /**
      * Получение коллекции смайлов
      * Постраничный вывод по 50 объектов на страницу
-     *
-     * @param channelId Идентификатор канала
+     *  @param channelId Идентификатор канала
      * @param page      номер страницы
      * @param handler
      */
-    public final void getChannelSmiles(final long channelId, final int page,
-                                       final SmilesResponseHandler handler) {
+    public final boolean getChannelSmiles(final long channelId, final int page,
+                                          final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles/%s", getBaseUrl(), channelId);
 
         RequestParams params = new RequestParams();
@@ -77,6 +75,7 @@ public class SmilesResource extends AbstractResource {
                 }
             }
         });
+        return true;
     }
 
     /**
@@ -85,7 +84,7 @@ public class SmilesResource extends AbstractResource {
      *
      * @param handler
      */
-    public final void getSmiles(final SmilesResponseHandler handler) {
+    public final boolean getSmiles(final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles", getBaseUrl());
 
         this.configureHeaders();
@@ -100,16 +99,16 @@ public class SmilesResource extends AbstractResource {
                 }
             }
         });
+        return true;
     }
 
     /**
      * Получение коллекции смайлов
      * Постраничный вывод по 50 объектов на страницу
-     *
-     * @param page    номер страницы
+     *  @param page    номер страницы
      * @param handler
      */
-    public final void getSmiles(final int page, final SmilesResponseHandler handler) {
+    public final boolean getSmiles(final int page, final SmilesResponseHandler handler) {
         String url = String.format("%s/smiles", getBaseUrl());
         RequestParams params = new RequestParams();
         params.put(this.PAGE, page);
@@ -126,5 +125,6 @@ public class SmilesResource extends AbstractResource {
                 }
             }
         });
+        return true;
     }
 }

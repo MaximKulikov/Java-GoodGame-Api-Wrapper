@@ -1,14 +1,13 @@
 package ru.maximkulikov.goodgame.api.resources;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import com.mb3364.http.RequestParams;
 import ru.maximkulikov.goodgame.api.handlers.StreamChannelResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.StreamsResponseHandler;
 import ru.maximkulikov.goodgame.api.models.ChannelContainer;
 import ru.maximkulikov.goodgame.api.models.EmbededChannels;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * {@link StreamsResource} предоставляет функциональность к ресурсам стрима
@@ -23,13 +22,12 @@ public class StreamsResource extends AbstractResource {
 
     /**
      * Получение информации о конкретном стриме
-     *
-     * @param channel Идентификатор стрима, может быть как символьным ключем канала (Пример:
+     *  @param channel Идентификатор стрима, может быть как символьным ключем канала (Пример:
      *                http://api2.goodgame.ru/streams/Miker), так и числовым id (Пример:
      *                http://api2.goodgame.ru/streams/5).
      * @param handler
      */
-    public final void getChannel(final String channel, final StreamChannelResponseHandler handler) {
+    public final boolean getChannel(final String channel, final StreamChannelResponseHandler handler) {
         String url = String.format("%s/streams/%s", getBaseUrl(), channel);
 
         this.configureHeaders();
@@ -44,6 +42,7 @@ public class StreamsResource extends AbstractResource {
                 }
             }
         });
+        return true;
     }
 
     /**
@@ -52,7 +51,7 @@ public class StreamsResource extends AbstractResource {
      *
      * @param handler
      */
-    public final void getStreams(final StreamsResponseHandler handler) {
+    public final boolean getStreams(final StreamsResponseHandler handler) {
         String url = String.format("%s/streams", getBaseUrl());
 
         this.configureHeaders();
@@ -67,16 +66,16 @@ public class StreamsResource extends AbstractResource {
                 }
             }
         });
+        return true;
     }
 
     /**
      * Получение информации обо всех онлайн стримах
      * на Goodgame. Можно использовать query-параметры.
-     *
-     * @param params
+     *  @param params
      * @param handler
      */
-    public final void getStreams(final RequestParams params, final StreamsResponseHandler handler) {
+    public final boolean getStreams(final RequestParams params, final StreamsResponseHandler handler) {
 
         String url = String.format("%s/streams", getBaseUrl());
 
@@ -92,5 +91,6 @@ public class StreamsResource extends AbstractResource {
                 }
             }
         });
+        return true;
     }
 }
