@@ -13,6 +13,8 @@ import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Matthew Bell
@@ -23,7 +25,7 @@ public class AuthenticationCallbackRequest implements Runnable {
      * as specified by HTTP/1.1 spec
      */
     private static final String EOL = "\r\n";
-
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationCallbackRequest.class);
     private static final String UTF8 = "UTF-8";
 
     private Socket socket;
@@ -79,8 +81,8 @@ public class AuthenticationCallbackRequest implements Runnable {
                     value = URLDecoder.decode(pair[1], UTF8);
                 }
                 params.put(key, value);
-            } catch (UnsupportedEncodingException ignored) {
-                ignored.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                logger.error("Encoding exception: {}", e.getLocalizedMessage());
             }
         }
 
@@ -181,7 +183,7 @@ public class AuthenticationCallbackRequest implements Runnable {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("IO exception: {}", e.getLocalizedMessage());
         }
 
     }
@@ -190,8 +192,8 @@ public class AuthenticationCallbackRequest implements Runnable {
     public final void run() {
         try {
             this.processRequest();
-        } catch (Exception ignored) {
-            ignored.printStackTrace();
+        } catch (Exception e) {
+            logger.error("Process request exception: {}", e.getLocalizedMessage());
         }
     }
 

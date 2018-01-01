@@ -18,7 +18,6 @@ public class GoodGameImplementation {
 
     public GoodGameImplementation(GoodGame gg) {
         this.gg = gg;
-
         this.realization = new EnumMap<>(GoodGame.Resources.class);
         this.realization.put(GoodGame.Resources.OAUTH, new OauthRealization(gg));
         this.realization.put(GoodGame.Resources.PLAYER, new PlayerRealization(gg));

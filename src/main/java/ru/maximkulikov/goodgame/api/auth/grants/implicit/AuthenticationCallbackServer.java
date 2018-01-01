@@ -7,6 +7,8 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.URL;
 import java.util.Date;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Matthew Bell
@@ -27,25 +29,16 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
      * Default HTML page that shows auth success to
      */
     public static final String DEFAULT_SUCCESS_PAGE = "/gg-authorize-success.html";
-
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationCallbackServer.class);
     private final URL authPage;
-
     private final URL failurePage;
-
     private final URL successPage;
-
     private int port;
-
     private String host = "127.0.0.1";
-
     private ServerSocket serverSocket;
-
     private String accessToken;
-
     private AuthenticationError authenticationError;
-
     private String stateRequest;
-
     private String stateAnswer;
 
 
@@ -125,6 +118,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
                 Thread thread = new Thread(request);
                 thread.start();
             } catch (SocketException e) {
+                logger.error("Socket exception: {}", e.getLocalizedMessage());
                 // Socket was closed by another thread
                 break;
             }
@@ -145,8 +139,8 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
         if (this.serverSocket != null && !this.serverSocket.isClosed()) {
             try {
                 this.serverSocket.close();
-            } catch (IOException ignored) {
-                ignored.printStackTrace();
+            } catch (IOException e) {
+                logger.error("IO exception: {}", e.getLocalizedMessage());
             } finally {
                 this.serverSocket = null;
             }

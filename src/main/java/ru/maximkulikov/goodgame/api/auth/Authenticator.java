@@ -3,6 +3,8 @@ package ru.maximkulikov.goodgame.api.auth;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.auth.grants.implicit.AuthenticationCallbackServer;
 import ru.maximkulikov.goodgame.api.auth.grants.implicit.AuthenticationError;
@@ -16,23 +18,15 @@ import ru.maximkulikov.goodgame.api.auth.grants.implicit.AuthenticationError;
 public class Authenticator {
 
     private static final int DEFAULT_HTTP_PORT = 80;
-
+    private static final Logger logger = LoggerFactory.getLogger(Authenticator.class);
     private String goodgameBaseUrl;
-
     private int listenPort;
-
     private String host;
-
     private GoodGame gg;
-
     private String authentificationCode;
-
     private String accessToken;
-
     private String refreshToken;
-
     private AuthenticationError authenticationError;
-
     private URI redirectURI;
 
     public Authenticator(final String goodgameBaseUrl, final GoodGame gg) {
@@ -66,11 +60,13 @@ public class Authenticator {
         try {
             server.start();
         } catch (IOException e) {
+            logger.error("Java Exception: {}", e.getLocalizedMessage());
             this.authenticationError = new AuthenticationError("JavaException", e.toString());
             return false;
         }
 
         if (server.hasAuthenticationError() || server.getAuthentificationCode() == null) {
+            logger.error("Authentication Code Error");
             this.authenticationError = server.getAuthenticationError();
             return false;
         }
@@ -113,6 +109,7 @@ public class Authenticator {
         this.redirectURI = redirectURI;
 
         if (state == null || clientId == null || redirectURI == null) {
+            logger.error("Something null: state = {}, clienr ID = {}, URI = {}", state, clientId, redirectURI);
             return null;
         }
 
@@ -131,7 +128,7 @@ public class Authenticator {
     /**
      * @return Авторизационный код
      */
-    public final String getAutorizationCode() {
+    public final String getAuthorizationCode() {
         return this.authentificationCode;
     }
 
@@ -156,7 +153,6 @@ public class Authenticator {
     }
 
     /**
-     *
      * @param host Изменяет стантартный адрес 127.0.0.1 на который придет ответ от GoodGame.
      * @return
      */

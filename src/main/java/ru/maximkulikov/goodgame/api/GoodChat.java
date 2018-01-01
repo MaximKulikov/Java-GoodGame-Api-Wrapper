@@ -15,6 +15,8 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.chatmodels.*;
 
 /**
@@ -25,9 +27,8 @@ import ru.maximkulikov.goodgame.api.chatmodels.*;
 public abstract class GoodChat {
 
     protected static final ObjectMapper objectMapper = new ObjectMapper();
-
     private static final String DEFAULT_CHAT_URL = "ws://chat.goodgame.ru:8081/chat/websocket";
-
+    private Logger logger = LoggerFactory.getLogger(GoodChat.class);
     private GoodChatSocket socket;
 
     private WebSocketClient client;
@@ -52,18 +53,19 @@ public abstract class GoodChat {
                     URI echoUri = new URI(DEFAULT_CHAT_URL);
                     ClientUpgradeRequest request = new ClientUpgradeRequest();
                     GoodChat.this.client.connect(GoodChat.this.socket, echoUri, request);
-                    System.out.printf("Connecting to : %s%n", echoUri);
-                    // wait for closed socket connection.
+                    logger.info("Connecting to: {}", echoUri);
+
                     GoodChat.this.socket.setChat(GoodChat.this);
                     GoodChat.this.socket.awaitClose(24, TimeUnit.HOURS);
 
                 } catch (Exception e) {
+                    logger.error("Connecting exeption: {}", e.getLocalizedMessage());
                     e.printStackTrace();
                 } finally {
                     try {
                         GoodChat.this.client.stop();
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        logger.error("Close connecting exeption: {}", e.getLocalizedMessage());
                     }
                 }
             }
@@ -115,6 +117,7 @@ public abstract class GoodChat {
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                logger.error("Send message Exeption. Closing thread: {}", e.getLocalizedMessage());
                 Thread.currentThread().interrupt();
             }
         }
@@ -126,10 +129,10 @@ public abstract class GoodChat {
             try {
                 this.socket.sendMessage(mapper.writeValueAsString(chatObject));
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
+                logger.error("Json Proccessing exeption: {}", e.getLocalizedMessage());
             }
         } else {
-
+            logger.warn("GoodGameChat not connected proper, Message did not send");
             ResError error = new ResError();
 
             error.setErrorNum(0);
@@ -149,6 +152,7 @@ public abstract class GoodChat {
             try {
                 GoodChat.this.client.stop();
             } catch (Exception e) {
+                logger.error("GoddChat dit not stop in proper way! {}", e.getLocalizedMessage());
                 e.printStackTrace();
             }
         }
@@ -184,18 +188,16 @@ public abstract class GoodChat {
 
         @OnWebSocketClose
         public final void onClose(final int statusCode, final String reason) {
-            System.out.printf("Connection closed: %d - %s%n", statusCode, reason);
+            logger.warn("Connection closed: {} - {}", statusCode, reason);
             this.session = null;
-            // trigger latch
             this.closeLatch.countDown();
         }
 
         @OnWebSocketConnect
         public final void onConnect(final Session session) {
-            System.out.printf("Got connect: %s%n", session);
+            logger.info("Got connect: {}", session);
             this.session = session;
             this.chat.setConnected(true);
-
         }
 
         @OnWebSocketMessage
@@ -365,8 +367,8 @@ public abstract class GoodChat {
 
                 this.chat.onMessage(answer);
 
-
             } catch (IOException e) {
+                logger.error("On message receive exception: {}", e.getLocalizedMessage());
                 e.printStackTrace();
             }
         }
@@ -381,14 +383,13 @@ public abstract class GoodChat {
                 try {
                     Future<Void> fut;
                     fut = this.session.getRemote().sendStringByFuture(s);
-                    // wait for send to complete.
                     fut.get(2, TimeUnit.SECONDS);
 
                 } catch (Throwable t) {
+                    logger.error("send Message exception: {}", t.getLocalizedMessage());
                     t.printStackTrace();
                 }
             }
-
         }
 
         public final void setChat(final GoodChat chat) {

@@ -69,12 +69,12 @@ public class OauthResource extends AbstractResource {
 
         if (useAutorizationCode) {
 
-            if (this.gg.auth().getAutorizationCode() == null) {
+            if (this.gg.auth().getAuthorizationCode() == null) {
                 return false;
             }
             params.put(REDIRECT_URI, this.gg.auth().getRedirectURI().toString());
 
-            params.put(CODE, this.gg.auth().getAutorizationCode());
+            params.put(CODE, this.gg.auth().getAuthorizationCode());
             params.put(GRANT_TYPE, AUTHORIZATION_CODE);
 
         } else {
