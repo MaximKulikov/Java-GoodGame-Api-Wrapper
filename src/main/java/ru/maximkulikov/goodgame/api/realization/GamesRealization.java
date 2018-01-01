@@ -38,6 +38,7 @@ public class GamesRealization {
         boolean result = gg.games().getGame(gameUrl, new GameResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Game error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -47,6 +48,7 @@ public class GamesRealization {
 
             @Override
             public void onSuccess(Game game) {
+                logger.info("Game success");
                 containerSuccess[0] = game;
                 status[0] = 1;
                 synchronized (o) {
@@ -56,6 +58,7 @@ public class GamesRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Game exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -73,7 +76,7 @@ public class GamesRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Game thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -91,8 +94,6 @@ public class GamesRealization {
             default:
                 return null;
         }
-
-
     }
 
     public GamesContainer getGames(final RequestParams params) throws GoodGameError, GoodGameException {
@@ -110,6 +111,7 @@ public class GamesRealization {
         boolean result = gg.games().getGames(params, new GamesResponseHandler() {
             @Override
             public void onSuccess(GamesContainer gamesContainer) {
+                logger.info("Game success");
                 containerSuccess[0] = gamesContainer;
                 status[0] = 1;
                 synchronized (o) {
@@ -119,6 +121,7 @@ public class GamesRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Game error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -128,6 +131,7 @@ public class GamesRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Game exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -145,7 +149,8 @@ public class GamesRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Game thread issue: {}", e.getLocalizedMessage());
+                    Thread.currentThread().interrupt();
                 }
             }
         }
@@ -178,6 +183,7 @@ public class GamesRealization {
         boolean result = gg.games().getGames(new GamesResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Game error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -187,6 +193,7 @@ public class GamesRealization {
 
             @Override
             public void onSuccess(GamesContainer gamesContainer) {
+                logger.info("Game success");
                 containerSuccess[0] = gamesContainer;
                 status[0] = 1;
                 synchronized (o) {
@@ -196,13 +203,13 @@ public class GamesRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Game exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
                     o.notifyAll();
                 }
             }
-
 
         });
         if (!result) {
@@ -215,7 +222,8 @@ public class GamesRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Game thread issue: {}", e.getLocalizedMessage());
+                    Thread.currentThread().interrupt();
                 }
             }
         }

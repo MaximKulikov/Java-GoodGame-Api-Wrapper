@@ -35,6 +35,7 @@ public class PlayerRealization {
         boolean result = gg.player().getPlayer(channelId, new PlayerResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Player error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -44,6 +45,7 @@ public class PlayerRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Player exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -53,6 +55,7 @@ public class PlayerRealization {
 
             @Override
             public void onSuccess(Player player) {
+                logger.info("Player success");
                 containerSuccess[0] = player;
                 status[0] = 1;
                 synchronized (o) {
@@ -60,6 +63,7 @@ public class PlayerRealization {
                 }
             }
         });
+
         if (!result) {
             status[0] = 2;
             containerFail[0] = "Some internal error";
@@ -70,7 +74,7 @@ public class PlayerRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Player thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -79,15 +83,12 @@ public class PlayerRealization {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
-
             case 2:
                 throw new GoodGameError(containerFail[0]);
-
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
             default:
                 return null;
         }
-
     }
 }

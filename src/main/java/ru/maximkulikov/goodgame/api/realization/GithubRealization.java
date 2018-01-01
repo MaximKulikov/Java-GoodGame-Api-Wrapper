@@ -39,6 +39,7 @@ public class GithubRealization {
         boolean result = gg.githubapi().getChannelStatus(channelId, new GitHubSharedHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Channel status error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -48,6 +49,7 @@ public class GithubRealization {
 
             @Override
             public void onSuccess(String content) {
+                logger.info("Channel status success");
                 containerSuccess[0] = content;
                 status[0] = 1;
                 synchronized (o) {
@@ -57,6 +59,7 @@ public class GithubRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Channel status exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -74,14 +77,13 @@ public class GithubRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Channel status thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
         }
 
         return getString(status, containerSuccess, containerFail, containerThrowable);
-
     }
 
     public GitHubSubscribers getChannelSubscribers() throws GoodGameError, GoodGameException {
@@ -100,6 +102,7 @@ public class GithubRealization {
         boolean result = gg.githubapi().getChannelSubscribers(new GitHubChannelSubscribersResponseHandler() {
             @Override
             public void onSuccess(GitHubSubscribers gitHubSubscribers) {
+                logger.info("Channel subscribers success");
                 containerSuccess[0] = gitHubSubscribers;
                 status[0] = 1;
                 synchronized (o) {
@@ -109,6 +112,7 @@ public class GithubRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Channel subscribers error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -118,6 +122,7 @@ public class GithubRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Channel subscribers exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -135,20 +140,17 @@ public class GithubRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Channel subscribers thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
         }
 
-
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
-
             case 2:
                 throw new GoodGameError(containerFail[0]);
-
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
             default:
@@ -174,6 +176,7 @@ public class GithubRealization {
         boolean result = gg.githubapi().getChannelsByGame(gameUrl, new GitHubSharedHandler() {
             @Override
             public void onSuccess(String content) {
+                logger.info("Channels by name success");
                 containerSuccess[0] = content;
                 status[0] = 1;
                 synchronized (o) {
@@ -183,6 +186,7 @@ public class GithubRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Channels by name error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -192,6 +196,7 @@ public class GithubRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Channels by name exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -209,7 +214,7 @@ public class GithubRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Channels by name thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -234,6 +239,7 @@ public class GithubRealization {
         boolean result = gg.githubapi().getGgChannelStatus(id, new GitHubSharedHandler() {
             @Override
             public void onSuccess(String content) {
+                logger.info("Channel status success");
                 containerSuccess[0] = content;
                 status[0] = 1;
                 synchronized (o) {
@@ -243,6 +249,7 @@ public class GithubRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Channel status error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -252,6 +259,7 @@ public class GithubRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Channel status exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -269,7 +277,7 @@ public class GithubRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Channel status thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -281,10 +289,8 @@ public class GithubRealization {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
-
             case 2:
                 throw new GoodGameError(containerFail[0]);
-
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
             default:
@@ -307,6 +313,7 @@ public class GithubRealization {
         boolean result = gg.githubapi().getToken(username, password, new GitHubTokenHandler() {
             @Override
             public void onSuccess(GitHubToken token) {
+                logger.info("Token success");
                 containerSuccess[0] = token;
                 status[0] = 1;
                 synchronized (o) {
@@ -316,6 +323,7 @@ public class GithubRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Token error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -325,6 +333,7 @@ public class GithubRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Token exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -342,7 +351,7 @@ public class GithubRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Token thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -351,16 +360,13 @@ public class GithubRealization {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
-
             case 2:
                 throw new GoodGameError(containerFail[0]);
-
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
             default:
                 return null;
         }
-
     }
 
     public String getUpcomingBroadcast(final String id) throws GoodGameError, GoodGameException {
@@ -378,6 +384,7 @@ public class GithubRealization {
         boolean result = gg.githubapi().getUpcomingBroadcast(id, new GitHubSharedHandler() {
             @Override
             public void onSuccess(String content) {
+                logger.info("Upcoming broadcast success");
                 containerSuccess[0] = content;
                 status[0] = 1;
                 synchronized (o) {
@@ -387,6 +394,7 @@ public class GithubRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Upcoming broadcast error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -396,6 +404,7 @@ public class GithubRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Upcoming broadcast exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -413,14 +422,12 @@ public class GithubRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Upcoming broadcast thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
         }
 
         return getString(status, containerSuccess, containerFail, containerThrowable);
-
     }
-
 }

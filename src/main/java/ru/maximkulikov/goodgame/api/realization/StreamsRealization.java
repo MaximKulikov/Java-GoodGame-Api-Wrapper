@@ -39,6 +39,7 @@ public class StreamsRealization {
         boolean result = gg.streams().getChannel(channel, new StreamChannelResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Channel error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -48,6 +49,7 @@ public class StreamsRealization {
 
             @Override
             public void onSuccess(ChannelContainer channel) {
+                logger.info("Channel success");
                 containerSuccess[0] = channel;
                 status[0] = 1;
                 synchronized (o) {
@@ -57,15 +59,15 @@ public class StreamsRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Channel exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
                     o.notifyAll();
                 }
             }
-
-
         });
+
         if (!result) {
             status[0] = 2;
             containerFail[0] = "Some internal error";
@@ -76,7 +78,7 @@ public class StreamsRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Channel thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -85,27 +87,21 @@ public class StreamsRealization {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
-
             case 2:
                 throw new GoodGameError(containerFail[0]);
-
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
             default:
                 return null;
         }
-
-
     }
 
     private EmbededChannels getEmbededChannels(short[] status, EmbededChannels[] containerSuccess, String[] containerFail, Throwable[] containerThrowable) throws GoodGameError, GoodGameException {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
-
             case 2:
                 throw new GoodGameError(containerFail[0]);
-
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
             default:
@@ -129,6 +125,7 @@ public class StreamsRealization {
         boolean result = gg.streams().getStreams(new StreamsResponseHandler() {
             @Override
             public void onSuccess(EmbededChannels channels) {
+                logger.info("Streams success");
                 containerSuccess[0] = channels;
                 status[0] = 1;
                 synchronized (o) {
@@ -138,6 +135,7 @@ public class StreamsRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Streams error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -147,6 +145,7 @@ public class StreamsRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Streams exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -164,7 +163,7 @@ public class StreamsRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Streams thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -188,6 +187,7 @@ public class StreamsRealization {
         boolean result = gg.streams().getStreams(param, new StreamsResponseHandler() {
             @Override
             public void onSuccess(EmbededChannels channels) {
+                logger.info("Streams success");
                 containerSuccess[0] = channels;
                 status[0] = 1;
                 synchronized (o) {
@@ -197,6 +197,7 @@ public class StreamsRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Streams error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -206,6 +207,7 @@ public class StreamsRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Streams exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -223,13 +225,12 @@ public class StreamsRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Streams thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
         }
 
         return getEmbededChannels(status, containerSuccess, containerFail, containerThrowable);
-
     }
 }

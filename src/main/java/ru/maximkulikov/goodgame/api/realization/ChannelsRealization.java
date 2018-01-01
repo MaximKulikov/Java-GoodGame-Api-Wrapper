@@ -41,6 +41,7 @@ public class ChannelsRealization {
         boolean result = gg.channels().getDonations(channel, new DonationsResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Donations error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -50,6 +51,7 @@ public class ChannelsRealization {
 
             @Override
             public void onSuccess(DonationsContainer donations) {
+                logger.info("Donations success");
                 containerSuccess[0] = donations;
                 status[0] = 1;
                 synchronized (o) {
@@ -59,14 +61,13 @@ public class ChannelsRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Donations exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
                     o.notifyAll();
                 }
             }
-
-
         });
         if (!result) {
             status[0] = 2;
@@ -78,7 +79,7 @@ public class ChannelsRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Donation thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -102,6 +103,7 @@ public class ChannelsRealization {
         boolean result = gg.channels().getDonations(channel, params, new DonationsResponseHandler() {
             @Override
             public void onSuccess(DonationsContainer donations) {
+                logger.info("Donations success");
                 containerSuccess[0] = donations;
                 status[0] = 1;
                 synchronized (o) {
@@ -111,6 +113,7 @@ public class ChannelsRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Donations error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -120,6 +123,7 @@ public class ChannelsRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Donations exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -137,7 +141,7 @@ public class ChannelsRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Donation thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -177,6 +181,7 @@ public class ChannelsRealization {
         boolean result = gg.channels().getPremiums(channel, new PremiumsResponseHandler() {
             @Override
             public void onSuccess(PremiumsContainer premiums) {
+                logger.info("Premium success");
                 containerSuccess[0] = premiums;
                 status[0] = 1;
                 synchronized (o) {
@@ -186,6 +191,7 @@ public class ChannelsRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Premium error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -195,6 +201,7 @@ public class ChannelsRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Premium exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -212,14 +219,13 @@ public class ChannelsRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Premium thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
         }
 
         return getPremiumsContainer(status, containerSuccess, containerFail, containerThrowable);
-
     }
 
     public PremiumsContainer getPremiums(final String channel, final RequestParams params) throws GoodGameError, GoodGameException {
@@ -237,6 +243,7 @@ public class ChannelsRealization {
         boolean result = gg.channels().getPremiums(channel, params, new PremiumsResponseHandler() {
             @Override
             public void onSuccess(PremiumsContainer premiums) {
+                logger.info("Premium success");
                 containerSuccess[0] = premiums;
                 status[0] = 1;
                 synchronized (o) {
@@ -246,6 +253,7 @@ public class ChannelsRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Premium error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -255,6 +263,7 @@ public class ChannelsRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Premium exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -272,7 +281,7 @@ public class ChannelsRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Premium thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -312,6 +321,7 @@ public class ChannelsRealization {
         boolean result = gg.channels().getSubscribers(channel, new SubscriberResponseHandler() {
             @Override
             public void onSuccess(SubscrurersContainer subscribers) {
+                logger.info("Subscribers success");
                 containerSuccess[0] = subscribers;
                 status[0] = 1;
                 synchronized (o) {
@@ -321,6 +331,7 @@ public class ChannelsRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Subscribers error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -330,6 +341,7 @@ public class ChannelsRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Subscribers exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -347,14 +359,13 @@ public class ChannelsRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Subscribers thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
         }
 
         return getSubscrurersContainer(status, containerSuccess, containerFail, containerThrowable);
-
     }
 
     public SubscrurersContainer getSubscribers(final String channel, final RequestParams params) throws GoodGameError, GoodGameException {
@@ -372,6 +383,7 @@ public class ChannelsRealization {
         boolean result = gg.channels().getSubscribers(channel, params, new SubscriberResponseHandler() {
             @Override
             public void onSuccess(SubscrurersContainer subscribers) {
+                logger.info("Premium success");
                 containerSuccess[0] = subscribers;
                 status[0] = 1;
                 synchronized (o) {
@@ -381,6 +393,7 @@ public class ChannelsRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Subscribers error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -390,6 +403,7 @@ public class ChannelsRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Subscribers exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -407,15 +421,13 @@ public class ChannelsRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Subscribers thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
         }
 
         return getSubscrurersContainer(status, containerSuccess, containerFail, containerThrowable);
-
-
     }
 
     private SubscrurersContainer getSubscrurersContainer(short[] status, SubscrurersContainer[] containerSuccess, String[] containerFail, Throwable[] containerThrowable) throws GoodGameError, GoodGameException {
@@ -432,5 +444,4 @@ public class ChannelsRealization {
                 return null;
         }
     }
-
 }

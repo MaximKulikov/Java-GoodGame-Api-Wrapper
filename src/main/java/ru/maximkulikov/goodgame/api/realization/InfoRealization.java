@@ -36,6 +36,7 @@ public class InfoRealization {
         boolean result = gg.info().getInfo(new InfoResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Info error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -45,6 +46,7 @@ public class InfoRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Info exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -54,6 +56,7 @@ public class InfoRealization {
 
             @Override
             public void onSuccess(Info info) {
+                logger.info("Info success");
                 containerSuccess[0] = info;
                 status[0] = 1;
                 synchronized (o) {
@@ -71,7 +74,7 @@ public class InfoRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Info thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -80,16 +83,12 @@ public class InfoRealization {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
-
             case 2:
                 throw new GoodGameError(containerFail[0]);
-
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
             default:
                 return null;
         }
-
     }
-
 }

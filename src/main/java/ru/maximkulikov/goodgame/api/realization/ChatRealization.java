@@ -35,6 +35,7 @@ public class ChatRealization {
         boolean result = gg.chat().getChatToken(new ChatTokenResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Chat token error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -44,6 +45,7 @@ public class ChatRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Chat token exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -53,6 +55,7 @@ public class ChatRealization {
 
             @Override
             public void onSuccess(ChatToken chatToken) {
+                logger.info("Chat token success");
                 containerSuccess[0] = chatToken;
                 status[0] = 1;
                 synchronized (o) {
@@ -70,7 +73,7 @@ public class ChatRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Chat token thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -88,7 +91,5 @@ public class ChatRealization {
             default:
                 return null;
         }
-
-
     }
 }

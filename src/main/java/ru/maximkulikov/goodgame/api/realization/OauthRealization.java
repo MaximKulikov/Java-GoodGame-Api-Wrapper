@@ -46,12 +46,11 @@ public class OauthRealization {
         final String[] containerFail = new String[1];
         final Throwable[] containerThrowable = new Throwable[1];
 
-
         boolean result = gg.oauth().getAccessToken(useAutorizationCode, new OauthResponseHandler() {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-
+                logger.error("Access Token error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -61,6 +60,7 @@ public class OauthRealization {
 
             @Override
             public void onSuccess(AccessToken accessToken) {
+                logger.info("Access Token success");
                 containerSuccess[0] = accessToken;
                 status[0] = 1;
                 synchronized (o) {
@@ -70,14 +70,13 @@ public class OauthRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Access Token exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
                     o.notifyAll();
                 }
             }
-
-
         });
 
         if (!result) {
@@ -90,7 +89,7 @@ public class OauthRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Access Token thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -99,16 +98,13 @@ public class OauthRealization {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
-
             case 2:
                 throw new GoodGameError(containerFail[0]);
-
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
             default:
                 return null;
         }
-
     }
 
     /**
@@ -136,6 +132,7 @@ public class OauthRealization {
         gg.oauth().getResource(new OauthResourceResponseHandler() {
             @Override
             public void onSuccess(OauthResourceCheck resource) {
+                logger.info("Resource success");
                 containerSuccess[0] = resource;
                 status[0] = 1;
                 synchronized (o) {
@@ -145,6 +142,7 @@ public class OauthRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                logger.error("Resource error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -154,6 +152,7 @@ public class OauthRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
+                logger.error("Resource exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -167,7 +166,7 @@ public class OauthRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.error("Resource thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -176,16 +175,12 @@ public class OauthRealization {
         switch (status[0]) {
             case 1:
                 return containerSuccess[0];
-
             case 2:
                 throw new GoodGameError(containerFail[0]);
-
             case 3:
                 throw new GoodGameException(containerThrowable[0]);
             default:
                 return null;
         }
-
     }
-
 }
