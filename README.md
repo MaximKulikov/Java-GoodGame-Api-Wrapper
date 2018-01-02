@@ -440,7 +440,7 @@ class ChatAnswerExample extends GoodChat {
 
 ## Установка
 
-[Java-GoodGame-Api-Wrapper 0.1.1](https://github.com/MaximKulikov/Java-GoodGame-Api-Wrapper/releases/tag/0.1.1)
+[Java-GoodGame-Api-Wrapper 1.0.2](https://github.com/MaximKulikov/Java-GoodGame-Api-Wrapper/releases/tag/1.0.2)
 
 
 pom.xml
