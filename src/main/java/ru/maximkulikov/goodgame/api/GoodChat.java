@@ -3,8 +3,10 @@ package ru.maximkulikov.goodgame.api;
 import java.io.IOException;
 import java.net.URI;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.jetty.websocket.api.Session;
@@ -60,7 +62,6 @@ public abstract class GoodChat {
 
                 } catch (Exception e) {
                     logger.error("Connecting exeption: {}", e.getLocalizedMessage());
-                    e.printStackTrace();
                 } finally {
                     try {
                         GoodChat.this.client.stop();
@@ -116,7 +117,6 @@ public abstract class GoodChat {
                 Thread.sleep(700);
 
             } catch (InterruptedException e) {
-                e.printStackTrace();
                 logger.error("Send message Exeption. Closing thread: {}", e.getLocalizedMessage());
                 Thread.currentThread().interrupt();
             }
@@ -153,7 +153,6 @@ public abstract class GoodChat {
                 GoodChat.this.client.stop();
             } catch (Exception e) {
                 logger.error("GoddChat dit not stop in proper way! {}", e.getLocalizedMessage());
-                e.printStackTrace();
             }
         }
     }
@@ -361,7 +360,7 @@ public abstract class GoodChat {
                         break;
                     default:
                         answer = new Response(ChatResponses.UNKNOWN, null);
-                        System.out.println(msg);
+                        logger.info(msg);
                         break;
                 }
 
@@ -369,7 +368,6 @@ public abstract class GoodChat {
 
             } catch (IOException e) {
                 logger.error("On message receive exception: {}", e.getLocalizedMessage());
-                e.printStackTrace();
             }
         }
 
@@ -385,9 +383,8 @@ public abstract class GoodChat {
                     fut = this.session.getRemote().sendStringByFuture(s);
                     fut.get(2, TimeUnit.SECONDS);
 
-                } catch (Throwable t) {
-                    logger.error("send Message exception: {}", t.getLocalizedMessage());
-                    t.printStackTrace();
+                } catch (InterruptedException | ExecutionException | TimeoutException e) {
+                    logger.error("send Message exception: {}", e.getLocalizedMessage());
                 }
             }
         }

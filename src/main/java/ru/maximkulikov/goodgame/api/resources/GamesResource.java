@@ -19,6 +19,7 @@ import ru.maximkulikov.goodgame.api.models.GamesContainer;
  */
 public class GamesResource extends AbstractResource {
     private static final Logger logger = LoggerFactory.getLogger(GamesResource.class);
+    private static final String PARAMETERS_NULL = "{} parameters are null";
 
     public GamesResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);
@@ -31,6 +32,10 @@ public class GamesResource extends AbstractResource {
      * @param handler
      */
     public final boolean getGame(final String gameUrl, final GameResponseHandler handler) {
+        if (gameUrl == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/games/%s", getBaseUrl(), gameUrl);
 
         this.configureHeaders();
@@ -41,6 +46,7 @@ public class GamesResource extends AbstractResource {
                     Game value = objectMapper.readValue(content, Game.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -56,6 +62,10 @@ public class GamesResource extends AbstractResource {
      * @param handler
      */
     public final boolean getGames(final RequestParams params, final GamesResponseHandler handler) {
+        if (params == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/games", getBaseUrl());
 
         this.configureHeaders();
@@ -66,6 +76,7 @@ public class GamesResource extends AbstractResource {
                     GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -89,6 +100,7 @@ public class GamesResource extends AbstractResource {
                     GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }

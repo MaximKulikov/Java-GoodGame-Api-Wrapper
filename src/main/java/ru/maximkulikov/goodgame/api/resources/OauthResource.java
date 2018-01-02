@@ -20,6 +20,7 @@ import ru.maximkulikov.goodgame.api.models.OauthResourceCheck;
  */
 public class OauthResource extends AbstractResource {
     private static final Logger logger = LoggerFactory.getLogger(OauthResource.class);
+    private static final String PARAMETERS_NULL = "{} parameters are null";
     private static final String CODE = "code";
 
     private static final String OAUTH = "%s/oauth";
@@ -57,6 +58,7 @@ public class OauthResource extends AbstractResource {
     public final boolean getAccessToken(final boolean useAutorizationCode, final OauthResponseHandler handler) {
 
         if (this.gg.auth().getRedirectURI() == null || this.gg.getClientId() == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
 
@@ -70,6 +72,7 @@ public class OauthResource extends AbstractResource {
         if (useAutorizationCode) {
 
             if (this.gg.auth().getAuthorizationCode() == null) {
+                logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
                 return false;
             }
             params.put(REDIRECT_URI, this.gg.auth().getRedirectURI().toString());
@@ -80,6 +83,7 @@ public class OauthResource extends AbstractResource {
         } else {
 
             if (this.gg.auth().getRefreshToken() == null) {
+                logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
                 return false;
             }
             params.put(GRANT_TYPE, REFRESH_TOKEN);
@@ -98,6 +102,7 @@ public class OauthResource extends AbstractResource {
                     handler.onSuccess(value);
 
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -122,6 +127,7 @@ public class OauthResource extends AbstractResource {
                     handler.onSuccess(value);
 
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }

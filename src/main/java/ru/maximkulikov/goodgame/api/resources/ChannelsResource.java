@@ -21,6 +21,7 @@ import ru.maximkulikov.goodgame.api.models.SubscrurersContainer;
  */
 public class ChannelsResource extends AbstractResource {
     private static final Logger logger = LoggerFactory.getLogger(ChannelsResource.class);
+    private static final String PARAMETERS_NULL = "{} parameters are null";
 
     /**
      * @param baseUrl    Базовая ссылка для доступа к ресурсу
@@ -39,6 +40,10 @@ public class ChannelsResource extends AbstractResource {
      * @param handler
      */
     public final boolean getDonations(final String channel, final DonationsResponseHandler handler) {
+        if (channel == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/channel/%s/donations", getBaseUrl(), channel);
         this.configureHeaders();
         http.get(url, new GoodGameHttpResponseHandler(handler) {
@@ -48,6 +53,7 @@ public class ChannelsResource extends AbstractResource {
                     DonationsContainer value = objectMapper.readValue(content, DonationsContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -67,6 +73,10 @@ public class ChannelsResource extends AbstractResource {
      */
     public final boolean getDonations(final String channel, final RequestParams params,
                                       final DonationsResponseHandler handler) {
+        if (channel == null || params == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/channel/%s/donations", getBaseUrl(), channel);
         this.configureHeaders();
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
@@ -76,6 +86,7 @@ public class ChannelsResource extends AbstractResource {
                     DonationsContainer value = objectMapper.readValue(content, DonationsContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -92,6 +103,10 @@ public class ChannelsResource extends AbstractResource {
      * @param handler
      */
     public final boolean getPremiums(final String channel, final PremiumsResponseHandler handler) {
+        if (channel == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/channel/%s/premiums", getBaseUrl(), channel);
 
         this.configureHeaders();
@@ -121,6 +136,10 @@ public class ChannelsResource extends AbstractResource {
      */
     public final boolean getPremiums(final String channel, final RequestParams params,
                                      final PremiumsResponseHandler handler) {
+        if (channel == null || params == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/channel/%s/premiums", getBaseUrl(), channel);
 
         this.configureHeaders();
@@ -147,6 +166,10 @@ public class ChannelsResource extends AbstractResource {
      * @param handler
      */
     public final boolean getSubscribers(final String channel, final SubscriberResponseHandler handler) {
+        if (channel == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/channel/%s/subscribers", getBaseUrl(), channel);
 
         this.configureHeaders();
@@ -176,6 +199,10 @@ public class ChannelsResource extends AbstractResource {
      */
     public final boolean getSubscribers(final String channel, final RequestParams params,
                                         final SubscriberResponseHandler handler) {
+        if (channel == null || params == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/channel/%s/subscribers", getBaseUrl(), channel);
 
         this.configureHeaders();

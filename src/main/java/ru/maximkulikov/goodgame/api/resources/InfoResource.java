@@ -37,6 +37,7 @@ public class InfoResource extends AbstractResource {
                     Info value = objectMapper.readValue(content, Info.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }

@@ -38,6 +38,7 @@ public class ChatResource extends AbstractResource {
                     ChatToken value = objectMapper.readValue(content, ChatToken.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }

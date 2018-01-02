@@ -34,7 +34,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
     private final URL failurePage;
     private final URL successPage;
     private int port;
-    private String host = "127.0.0.1";
+    private String host;
     private ServerSocket serverSocket;
     private String accessToken;
     private AuthenticationError authenticationError;
@@ -44,6 +44,7 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
 
     public AuthenticationCallbackServer(final int port) {
         this.port = port;
+        host = "127.0.0.1";
         // Load default pages
         this.authPage = getClass().getResource(DEFAULT_AUTH_PAGE);
         this.failurePage = getClass().getResource(DEFAULT_FAILURE_PAGE);

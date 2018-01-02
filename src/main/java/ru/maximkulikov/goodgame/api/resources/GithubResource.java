@@ -19,10 +19,9 @@ import ru.maximkulikov.goodgame.api.models.GitHubToken;
  */
 public class GithubResource extends AbstractResource {
     private static final Logger logger = LoggerFactory.getLogger(GithubResource.class);
+    private static final String PARAMETERS_NULL = "{} parameters are null";
     private static final String ID = "id";
-
     private static final String FMT = "fmt";
-
     private static final String JSON = "json";
 
     private final GoodGame gg;
@@ -33,6 +32,10 @@ public class GithubResource extends AbstractResource {
     }
 
     public final boolean getChannelStatus(final String channelId, final GitHubSharedHandler handler) {
+        if (channelId == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/getchannelstatus", getBaseUrl());
 
         RequestParams params = new RequestParams();
@@ -45,7 +48,6 @@ public class GithubResource extends AbstractResource {
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
 
                 handler.onSuccess(content);
-
             }
         });
         return true;
@@ -74,6 +76,7 @@ public class GithubResource extends AbstractResource {
                     GitHubSubscribers value = objectMapper.readValue(content, GitHubSubscribers.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -83,6 +86,10 @@ public class GithubResource extends AbstractResource {
     }
 
     public final boolean getChannelsByGame(final String gameUrl, final GitHubSharedHandler handler) {
+        if (gameUrl == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/getchannelsbygame", getBaseUrl());
 
         RequestParams params = new RequestParams();
@@ -95,13 +102,16 @@ public class GithubResource extends AbstractResource {
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
 
                 handler.onSuccess(content);
-
             }
         });
         return true;
     }
 
     public final boolean getGgChannelStatus(final String id, final GitHubSharedHandler handler) {
+        if (id == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/getggchannelstatus", getBaseUrl());
 
         RequestParams params = new RequestParams();
@@ -114,13 +124,16 @@ public class GithubResource extends AbstractResource {
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
 
                 handler.onSuccess(content);
-
             }
         });
         return true;
     }
 
     public final boolean getToken(final String username, final String password, final GitHubTokenHandler handler) {
+        if (username == null || password == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/token", getBaseUrl());
 
         RequestParams params = new RequestParams();
@@ -139,6 +152,7 @@ public class GithubResource extends AbstractResource {
                     gg.auth().setRefreshToken(value.getRefreshToken());
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
 
@@ -148,6 +162,10 @@ public class GithubResource extends AbstractResource {
     }
 
     public final boolean getUpcomingBroadcast(final String id, final GitHubSharedHandler handler) {
+        if (id == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/getupcomingbroadcast", getBaseUrl());
 
         RequestParams params = new RequestParams();
@@ -158,9 +176,7 @@ public class GithubResource extends AbstractResource {
         http.post(url, params, new GoodGameHttpResponseHandler(handler) {
             @Override
             public void onSuccess(final int statusCode, final Map<String, List<String>> headers, final String content) {
-
                 handler.onSuccess(content);
-
             }
         });
         return true;

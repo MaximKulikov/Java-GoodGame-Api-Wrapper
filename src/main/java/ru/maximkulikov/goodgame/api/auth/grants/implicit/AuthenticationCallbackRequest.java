@@ -98,12 +98,12 @@ public class AuthenticationCallbackRequest implements Runnable {
         ) {
 
             String requestLine = br.readLine();
-            String rawRequest = "\n" + requestLine;
-
-            String headerLine = null;
-            while ((headerLine = br.readLine()).length() != 0) {
-                rawRequest += headerLine + "\n";
-            }
+//            String rawRequest = "\n" + requestLine;
+//
+//            String headerLine = null;
+//            while ((headerLine = br.readLine()).length() != 0) {
+//                rawRequest += headerLine + "\n";
+//            }
 
             StringTokenizer tokens = new StringTokenizer(requestLine);
 
@@ -164,9 +164,6 @@ public class AuthenticationCallbackRequest implements Runnable {
             } else {
                 os.writeBytes(entityBody);
             }
-
-            os.close();
-            br.close();
 
             this.socket.close();
 

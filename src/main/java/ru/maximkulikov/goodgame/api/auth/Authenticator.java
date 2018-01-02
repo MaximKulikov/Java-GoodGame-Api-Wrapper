@@ -157,7 +157,8 @@ public class Authenticator {
      * @return
      */
     public String setHost(final String host) {
-        return this.host = host;
+        this.host = host;
+        return this.host;
 
     }
 }

@@ -44,8 +44,6 @@ public abstract class AbstractResource {
 
     }
 
-    ;
-
     protected void configureHeaders() {
 
         http.removeHeader(ACCEPT);

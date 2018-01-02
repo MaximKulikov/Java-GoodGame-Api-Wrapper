@@ -26,6 +26,7 @@ public class AjaxResource extends AbstractResource {
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String FORM_URL_ENCODED = "application/x-www-form-urlencoded; charset=UTF-8";
     private static final String COOKIE = "Cookie";
+    private static final String PARAMETERS_NULL = "{} parameters are null";
     private GoodGame gg;
 
     /**
@@ -46,6 +47,10 @@ public class AjaxResource extends AbstractResource {
      * @param handler
      */
     public final boolean games(final String searchGame, final AjaxGamesHandler handler) {
+        if (searchGame == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/games/all/", getBaseUrl());
 
         RequestParams params = new RequestParams();
@@ -83,8 +88,12 @@ public class AjaxResource extends AbstractResource {
      * @param handler
      */
     public final boolean games(final String searchGame, final RequestParams params, final AjaxGamesHandler handler) {
-        String url = String.format("%s/games/all/", getBaseUrl());
+        if (searchGame == null || params == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
 
+        String url = String.format("%s/games/all/", getBaseUrl());
         params.put("q", searchGame);
 
         http.get(url, params, new GoodGameHttpResponseHandler(handler) {
@@ -119,6 +128,10 @@ public class AjaxResource extends AbstractResource {
      * @see GoodGame#setPhpSessId(String)
      */
     public final boolean login(final String login, final String password, final AjaxLoginResponseHandler handler) {
+        if (login == null || password == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/login/", getBaseUrl());
 
         RequestParams params = new RequestParams();
@@ -152,6 +165,7 @@ public class AjaxResource extends AbstractResource {
                     }
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -169,6 +183,11 @@ public class AjaxResource extends AbstractResource {
      * @see #games(String, AjaxGamesHandler)
      */
     public final boolean updateTitle(final String channelId, final String title, final String gameId, final UpdateTitleResponseHandler handler) {
+        if (channelId == null || title == null || gameId == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
+
         String url = String.format("%s/channel/update-title/", getBaseUrl());
 
         RequestParams params = new RequestParams();
@@ -176,7 +195,6 @@ public class AjaxResource extends AbstractResource {
         params.put("objId", channelId);
         params.put("title", title);
         params.put("gameId", gameId);
-
 
         http.removeHeader(CONTENT_TYPE);
         http.removeHeader(COOKIE);
@@ -190,6 +208,7 @@ public class AjaxResource extends AbstractResource {
                     UpdateTitle value = objectMapper.readValue(content, UpdateTitle.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }

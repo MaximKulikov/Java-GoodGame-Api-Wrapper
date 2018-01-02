@@ -19,6 +19,26 @@ public class ReqIgnoreListContainer implements ReqChatObject {
         return this.data;
     }
 
+    public final void setData(final Empty data) {
+        this.data = data;
+    }
+
+    public final String getType() {
+        return this.type;
+    }
+
+    public final void setType(final String type) {
+        this.type = type;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(type)
+                .append(data)
+                .toHashCode();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,33 +51,6 @@ public class ReqIgnoreListContainer implements ReqChatObject {
                 .append(type, that.type)
                 .append(data, that.data)
                 .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(type)
-                .append(data)
-                .toHashCode();
-    }
-
-    /**
-     *
-     */
-
-    public ReqIgnoreListContainer() {
-    }
-
-    public final void setData(final Empty data) {
-        this.data = data;
-    }
-
-    public final String getType() {
-        return this.type;
-    }
-
-    public final void setType(final String type) {
-        this.type = type;
     }
 
     @Override

@@ -16,6 +16,7 @@ import ru.maximkulikov.goodgame.api.models.Player;
  */
 public class PlayerResourses extends AbstractResource {
     private static final Logger logger = LoggerFactory.getLogger(PlayerResourses.class);
+    private static final String PARAMETERS_NULL = "{} parameters are null";
 
     public PlayerResourses(final String defaultBaseUrl, final int defaultApiVersion) {
         super(defaultBaseUrl, defaultApiVersion);
@@ -28,6 +29,10 @@ public class PlayerResourses extends AbstractResource {
      * @param handler
      */
     public final boolean getPlayer(final String channelId, final PlayerResponseHandler handler) {
+        if (channelId == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/player/%s", getBaseUrl(), channelId);
 
         this.configureHeaders();
@@ -38,6 +43,7 @@ public class PlayerResourses extends AbstractResource {
                     Player value = objectMapper.readValue(content, Player.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }

@@ -18,6 +18,7 @@ import ru.maximkulikov.goodgame.api.models.EmbededChannels;
  */
 public class StreamsResource extends AbstractResource {
     private static final Logger logger = LoggerFactory.getLogger(StreamsResource.class);
+    private static final String PARAMETERS_NULL = "{} parameters are null";
 
     public StreamsResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);
@@ -32,6 +33,10 @@ public class StreamsResource extends AbstractResource {
      * @param handler
      */
     public final boolean getChannel(final String channel, final StreamChannelResponseHandler handler) {
+        if (channel == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/streams/%s", getBaseUrl(), channel);
 
         this.configureHeaders();
@@ -42,6 +47,7 @@ public class StreamsResource extends AbstractResource {
                     ChannelContainer value = objectMapper.readValue(content, ChannelContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -66,6 +72,7 @@ public class StreamsResource extends AbstractResource {
                     EmbededChannels value = objectMapper.readValue(content, EmbededChannels.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -81,6 +88,10 @@ public class StreamsResource extends AbstractResource {
      * @param handler
      */
     public final boolean getStreams(final RequestParams params, final StreamsResponseHandler handler) {
+        if (params == null) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
 
         String url = String.format("%s/streams", getBaseUrl());
 
@@ -92,6 +103,7 @@ public class StreamsResource extends AbstractResource {
                     EmbededChannels value = objectMapper.readValue(content, EmbededChannels.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }

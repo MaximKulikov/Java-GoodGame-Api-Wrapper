@@ -17,6 +17,7 @@ import ru.maximkulikov.goodgame.api.models.SmilesContainer;
  */
 public class SmilesResource extends AbstractResource {
     private static final Logger logger = LoggerFactory.getLogger(SmilesResource.class);
+    private static final String PARAMETERS_NULL = "{} parameters should be > 0";
     private static final String PAGE = "page";
 
     public SmilesResource(final String baseUrl, final int apiVersion) {
@@ -35,6 +36,10 @@ public class SmilesResource extends AbstractResource {
      * @param handler
      */
     public final boolean getChannelSmiles(final long channelID, final SmilesResponseHandler handler) {
+        if (channelID < 0) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/smiles/%s", getBaseUrl(), channelID);
 
         this.configureHeaders();
@@ -45,6 +50,7 @@ public class SmilesResource extends AbstractResource {
                     SmilesContainer value = objectMapper.readValue(content, SmilesContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -62,6 +68,11 @@ public class SmilesResource extends AbstractResource {
      */
     public final boolean getChannelSmiles(final long channelId, final int page,
                                           final SmilesResponseHandler handler) {
+        if (channelId < 0 || page < 0) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
+
         String url = String.format("%s/smiles/%s", getBaseUrl(), channelId);
 
         RequestParams params = new RequestParams();
@@ -75,6 +86,7 @@ public class SmilesResource extends AbstractResource {
                     SmilesContainer value = objectMapper.readValue(content, SmilesContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -99,6 +111,7 @@ public class SmilesResource extends AbstractResource {
                     SmilesContainer value = objectMapper.readValue(content, SmilesContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -114,6 +127,10 @@ public class SmilesResource extends AbstractResource {
      * @param handler
      */
     public final boolean getSmiles(final int page, final SmilesResponseHandler handler) {
+        if (page < 0) {
+            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            return false;
+        }
         String url = String.format("%s/smiles", getBaseUrl());
         RequestParams params = new RequestParams();
         params.put(PAGE, page);
@@ -126,6 +143,7 @@ public class SmilesResource extends AbstractResource {
                     SmilesContainer value = objectMapper.readValue(content, SmilesContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
+                    logger.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
