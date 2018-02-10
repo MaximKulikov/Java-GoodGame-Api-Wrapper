@@ -1,13 +1,13 @@
 package ru.maximkulikov.goodgame.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.Data;
 
 /**
  * @author Maxim Kulikov
  * @since 02.04.2017
  */
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UpdateTitle {
 
@@ -17,69 +17,4 @@ public class UpdateTitle {
 
     private String gameUrl;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UpdateTitle that = (UpdateTitle) o;
-
-        return new EqualsBuilder()
-                .append(title, that.title)
-                .append(game, that.game)
-                .append(gameUrl, that.gameUrl)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(title)
-                .append(game)
-                .append(gameUrl)
-                .toHashCode();
-    }
-
-    /**
-     * @return game
-     */
-    public final String getGame() {
-        return this.game;
-    }
-
-    public final void setGame(final String game) {
-        this.game = game;
-    }
-
-    /**
-     * @return gameUrl
-     */
-    public final String getGameUrl() {
-        return this.gameUrl;
-    }
-
-    public final void setGameUrl(final String gameUrl) {
-        this.gameUrl = gameUrl;
-    }
-
-    /**
-     * @return title
-     */
-    public final String getTitle() {
-        return this.title;
-    }
-
-    public final void setTitle(final String title) {
-        this.title = title;
-    }
-
-    @Override
-    public final String toString() {
-        return "UpdateTitle{" +
-                "title='" + this.title + '\'' +
-                ", game='" + this.game + '\'' +
-                ", gameUrl='" + this.gameUrl + '\'' +
-                '}';
-    }
 }

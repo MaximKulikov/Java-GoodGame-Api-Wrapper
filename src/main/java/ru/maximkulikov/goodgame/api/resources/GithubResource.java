@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.GitHubChannelSubscribersResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.GitHubSharedHandler;
@@ -17,8 +16,9 @@ import ru.maximkulikov.goodgame.api.models.GitHubToken;
  * Java-GoodGame-Api-Wrapper
  * Created by maxim on 04.01.2017.
  */
+@Slf4j
 public class GithubResource extends AbstractResource {
-    private static final Logger logger = LoggerFactory.getLogger(GithubResource.class);
+
     private static final String PARAMETERS_NULL = "{} parameters are null";
     private static final String ID = "id";
     private static final String FMT = "fmt";
@@ -33,7 +33,7 @@ public class GithubResource extends AbstractResource {
 
     public final boolean getChannelStatus(final String channelId, final GitHubSharedHandler handler) {
         if (channelId == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/getchannelstatus", getBaseUrl());
@@ -76,7 +76,7 @@ public class GithubResource extends AbstractResource {
                     GitHubSubscribers value = objectMapper.readValue(content, GitHubSubscribers.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -87,7 +87,7 @@ public class GithubResource extends AbstractResource {
 
     public final boolean getChannelsByGame(final String gameUrl, final GitHubSharedHandler handler) {
         if (gameUrl == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/getchannelsbygame", getBaseUrl());
@@ -109,7 +109,7 @@ public class GithubResource extends AbstractResource {
 
     public final boolean getGgChannelStatus(final String id, final GitHubSharedHandler handler) {
         if (id == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/getggchannelstatus", getBaseUrl());
@@ -129,16 +129,35 @@ public class GithubResource extends AbstractResource {
         return true;
     }
 
+    /**
+     * Use getToken with `char[] password`  <br>
+     * Delete after version 1.1
+     */
+    @Deprecated
     public final boolean getToken(final String username, final String password, final GitHubTokenHandler handler) {
-        if (username == null || password == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+
+        return getToken(username, password.toCharArray(), handler);
+    }
+
+    /**
+     * DANGER. There is still some code with password as String.
+     *
+     * @param username
+     * @param password
+     * @param handler
+     * @return
+     */
+    public final boolean getToken(final String username, char[] password, final GitHubTokenHandler handler) {
+        if (username == null || password[0] == 0) {
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/token", getBaseUrl());
 
         RequestParams params = new RequestParams();
         params.put("username", username);
-        params.put("password", password);
+//TODO Избежать использования пароля
+        params.put("password", String.valueOf(password));
         params.put(FMT, JSON);
 
         this.configureHeaders();
@@ -152,18 +171,19 @@ public class GithubResource extends AbstractResource {
                     gg.auth().setRefreshToken(value.getRefreshToken());
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
 
             }
         });
         return true;
+
     }
 
     public final boolean getUpcomingBroadcast(final String id, final GitHubSharedHandler handler) {
         if (id == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/getupcomingbroadcast", getBaseUrl());

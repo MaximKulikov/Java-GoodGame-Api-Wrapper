@@ -3,8 +3,7 @@ package ru.maximkulikov.goodgame.api.resources;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.handlers.PlayerResponseHandler;
 import ru.maximkulikov.goodgame.api.models.Player;
 
@@ -14,8 +13,9 @@ import ru.maximkulikov.goodgame.api.models.Player;
  * @author Maxim Kulikov
  * @since 29.12.2016
  */
+@Slf4j
 public class PlayerResourses extends AbstractResource {
-    private static final Logger logger = LoggerFactory.getLogger(PlayerResourses.class);
+    
     private static final String PARAMETERS_NULL = "{} parameters are null";
 
     public PlayerResourses(final String defaultBaseUrl, final int defaultApiVersion) {
@@ -30,7 +30,7 @@ public class PlayerResourses extends AbstractResource {
      */
     public final boolean getPlayer(final String channelId, final PlayerResponseHandler handler) {
         if (channelId == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/player/%s", getBaseUrl(), channelId);
@@ -43,7 +43,7 @@ public class PlayerResourses extends AbstractResource {
                     Player value = objectMapper.readValue(content, Player.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }

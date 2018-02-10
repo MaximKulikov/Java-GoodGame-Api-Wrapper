@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.handlers.GameResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.GamesResponseHandler;
 import ru.maximkulikov.goodgame.api.models.Game;
@@ -17,8 +16,9 @@ import ru.maximkulikov.goodgame.api.models.GamesContainer;
  *
  * @author Maxim Kulikov
  */
+@Slf4j
 public class GamesResource extends AbstractResource {
-    private static final Logger logger = LoggerFactory.getLogger(GamesResource.class);
+
     private static final String PARAMETERS_NULL = "{} parameters are null";
 
     public GamesResource(final String baseUrl, final int apiVersion) {
@@ -33,7 +33,7 @@ public class GamesResource extends AbstractResource {
      */
     public final boolean getGame(final String gameUrl, final GameResponseHandler handler) {
         if (gameUrl == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/games/%s", getBaseUrl(), gameUrl);
@@ -46,7 +46,7 @@ public class GamesResource extends AbstractResource {
                     Game value = objectMapper.readValue(content, Game.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -63,7 +63,7 @@ public class GamesResource extends AbstractResource {
      */
     public final boolean getGames(final RequestParams params, final GamesResponseHandler handler) {
         if (params == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/games", getBaseUrl());
@@ -76,7 +76,7 @@ public class GamesResource extends AbstractResource {
                     GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -100,7 +100,7 @@ public class GamesResource extends AbstractResource {
                     GamesContainer value = objectMapper.readValue(content, GamesContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }

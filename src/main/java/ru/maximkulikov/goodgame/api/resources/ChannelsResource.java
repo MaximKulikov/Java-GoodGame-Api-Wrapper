@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.handlers.DonationsResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.PremiumsResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.SubscriberResponseHandler;
@@ -19,8 +18,9 @@ import ru.maximkulikov.goodgame.api.models.SubscrurersContainer;
  *
  * @author Maxim Kulikov
  */
+@Slf4j
 public class ChannelsResource extends AbstractResource {
-    private static final Logger logger = LoggerFactory.getLogger(ChannelsResource.class);
+
     private static final String PARAMETERS_NULL = "{} parameters are null";
 
     /**
@@ -41,7 +41,7 @@ public class ChannelsResource extends AbstractResource {
      */
     public final boolean getDonations(final String channel, final DonationsResponseHandler handler) {
         if (channel == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/channel/%s/donations", getBaseUrl(), channel);
@@ -53,7 +53,7 @@ public class ChannelsResource extends AbstractResource {
                     DonationsContainer value = objectMapper.readValue(content, DonationsContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -74,7 +74,7 @@ public class ChannelsResource extends AbstractResource {
     public final boolean getDonations(final String channel, final RequestParams params,
                                       final DonationsResponseHandler handler) {
         if (channel == null || params == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/channel/%s/donations", getBaseUrl(), channel);
@@ -86,7 +86,7 @@ public class ChannelsResource extends AbstractResource {
                     DonationsContainer value = objectMapper.readValue(content, DonationsContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -104,7 +104,7 @@ public class ChannelsResource extends AbstractResource {
      */
     public final boolean getPremiums(final String channel, final PremiumsResponseHandler handler) {
         if (channel == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/channel/%s/premiums", getBaseUrl(), channel);
@@ -137,7 +137,7 @@ public class ChannelsResource extends AbstractResource {
     public final boolean getPremiums(final String channel, final RequestParams params,
                                      final PremiumsResponseHandler handler) {
         if (channel == null || params == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/channel/%s/premiums", getBaseUrl(), channel);
@@ -167,7 +167,7 @@ public class ChannelsResource extends AbstractResource {
      */
     public final boolean getSubscribers(final String channel, final SubscriberResponseHandler handler) {
         if (channel == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/channel/%s/subscribers", getBaseUrl(), channel);
@@ -200,7 +200,7 @@ public class ChannelsResource extends AbstractResource {
     public final boolean getSubscribers(final String channel, final RequestParams params,
                                         final SubscriberResponseHandler handler) {
         if (channel == null || params == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/channel/%s/subscribers", getBaseUrl(), channel);

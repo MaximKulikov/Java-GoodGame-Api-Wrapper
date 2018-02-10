@@ -1,17 +1,16 @@
 package ru.maximkulikov.goodgame.api.chatmodels;
 
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.Data;
 
 
 /**
  * @author Maxim Kulikov
  * @since 14.01.2017
  */
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResNewPoll implements ResChatObject {
 
@@ -34,105 +33,5 @@ public class ResNewPoll implements ResChatObject {
 
     private List<PollAnswer> answers;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ResNewPoll that = (ResNewPoll) o;
-
-        return new EqualsBuilder()
-                .append(channelId, that.channelId)
-                .append(moderId, that.moderId)
-                .append(moderName, that.moderName)
-                .append(moderRights, that.moderRights)
-                .append(moderGroups, that.moderGroups)
-                .append(title, that.title)
-                .append(answers, that.answers)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(channelId)
-                .append(moderId)
-                .append(moderName)
-                .append(moderRights)
-                .append(moderGroups)
-                .append(title)
-                .append(answers)
-                .toHashCode();
-    }
-
-    public final List<PollAnswer> getAnswers() {
-        return this.answers;
-    }
-
-    public final void setAnswers(final List<PollAnswer> answers) {
-        this.answers = answers;
-    }
-
-    public final String getChannelId() {
-        return this.channelId;
-    }
-
-    public final void setChannelId(final String channelId) {
-        this.channelId = channelId;
-    }
-
-    public final List<String> getModerGroups() {
-        return this.moderGroups;
-    }
-
-    public final void setModerGroups(final List<String> moderGroups) {
-        this.moderGroups = moderGroups;
-    }
-
-    public final String getModerId() {
-        return this.moderId;
-    }
-
-    public final void setModerId(final String moderId) {
-        this.moderId = moderId;
-    }
-
-    public final String getModerName() {
-        return this.moderName;
-    }
-
-    public final void setModerName(final String moderName) {
-        this.moderName = moderName;
-    }
-
-    public final Long getModerRights() {
-        return this.moderRights;
-    }
-
-    public final void setModerRights(final Long moderRights) {
-        this.moderRights = moderRights;
-    }
-
-    public final String getTitle() {
-        return this.title;
-    }
-
-    public final void setTitle(final String title) {
-        this.title = title;
-    }
-
-    @Override
-    public final String toString() {
-        return "ResNewPoll{" +
-                "channelId='" + this.channelId + '\'' +
-                ", moderId='" + this.moderId + '\'' +
-                ", moderName='" + this.moderName + '\'' +
-                ", moderRights=" + this.moderRights +
-                ", moderGroups=" + this.moderGroups +
-                ", title='" + this.title + '\'' +
-                ", answers=" + this.answers +
-                '}';
-    }
 }
 

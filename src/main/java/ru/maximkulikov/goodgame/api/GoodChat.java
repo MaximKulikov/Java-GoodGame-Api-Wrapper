@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.StatusCode;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
@@ -17,8 +18,6 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import ru.maximkulikov.goodgame.api.chatmodels.*;
 
 /**
@@ -26,11 +25,13 @@ import ru.maximkulikov.goodgame.api.chatmodels.*;
  *
  * @author Maxim Kulikov
  */
+@Slf4j
 public abstract class GoodChat {
 
     protected static final ObjectMapper objectMapper = new ObjectMapper();
+
     private static final String DEFAULT_CHAT_URL = "ws://chat.goodgame.ru:8081/chat/websocket";
-    private Logger logger = LoggerFactory.getLogger(GoodChat.class);
+
     private GoodChatSocket socket;
 
     private WebSocketClient client;
@@ -55,18 +56,18 @@ public abstract class GoodChat {
                     URI echoUri = new URI(DEFAULT_CHAT_URL);
                     ClientUpgradeRequest request = new ClientUpgradeRequest();
                     GoodChat.this.client.connect(GoodChat.this.socket, echoUri, request);
-                    logger.info("Connecting to: {}", echoUri);
+                    log.info("Connecting to: {}", echoUri);
 
                     GoodChat.this.socket.setChat(GoodChat.this);
                     GoodChat.this.socket.awaitClose(24, TimeUnit.HOURS);
 
                 } catch (Exception e) {
-                    logger.error("Connecting exeption: {}", e.getLocalizedMessage());
+                    log.error("Connecting exeption: {}", e.getLocalizedMessage());
                 } finally {
                     try {
                         GoodChat.this.client.stop();
                     } catch (Exception e) {
-                        logger.error("Close connecting exeption: {}", e.getLocalizedMessage());
+                        log.error("Close connecting exeption: {}", e.getLocalizedMessage());
                     }
                 }
             }
@@ -117,7 +118,7 @@ public abstract class GoodChat {
                 Thread.sleep(700);
 
             } catch (InterruptedException e) {
-                logger.error("Send message Exeption. Closing thread: {}", e.getLocalizedMessage());
+                log.error("Send message Exeption. Closing thread: {}", e.getLocalizedMessage());
                 Thread.currentThread().interrupt();
             }
         }
@@ -129,10 +130,10 @@ public abstract class GoodChat {
             try {
                 this.socket.sendMessage(mapper.writeValueAsString(chatObject));
             } catch (JsonProcessingException e) {
-                logger.error("Json Proccessing exeption: {}", e.getLocalizedMessage());
+                log.error("Json Proccessing exeption: {}", e.getLocalizedMessage());
             }
         } else {
-            logger.warn("GoodGameChat not connected proper, Message did not send");
+            log.warn("GoodGameChat not connected proper, Message did not send");
             ResError error = new ResError();
 
             error.setErrorNum(0);
@@ -152,7 +153,7 @@ public abstract class GoodChat {
             try {
                 GoodChat.this.client.stop();
             } catch (Exception e) {
-                logger.error("GoddChat dit not stop in proper way! {}", e.getLocalizedMessage());
+                log.error("GoddChat dit not stop in proper way! {}", e.getLocalizedMessage());
             }
         }
     }
@@ -187,14 +188,14 @@ public abstract class GoodChat {
 
         @OnWebSocketClose
         public final void onClose(final int statusCode, final String reason) {
-            logger.warn("Connection closed: {} - {}", statusCode, reason);
+            log.warn("Connection closed: {} - {}", statusCode, reason);
             this.session = null;
             this.closeLatch.countDown();
         }
 
         @OnWebSocketConnect
         public final void onConnect(final Session session) {
-            logger.info("Got connect: {}", session);
+            log.info("Got connect: {}", session);
             this.session = session;
             this.chat.setConnected(true);
         }
@@ -360,14 +361,14 @@ public abstract class GoodChat {
                         break;
                     default:
                         answer = new Response(ChatResponses.UNKNOWN, null);
-                        logger.info(msg);
+                        log.info(msg);
                         break;
                 }
 
                 this.chat.onMessage(answer);
 
             } catch (IOException e) {
-                logger.error("On message receive exception: {}", e.getLocalizedMessage());
+                log.error("On message receive exception: {}", e.getLocalizedMessage());
             }
         }
 
@@ -384,7 +385,7 @@ public abstract class GoodChat {
                     fut.get(2, TimeUnit.SECONDS);
 
                 } catch (InterruptedException | ExecutionException | TimeoutException e) {
-                    logger.error("send Message exception: {}", e.getLocalizedMessage());
+                    log.error("send Message exception: {}", e.getLocalizedMessage());
                 }
             }
         }

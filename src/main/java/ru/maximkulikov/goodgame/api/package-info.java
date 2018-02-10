@@ -7,5 +7,4 @@
  * @autor Maxim Kulikov
  *
  */
-
 package ru.maximkulikov.goodgame.api;

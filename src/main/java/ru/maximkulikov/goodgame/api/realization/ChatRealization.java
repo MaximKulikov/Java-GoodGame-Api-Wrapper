@@ -1,7 +1,7 @@
 package ru.maximkulikov.goodgame.api.realization;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.ChatTokenResponseHandler;
 import ru.maximkulikov.goodgame.api.models.ChatToken;
@@ -12,13 +12,11 @@ import ru.maximkulikov.goodgame.api.models.ChatToken;
  * @author Maxim Kulikov
  * @since 30.12.2017
  */
+@Slf4j
+@AllArgsConstructor
 public class ChatRealization {
-    private static final Logger logger = LoggerFactory.getLogger(ChatRealization.class);
-    private GoodGame gg;
 
-    public ChatRealization(GoodGame gg) {
-        this.gg = gg;
-    }
+    private GoodGame gg;
 
     public ChatToken getChatToken() throws GoodGameError, GoodGameException {
         final Object o = new Object();
@@ -35,7 +33,7 @@ public class ChatRealization {
         boolean result = gg.chat().getChatToken(new ChatTokenResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Chat token error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Chat token error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -45,7 +43,7 @@ public class ChatRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Chat token exception: {}", throwable.getLocalizedMessage());
+                log.error("Chat token exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -55,7 +53,7 @@ public class ChatRealization {
 
             @Override
             public void onSuccess(ChatToken chatToken) {
-                logger.info("Chat token success");
+                log.info("Chat token success");
                 containerSuccess[0] = chatToken;
                 status[0] = 1;
                 synchronized (o) {
@@ -73,7 +71,7 @@ public class ChatRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Chat token thread issue: {}", e.getLocalizedMessage());
+                    log.error("Chat token thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }

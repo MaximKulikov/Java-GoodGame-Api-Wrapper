@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.OauthResourceResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.OauthResponseHandler;
@@ -18,9 +17,11 @@ import ru.maximkulikov.goodgame.api.models.OauthResourceCheck;
  * @author Maxim Kulikov
  * @since 29.12.2016
  */
+@Slf4j
 public class OauthResource extends AbstractResource {
-    private static final Logger logger = LoggerFactory.getLogger(OauthResource.class);
+
     private static final String PARAMETERS_NULL = "{} parameters are null";
+
     private static final String CODE = "code";
 
     private static final String OAUTH = "%s/oauth";
@@ -58,7 +59,7 @@ public class OauthResource extends AbstractResource {
     public final boolean getAccessToken(final boolean useAutorizationCode, final OauthResponseHandler handler) {
 
         if (this.gg.auth().getRedirectURI() == null || this.gg.getClientId() == null) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
 
@@ -72,7 +73,7 @@ public class OauthResource extends AbstractResource {
         if (useAutorizationCode) {
 
             if (this.gg.auth().getAuthorizationCode() == null) {
-                logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+                log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
                 return false;
             }
             params.put(REDIRECT_URI, this.gg.auth().getRedirectURI().toString());
@@ -83,7 +84,7 @@ public class OauthResource extends AbstractResource {
         } else {
 
             if (this.gg.auth().getRefreshToken() == null) {
-                logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+                log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
                 return false;
             }
             params.put(GRANT_TYPE, REFRESH_TOKEN);
@@ -102,7 +103,7 @@ public class OauthResource extends AbstractResource {
                     handler.onSuccess(value);
 
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -127,7 +128,7 @@ public class OauthResource extends AbstractResource {
                     handler.onSuccess(value);
 
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }

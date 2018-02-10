@@ -1,13 +1,15 @@
 package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Maxim Kulikov
  * @since 11.01.2017
  */
+@Data
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqCleanModeratorContainer implements ReqChatObject {
 
@@ -23,49 +25,4 @@ public class ReqCleanModeratorContainer implements ReqChatObject {
         this.data = new ReqMakeModerator(channelId, userId);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ReqCleanModeratorContainer that = (ReqCleanModeratorContainer) o;
-
-        return new EqualsBuilder()
-                .append(type, that.type)
-                .append(data, that.data)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(type)
-                .append(data)
-                .toHashCode();
-    }
-
-    public final ReqMakeModerator getData() {
-        return this.data;
-    }
-
-    public final void setData(final ReqMakeModerator data) {
-        this.data = data;
-    }
-
-    public final String getType() {
-        return this.type;
-    }
-
-    public final void setType(final String type) {
-        this.type = type;
-    }
-
-    @Override
-    public final String toString() {
-        return "ReqCleanModeratorContainer{" +
-                "type='" + this.type + '\'' +
-                ", data=" + this.data +
-                '}';
-    }
 }

@@ -1,8 +1,6 @@
 package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Maxim Kulikov
@@ -14,28 +12,6 @@ public class ReqJoinContainer implements ReqChatObject {
     private String type = "join";
 
     private ReqJoin data;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ReqJoinContainer that = (ReqJoinContainer) o;
-
-        return new EqualsBuilder()
-                .append(type, that.type)
-                .append(data, that.data)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(type)
-                .append(data)
-                .toHashCode();
-    }
 
     /**
      * @param channelId channel_id
@@ -53,27 +29,4 @@ public class ReqJoinContainer implements ReqChatObject {
         this.data = new ReqJoin(channelId, hidden, mobile);
     }
 
-    public final ReqJoin getData() {
-        return this.data;
-    }
-
-    public final void setData(final ReqJoin data) {
-        this.data = data;
-    }
-
-    public final String getType() {
-        return this.type;
-    }
-
-    public final void setType(final String type) {
-        this.type = type;
-    }
-
-    @Override
-    public final String toString() {
-        return "ReqJoinContainer{" +
-                "type='" + this.type + '\'' +
-                ", data=" + this.data +
-                '}';
-    }
 }

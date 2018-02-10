@@ -1,7 +1,7 @@
 package ru.maximkulikov.goodgame.api.realization;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.SmilesResponseHandler;
 import ru.maximkulikov.goodgame.api.models.SmilesContainer;
@@ -12,13 +12,11 @@ import ru.maximkulikov.goodgame.api.models.SmilesContainer;
  * @author Maxim Kulikov
  * @since 30.12.2017
  */
+@Slf4j
+@AllArgsConstructor
 public class SmilesRealization {
-    private static final Logger logger = LoggerFactory.getLogger(SmilesRealization.class);
-    private GoodGame gg;
 
-    public SmilesRealization(GoodGame gg) {
-        this.gg = gg;
-    }
+    private GoodGame gg;
 
     public SmilesContainer getChannelSmiles(final long channelID) throws GoodGameError, GoodGameException {
         final Object o = new Object();
@@ -35,7 +33,7 @@ public class SmilesRealization {
         boolean result = gg.smiles().getChannelSmiles(channelID, new SmilesResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Channel smiles error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Channel smiles error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -45,7 +43,7 @@ public class SmilesRealization {
 
             @Override
             public void onSuccess(SmilesContainer smiles) {
-                logger.info("Channel smiles success");
+                log.info("Channel smiles success");
                 containerSuccess[0] = smiles;
                 status[0] = 1;
                 synchronized (o) {
@@ -55,7 +53,7 @@ public class SmilesRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Channel smiles exception: {}", throwable.getLocalizedMessage());
+                log.error("Channel smiles exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -74,7 +72,7 @@ public class SmilesRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Channel smiles thread issue: {}", e.getLocalizedMessage());
+                    log.error("Channel smiles thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -97,7 +95,7 @@ public class SmilesRealization {
         boolean result = gg.smiles().getChannelSmiles(channelId, page, new SmilesResponseHandler() {
             @Override
             public void onSuccess(SmilesContainer smiles) {
-                logger.info("Channel smiles success");
+                log.info("Channel smiles success");
                 containerSuccess[0] = smiles;
                 status[0] = 1;
                 synchronized (o) {
@@ -107,7 +105,7 @@ public class SmilesRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Channel smiles error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Channel smiles error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -117,7 +115,7 @@ public class SmilesRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Channel smiles exception: {}", throwable.getLocalizedMessage());
+                log.error("Channel smiles exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -136,7 +134,7 @@ public class SmilesRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Channel smiles thread issue: {}", e.getLocalizedMessage());
+                    log.error("Channel smiles thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -161,7 +159,7 @@ public class SmilesRealization {
         boolean result = gg.smiles().getSmiles(new SmilesResponseHandler() {
             @Override
             public void onSuccess(SmilesContainer smiles) {
-                logger.info("Smiles success");
+                log.info("Smiles success");
                 containerSuccess[0] = smiles;
                 status[0] = 1;
                 synchronized (o) {
@@ -171,7 +169,7 @@ public class SmilesRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Smiles error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Smiles error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -181,7 +179,7 @@ public class SmilesRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Smiles exception: {}", throwable.getLocalizedMessage());
+                log.error("Smiles exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -200,7 +198,7 @@ public class SmilesRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Smiles thread issue: {}", e.getLocalizedMessage());
+                    log.error("Smiles thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -224,7 +222,7 @@ public class SmilesRealization {
         boolean result = gg.smiles().getSmiles(page, new SmilesResponseHandler() {
             @Override
             public void onSuccess(SmilesContainer smiles) {
-                logger.info("Smiles success");
+                log.info("Smiles success");
                 containerSuccess[0] = smiles;
                 status[0] = 1;
                 synchronized (o) {
@@ -234,7 +232,7 @@ public class SmilesRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Smiles error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Smiles error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -244,7 +242,7 @@ public class SmilesRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Smiles exception: {}", throwable.getLocalizedMessage());
+                log.error("Smiles exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -263,7 +261,7 @@ public class SmilesRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Smiles thread issue: {}", e.getLocalizedMessage());
+                    log.error("Smiles thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }

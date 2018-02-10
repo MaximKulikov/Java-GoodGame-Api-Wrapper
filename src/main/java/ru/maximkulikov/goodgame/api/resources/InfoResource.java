@@ -3,8 +3,7 @@ package ru.maximkulikov.goodgame.api.resources;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.handlers.InfoResponseHandler;
 import ru.maximkulikov.goodgame.api.models.Info;
 
@@ -14,8 +13,8 @@ import ru.maximkulikov.goodgame.api.models.Info;
  * @author Maxim Kulikov
  * @since 04.01.2017
  */
+@Slf4j
 public class InfoResource extends AbstractResource {
-    private static final Logger logger = LoggerFactory.getLogger(InfoResource.class);
 
     public InfoResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);
@@ -37,7 +36,7 @@ public class InfoResource extends AbstractResource {
                     Info value = objectMapper.readValue(content, Info.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }

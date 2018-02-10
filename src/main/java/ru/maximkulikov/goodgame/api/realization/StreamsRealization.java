@@ -1,8 +1,8 @@
 package ru.maximkulikov.goodgame.api.realization;
 
 import com.mb3364.http.RequestParams;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.StreamChannelResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.StreamsResponseHandler;
@@ -15,13 +15,11 @@ import ru.maximkulikov.goodgame.api.models.EmbededChannels;
  * @author Maxim Kulikov
  * @since 30.12.2017
  */
+@Slf4j
+@AllArgsConstructor
 public class StreamsRealization {
-    private static final Logger logger = LoggerFactory.getLogger(StreamsRealization.class);
-    private GoodGame gg;
 
-    public StreamsRealization(GoodGame gg) {
-        this.gg = gg;
-    }
+    private GoodGame gg;
 
     public ChannelContainer getChannel(final String channel) throws GoodGameError, GoodGameException {
         final Object o = new Object();
@@ -39,7 +37,7 @@ public class StreamsRealization {
         boolean result = gg.streams().getChannel(channel, new StreamChannelResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Channel error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Channel error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -49,7 +47,7 @@ public class StreamsRealization {
 
             @Override
             public void onSuccess(ChannelContainer channel) {
-                logger.info("Channel success");
+                log.info("Channel success");
                 containerSuccess[0] = channel;
                 status[0] = 1;
                 synchronized (o) {
@@ -59,7 +57,7 @@ public class StreamsRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Channel exception: {}", throwable.getLocalizedMessage());
+                log.error("Channel exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -78,7 +76,7 @@ public class StreamsRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Channel thread issue: {}", e.getLocalizedMessage());
+                    log.error("Channel thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -125,7 +123,7 @@ public class StreamsRealization {
         boolean result = gg.streams().getStreams(new StreamsResponseHandler() {
             @Override
             public void onSuccess(EmbededChannels channels) {
-                logger.info("Streams success");
+                log.info("Streams success");
                 containerSuccess[0] = channels;
                 status[0] = 1;
                 synchronized (o) {
@@ -135,7 +133,7 @@ public class StreamsRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Streams error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Streams error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -145,7 +143,7 @@ public class StreamsRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Streams exception: {}", throwable.getLocalizedMessage());
+                log.error("Streams exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -163,7 +161,7 @@ public class StreamsRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Streams thread issue: {}", e.getLocalizedMessage());
+                    log.error("Streams thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -187,7 +185,7 @@ public class StreamsRealization {
         boolean result = gg.streams().getStreams(param, new StreamsResponseHandler() {
             @Override
             public void onSuccess(EmbededChannels channels) {
-                logger.info("Streams success");
+                log.info("Streams success");
                 containerSuccess[0] = channels;
                 status[0] = 1;
                 synchronized (o) {
@@ -197,7 +195,7 @@ public class StreamsRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Streams error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Streams error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -207,7 +205,7 @@ public class StreamsRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Streams exception: {}", throwable.getLocalizedMessage());
+                log.error("Streams exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -225,7 +223,7 @@ public class StreamsRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Streams thread issue: {}", e.getLocalizedMessage());
+                    log.error("Streams thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }

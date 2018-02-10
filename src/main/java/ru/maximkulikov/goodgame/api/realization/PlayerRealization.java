@@ -1,7 +1,7 @@
 package ru.maximkulikov.goodgame.api.realization;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.PlayerResponseHandler;
 import ru.maximkulikov.goodgame.api.models.Player;
@@ -12,13 +12,11 @@ import ru.maximkulikov.goodgame.api.models.Player;
  * @author Maxim Kulikov
  * @since 30.12.2017
  */
+@Slf4j
+@AllArgsConstructor
 public class PlayerRealization {
-    private static final Logger logger = LoggerFactory.getLogger(PlayerRealization.class);
-    private GoodGame gg;
 
-    public PlayerRealization(GoodGame gg) {
-        this.gg = gg;
-    }
+    private GoodGame gg;
 
     public Player getPlayer(final String channelId) throws GoodGameError, GoodGameException {
         final Object o = new Object();
@@ -35,7 +33,7 @@ public class PlayerRealization {
         boolean result = gg.player().getPlayer(channelId, new PlayerResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Player error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Player error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -45,7 +43,7 @@ public class PlayerRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Player exception: {}", throwable.getLocalizedMessage());
+                log.error("Player exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -55,7 +53,7 @@ public class PlayerRealization {
 
             @Override
             public void onSuccess(Player player) {
-                logger.info("Player success");
+                log.info("Player success");
                 containerSuccess[0] = player;
                 status[0] = 1;
                 synchronized (o) {
@@ -74,7 +72,7 @@ public class PlayerRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Player thread issue: {}", e.getLocalizedMessage());
+                    log.error("Player thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }

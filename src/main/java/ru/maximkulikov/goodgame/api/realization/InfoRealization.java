@@ -1,7 +1,7 @@
 package ru.maximkulikov.goodgame.api.realization;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.InfoResponseHandler;
 import ru.maximkulikov.goodgame.api.models.Info;
@@ -12,13 +12,11 @@ import ru.maximkulikov.goodgame.api.models.Info;
  * @author Maxim Kulikov
  * @since 30.12.2017
  */
+@Slf4j
+@AllArgsConstructor
 public class InfoRealization {
-    private static final Logger logger = LoggerFactory.getLogger(InfoRealization.class);
-    private GoodGame gg;
 
-    public InfoRealization(GoodGame gg) {
-        this.gg = gg;
-    }
+    private GoodGame gg;
 
     public Info getInfo() throws GoodGameError, GoodGameException {
         final Object o = new Object();
@@ -36,7 +34,7 @@ public class InfoRealization {
         boolean result = gg.info().getInfo(new InfoResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Info error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Info error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -46,7 +44,7 @@ public class InfoRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Info exception: {}", throwable.getLocalizedMessage());
+                log.error("Info exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -56,7 +54,7 @@ public class InfoRealization {
 
             @Override
             public void onSuccess(Info info) {
-                logger.info("Info success");
+                log.info("Info success");
                 containerSuccess[0] = info;
                 status[0] = 1;
                 synchronized (o) {
@@ -74,7 +72,7 @@ public class InfoRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Info thread issue: {}", e.getLocalizedMessage());
+                    log.error("Info thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }

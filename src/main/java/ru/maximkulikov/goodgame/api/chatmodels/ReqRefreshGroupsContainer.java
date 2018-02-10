@@ -1,41 +1,19 @@
 package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.Data;
 
 /**
  * @author Maxim Kulikov
  * @since 14.01.2017
  */
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqRefreshGroupsContainer implements ReqChatObject {
 
     private String type = "refresh_premium";
 
     private ReqGetPoll data;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ReqRefreshGroupsContainer that = (ReqRefreshGroupsContainer) o;
-
-        return new EqualsBuilder()
-                .append(type, that.type)
-                .append(data, that.data)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(type)
-                .append(data)
-                .toHashCode();
-    }
 
     /**
      * @param channelId channel_id
@@ -44,27 +22,4 @@ public class ReqRefreshGroupsContainer implements ReqChatObject {
         this.data = new ReqGetPoll(channelId);
     }
 
-    public final ReqGetPoll getData() {
-        return this.data;
-    }
-
-    public final void setData(final ReqGetPoll data) {
-        this.data = data;
-    }
-
-    public final String getType() {
-        return this.type;
-    }
-
-    public final void setType(final String type) {
-        this.type = type;
-    }
-
-    @Override
-    public final String toString() {
-        return "ReqRefreshPremiumContainer{" +
-                "type='" + this.type + '\'' +
-                ", data=" + this.data +
-                '}';
-    }
 }

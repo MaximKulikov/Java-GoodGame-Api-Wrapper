@@ -3,8 +3,7 @@ package ru.maximkulikov.goodgame.api.resources;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.handlers.ChatTokenResponseHandler;
 import ru.maximkulikov.goodgame.api.models.ChatToken;
 
@@ -13,8 +12,8 @@ import ru.maximkulikov.goodgame.api.models.ChatToken;
  *
  * @author Maxim Kulikov
  */
+@Slf4j
 public class ChatResource extends AbstractResource {
-    private static final Logger logger = LoggerFactory.getLogger(ChatResource.class);
 
     public ChatResource(final String baseUrl, final int apiVersion) {
         super(baseUrl, apiVersion);
@@ -38,7 +37,7 @@ public class ChatResource extends AbstractResource {
                     ChatToken value = objectMapper.readValue(content, ChatToken.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }

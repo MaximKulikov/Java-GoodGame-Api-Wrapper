@@ -1,7 +1,7 @@
 package ru.maximkulikov.goodgame.api.realization;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.OauthResourceResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.OauthResponseHandler;
@@ -14,14 +14,11 @@ import ru.maximkulikov.goodgame.api.models.OauthResourceCheck;
  * @author Maxim Kulikov
  * @since 25.12.2017
  */
+@Slf4j
+@AllArgsConstructor
 public class OauthRealization {
 
-    private static final Logger logger = LoggerFactory.getLogger(OauthRealization.class);
     private GoodGame gg;
-
-    public OauthRealization(GoodGame gg) {
-        this.gg = gg;
-    }
 
     /**
      * Получение токена доступа. При удачном выполнении токен запоминается в системе и в последующих запросах используется автоматически
@@ -50,7 +47,7 @@ public class OauthRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Access Token error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Access Token error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -60,7 +57,7 @@ public class OauthRealization {
 
             @Override
             public void onSuccess(AccessToken accessToken) {
-                logger.info("Access Token success");
+                log.info("Access Token success");
                 containerSuccess[0] = accessToken;
                 status[0] = 1;
                 synchronized (o) {
@@ -70,7 +67,7 @@ public class OauthRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Access Token exception: {}", throwable.getLocalizedMessage());
+                log.error("Access Token exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -89,7 +86,7 @@ public class OauthRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Access Token thread issue: {}", e.getLocalizedMessage());
+                    log.error("Access Token thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -132,7 +129,7 @@ public class OauthRealization {
         gg.oauth().getResource(new OauthResourceResponseHandler() {
             @Override
             public void onSuccess(OauthResourceCheck resource) {
-                logger.info("Resource success");
+                log.info("Resource success");
                 containerSuccess[0] = resource;
                 status[0] = 1;
                 synchronized (o) {
@@ -142,7 +139,7 @@ public class OauthRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Resource error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Resource error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -152,7 +149,7 @@ public class OauthRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Resource exception: {}", throwable.getLocalizedMessage());
+                log.error("Resource exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -166,7 +163,7 @@ public class OauthRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Resource thread issue: {}", e.getLocalizedMessage());
+                    log.error("Resource thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }

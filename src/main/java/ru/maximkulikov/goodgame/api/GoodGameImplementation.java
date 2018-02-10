@@ -12,7 +12,7 @@ import ru.maximkulikov.goodgame.api.realization.*;
  */
 public class GoodGameImplementation {
 
-    GoodGame gg;
+    private GoodGame gg;
 
     private Map<GoodGame.Resources, Object> realization;
 

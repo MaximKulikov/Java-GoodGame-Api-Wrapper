@@ -1,8 +1,8 @@
 package ru.maximkulikov.goodgame.api.realization;
 
 import com.mb3364.http.RequestParams;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.GoodGame;
 import ru.maximkulikov.goodgame.api.handlers.GameResponseHandler;
 import ru.maximkulikov.goodgame.api.handlers.GamesResponseHandler;
@@ -15,13 +15,11 @@ import ru.maximkulikov.goodgame.api.models.GamesContainer;
  * @author Maxim Kulikov
  * @since 30.12.2017
  */
+@Slf4j
+@AllArgsConstructor
 public class GamesRealization {
-    private static final Logger logger = LoggerFactory.getLogger(GamesRealization.class);
-    private GoodGame gg;
 
-    public GamesRealization(GoodGame gg) {
-        this.gg = gg;
-    }
+    private GoodGame gg;
 
     public Game getGame(final String gameUrl) throws GoodGameError, GoodGameException {
         final Object o = new Object();
@@ -38,7 +36,7 @@ public class GamesRealization {
         boolean result = gg.games().getGame(gameUrl, new GameResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Game error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Game error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -48,7 +46,7 @@ public class GamesRealization {
 
             @Override
             public void onSuccess(Game game) {
-                logger.info("Game success");
+                log.info("Game success");
                 containerSuccess[0] = game;
                 status[0] = 1;
                 synchronized (o) {
@@ -58,7 +56,7 @@ public class GamesRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Game exception: {}", throwable.getLocalizedMessage());
+                log.error("Game exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -76,7 +74,7 @@ public class GamesRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Game thread issue: {}", e.getLocalizedMessage());
+                    log.error("Game thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -111,7 +109,7 @@ public class GamesRealization {
         boolean result = gg.games().getGames(params, new GamesResponseHandler() {
             @Override
             public void onSuccess(GamesContainer gamesContainer) {
-                logger.info("Game success");
+                log.info("Game success");
                 containerSuccess[0] = gamesContainer;
                 status[0] = 1;
                 synchronized (o) {
@@ -121,7 +119,7 @@ public class GamesRealization {
 
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Game error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Game error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -131,7 +129,7 @@ public class GamesRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Game exception: {}", throwable.getLocalizedMessage());
+                log.error("Game exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -149,7 +147,7 @@ public class GamesRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Game thread issue: {}", e.getLocalizedMessage());
+                    log.error("Game thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }
@@ -183,7 +181,7 @@ public class GamesRealization {
         boolean result = gg.games().getGames(new GamesResponseHandler() {
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-                logger.error("Game error {}: {}. {}", statusCode, statusMessage, errorMessage);
+                log.error("Game error {}: {}. {}", statusCode, statusMessage, errorMessage);
                 containerFail[0] = String.valueOf(statusCode) + ": " + statusMessage + "(" + errorMessage + ")";
                 status[0] = 2;
                 synchronized (o) {
@@ -193,7 +191,7 @@ public class GamesRealization {
 
             @Override
             public void onSuccess(GamesContainer gamesContainer) {
-                logger.info("Game success");
+                log.info("Game success");
                 containerSuccess[0] = gamesContainer;
                 status[0] = 1;
                 synchronized (o) {
@@ -203,7 +201,7 @@ public class GamesRealization {
 
             @Override
             public void onFailure(Throwable throwable) {
-                logger.error("Game exception: {}", throwable.getLocalizedMessage());
+                log.error("Game exception: {}", throwable.getLocalizedMessage());
                 containerThrowable[0] = throwable;
                 status[0] = 3;
                 synchronized (o) {
@@ -222,7 +220,7 @@ public class GamesRealization {
                 try {
                     o.wait();
                 } catch (InterruptedException e) {
-                    logger.error("Game thread issue: {}", e.getLocalizedMessage());
+                    log.error("Game thread issue: {}", e.getLocalizedMessage());
                     Thread.currentThread().interrupt();
                 }
             }

@@ -1,20 +1,19 @@
 package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.Data;
 
 /**
  * @author Maxim Kulikov
  * @since 10.01.2017
  */
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqBanContainer implements ReqChatObject {
 
     private String type = "ban";
 
     private ReqBan data;
-
 
     /**
      * @param channelId  channel_id канал в котором вынесен бан
@@ -30,49 +29,4 @@ public class ReqBanContainer implements ReqChatObject {
         this.data = new ReqBan(channelId, banChannel, userId, duration, reason, comment, showBan);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ReqBanContainer that = (ReqBanContainer) o;
-
-        return new EqualsBuilder()
-                .append(type, that.type)
-                .append(data, that.data)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(type)
-                .append(data)
-                .toHashCode();
-    }
-
-    public final ReqBan getData() {
-        return this.data;
-    }
-
-    public final void setData(final ReqBan data) {
-        this.data = data;
-    }
-
-    public final String getType() {
-        return this.type;
-    }
-
-    public final void setType(final String type) {
-        this.type = type;
-    }
-
-    @Override
-    public final String toString() {
-        return "ReqBanContainer{" +
-                "type='" + this.type + '\'' +
-                ", data=" + this.data +
-                '}';
-    }
 }

@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import com.mb3364.http.RequestParams;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import ru.maximkulikov.goodgame.api.handlers.SmilesResponseHandler;
 import ru.maximkulikov.goodgame.api.models.SmilesContainer;
 
@@ -15,9 +14,11 @@ import ru.maximkulikov.goodgame.api.models.SmilesContainer;
  * @author Maxim Kulikov
  * @since 04.01.2017
  */
+@Slf4j
 public class SmilesResource extends AbstractResource {
-    private static final Logger logger = LoggerFactory.getLogger(SmilesResource.class);
+
     private static final String PARAMETERS_NULL = "{} parameters should be > 0";
+
     private static final String PAGE = "page";
 
     public SmilesResource(final String baseUrl, final int apiVersion) {
@@ -37,7 +38,7 @@ public class SmilesResource extends AbstractResource {
      */
     public final boolean getChannelSmiles(final long channelID, final SmilesResponseHandler handler) {
         if (channelID < 0) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/smiles/%s", getBaseUrl(), channelID);
@@ -50,7 +51,7 @@ public class SmilesResource extends AbstractResource {
                     SmilesContainer value = objectMapper.readValue(content, SmilesContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -69,7 +70,7 @@ public class SmilesResource extends AbstractResource {
     public final boolean getChannelSmiles(final long channelId, final int page,
                                           final SmilesResponseHandler handler) {
         if (channelId < 0 || page < 0) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
 
@@ -86,7 +87,7 @@ public class SmilesResource extends AbstractResource {
                     SmilesContainer value = objectMapper.readValue(content, SmilesContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -111,7 +112,7 @@ public class SmilesResource extends AbstractResource {
                     SmilesContainer value = objectMapper.readValue(content, SmilesContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }
@@ -128,7 +129,7 @@ public class SmilesResource extends AbstractResource {
      */
     public final boolean getSmiles(final int page, final SmilesResponseHandler handler) {
         if (page < 0) {
-            logger.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
+            log.error(PARAMETERS_NULL, getClass().getEnclosingMethod().getName());
             return false;
         }
         String url = String.format("%s/smiles", getBaseUrl());
@@ -143,7 +144,7 @@ public class SmilesResource extends AbstractResource {
                     SmilesContainer value = objectMapper.readValue(content, SmilesContainer.class);
                     handler.onSuccess(value);
                 } catch (IOException e) {
-                    logger.error("IOException {}", e.getLocalizedMessage());
+                    log.error("IOException {}", e.getLocalizedMessage());
                     handler.onFailure(e);
                 }
             }

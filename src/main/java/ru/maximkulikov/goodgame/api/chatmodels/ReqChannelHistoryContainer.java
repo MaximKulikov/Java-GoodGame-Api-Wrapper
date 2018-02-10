@@ -1,13 +1,17 @@
 package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Maxim Kulikov
  * @since 10.01.2017
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqChannelHistoryContainer implements ReqChatObject {
 
@@ -15,57 +19,4 @@ public class ReqChannelHistoryContainer implements ReqChatObject {
 
     private ReqChannelHistory data;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ReqChannelHistoryContainer that = (ReqChannelHistoryContainer) o;
-
-        return new EqualsBuilder()
-                .append(type, that.type)
-                .append(data, that.data)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(type)
-                .append(data)
-                .toHashCode();
-    }
-
-    /**
-     *
-     * @param channelId channel_id
-     */
-    public ReqChannelHistoryContainer(final String channelId) {
-        this.data = new ReqChannelHistory(channelId);
-    }
-
-    public final ReqChannelHistory getData() {
-        return this.data;
-    }
-
-    public final void setData(final ReqChannelHistory data) {
-        this.data = data;
-    }
-
-    public final String getType() {
-        return this.type;
-    }
-
-    public final void setType(final String type) {
-        this.type = type;
-    }
-
-    @Override
-    public final String toString() {
-        return "ReqChannelHistoryContainer{" +
-                "type='" + this.type + '\'' +
-                ", data=" + this.data +
-                '}';
-    }
 }

@@ -1,16 +1,15 @@
 package ru.maximkulikov.goodgame.api.chatmodels;
 
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.Data;
 
 /**
  * @author Maxim Kulikov
  * @since 14.01.2017
  */
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResSettings implements ResChatObject {
 
@@ -35,115 +34,4 @@ public class ResSettings implements ResChatObject {
 
     private Long silent;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ResSettings that = (ResSettings) o;
-
-        return new EqualsBuilder()
-                .append(channelId, that.channelId)
-                .append(name, that.name)
-                .append(value, that.value)
-                .append(moderId, that.moderId)
-                .append(moderName, that.moderName)
-                .append(moderRights, that.moderRights)
-                .append(moderGroups, that.moderGroups)
-                .append(silent, that.silent)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(channelId)
-                .append(name)
-                .append(value)
-                .append(moderId)
-                .append(moderName)
-                .append(moderRights)
-                .append(moderGroups)
-                .append(silent)
-                .toHashCode();
-    }
-
-    public final String getChannelId() {
-        return this.channelId;
-    }
-
-    public final void setChannelId(final String channelId) {
-        this.channelId = channelId;
-    }
-
-    public final List<String> getModerGroups() {
-        return this.moderGroups;
-    }
-
-    public final void setModerGroups(final List<String> moderGroups) {
-        this.moderGroups = moderGroups;
-    }
-
-    public final String getModerId() {
-        return this.moderId;
-    }
-
-    public final void setModerId(final String moderId) {
-        this.moderId = moderId;
-    }
-
-    public final String getModerName() {
-        return this.moderName;
-    }
-
-    public final void setModerName(final String moderName) {
-        this.moderName = moderName;
-    }
-
-    public final Long getModerRights() {
-        return this.moderRights;
-    }
-
-    public final void setModerRights(final Long moderRights) {
-        this.moderRights = moderRights;
-    }
-
-    public final String getName() {
-        return this.name;
-    }
-
-    public final void setName(final String name) {
-        this.name = name;
-    }
-
-    public final Long getSilent() {
-        return this.silent;
-    }
-
-    public final void setSilent(final Long silent) {
-        this.silent = silent;
-    }
-
-    public final String getValue() {
-        return this.value;
-    }
-
-    public final void setValue(final String value) {
-        this.value = value;
-    }
-
-    @Override
-    public final String toString() {
-        return "ResSettings{" +
-                "channelId='" + this.channelId + '\'' +
-                ", name='" + this.name + '\'' +
-                ", value='" + this.value + '\'' +
-                ", moderId='" + this.moderId + '\'' +
-                ", moderName='" + this.moderName + '\'' +
-                ", moderRights=" + this.moderRights +
-                ", moderGroups=" + this.moderGroups +
-                ", silent=" + this.silent +
-                '}';
-    }
 }

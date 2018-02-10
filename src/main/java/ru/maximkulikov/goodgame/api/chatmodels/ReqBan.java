@@ -2,13 +2,13 @@ package ru.maximkulikov.goodgame.api.chatmodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.Data;
 
 /**
  * @author Maxim Kulikov
  * @since 10.01.2017
  */
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqBan {
 
@@ -17,38 +17,6 @@ public class ReqBan {
 
     @JsonProperty("ban_channel")
     private String banChannel;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ReqBan reqBan = (ReqBan) o;
-
-        return new EqualsBuilder()
-                .append(duration, reqBan.duration)
-                .append(channelId, reqBan.channelId)
-                .append(banChannel, reqBan.banChannel)
-                .append(userId, reqBan.userId)
-                .append(reason, reqBan.reason)
-                .append(comment, reqBan.comment)
-                .append(showBan, reqBan.showBan)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(channelId)
-                .append(banChannel)
-                .append(userId)
-                .append(duration)
-                .append(reason)
-                .append(comment)
-                .append(showBan)
-                .toHashCode();
-    }
 
     @JsonProperty("user_id")
     private String userId;
@@ -80,74 +48,5 @@ public class ReqBan {
         this.reason = reason;
         this.comment = comment;
         this.showBan = showBan;
-    }
-
-    public final String getBanChannel() {
-        return this.banChannel;
-    }
-
-    public final void setBanChannel(final String banChannel) {
-        this.banChannel = banChannel;
-    }
-
-    public final String getChannelId() {
-        return this.channelId;
-    }
-
-    public final void setChannelId(final String channelId) {
-        this.channelId = channelId;
-    }
-
-    public final String getComment() {
-        return this.comment;
-    }
-
-    public final void setComment(final String comment) {
-        this.comment = comment;
-    }
-
-    public final int getDuration() {
-        return this.duration;
-    }
-
-    public final void setDuration(final int duration) {
-        this.duration = duration;
-    }
-
-    public final String getReason() {
-        return this.reason;
-    }
-
-    public final void setReason(final String reason) {
-        this.reason = reason;
-    }
-
-    public final Boolean getShowBan() {
-        return this.showBan;
-    }
-
-    public final void setShowBan(final Boolean showBan) {
-        this.showBan = showBan;
-    }
-
-    public final String getUserId() {
-        return this.userId;
-    }
-
-    public final void setUserId(final String userId) {
-        this.userId = userId;
-    }
-
-    @Override
-    public final String toString() {
-        return "ReqBan{" +
-                "channelId='" + this.channelId + '\'' +
-                ", banChannel='" + this.banChannel + '\'' +
-                ", userId='" + this.userId + '\'' +
-                ", duration=" + this.duration +
-                ", reason='" + this.reason + '\'' +
-                ", comment='" + this.comment + '\'' +
-                ", showBan=" + this.showBan +
-                '}';
     }
 }
