@@ -18,17 +18,17 @@ public class AuthenticationCallbackServer implements AuthenticationListener {
     /**
      * Default HTML page that twitch.tv will send the access_token to
      */
-    public static final String DEFAULT_AUTH_PAGE = "/gg-authorize.html";
+    public static final String DEFAULT_AUTH_PAGE = "/ru.maximkulikov.resources/gg-authorize.html";
 
     /**
      * Default HTML page that shows auth error's to user
      */
-    public static final String DEFAULT_FAILURE_PAGE = "/gg-authorize-failure.html";
+    public static final String DEFAULT_FAILURE_PAGE = "/ru.maximkulikov.resources/gg-authorize-failure.html";
 
     /**
      * Default HTML page that shows auth success to
      */
-    public static final String DEFAULT_SUCCESS_PAGE = "/gg-authorize-success.html";
+    public static final String DEFAULT_SUCCESS_PAGE = "/ru.maximkulikov.resources/gg-authorize-success.html";
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationCallbackServer.class);
     private final URL authPage;
     private final URL failurePage;

@@ -121,7 +121,7 @@ public class AuthenticationCallbackRequest implements Runnable {
             InputStream fis;
             String contentTypeLine;
 
-            if (requestFilename.startsWith("/gg-auth.js") || requestFilename.startsWith("/gg-auth-success.js")) {
+            if (requestFilename.startsWith("/ru.maximkulikov.resources/gg-auth.js") || requestFilename.startsWith("/gg-auth-success.js")) {
                 fis = getClass().getResourceAsStream(requestFilename);
                 contentTypeLine = "Content-type: text/javascript" + EOL;
             } else {

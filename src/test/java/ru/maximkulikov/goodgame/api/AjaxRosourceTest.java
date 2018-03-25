@@ -1,18 +1,17 @@
 package ru.maximkulikov.goodgame.api;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import ru.maximkulikov.goodgame.api.handlers.AjaxLoginResponseHandler;
 import ru.maximkulikov.goodgame.api.models.AjaxLoginContainer;
-
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Java-GoodGame-Api-Wrapper
  * Created by maxim on 06.06.2017.
  */
-public class AjaxRosourceTesting {
-    private static final GoodGame gg = GoodGameTest.gg;
+public class AjaxRosourceTest {
+    private static final GoodGame gg = GoodGameTest.getGg();
 
     @Test
     public void loginTest() {
@@ -22,7 +21,17 @@ public class AjaxRosourceTesting {
         lock[0] = false;
         final AjaxLoginContainer[] container = new AjaxLoginContainer[1];
 
-        gg.ajax().login(VariablesForTest.LOGIN, VariablesForTest.PASSWORD, new AjaxLoginResponseHandler() {
+
+        gg.ajax().login(SecretValue.GOODGAME_LOGIN, SecretValue.GOODGAME_PASSWORD, new AjaxLoginResponseHandler() {
+            @Override
+            public void onSuccess(AjaxLoginContainer ajaxLoginContainer) {
+                container[0] = ajaxLoginContainer;
+                lock[0] = true;
+                synchronized (o) {
+                    o.notifyAll();
+                }
+            }
+
             @Override
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
                 lock[0] = true;
@@ -39,14 +48,6 @@ public class AjaxRosourceTesting {
                 }
             }
 
-            @Override
-            public void onSuccess(AjaxLoginContainer ajaxLoginContainer, String session) {
-                container[0] = ajaxLoginContainer;
-                lock[0] = true;
-                synchronized (o) {
-                    o.notifyAll();
-                }
-            }
         });
         synchronized (o) {
             while (!lock[0]) {

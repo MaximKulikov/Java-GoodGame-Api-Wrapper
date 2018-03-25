@@ -19,9 +19,9 @@ public class ChatChannel {
     private String channelName;
 
     @JsonProperty("clients_in_channel")
-    private Long clientsInChannel;
+    private Integer clientsInChannel;
 
     @JsonProperty("users_in_channel")
-    private Long usersInChannel;
+    private Integer usersInChannel;
 
 }

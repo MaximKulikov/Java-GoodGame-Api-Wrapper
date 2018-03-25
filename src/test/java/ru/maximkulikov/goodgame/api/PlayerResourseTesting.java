@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class PlayerResourseTesting {
 
-    private static final GoodGame gg = GoodGameTest.gg;
+    private static final GoodGame gg = GoodGameTest.getGg();
 
     private static final String CHANNELID = "36229";
 
@@ -27,6 +27,7 @@ public class PlayerResourseTesting {
         lock[0] = false;
 
         final Player[] p = new Player[1];
+
 
         gg.player().getPlayer(CHANNELID, new PlayerResponseHandler() {
             @Override
@@ -72,6 +73,8 @@ public class PlayerResourseTesting {
         assertEquals("36229", p[0].getChannelId());
         assertEquals("Trinion", p[0].getChannelKey());
         assertEquals("1494338668", p[0].getChannelStart());
+
+
 
     }
 }

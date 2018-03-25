@@ -4,7 +4,7 @@
 
     <groupId>ru.maximkulikov</groupId>
     <artifactId>goodgame-api-wrapper</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <packaging>jar</packaging>
 
     <name>goodgame-api-wrapper</name>
